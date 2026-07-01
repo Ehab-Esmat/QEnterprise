@@ -1181,6 +1181,8 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
         <div class="nav-child" onclick="navigate('purchase-returns')"><span class="child-icon">↩️</span> Purchase Return</div>
         <div class="nav-child" onclick="navigate('vendor-receipts')"><span class="child-icon">📥</span> Vendor Receipt</div>
         <div class="nav-child" onclick="navigate('price-discount')"><span class="child-icon">🏷️</span> Price &amp; Discount Schema</div>
+        <div class="nav-child" onclick="navigate('rfq-list')"><span class="child-icon">📨</span> Request For Quotation</div>
+        <div class="nav-child" onclick="navigate('sq-list')"><span class="child-icon">💬</span> Vendor Quotation</div>
       </div>
     </div>
 
@@ -1692,7 +1694,7 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
     <div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Procurement / <span>Purchase Orders</span></div><div class="page-title">Purchase Orders</div><div class="page-subtitle">Manage supplier purchase orders</div></div>
     <div class="page-actions"><button class="btn btn-primary" onclick="openModal('modal-new-po')">+ New PO</button></div>
   </div>
-  <div class="card"><div class="card-body no-pad"><div class="table-wrapper"><table><thead><tr><th>PO #</th><th>Vendor</th><th>Date</th><th>Expected</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+  <div class="card"><div class="card-body no-pad"><div class="table-wrapper"><table><thead><tr><th>PO #</th><th>Vendor</th><th>Date</th><th>Expected</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody id="po-tbody">
     <tr><td style="font-weight:700;color:var(--accent)">PO-2026-008</td><td>Saudi Fabrics Co.</td><td>Jun 18, 2026</td><td>Jul 1, 2026</td><td class="amount">SAR 24,000</td><td><span class="badge-status badge-approved">Approved</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('PO details opened','')">👁</button><button class="action-btn" onclick="showToast('Goods receipt created','success')">📥</button></div></td></tr>
     <tr><td style="font-weight:700;color:var(--accent)">PO-2026-007</td><td>Al-Yamama Suppliers</td><td>Jun 12, 2026</td><td>Jun 28, 2026</td><td class="amount">SAR 38,500</td><td><span class="badge-status badge-waiting">Pending</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('PO details opened','')">👁</button><button class="action-btn" onclick="showToast('Approved','success')">✅</button></div></td></tr>
     <tr><td style="font-weight:700;color:var(--accent)">PO-2026-006</td><td>Gulf Packaging Ltd.</td><td>May 28, 2026</td><td>Jun 15, 2026</td><td class="amount">SAR 7,200</td><td><span class="badge-status badge-delivered">Received</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('PO details opened','')">👁</button><button class="action-btn" onclick="navigate('bills')">🧾</button></div></td></tr>
@@ -1708,7 +1710,7 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
     <div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Procurement / <span>Bills</span></div><div class="page-title">Vendor Bills</div><div class="page-subtitle">Manage supplier invoices and payables</div></div>
     <div class="page-actions"><button class="btn btn-primary" onclick="showToast('New bill form opened','')">+ New Bill</button></div>
   </div>
-  <div class="card"><div class="card-body no-pad"><div class="table-wrapper"><table><thead><tr><th>Bill #</th><th>Vendor</th><th>Date</th><th>Due Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+  <div class="card"><div class="card-body no-pad"><div class="table-wrapper"><table><thead><tr><th>Bill #</th><th>Vendor</th><th>Date</th><th>Due Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody id="bills-tbody">
     <tr><td style="font-weight:700;color:var(--accent)">BILL-2026-022</td><td>Saudi Fabrics Co.</td><td>Jun 18, 2026</td><td>Jul 18, 2026</td><td class="amount">SAR 24,000</td><td><span class="badge-status badge-waiting">Unpaid</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button><button class="action-btn" onclick="showToast('Payment recorded','success')">💳</button></div></td></tr>
     <tr><td style="font-weight:700;color:var(--accent)">BILL-2026-021</td><td>Al-Yamama Suppliers</td><td>Jun 1, 2026</td><td>Jul 1, 2026</td><td class="amount">SAR 38,500</td><td><span class="badge-status badge-partial">Partial</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button><button class="action-btn" onclick="showToast('Payment recorded','success')">💳</button></div></td></tr>
     <tr><td style="font-weight:700;color:var(--accent)">BILL-2026-020</td><td>Gulf Packaging Ltd.</td><td>May 28, 2026</td><td>Jun 27, 2026</td><td class="amount">SAR 7,200</td><td><span class="badge-status badge-paid">Paid</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button><button class="action-btn" onclick="showToast('PDF generated','')">🖨</button></div></td></tr>
@@ -2995,6 +2997,77 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
 </div></div>
 
 <!-- ══════════════════════════════════════════════════════════════════
+     RFQ — LIST
+══════════════════════════════════════════════════════════════════ -->
+<div class="screen" id="s-rfq-list"><div class="pw">
+  <div class="sec-hdr"><div><div class="sec-title">Request For Quotation</div><div class="sec-sub">RFQs sent to vendors against approved purchase requests</div></div></div>
+  <div class="card"><div class="tbl-wrap"><table><thead><tr><th>RFQ #</th><th>Source PR</th><th>Transaction Date</th><th>Suppliers</th><th>Items</th><th>Status</th><th>Actions</th></tr></thead><tbody id="rfq-list-tbl"></tbody></table></div></div>
+</div></div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     RFQ — NEW / BUILDER
+══════════════════════════════════════════════════════════════════ -->
+<div class="screen" id="s-rfq-new"><div class="pw" style="max-width:980px">
+  <div class="sec-hdr">
+    <div><div class="sec-title">New Request For Quotation</div><div class="sec-sub" id="rfq-new-sub">Generated from purchase request</div></div>
+    <div class="sec-actions">
+      <button class="btn btn-ghost btn-sm" onclick="navigate('rfq-list')">← Back</button>
+      <button class="btn btn-primary btn-sm" onclick="saveRFQ()">💾 Save &amp; Notify Vendors</button>
+    </div>
+  </div>
+  <div class="card" style="padding:16px 18px;margin-bottom:16px">
+    <div class="fg-row c4">
+      <div class="fg"><label class="fl">No. Series</label><input class="fc ro" id="rfq-num" readonly></div>
+      <div class="fg"><label class="fl">Transaction Date</label><input class="fc ro" id="rfq-txdate" readonly></div>
+      <div class="fg"><label class="fl">Status</label><input class="fc ro" id="rfq-status" value="Draft" readonly></div>
+      <div class="fg"><label class="fl">Source PR</label><input class="fc ro" id="rfq-src-pr" readonly></div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-head"><div class="card-title">Requested Items</div></div>
+    <div class="tbl-wrap"><table><thead><tr><th>#</th><th>Item Code</th><th>Item Name</th><th>Required Date</th><th>Qty</th><th>UOM</th></tr></thead><tbody id="rfq-items-tbl"></tbody></table></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><div class="card-title">Supplier Lines</div><button class="btn btn-ghost btn-sm" onclick="addRFQSupplierRow()">+ Add Supplier</button></div>
+    <div class="tbl-wrap"><table><thead><tr><th style="width:34px">No.</th><th>Vendor Name</th><th>Contact Person</th><th>Contact Email</th><th style="width:90px">Send Email</th><th style="width:40px"></th></tr></thead><tbody id="rfq-sup-tbl"></tbody></table></div>
+  </div>
+</div></div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     SQ — LIST
+══════════════════════════════════════════════════════════════════ -->
+<div class="screen" id="s-sq-list"><div class="pw">
+  <div class="sec-hdr"><div><div class="sec-title">Vendor Quotation</div><div class="sec-sub">Quotations received from vendors against RFQs</div></div></div>
+  <div class="card"><div class="tbl-wrap"><table><thead><tr><th>SQ #</th><th>Vendor</th><th>RFQ Ref</th><th>Creation Date</th><th>Valid Till</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody id="sq-list-tbl"></tbody></table></div></div>
+</div></div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     SQ — NEW
+══════════════════════════════════════════════════════════════════ -->
+<div class="screen" id="s-sq-new"><div class="pw" style="max-width:900px">
+  <div class="sec-hdr">
+    <div><div class="sec-title">New Vendor Quotation</div><div class="sec-sub" id="sq-new-sub">Created from RFQ</div></div>
+    <div class="sec-actions">
+      <button class="btn btn-ghost btn-sm" onclick="navigate('sq-list')">← Back</button>
+      <button class="btn btn-primary btn-sm" onclick="saveSQ()">💾 Save</button>
+    </div>
+  </div>
+  <div class="card" style="padding:16px 18px;margin-bottom:16px">
+    <div class="fg-row c4">
+      <div class="fg"><label class="fl">Vendor Name</label><input class="fc ro" id="sq-vendor" readonly></div>
+      <div class="fg"><label class="fl">Status</label><input class="fc ro" id="sq-status" value="Saved – Draft" readonly></div>
+      <div class="fg"><label class="fl">Creation Date</label><input class="fc ro" id="sq-credate" readonly></div>
+      <div class="fg"><label class="fl">Valid Till <span class="req">*</span></label><input class="fc" type="date" id="sq-validtill"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><div class="card-title">Item Lines</div></div>
+    <div class="tbl-wrap"><table><thead><tr><th>No.</th><th>Item Code</th><th>Qty</th><th>UOM</th><th>Amount (SAR)</th></tr></thead><tbody id="sq-items-tbl"></tbody></table></div>
+    <div style="text-align:right;padding:12px 18px;font-weight:800;font-size:14px">Total: SAR <span id="sq-total">0</span></div>
+  </div>
+</div></div>
+
+<!-- ══════════════════════════════════════════════════════════════════
      WORKFLOW — APPROVAL BOARD (KANBAN)
 ══════════════════════════════════════════════════════════════════ -->
 <div class="screen" id="s-wf-board"><div class="pw">
@@ -3504,9 +3577,20 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
     <p style="color:var(--ink2);margin-bottom:16px;font-size:13px">Select how to proceed with this approved purchase request:</p>
     <div class="convert-opt" onclick="selectConvert('rfq',this)"><div class="convert-opt-icon">📝</div><div><div class="convert-opt-title">Request For Quotation (RFQ)</div><div class="convert-opt-sub">Send to vendors for price quotes before committing to a purchase order</div></div></div>
     <div class="convert-opt" onclick="selectConvert('po',this)"><div class="convert-opt-icon">🛒</div><div><div class="convert-opt-title">Purchase Order (PO)</div><div class="convert-opt-sub">Directly create a purchase order and send to the selected vendor</div></div></div>
+    <div class="convert-opt" onclick="selectConvert('pi',this)"><div class="convert-opt-icon">🧾</div><div><div class="convert-opt-title">Purchase Invoice (PI)</div><div class="convert-opt-sub">Directly create a purchase invoice against this request</div></div></div>
     <div class="convert-opt" onclick="selectConvert('transfer',this)"><div class="convert-opt-icon">🔄</div><div><div class="convert-opt-title">Stock Transfer</div><div class="convert-opt-sub">Fulfill the request by transferring items from another warehouse location</div></div></div>
   </div>
   <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('m-pr-convert')">Cancel</button><button class="btn btn-violet" onclick="confirmConvert()">Convert</button></div></div>
+</div>
+
+<!-- Create SQ from RFQ -->
+<div class="overlay" id="m-create-sq">
+  <div class="modal modal-sm"><div class="modal-hd"><span class="modal-title">Create Vendor Quotation</span><button class="mc" onclick="closeModal('m-create-sq')">✕</button></div>
+  <div class="modal-body">
+    <p style="color:var(--ink2);margin-bottom:12px;font-size:13px">Select the supplier you want to create a Vendor Quotation for:</p>
+    <div class="fg"><label class="fl">Vendor <span class="req">*</span></label><select class="fc" id="create-sq-vendor"></select></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('m-create-sq')">Cancel</button><button class="btn btn-primary" onclick="confirmCreateSQ()">Create SQ</button></div></div>
 </div>
 
 <!-- Create New Item (from PR line) -->
@@ -4046,6 +4130,225 @@ let purchaseRequests=[
   {id:'PR-1000',requester:'Sara Al-Otaibi',dept:'IT Department',txDate:'2026-06-18',reqBy:'2026-06-28',terms:'',status:'approved',lines:[{itemCode:'ITM-002',itemName:'Laptop',reqBy:'2026-06-28',qty:2,uom:'Each',notes:'Replacement laptops'}],convertedTo:'rfq'},
 ];
 
+/* ─── PROCUREMENT: VENDORS / RFQ / SQ ───────────────────────────────── */
+let vendorsData=[
+  {name:'Saudi Fabrics Co.',contact:'Ahmed Al-Zahrani',email:'ahmed.zahrani@saudifabrics.sa'},
+  {name:'Al-Yamama Suppliers',contact:'Faisal Al-Tamimi',email:'faisal.tamimi@alyamama.sa'},
+  {name:'Gulf Packaging Ltd.',contact:'Omar Al-Ghamdi',email:'omar.ghamdi@gulfpack.sa'},
+];
+let rfqs=[
+  {id:'RFQ-001',prId:'PR-1000',txDate:'2026-06-19',status:'sent',
+    lines:[{itemCode:'ITM-002',itemName:'Laptop',reqDate:'2026-06-28',qty:2,uom:'Each'}],
+    suppliers:[{no:1,vendor:'Saudi Fabrics Co.',contact:'Ahmed Al-Zahrani',email:'ahmed.zahrani@saudifabrics.sa',sendEmail:true}]},
+];
+let sqs=[];
+let nextRFQNum=2, nextSQNum=1, selectedRFQId=null, sqLineCount=0;
+
+function refreshProcurementBadges(){
+  const elr=document.getElementById('bdg-rfq');if(elr)elr.textContent=rfqs.length;
+  const els=document.getElementById('bdg-sq');if(els)els.textContent=sqs.length;
+}
+
+/* RFQ: builder, launched from PR convert */
+function openRFQNew(prId){
+  const p=purchaseRequests.find(x=>x.id===prId);if(!p)return;
+  selectedRFQId=null;
+  document.getElementById('rfq-num').value='RFQ-'+String(nextRFQNum).padStart(3,'0');
+  document.getElementById('rfq-txdate').value=new Date().toISOString().split('T')[0];
+  document.getElementById('rfq-status').value='Draft';
+  document.getElementById('rfq-src-pr').value=prId;
+  document.getElementById('rfq-new-sub').textContent='Generated from purchase request '+prId;
+  document.getElementById('rfq-items-tbl').innerHTML=p.lines.map((l,i)=>`<tr>
+    <td style="color:var(--mute)">${i+1}</td>
+    <td style="font-weight:600;color:var(--blue)">${l.itemCode||'—'}</td>
+    <td>${l.itemName}</td>
+    <td style="color:var(--mute)">${l.reqBy}</td>
+    <td style="font-weight:700">${l.qty}</td>
+    <td>${l.uom}</td></tr>`).join('');
+  document.getElementById('rfq-sup-tbl').innerHTML='';
+  window._rfqDraftLines=p.lines.map(l=>({itemCode:l.itemCode,itemName:l.itemName,reqDate:l.reqBy,qty:l.qty,uom:l.uom}));
+  window._rfqDraftPR=prId;
+  addRFQSupplierRow();
+  document.querySelectorAll('.panel, .screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-rfq-new').classList.add('active');
+  window.scrollTo(0,0);
+}
+function addRFQSupplierRow(){
+  const tbody=document.getElementById('rfq-sup-tbl');
+  const n=tbody.children.length+1;
+  const rowId='rfqsup-'+Date.now()+'-'+n;
+  const tr=document.createElement('tr');tr.id=rowId;
+  tr.innerHTML=`<td style="text-align:center;color:var(--mute);font-weight:700">${n}</td>
+    <td><select class="fc rfq-sup-vendor" onchange="rfqSupplierPicked(this)">
+      <option value="">Select vendor…</option>
+      ${vendorsData.map(v=>`<option value="${v.name}">${v.name}</option>`).join('')}
+    </select></td>
+    <td><input class="fc rfq-sup-contact ro" readonly></td>
+    <td><input class="fc rfq-sup-email ro" readonly></td>
+    <td style="text-align:center"><input type="checkbox" class="rfq-sup-send" checked style="width:18px;height:18px"></td>
+    <td><button class="btn btn-ghost btn-sm" onclick="document.getElementById('${rowId}').remove()">✕</button></td>`;
+  tbody.appendChild(tr);
+}
+function rfqSupplierPicked(sel){
+  const v=vendorsData.find(x=>x.name===sel.value);
+  const tr=sel.closest('tr');
+  tr.querySelector('.rfq-sup-contact').value=v?v.contact:'';
+  tr.querySelector('.rfq-sup-email').value=v?v.email:'';
+}
+function saveRFQ(){
+  const rows=[...document.querySelectorAll('#rfq-sup-tbl tr')];
+  const suppliers=rows.map((r,i)=>({
+    no:i+1,
+    vendor:r.querySelector('.rfq-sup-vendor')?.value||'',
+    contact:r.querySelector('.rfq-sup-contact')?.value||'',
+    email:r.querySelector('.rfq-sup-email')?.value||'',
+    sendEmail:r.querySelector('.rfq-sup-send')?.checked||false,
+  })).filter(s=>s.vendor);
+  if(!suppliers.length){showToast('Add at least one supplier line','error');return;}
+  const id='RFQ-'+String(nextRFQNum++).padStart(3,'0');
+  rfqs.unshift({id,prId:window._rfqDraftPR,txDate:document.getElementById('rfq-txdate').value,status:'sent',lines:window._rfqDraftLines||[],suppliers});
+  const p=purchaseRequests.find(x=>x.id===window._rfqDraftPR);
+  if(p)p.convertedTo='rfq';
+  closeModal('m-pr-convert');
+  const toEmail=suppliers.filter(s=>s.sendEmail);
+  showToast(id+' saved — email sent to '+toEmail.length+' supplier'+(toEmail.length!==1?'s':'')+' ('+toEmail.map(s=>s.email).join(', ')+')','success');
+  renderPRList&&renderPRList();refreshBadges&&refreshBadges();
+  navigate('rfq-list');
+}
+function renderRFQList(){
+  const tb=document.getElementById('rfq-list-tbl');if(!tb)return;
+  tb.innerHTML=rfqs.length?rfqs.map(r=>`
+    <tr>
+      <td style="font-weight:700;color:var(--blue)">${r.id}</td>
+      <td>${r.prId}</td>
+      <td style="color:var(--mute)">${r.txDate}</td>
+      <td>${r.suppliers.length}</td>
+      <td>${r.lines.length}</td>
+      <td>${badge(r.status==='sent'?'review':r.status)}</td>
+      <td><div style="display:flex;gap:6px">
+        <button class="btn btn-ghost btn-sm" onclick="openRFQDetail('${r.id}')">View</button>
+        <button class="btn btn-primary btn-sm" onclick="openCreateSQ('${r.id}')">+ Create SQ</button>
+      </div></td>
+    </tr>`).join('')
+    :'<tr><td colspan="7"><div style="text-align:center;padding:30px;color:var(--mute)">No RFQs yet — convert an approved Purchase Request</div></td></tr>';
+}
+function openRFQDetail(id){
+  const r=rfqs.find(x=>x.id===id);if(!r)return;
+  document.getElementById('prd-title').textContent=r.id+' — Request For Quotation';
+  document.getElementById('prd-body').innerHTML=`
+    <div class="detail-grid" style="background:var(--violet-bg,#F5F3FF)">
+      <div><div class="dg-label">Source PR</div><div class="dg-val">${r.prId}</div></div>
+      <div><div class="dg-label">Transaction Date</div><div class="dg-val">${r.txDate}</div></div>
+      <div><div class="dg-label">Status</div><div class="dg-val">${badge(r.status==='sent'?'review':r.status)}</div></div>
+    </div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:8px">Items</div>
+    <div class="tbl-wrap" style="border:1px solid var(--border);border-radius:var(--r8);margin-bottom:16px">
+      <table><thead><tr><th>#</th><th>Item Code</th><th>Item Name</th><th>Required Date</th><th>Qty</th><th>UOM</th></tr></thead>
+      <tbody>${r.lines.map((l,i)=>`<tr><td style="color:var(--mute)">${i+1}</td><td style="font-weight:600;color:var(--blue)">${l.itemCode||'—'}</td><td>${l.itemName}</td><td style="color:var(--mute)">${l.reqDate}</td><td style="font-weight:700">${l.qty}</td><td>${l.uom}</td></tr>`).join('')}</tbody></table>
+    </div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:8px">Suppliers</div>
+    <div class="tbl-wrap" style="border:1px solid var(--border);border-radius:var(--r8)">
+      <table><thead><tr><th>No.</th><th>Vendor</th><th>Contact</th><th>Email</th><th>Sent</th></tr></thead>
+      <tbody>${r.suppliers.map(s=>`<tr><td>${s.no}</td><td style="font-weight:600">${s.vendor}</td><td>${s.contact}</td><td>${s.email}</td><td>${s.sendEmail?'✓':'—'}</td></tr>`).join('')}</tbody></table>
+    </div>`;
+  document.getElementById('prd-foot').innerHTML=`<button class="btn btn-ghost" onclick="closeModal('m-pr-detail')">Close</button><button class="btn btn-primary" onclick="closeModal('m-pr-detail');openCreateSQ('${id}')">+ Create SQ</button>`;
+  openModal('m-pr-detail');
+}
+
+/* SQ: created from a selected supplier within an RFQ */
+function openCreateSQ(rfqId){
+  selectedRFQId=rfqId;
+  const r=rfqs.find(x=>x.id===rfqId);if(!r)return;
+  document.getElementById('create-sq-vendor').innerHTML=r.suppliers.map(s=>`<option value="${s.vendor}">${s.vendor}</option>`).join('');
+  openModal('m-create-sq');
+}
+function confirmCreateSQ(){
+  const vendor=document.getElementById('create-sq-vendor').value;
+  const r=rfqs.find(x=>x.id===selectedRFQId);if(!r||!vendor)return;
+  closeModal('m-create-sq');
+  document.getElementById('sq-vendor').value=vendor;
+  document.getElementById('sq-status').value='Saved – Draft';
+  document.getElementById('sq-credate').value=new Date().toISOString().split('T')[0];
+  document.getElementById('sq-validtill').value='';
+  document.getElementById('sq-new-sub').textContent='Created from '+r.id+' — '+vendor;
+  document.getElementById('sq-items-tbl').innerHTML=r.lines.map((l,i)=>`<tr>
+    <td style="color:var(--mute)">${i+1}</td>
+    <td style="font-weight:600;color:var(--blue)">${l.itemCode||'—'}</td>
+    <td style="font-weight:700">${l.qty}</td>
+    <td>${l.uom}</td>
+    <td><input class="fc sq-amt" type="number" min="0" step="0.01" value="0" oninput="calcSQTotal()" style="max-width:140px"></td></tr>`).join('');
+  window._sqDraftRFQ=r.id;
+  calcSQTotal();
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-sq-new').classList.add('active');
+}
+function calcSQTotal(){
+  const amts=[...document.querySelectorAll('.sq-amt')].map(i=>parseFloat(i.value)||0);
+  document.getElementById('sq-total').textContent=amts.reduce((a,b)=>a+b,0).toLocaleString();
+}
+function saveSQ(){
+  const validTill=document.getElementById('sq-validtill').value;
+  if(!validTill){showToast('Valid Till date is required','error');return;}
+  const r=rfqs.find(x=>x.id===window._sqDraftRFQ);
+  const rows=[...document.querySelectorAll('#sq-items-tbl tr')];
+  const lines=rows.map((tr,i)=>({
+    no:i+1,
+    itemCode:r.lines[i]?.itemCode||'',
+    qty:r.lines[i]?.qty||0,
+    uom:r.lines[i]?.uom||'',
+    amount:parseFloat(tr.querySelector('.sq-amt')?.value)||0,
+  }));
+  const total=lines.reduce((s,l)=>s+l.amount,0);
+  const id='SQ-'+String(nextSQNum++).padStart(3,'0');
+  sqs.unshift({id,vendor:document.getElementById('sq-vendor').value,rfqId:r?r.id:'',status:'draft',creationDate:document.getElementById('sq-credate').value,validTill,lines,total});
+  showToast(id+' saved as draft','success');
+  navigate('sq-list');
+}
+function renderSQList(){
+  const tb=document.getElementById('sq-list-tbl');if(!tb)return;
+  tb.innerHTML=sqs.length?sqs.map(s=>`
+    <tr>
+      <td style="font-weight:700;color:var(--blue)">${s.id}</td>
+      <td>${s.vendor}</td>
+      <td>${s.rfqId}</td>
+      <td style="color:var(--mute)">${s.creationDate}</td>
+      <td style="color:var(--mute)">${s.validTill}</td>
+      <td style="font-weight:700">SAR ${s.total.toLocaleString()}</td>
+      <td>${badge(s.status==='draft'?'draft':s.status)}</td>
+      <td><div style="display:flex;gap:6px">
+        ${!s.convertedTo?`<button class="btn btn-ghost btn-sm" onclick="convertSQToPO('${s.id}')">→ PO</button><button class="btn btn-ghost btn-sm" onclick="convertSQToPI('${s.id}')">→ PI</button>`:badge(s.convertedTo)}
+      </div></td>
+    </tr>`).join('')
+    :'<tr><td colspan="8"><div style="text-align:center;padding:30px;color:var(--mute)">No supplier quotations yet — create one from an RFQ</div></td></tr>';
+}
+function convertSQToPO(id){
+  const s=sqs.find(x=>x.id===id);if(!s)return;
+  s.convertedTo='po';
+  const poId='PO-2026-'+(900+Math.floor(Math.random()*99));
+  const tb=document.getElementById('po-tbody');
+  if(tb)tb.insertAdjacentHTML('afterbegin',`<tr><td style="font-weight:700;color:var(--accent)">${poId}</td><td>${s.vendor}</td><td>${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td>—</td><td class="amount">SAR ${s.total.toLocaleString()}</td><td><span class="badge-status badge-waiting">Pending</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('PO details opened','')">👁</button></div></td></tr>`);
+  showToast(id+' converted to Purchase Order '+poId,'success');renderSQList();
+}
+function convertSQToPI(id){
+  const s=sqs.find(x=>x.id===id);if(!s)return;
+  s.convertedTo='pi';
+  const piId='BILL-2026-'+(900+Math.floor(Math.random()*99));
+  const tb=document.getElementById('bills-tbody');
+  const due=new Date();due.setDate(due.getDate()+30);
+  if(tb)tb.insertAdjacentHTML('afterbegin',`<tr><td style="font-weight:700;color:var(--accent)">${piId}</td><td>${s.vendor}</td><td>${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td>${due.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td class="amount">SAR ${s.total.toLocaleString()}</td><td><span class="badge-status badge-waiting">Unpaid</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button></div></td></tr>`);
+  showToast(id+' converted to Purchase Invoice '+piId,'success');renderSQList();
+}
+function convertPRToPI(p){
+  const piId='BILL-2026-'+(900+Math.floor(Math.random()*99));
+  const tb=document.getElementById('bills-tbody');
+  const due=new Date();due.setDate(due.getDate()+30);
+  const amount=0;
+  if(tb)tb.insertAdjacentHTML('afterbegin',`<tr><td style="font-weight:700;color:var(--accent)">${piId}</td><td>—</td><td>${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td>${due.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td class="amount">SAR ${amount.toLocaleString()}</td><td><span class="badge-status badge-waiting">Unpaid</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button></div></td></tr>`);
+  return piId;
+}
+
+let purchaseRequestsSeedDone=true;
+
 let wfItems=[
   {id:'WF-001',doc:'EXP-1007',type:'Expense Claim',requester:'Ahmed Hassan',approver:'Mohammed Al-Qahtani',amount:2350,status:'pending',created:'2026-06-20',sla:48,domain:'Finance',desc:'Team offsite meals & transport'},
   {id:'WF-002',doc:'PR-1001',type:'Purchase Request',requester:'Ahmed Hassan',approver:'Mohammed Al-Qahtani',amount:0,status:'pending',created:'2026-06-20',sla:24,domain:'Procurement',desc:'Office chairs & paper supply'},
@@ -4147,7 +4450,7 @@ function badge(s){
   const m={pending:'b-pending Pending',approved:'b-approved Approved',rejected:'b-rejected Rejected',
     draft:'b-draft Draft',review:'b-review Under Review',escalated:'b-escalated Escalated',
     active:'b-active Active',inactive:'b-inactive Inactive',
-    rfq:'b-rfq Converted to RFQ',po:'b-po Converted to PO',transfer:'b-transfer Stock Transfer'};
+    rfq:'b-rfq Converted to RFQ',po:'b-po Converted to PO',pi:'b-rfq Converted to PI',transfer:'b-transfer Stock Transfer'};
   const v=m[s]||'b-draft '+s;
   const [cls,...rest]=v.split(' ');
   return `<span class="badge ${cls}">${rest.join(' ')}</span>`;
@@ -4589,8 +4892,19 @@ function selectConvert(type,el){
 function confirmConvert(){
   if(!convertType){showToast('Please select a conversion type','error');return;}
   const p=purchaseRequests.find(x=>x.id===selectedPRId);if(!p)return;
+  if(convertType==='rfq'){
+    closeModal('m-pr-convert');
+    openRFQNew(p.id);
+    return;
+  }
+  if(convertType==='pi'){
+    p.convertedTo='pi';
+    const piId=convertPRToPI(p);
+    closeModal('m-pr-convert');showToast(selectedPRId+' converted to Purchase Invoice '+piId,'success');renderPRList();refreshBadges();
+    return;
+  }
   p.convertedTo=convertType;
-  const labels={rfq:'Request For Quotation',po:'Purchase Order',transfer:'Stock Transfer'};
+  const labels={po:'Purchase Order',transfer:'Stock Transfer'};
   closeModal('m-pr-convert');showToast(selectedPRId+' converted to '+labels[convertType],'success');renderPRList();refreshBadges();
 }
 
@@ -4916,7 +5230,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 (function(){
   const _orig = window.navigate;
   const C3_SCREENS = ['exp-dash','exp-claims','exp-approvals','exp-new','exp-types',
-    'pr-list','pr-new','pr-approvals','wf-board','wf-notif','wf-templates','wf-users',
+    'pr-list','pr-new','pr-approvals','rfq-list','rfq-new','sq-list','sq-new','wf-board','wf-notif','wf-templates','wf-users',
     'dms-dispatch','dms-orders','dms-drivers','dms-routes'];
   const C3_META = {
     'exp-dash':{title:'Expenses Dashboard',sub:'Overview of expense claims'},
@@ -4927,6 +5241,10 @@ window.addEventListener('DOMContentLoaded',()=>{
     'pr-list':{title:'Purchase Requests',sub:'All purchase request orders'},
     'pr-new':{title:'New Purchase Request',sub:'Request items for work purposes'},
     'pr-approvals':{title:'PR Approvals',sub:'Purchase requests pending your decision'},
+    'rfq-list':{title:'Request For Quotation',sub:'RFQs sent to vendors against approved purchase requests'},
+    'rfq-new':{title:'New Request For Quotation',sub:'Generated from purchase request'},
+    'sq-list':{title:'Vendor Quotation',sub:'Quotations received from vendors against RFQs'},
+    'sq-new':{title:'New Vendor Quotation',sub:'Created from RFQ'},
     'wf-board':{title:'Approval Board',sub:'All workflow items across modules'},
     'wf-notif':{title:'Notification Center',sub:'Actions and alerts requiring your attention'},
     'wf-templates':{title:'Workflow Templates',sub:'Manage approval workflow templates'},
@@ -4969,6 +5287,8 @@ window.addEventListener('DOMContentLoaded',()=>{
         'pr-list':()=>typeof renderPRList==='function'&&renderPRList(),
         'pr-approvals':()=>typeof renderPRApprovals==='function'&&renderPRApprovals(),
         'pr-new':()=>typeof initPRForm==='function'&&initPRForm(),
+        'rfq-list':()=>typeof renderRFQList==='function'&&renderRFQList(),
+        'sq-list':()=>typeof renderSQList==='function'&&renderSQList(),
         'wf-board':()=>typeof renderKanban==='function'&&renderKanban(),
         'wf-notif':()=>typeof renderNotifs==='function'&&renderNotifs(),
         'wf-templates':()=>typeof renderWFTemplates==='function'&&renderWFTemplates(),
