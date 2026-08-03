@@ -851,6 +851,280 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
 }
 .tb-backdrop.open { display: block; }
 
+
+/* ═══════════════════════════════════════════════════════════════
+   LANDING PAGE
+═══════════════════════════════════════════════════════════════ */
+#panel-landing {
+  background: var(--bg);
+  min-height: calc(100vh - 54px);
+}
+
+/* ── Hero ── */
+.lp-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #243f6a 55%, #1B3A5C 100%);
+  padding: 64px 60px 72px;
+  position: relative; overflow: hidden;
+}
+.lp-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(37,99,235,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.lp-hero-grid {
+  display: grid; grid-template-columns: 1fr 460px; gap: 40px;
+  align-items: center; position: relative; z-index: 1; max-width: 1200px; margin: 0 auto;
+}
+.lp-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(37,99,235,.25); border: 1px solid rgba(37,99,235,.45);
+  color: #93C5FD; font-size: 11.5px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
+  margin-bottom: 20px;
+}
+.lp-hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #60A5FA; animation: blink 1.8s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.lp-hero-title {
+  font-size: 44px; font-weight: 900; color: #fff;
+  line-height: 1.12; letter-spacing: -.5px; margin-bottom: 16px;
+}
+.lp-hero-title span { color: #60A5FA; }
+.lp-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,.65); line-height: 1.65;
+  margin-bottom: 32px; max-width: 520px;
+}
+.lp-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.lp-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px; background: var(--blue); color: #fff;
+  font-size: 14px; font-weight: 700; border-radius: var(--r10);
+  border: none; cursor: pointer; transition: all .18s ease;
+  box-shadow: 0 4px 20px rgba(37,99,235,.4);
+}
+.lp-btn-primary:hover { background: #1D4ED8; transform: translateY(-1px); box-shadow: 0 6px 26px rgba(37,99,235,.5); }
+.lp-btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px; background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.85); font-size: 14px; font-weight: 600;
+  border-radius: var(--r10); border: 1px solid rgba(255,255,255,.2);
+  cursor: pointer; transition: all .18s ease;
+}
+.lp-btn-ghost:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.4); }
+
+/* Hero stats */
+.lp-hero-stats {
+  display: flex; gap: 32px; margin-top: 40px; padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.lp-stat-item .lp-stat-n {
+  font-size: 26px; font-weight: 800; color: #fff; line-height: 1;
+}
+.lp-stat-item .lp-stat-l { font-size: 11.5px; color: rgba(255,255,255,.5); margin-top: 3px; }
+
+/* Hero right — module preview cards */
+.lp-hero-preview {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+  filter: drop-shadow(0 32px 64px rgba(0,0,0,.4));
+}
+.lp-preview-card {
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r12); padding: 16px 14px;
+  transition: background .2s;
+}
+.lp-preview-card:hover { background: rgba(255,255,255,.12); }
+.lp-preview-card .pc-icon { font-size: 22px; margin-bottom: 8px; }
+.lp-preview-card .pc-name { font-size: 12.5px; font-weight: 700; color: rgba(255,255,255,.88); margin-bottom: 3px; }
+.lp-preview-card .pc-stat { font-size: 11px; color: rgba(255,255,255,.45); }
+.lp-preview-card .pc-val { font-size: 18px; font-weight: 800; color: #60A5FA; margin-top: 6px; }
+
+/* ── Section titles ── */
+.lp-section { padding: 52px 60px; max-width: 1200px; margin: 0 auto; }
+.lp-section-hd { text-align: center; margin-bottom: 40px; }
+.lp-section-tag {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--blue); background: var(--blue-bg); padding: 4px 12px;
+  border-radius: 20px; margin-bottom: 10px;
+}
+.lp-section-title {
+  font-size: 30px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -.3px;
+}
+.lp-section-sub { font-size: 15px; color: var(--mute); max-width: 580px; margin: 0 auto; line-height: 1.6; }
+
+/* ── Module Cards Grid ── */
+.lp-modules-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 16px;
+}
+.lp-mod-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r12); padding: 24px 22px;
+  cursor: pointer; transition: all .2s ease; position: relative; overflow: hidden;
+}
+.lp-mod-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  border-radius: var(--r12) var(--r12) 0 0; opacity: 0; transition: opacity .2s;
+}
+.lp-mod-card:hover { border-color: transparent; box-shadow: 0 8px 32px rgba(0,0,0,.1); transform: translateY(-3px); }
+.lp-mod-card:hover::before { opacity: 1; }
+
+/* Color accent per card */
+.mc-blue::before   { background: var(--blue); }
+.mc-teal::before   { background: var(--teal); }
+.mc-violet::before { background: var(--violet); }
+.mc-green::before  { background: var(--green); }
+.mc-orange::before { background: var(--orange); }
+.mc-amber::before  { background: var(--amber); }
+.mc-red::before    { background: var(--red); }
+.mc-navy::before   { background: var(--navy); }
+.mc-indigo::before { background: #4F46E5; }
+.mc-rose::before   { background: #E11D48; }
+.mc-sky::before    { background: #0284C7; }
+.mc-lime::before   { background: #65A30D; }
+.mc-fuchsia::before{ background: #A21CAF; }
+
+.lp-mod-icon-wrap {
+  width: 52px; height: 52px; border-radius: var(--r12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 16px; transition: transform .2s;
+}
+.lp-mod-card:hover .lp-mod-icon-wrap { transform: scale(1.08); }
+.lp-mod-name { font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+.lp-mod-desc { font-size: 12.5px; color: var(--mute); line-height: 1.55; margin-bottom: 16px; }
+.lp-mod-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.lp-mod-tag {
+  font-size: 10.5px; font-weight: 600; padding: 2px 8px;
+  border-radius: 20px; background: var(--surface2); color: var(--ink3);
+  border: 1px solid var(--border);
+}
+.lp-mod-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 12px; border-top: 1px solid var(--border);
+}
+.lp-mod-status {
+  font-size: 11px; font-weight: 700; padding: 3px 9px;
+  border-radius: 20px;
+}
+.ms-live    { background: #DCFCE7; color: #166534; }
+.ms-beta    { background: #FEF3C7; color: #92400E; }
+.ms-coming  { background: #F3F4F6; color: #6B7280; }
+.ms-new     { background: var(--blue-bg); color: var(--blue); }
+.lp-mod-arrow {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--surface2); display: flex; align-items: center;
+  justify-content: center; font-size: 13px; color: var(--mute);
+  transition: all .18s ease;
+}
+.lp-mod-card:hover .lp-mod-arrow { background: var(--blue); color: #fff; transform: translateX(2px); }
+
+/* ── Apps section ── */
+.lp-apps-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
+}
+.lp-app-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r12); padding: 20px 18px;
+  cursor: pointer; transition: all .2s ease; text-align: center;
+}
+.lp-app-card:hover { border-color: var(--blue); box-shadow: 0 6px 24px rgba(37,99,235,.1); transform: translateY(-2px); }
+.lp-app-icon { font-size: 30px; margin-bottom: 10px; }
+.lp-app-name { font-size: 13.5px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.lp-app-desc { font-size: 11.5px; color: var(--mute); line-height: 1.45; }
+.lp-app-badge {
+  display: inline-block; font-size: 9.5px; font-weight: 700;
+  padding: 2px 7px; border-radius: 10px; margin-top: 8px;
+  background: var(--blue-bg); color: var(--blue);
+}
+
+/* ── Settings grid ── */
+.lp-settings-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.lp-setting-row {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r10); padding: 16px 18px;
+  cursor: pointer; transition: all .18s ease;
+}
+.lp-setting-row:hover { border-color: var(--blue); background: var(--blue-bg); }
+.lp-setting-icon {
+  width: 38px; height: 38px; border-radius: var(--r8); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.lp-setting-name { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 1px; }
+.lp-setting-desc { font-size: 11px; color: var(--mute); }
+
+/* ── Feature Strip ── */
+.lp-strip {
+  background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
+  padding: 48px 60px;
+}
+.lp-strip-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 28px;
+}
+.lp-feature {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+}
+.lp-feature-icon {
+  width: 44px; height: 44px; border-radius: var(--r10);
+  background: rgba(37,99,235,.25); border: 1px solid rgba(37,99,235,.35);
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.lp-feature-title { font-size: 14px; font-weight: 700; color: #fff; }
+.lp-feature-sub   { font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.5; }
+
+/* ── CTA Banner ── */
+.lp-cta {
+  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 50%, #7C3AED 100%);
+  margin: 0 60px 52px; border-radius: var(--r16); padding: 48px 52px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  position: relative; overflow: hidden;
+}
+.lp-cta::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: rgba(255,255,255,.06);
+}
+.lp-cta::after {
+  content: ''; position: absolute; bottom: -60px; right: 120px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: rgba(255,255,255,.04);
+}
+.lp-cta-text h3 { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.lp-cta-text p  { font-size: 14px; color: rgba(255,255,255,.65); }
+.lp-cta-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; background: #fff; color: var(--blue);
+  font-size: 14px; font-weight: 800; border-radius: var(--r10);
+  border: none; cursor: pointer; white-space: nowrap;
+  transition: all .18s ease; box-shadow: 0 4px 16px rgba(0,0,0,.15);
+  flex-shrink: 0; position: relative; z-index: 1;
+}
+.lp-cta-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+
+/* ── Footer ── */
+.lp-footer {
+  background: var(--navy); padding: 28px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.lp-footer-logo { font-size: 16px; font-weight: 800; color: #fff; }
+.lp-footer-logo span { color: #60A5FA; }
+.lp-footer-links { display: flex; gap: 24px; }
+.lp-footer-links a {
+  font-size: 12.5px; color: rgba(255,255,255,.45); text-decoration: none;
+  transition: color .15s; cursor: pointer;
+}
+.lp-footer-links a:hover { color: rgba(255,255,255,.85); }
+.lp-footer-copy { font-size: 11.5px; color: rgba(255,255,255,.3); }
+
+/* ── Topbar override for landing page (no page title/subtitle) ── */
+body.on-landing #tb-title { display: none; }
+body.on-landing #tb-sub   { display: none; }
+
 </style>
 </head>
 <body>
@@ -1124,7 +1398,10 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
 
   <!-- DASHBOARD -->
   <div class="sb-section">
-    <div class="sb-item active" id="nav-dashboard" onclick="navigate('dashboard')">
+    <div class="sb-item" id="nav-landing" onclick="navigate('landing')" style="border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:10px;margin-bottom:2px">
+      <span class="si">🏠</span><span class="sl">Home</span>
+    </div>
+    <div class="sb-item" id="nav-dashboard" onclick="navigate('dashboard')">
       <span class="si">📊</span><span class="sl">Dashboard</span>
     </div>
   </div>
@@ -1181,8 +1458,6 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
         <div class="nav-child" onclick="navigate('purchase-returns')"><span class="child-icon">↩️</span> Purchase Return</div>
         <div class="nav-child" onclick="navigate('vendor-receipts')"><span class="child-icon">📥</span> Vendor Receipt</div>
         <div class="nav-child" onclick="navigate('price-discount')"><span class="child-icon">🏷️</span> Price &amp; Discount Schema</div>
-        <div class="nav-child" onclick="navigate('rfq-list')"><span class="child-icon">📨</span> Request For Quotation</div>
-        <div class="nav-child" onclick="navigate('sq-list')"><span class="child-icon">💬</span> Vendor Quotation</div>
       </div>
     </div>
 
@@ -1296,10 +1571,465 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
 <div id="main-content" style="margin-left:var(--sidebar-w);margin-top:var(--header-h);height:calc(100vh - var(--header-h));overflow-y:auto;overflow-x:hidden;flex:1;min-width:0;transition:margin-left .2s ease;">
 
 
+<!-- ═══════════════════════════════════════════════════════════════
+     LANDING PAGE
+═══════════════════════════════════════════════════════════════ -->
+<div class="panel active" id="panel-landing">
+
+  <!-- ══ HERO ══ -->
+  <div class="lp-hero">
+    <div class="lp-hero-grid">
+      <!-- Left -->
+      <div>
+        <div class="lp-hero-badge"><span class="dot"></span>QERP-Lite · Enterprise ERP · Saudi Arabia</div>
+        <div class="lp-hero-title">
+          One Platform.<br>
+          <span>Every Business</span><br>
+          Function.
+        </div>
+        <div class="lp-hero-sub">
+          QERP-Lite brings Trading, Procurement, Accounting, Inventory, Fixed Assets, HR, CRM, and more into a single ZATCA-compliant platform — built for Saudi SMEs and enterprise teams.
+        </div>
+        <div class="lp-hero-btns">
+          <button class="lp-btn-primary" onclick="navigate('dashboard')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+            Open Dashboard
+          </button>
+          <button class="lp-btn-ghost" onclick="scrollTo({top: document.getElementById('lp-modules').offsetTop + document.getElementById('main-content').scrollTop - 20, behavior:'smooth'})">
+            Explore Modules ↓
+          </button>
+        </div>
+        <div class="lp-hero-stats">
+          <div class="lp-stat-item"><div class="lp-stat-n">14+</div><div class="lp-stat-l">Modules</div></div>
+          <div class="lp-stat-item"><div class="lp-stat-n">ZATCA</div><div class="lp-stat-l">Phase 2 Ready</div></div>
+          <div class="lp-stat-item"><div class="lp-stat-n">RTL</div><div class="lp-stat-l">Arabic Support</div></div>
+          <div class="lp-stat-item"><div class="lp-stat-n">SAR</div><div class="lp-stat-l">Native Currency</div></div>
+        </div>
+      </div>
+      <!-- Right preview cards -->
+      <div class="lp-hero-preview">
+        <div class="lp-preview-card">
+          <div class="pc-icon">🧾</div>
+          <div class="pc-name">Sales Invoices</div>
+          <div class="pc-stat">This month</div>
+          <div class="pc-val">SAR 184K</div>
+        </div>
+        <div class="lp-preview-card">
+          <div class="pc-icon">📦</div>
+          <div class="pc-name">Open POs</div>
+          <div class="pc-stat">Active orders</div>
+          <div class="pc-val">28</div>
+        </div>
+        <div class="lp-preview-card">
+          <div class="pc-icon">✅</div>
+          <div class="pc-name">ZATCA Status</div>
+          <div class="pc-stat">e-Invoicing</div>
+          <div class="pc-val" style="color:#4ADE80;font-size:14px;font-weight:700">Phase 2 ✓</div>
+        </div>
+        <div class="lp-preview-card">
+          <div class="pc-icon">📊</div>
+          <div class="pc-name">Workflows</div>
+          <div class="pc-stat">Pending approvals</div>
+          <div class="pc-val">5</div>
+        </div>
+        <div class="lp-preview-card" style="grid-column:span 2">
+          <div class="pc-icon">💰</div>
+          <div class="pc-name">Net Profit — June 2026</div>
+          <div class="pc-stat">Revenue SAR 184,250 · COGS SAR 98,400 · Expenses SAR 32,200</div>
+          <div class="pc-val" style="font-size:22px">SAR 53,650</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FEATURE STRIP ══ -->
+  <div class="lp-strip">
+    <div class="lp-strip-inner">
+      <div class="lp-feature">
+        <div class="lp-feature-icon">🇸🇦</div>
+        <div class="lp-feature-title">ZATCA Phase 2</div>
+        <div class="lp-feature-sub">Full clearance integration with Saudi e-invoicing authority — automatic QR codes and XML submission.</div>
+      </div>
+      <div class="lp-feature">
+        <div class="lp-feature-icon">🌐</div>
+        <div class="lp-feature-title">Arabic + English</div>
+        <div class="lp-feature-sub">Full RTL Arabic and LTR English interface — switch instantly, every screen supports both languages.</div>
+      </div>
+      <div class="lp-feature">
+        <div class="lp-feature-icon">🔗</div>
+        <div class="lp-feature-title">Open API</div>
+        <div class="lp-feature-sub">REST API with JWT authentication — connect Qoyod POS, Shopify, WooCommerce, and 44+ platforms.</div>
+      </div>
+      <div class="lp-feature">
+        <div class="lp-feature-icon">⚙️</div>
+        <div class="lp-feature-title">Workflow Engine</div>
+        <div class="lp-feature-sub">Configurable multi-level approval routing across all modules — no code changes required.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODULES SECTION ══ -->
+  <div class="lp-section" id="lp-modules">
+    <div class="lp-section-hd">
+      <div class="lp-section-tag">Modules</div>
+      <div class="lp-section-title">Everything your business needs</div>
+      <div class="lp-section-sub">Click any module to jump directly into its screens — all data, forms, and workflows are live inside this prototype.</div>
+    </div>
+
+    <div class="lp-modules-grid">
+
+      <!-- Trading Management -->
+      <div class="lp-mod-card mc-blue" onclick="navigate('invoices')">
+        <div class="lp-mod-icon-wrap" style="background:#EFF6FF">💰</div>
+        <div class="lp-mod-name">Trading Management</div>
+        <div class="lp-mod-desc">Full sales cycle — quotations, ZATCA-compliant invoices, credit notes, customer receipts, and delivery notes in one unified workflow.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Sales Invoices</span>
+          <span class="lp-mod-tag">Quotations</span>
+          <span class="lp-mod-tag">Credit Notes</span>
+          <span class="lp-mod-tag">ZATCA</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-live">● Live</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- DMS -->
+      <div class="lp-mod-card mc-teal" onclick="navigate('dms-dispatch')">
+        <div class="lp-mod-icon-wrap" style="background:#F0FDFA">🚚</div>
+        <div class="lp-mod-name">Delivery Management (DMS)</div>
+        <div class="lp-mod-desc">Real-time dispatch board with live driver tracking, AI route optimization, order lifecycle management, and ZATCA e-waybill generation.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Dispatch</span>
+          <span class="lp-mod-tag">Route Optimization</span>
+          <span class="lp-mod-tag">Live Map</span>
+          <span class="lp-mod-tag">Drivers</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-live">● Live</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- Procurement Management -->
+      <div class="lp-mod-card mc-violet" onclick="navigate('purchase-orders')">
+        <div class="lp-mod-icon-wrap" style="background:#F5F3FF">🛒</div>
+        <div class="lp-mod-name">Procurement Management</div>
+        <div class="lp-mod-desc">End-to-end procurement — purchase requests, RFQ, purchase orders, vendor bills, receipts, price schemas, and expense claims with approval workflows.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Purchase Orders</span>
+          <span class="lp-mod-tag">PR Workflow</span>
+          <span class="lp-mod-tag">Expense Claims</span>
+          <span class="lp-mod-tag">Vendor Receipts</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-live">● Live</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- Inventory Management -->
+      <div class="lp-mod-card mc-green" onclick="navigate('items')">
+        <div class="lp-mod-icon-wrap" style="background:#F0FDF4">📦</div>
+        <div class="lp-mod-name">Inventory Management</div>
+        <div class="lp-mod-desc">Multi-warehouse stock control with product attributes, category hierarchy, units of measure, FIFO/AVCO costing, and real-time valuation.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Multi-Warehouse</span>
+          <span class="lp-mod-tag">Stock Transfers</span>
+          <span class="lp-mod-tag">AVCO / FIFO</span>
+          <span class="lp-mod-tag">Attributes</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-live">● Live</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- Fixed Assets Management -->
+      <div class="lp-mod-card mc-amber" onclick="navigate('fixed-assets')">
+        <div class="lp-mod-icon-wrap" style="background:#FFFBEB">🏗️</div>
+        <div class="lp-mod-name">Fixed Assets Management</div>
+        <div class="lp-mod-desc">Full asset lifecycle — register, straight-line and declining balance depreciation, additions, disposals, and automatic journal entry generation.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Asset Register</span>
+          <span class="lp-mod-tag">Depreciation</span>
+          <span class="lp-mod-tag">Disposal</span>
+          <span class="lp-mod-tag">Additions</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-live">● Live</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- Accounting Management -->
+      <div class="lp-mod-card mc-navy" onclick="navigate('journal-entries')">
+        <div class="lp-mod-icon-wrap" style="background:#EFF6FF">📒</div>
+        <div class="lp-mod-name">Accounting Management</div>
+        <div class="lp-mod-desc">Full double-entry accounting — chart of accounts, journal entries, budgeting, deferrals, recurring entries, multi-currency, and ZATCA VAT returns.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Journal Entries</span>
+          <span class="lp-mod-tag">Budgeting</span>
+          <span class="lp-mod-tag">Multi-Currency</span>
+          <span class="lp-mod-tag">VAT Return</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-live">● Live</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- CRM -->
+      <div class="lp-mod-card mc-sky" onclick="showToast('CRM module — coming in next sprint','info')">
+        <div class="lp-mod-icon-wrap" style="background:#E0F2FE">🤝</div>
+        <div class="lp-mod-name">CRM</div>
+        <div class="lp-mod-desc">Customer relationship management — leads pipeline, opportunity tracking, activity log, contact management, and sales forecasting dashboard.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Lead Pipeline</span>
+          <span class="lp-mod-tag">Opportunities</span>
+          <span class="lp-mod-tag">Activities</span>
+          <span class="lp-mod-tag">Forecasting</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-beta">⚡ Beta</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- POS -->
+      <div class="lp-mod-card mc-orange" onclick="showToast('POS module — coming soon','info')">
+        <div class="lp-mod-icon-wrap" style="background:#FFF7ED">🖥️</div>
+        <div class="lp-mod-name">Point of Sale (POS)</div>
+        <div class="lp-mod-desc">Touch-optimized POS with Qoyod accounting sync, inventory deduction, barcode scanning, cash drawer, Mada/credit card integration, and ZATCA receipts.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Barcode Scan</span>
+          <span class="lp-mod-tag">Mada Payment</span>
+          <span class="lp-mod-tag">ZATCA Receipt</span>
+          <span class="lp-mod-tag">Offline Mode</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-coming">◌ Coming Soon</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- Production Management -->
+      <div class="lp-mod-card mc-lime" onclick="showToast('Production module — roadmap Q3 2026','info')">
+        <div class="lp-mod-icon-wrap" style="background:#F7FEE7">⚙️</div>
+        <div class="lp-mod-name">Production Management</div>
+        <div class="lp-mod-desc">Bill of materials, production orders, work-in-progress tracking, raw material consumption, finished goods output, and cost of production reports.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Bill of Materials</span>
+          <span class="lp-mod-tag">Work Orders</span>
+          <span class="lp-mod-tag">WIP Tracking</span>
+          <span class="lp-mod-tag">Cost Reports</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-coming">◌ Roadmap Q3</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- HRM -->
+      <div class="lp-mod-card mc-rose" onclick="showToast('HRM module — roadmap Q4 2026','info')">
+        <div class="lp-mod-icon-wrap" style="background:#FFF1F2">👷</div>
+        <div class="lp-mod-name">Human Resources (HRM)</div>
+        <div class="lp-mod-desc">Employee records, payroll with GOSI and WPS compliance, leave management, attendance tracking, end-of-service calculations, and org chart.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Payroll</span>
+          <span class="lp-mod-tag">GOSI / WPS</span>
+          <span class="lp-mod-tag">Leave</span>
+          <span class="lp-mod-tag">Attendance</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-coming">◌ Roadmap Q4</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- Workflow Management -->
+      <div class="lp-mod-card mc-indigo" onclick="navigate('wf-board')">
+        <div class="lp-mod-icon-wrap" style="background:#EEF2FF">📊</div>
+        <div class="lp-mod-name">Workflow Management</div>
+        <div class="lp-mod-desc">Configurable multi-level approval engine — define triggers, conditions, SLA timers, escalation rules, and approval user chains across all modules without code.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Approval Board</span>
+          <span class="lp-mod-tag">SLA Escalation</span>
+          <span class="lp-mod-tag">Templates</span>
+          <span class="lp-mod-tag">Notifications</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-live">● Live</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+      <!-- Integrations -->
+      <div class="lp-mod-card mc-fuchsia" onclick="navigate('settings-integration')">
+        <div class="lp-mod-icon-wrap" style="background:#FDF4FF">🔗</div>
+        <div class="lp-mod-name">Integrations</div>
+        <div class="lp-mod-desc">Connect QERP-Lite with ZATCA, Saudi Open Banking, WhatsApp Business, SMTP email, Shopify, WooCommerce, and 44+ e-commerce and POS platforms via REST API.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">ZATCA</span>
+          <span class="lp-mod-tag">Open Banking</span>
+          <span class="lp-mod-tag">WhatsApp</span>
+          <span class="lp-mod-tag">REST API</span>
+        </div>
+        <div class="lp-mod-footer">
+          <span class="lp-mod-status ms-live">● Live</span>
+          <div class="lp-mod-arrow">→</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ APPS SECTION ══ -->
+  <div style="background:var(--surface3);padding:52px 0">
+    <div class="lp-section" style="padding-top:0;padding-bottom:0">
+      <div class="lp-section-hd">
+        <div class="lp-section-tag">Apps</div>
+        <div class="lp-section-title">Connected Apps &amp; Add-ons</div>
+        <div class="lp-section-sub">Extend QERP-Lite with purpose-built apps — each integrated natively into the platform.</div>
+      </div>
+      <div class="lp-apps-grid">
+        <div class="lp-app-card" onclick="navigate('dms-dispatch')">
+          <div class="lp-app-icon">📱</div>
+          <div class="lp-app-name">Driver Mobile App</div>
+          <div class="lp-app-desc">iOS &amp; Android app for drivers — order accept, GPS navigation, proof of delivery.</div>
+          <div class="lp-app-badge">iOS + Android</div>
+        </div>
+        <div class="lp-app-card" onclick="showToast('Customer Portal — coming soon','info')">
+          <div class="lp-app-icon">🌐</div>
+          <div class="lp-app-name">Customer Portal</div>
+          <div class="lp-app-desc">Self-service portal — view invoices, track deliveries, submit payments online.</div>
+          <div class="lp-app-badge">Web</div>
+        </div>
+        <div class="lp-app-card" onclick="showToast('Qoyod POS App — coming soon','info')">
+          <div class="lp-app-icon">🖥️</div>
+          <div class="lp-app-name">Qoyod POS App</div>
+          <div class="lp-app-desc">Touch POS with offline mode, Mada integration, and ZATCA receipt printing.</div>
+          <div class="lp-app-badge">iPad + Desktop</div>
+        </div>
+        <div class="lp-app-card" onclick="showToast('ZATCA Filing App — coming soon','info')">
+          <div class="lp-app-icon">🇸🇦</div>
+          <div class="lp-app-name">ZATCA Filing</div>
+          <div class="lp-app-desc">One-click VAT return filing and e-invoice clearance status dashboard.</div>
+          <div class="lp-app-badge">Phase 2</div>
+        </div>
+        <div class="lp-app-card" onclick="showToast('Approvals App — coming soon','info')">
+          <div class="lp-app-icon">✅</div>
+          <div class="lp-app-name">Approvals App</div>
+          <div class="lp-app-desc">Mobile approve / reject any workflow item on the go — WhatsApp integration included.</div>
+          <div class="lp-app-badge">iOS + Android</div>
+        </div>
+        <div class="lp-app-card" onclick="showToast('Analytics App — coming soon','info')">
+          <div class="lp-app-icon">📊</div>
+          <div class="lp-app-name">Analytics &amp; BI</div>
+          <div class="lp-app-desc">Interactive dashboards with drill-down — revenue trends, cost analysis, KPI scorecards.</div>
+          <div class="lp-app-badge">Coming Q3</div>
+        </div>
+        <div class="lp-app-card" onclick="showToast('Payroll App — coming soon','info')">
+          <div class="lp-app-icon">💸</div>
+          <div class="lp-app-name">Payroll &amp; WPS</div>
+          <div class="lp-app-desc">Automated payroll with GOSI, WPS file generation, and end-of-service calculations.</div>
+          <div class="lp-app-badge">Coming Q4</div>
+        </div>
+        <div class="lp-app-card" onclick="showToast('Qoyod Marketplace coming soon','info')">
+          <div class="lp-app-icon">🛍️</div>
+          <div class="lp-app-name">App Marketplace</div>
+          <div class="lp-app-desc">Browse and install certified third-party apps — built on the QERP-Lite open API.</div>
+          <div class="lp-app-badge">Browse All</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SETTINGS SECTION ══ -->
+  <div class="lp-section">
+    <div class="lp-section-hd">
+      <div class="lp-section-tag">Settings</div>
+      <div class="lp-section-title">System Configuration</div>
+      <div class="lp-section-sub">Everything you need to set up, personalize, and manage your QERP-Lite instance.</div>
+    </div>
+    <div class="lp-settings-grid">
+      <div class="lp-setting-row" onclick="navigate('settings-general')">
+        <div class="lp-setting-icon" style="background:#EFF6FF">🏢</div>
+        <div><div class="lp-setting-name">General</div><div class="lp-setting-desc">Company profile, localization, document series</div></div>
+      </div>
+      <div class="lp-setting-row" onclick="navigate('settings-integration')">
+        <div class="lp-setting-icon" style="background:#F5F3FF">🔗</div>
+        <div><div class="lp-setting-name">Integrations</div><div class="lp-setting-desc">ZATCA, banking, email, WhatsApp APIs</div></div>
+      </div>
+      <div class="lp-setting-row" onclick="navigate('settings-attachments')">
+        <div class="lp-setting-icon" style="background:#FFF7ED">📎</div>
+        <div><div class="lp-setting-name">Attachments</div><div class="lp-setting-desc">Storage, file types, size limits</div></div>
+      </div>
+      <div class="lp-setting-row" onclick="navigate('settings-profile')">
+        <div class="lp-setting-icon" style="background:#F0FDF4">👤</div>
+        <div><div class="lp-setting-name">My Profile</div><div class="lp-setting-desc">Personal info, password, 2FA security</div></div>
+      </div>
+      <div class="lp-setting-row" onclick="navigate('settings-users')">
+        <div class="lp-setting-icon" style="background:#FFF1F2">👥</div>
+        <div><div class="lp-setting-name">Users &amp; Roles</div><div class="lp-setting-desc">Invite users, manage roles and permissions</div></div>
+      </div>
+      <div class="lp-setting-row" onclick="navigate('wf-templates')">
+        <div class="lp-setting-icon" style="background:#EEF2FF">⚙️</div>
+        <div><div class="lp-setting-name">Workflow Templates</div><div class="lp-setting-desc">Approval chains, SLA, escalation rules</div></div>
+      </div>
+      <div class="lp-setting-row" onclick="navigate('taxes')">
+        <div class="lp-setting-icon" style="background:#F0FDFA">🧾</div>
+        <div><div class="lp-setting-name">Tax Configuration</div><div class="lp-setting-desc">VAT rates, ZATCA codes, WHT setup</div></div>
+      </div>
+      <div class="lp-setting-row" onclick="navigate('fiscal-year')">
+        <div class="lp-setting-icon" style="background:#FFFBEB">📅</div>
+        <div><div class="lp-setting-name">Fiscal Year</div><div class="lp-setting-desc">Accounting periods, year-end close</div></div>
+      </div>
+      <div class="lp-setting-row" onclick="navigate('foreign-currencies')">
+        <div class="lp-setting-icon" style="background:#FEF9C3">💱</div>
+        <div><div class="lp-setting-name">Foreign Currencies</div><div class="lp-setting-desc">Exchange rates, SAMA feed, multi-currency</div></div>
+      </div>
+      <div class="lp-setting-row" onclick="navigate('dimensions')">
+        <div class="lp-setting-icon" style="background:#F0FDF4">🧩</div>
+        <div><div class="lp-setting-name">Dimensions</div><div class="lp-setting-desc">Cost centres, branches, projects</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CTA BANNER ══ -->
+  <div style="padding:0 0 20px">
+    <div class="lp-cta">
+      <div class="lp-cta-text">
+        <h3>Ready to explore QERP-Lite?</h3>
+        <p>Jump into the fully interactive prototype — every module, every screen, live data and workflows.</p>
+      </div>
+      <button class="lp-cta-btn" onclick="navigate('dashboard')">
+        Open Dashboard →
+      </button>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="lp-footer">
+    <div class="lp-footer-logo">QERP<span>lite</span> <span style="font-weight:400;color:rgba(255,255,255,.35);font-size:13px;margin-left:6px">by Qoyod</span></div>
+    <div class="lp-footer-links">
+      <a onclick="showToast('Opening documentation…','info')">Documentation</a>
+      <a onclick="showToast('Opening API reference…','info')">API Reference</a>
+      <a onclick="showToast('Opening changelog…','info')">Changelog</a>
+      <a onclick="showToast('Opening support…','info')">Support</a>
+    </div>
+    <div class="lp-footer-copy">© 2026 Qoyod. QERP-Lite Prototype v3.0</div>
+  </div>
+
+</div>
+<!-- ═══ END LANDING PAGE ═══ -->
+
+
 <!-- ============================================================
      DASHBOARD
 ============================================================ -->
-<div class="panel active" id="panel-dashboard">
+<div class="panel" id="panel-dashboard">
   <div class="page-header">
     <div>
       <div class="page-title">Dashboard</div>
@@ -1694,7 +2424,7 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
     <div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Procurement / <span>Purchase Orders</span></div><div class="page-title">Purchase Orders</div><div class="page-subtitle">Manage supplier purchase orders</div></div>
     <div class="page-actions"><button class="btn btn-primary" onclick="openModal('modal-new-po')">+ New PO</button></div>
   </div>
-  <div class="card"><div class="card-body no-pad"><div class="table-wrapper"><table><thead><tr><th>PO #</th><th>Vendor</th><th>Date</th><th>Expected</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody id="po-tbody">
+  <div class="card"><div class="card-body no-pad"><div class="table-wrapper"><table><thead><tr><th>PO #</th><th>Vendor</th><th>Date</th><th>Expected</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>
     <tr><td style="font-weight:700;color:var(--accent)">PO-2026-008</td><td>Saudi Fabrics Co.</td><td>Jun 18, 2026</td><td>Jul 1, 2026</td><td class="amount">SAR 24,000</td><td><span class="badge-status badge-approved">Approved</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('PO details opened','')">👁</button><button class="action-btn" onclick="showToast('Goods receipt created','success')">📥</button></div></td></tr>
     <tr><td style="font-weight:700;color:var(--accent)">PO-2026-007</td><td>Al-Yamama Suppliers</td><td>Jun 12, 2026</td><td>Jun 28, 2026</td><td class="amount">SAR 38,500</td><td><span class="badge-status badge-waiting">Pending</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('PO details opened','')">👁</button><button class="action-btn" onclick="showToast('Approved','success')">✅</button></div></td></tr>
     <tr><td style="font-weight:700;color:var(--accent)">PO-2026-006</td><td>Gulf Packaging Ltd.</td><td>May 28, 2026</td><td>Jun 15, 2026</td><td class="amount">SAR 7,200</td><td><span class="badge-status badge-delivered">Received</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('PO details opened','')">👁</button><button class="action-btn" onclick="navigate('bills')">🧾</button></div></td></tr>
@@ -1710,7 +2440,7 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
     <div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Procurement / <span>Bills</span></div><div class="page-title">Vendor Bills</div><div class="page-subtitle">Manage supplier invoices and payables</div></div>
     <div class="page-actions"><button class="btn btn-primary" onclick="showToast('New bill form opened','')">+ New Bill</button></div>
   </div>
-  <div class="card"><div class="card-body no-pad"><div class="table-wrapper"><table><thead><tr><th>Bill #</th><th>Vendor</th><th>Date</th><th>Due Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody id="bills-tbody">
+  <div class="card"><div class="card-body no-pad"><div class="table-wrapper"><table><thead><tr><th>Bill #</th><th>Vendor</th><th>Date</th><th>Due Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody>
     <tr><td style="font-weight:700;color:var(--accent)">BILL-2026-022</td><td>Saudi Fabrics Co.</td><td>Jun 18, 2026</td><td>Jul 18, 2026</td><td class="amount">SAR 24,000</td><td><span class="badge-status badge-waiting">Unpaid</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button><button class="action-btn" onclick="showToast('Payment recorded','success')">💳</button></div></td></tr>
     <tr><td style="font-weight:700;color:var(--accent)">BILL-2026-021</td><td>Al-Yamama Suppliers</td><td>Jun 1, 2026</td><td>Jul 1, 2026</td><td class="amount">SAR 38,500</td><td><span class="badge-status badge-partial">Partial</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button><button class="action-btn" onclick="showToast('Payment recorded','success')">💳</button></div></td></tr>
     <tr><td style="font-weight:700;color:var(--accent)">BILL-2026-020</td><td>Gulf Packaging Ltd.</td><td>May 28, 2026</td><td>Jun 27, 2026</td><td class="amount">SAR 7,200</td><td><span class="badge-status badge-paid">Paid</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button><button class="action-btn" onclick="showToast('PDF generated','')">🖨</button></div></td></tr>
@@ -2997,77 +3727,6 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
 </div></div>
 
 <!-- ══════════════════════════════════════════════════════════════════
-     RFQ — LIST
-══════════════════════════════════════════════════════════════════ -->
-<div class="screen" id="s-rfq-list"><div class="pw">
-  <div class="sec-hdr"><div><div class="sec-title">Request For Quotation</div><div class="sec-sub">RFQs sent to vendors against approved purchase requests</div></div></div>
-  <div class="card"><div class="tbl-wrap"><table><thead><tr><th>RFQ #</th><th>Source PR</th><th>Transaction Date</th><th>Suppliers</th><th>Items</th><th>Status</th><th>Actions</th></tr></thead><tbody id="rfq-list-tbl"></tbody></table></div></div>
-</div></div>
-
-<!-- ══════════════════════════════════════════════════════════════════
-     RFQ — NEW / BUILDER
-══════════════════════════════════════════════════════════════════ -->
-<div class="screen" id="s-rfq-new"><div class="pw" style="max-width:980px">
-  <div class="sec-hdr">
-    <div><div class="sec-title">New Request For Quotation</div><div class="sec-sub" id="rfq-new-sub">Generated from purchase request</div></div>
-    <div class="sec-actions">
-      <button class="btn btn-ghost btn-sm" onclick="navigate('rfq-list')">← Back</button>
-      <button class="btn btn-primary btn-sm" onclick="saveRFQ()">💾 Save &amp; Notify Vendors</button>
-    </div>
-  </div>
-  <div class="card" style="padding:16px 18px;margin-bottom:16px">
-    <div class="fg-row c4">
-      <div class="fg"><label class="fl">No. Series</label><input class="fc ro" id="rfq-num" readonly></div>
-      <div class="fg"><label class="fl">Transaction Date</label><input class="fc ro" id="rfq-txdate" readonly></div>
-      <div class="fg"><label class="fl">Status</label><input class="fc ro" id="rfq-status" value="Draft" readonly></div>
-      <div class="fg"><label class="fl">Source PR</label><input class="fc ro" id="rfq-src-pr" readonly></div>
-    </div>
-  </div>
-  <div class="card" style="margin-bottom:16px">
-    <div class="card-head"><div class="card-title">Requested Items</div></div>
-    <div class="tbl-wrap"><table><thead><tr><th>#</th><th>Item Code</th><th>Item Name</th><th>Required Date</th><th>Qty</th><th>UOM</th></tr></thead><tbody id="rfq-items-tbl"></tbody></table></div>
-  </div>
-  <div class="card">
-    <div class="card-head"><div class="card-title">Supplier Lines</div><button class="btn btn-ghost btn-sm" onclick="addRFQSupplierRow()">+ Add Supplier</button></div>
-    <div class="tbl-wrap"><table><thead><tr><th style="width:34px">No.</th><th>Vendor Name</th><th>Contact Person</th><th>Contact Email</th><th style="width:90px">Send Email</th><th style="width:40px"></th></tr></thead><tbody id="rfq-sup-tbl"></tbody></table></div>
-  </div>
-</div></div>
-
-<!-- ══════════════════════════════════════════════════════════════════
-     SQ — LIST
-══════════════════════════════════════════════════════════════════ -->
-<div class="screen" id="s-sq-list"><div class="pw">
-  <div class="sec-hdr"><div><div class="sec-title">Vendor Quotation</div><div class="sec-sub">Quotations received from vendors against RFQs</div></div></div>
-  <div class="card"><div class="tbl-wrap"><table><thead><tr><th>SQ #</th><th>Vendor</th><th>RFQ Ref</th><th>Creation Date</th><th>Valid Till</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead><tbody id="sq-list-tbl"></tbody></table></div></div>
-</div></div>
-
-<!-- ══════════════════════════════════════════════════════════════════
-     SQ — NEW
-══════════════════════════════════════════════════════════════════ -->
-<div class="screen" id="s-sq-new"><div class="pw" style="max-width:900px">
-  <div class="sec-hdr">
-    <div><div class="sec-title">New Vendor Quotation</div><div class="sec-sub" id="sq-new-sub">Created from RFQ</div></div>
-    <div class="sec-actions">
-      <button class="btn btn-ghost btn-sm" onclick="navigate('sq-list')">← Back</button>
-      <button class="btn btn-primary btn-sm" onclick="saveSQ()">💾 Save</button>
-    </div>
-  </div>
-  <div class="card" style="padding:16px 18px;margin-bottom:16px">
-    <div class="fg-row c4">
-      <div class="fg"><label class="fl">Vendor Name</label><input class="fc ro" id="sq-vendor" readonly></div>
-      <div class="fg"><label class="fl">Status</label><input class="fc ro" id="sq-status" value="Saved – Draft" readonly></div>
-      <div class="fg"><label class="fl">Creation Date</label><input class="fc ro" id="sq-credate" readonly></div>
-      <div class="fg"><label class="fl">Valid Till <span class="req">*</span></label><input class="fc" type="date" id="sq-validtill"></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-head"><div class="card-title">Item Lines</div></div>
-    <div class="tbl-wrap"><table><thead><tr><th>No.</th><th>Item Code</th><th>Qty</th><th>UOM</th><th>Amount (SAR)</th></tr></thead><tbody id="sq-items-tbl"></tbody></table></div>
-    <div style="text-align:right;padding:12px 18px;font-weight:800;font-size:14px">Total: SAR <span id="sq-total">0</span></div>
-  </div>
-</div></div>
-
-<!-- ══════════════════════════════════════════════════════════════════
      WORKFLOW — APPROVAL BOARD (KANBAN)
 ══════════════════════════════════════════════════════════════════ -->
 <div class="screen" id="s-wf-board"><div class="pw">
@@ -3577,20 +4236,9 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
     <p style="color:var(--ink2);margin-bottom:16px;font-size:13px">Select how to proceed with this approved purchase request:</p>
     <div class="convert-opt" onclick="selectConvert('rfq',this)"><div class="convert-opt-icon">📝</div><div><div class="convert-opt-title">Request For Quotation (RFQ)</div><div class="convert-opt-sub">Send to vendors for price quotes before committing to a purchase order</div></div></div>
     <div class="convert-opt" onclick="selectConvert('po',this)"><div class="convert-opt-icon">🛒</div><div><div class="convert-opt-title">Purchase Order (PO)</div><div class="convert-opt-sub">Directly create a purchase order and send to the selected vendor</div></div></div>
-    <div class="convert-opt" onclick="selectConvert('pi',this)"><div class="convert-opt-icon">🧾</div><div><div class="convert-opt-title">Purchase Invoice (PI)</div><div class="convert-opt-sub">Directly create a purchase invoice against this request</div></div></div>
     <div class="convert-opt" onclick="selectConvert('transfer',this)"><div class="convert-opt-icon">🔄</div><div><div class="convert-opt-title">Stock Transfer</div><div class="convert-opt-sub">Fulfill the request by transferring items from another warehouse location</div></div></div>
   </div>
   <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('m-pr-convert')">Cancel</button><button class="btn btn-violet" onclick="confirmConvert()">Convert</button></div></div>
-</div>
-
-<!-- Create SQ from RFQ -->
-<div class="overlay" id="m-create-sq">
-  <div class="modal modal-sm"><div class="modal-hd"><span class="modal-title">Create Vendor Quotation</span><button class="mc" onclick="closeModal('m-create-sq')">✕</button></div>
-  <div class="modal-body">
-    <p style="color:var(--ink2);margin-bottom:12px;font-size:13px">Select the supplier you want to create a Vendor Quotation for:</p>
-    <div class="fg"><label class="fl">Vendor <span class="req">*</span></label><select class="fc" id="create-sq-vendor"></select></div>
-  </div>
-  <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('m-create-sq')">Cancel</button><button class="btn btn-primary" onclick="confirmCreateSQ()">Create SQ</button></div></div>
 </div>
 
 <!-- Create New Item (from PR line) -->
@@ -4130,225 +4778,6 @@ let purchaseRequests=[
   {id:'PR-1000',requester:'Sara Al-Otaibi',dept:'IT Department',txDate:'2026-06-18',reqBy:'2026-06-28',terms:'',status:'approved',lines:[{itemCode:'ITM-002',itemName:'Laptop',reqBy:'2026-06-28',qty:2,uom:'Each',notes:'Replacement laptops'}],convertedTo:'rfq'},
 ];
 
-/* ─── PROCUREMENT: VENDORS / RFQ / SQ ───────────────────────────────── */
-let vendorsData=[
-  {name:'Saudi Fabrics Co.',contact:'Ahmed Al-Zahrani',email:'ahmed.zahrani@saudifabrics.sa'},
-  {name:'Al-Yamama Suppliers',contact:'Faisal Al-Tamimi',email:'faisal.tamimi@alyamama.sa'},
-  {name:'Gulf Packaging Ltd.',contact:'Omar Al-Ghamdi',email:'omar.ghamdi@gulfpack.sa'},
-];
-let rfqs=[
-  {id:'RFQ-001',prId:'PR-1000',txDate:'2026-06-19',status:'sent',
-    lines:[{itemCode:'ITM-002',itemName:'Laptop',reqDate:'2026-06-28',qty:2,uom:'Each'}],
-    suppliers:[{no:1,vendor:'Saudi Fabrics Co.',contact:'Ahmed Al-Zahrani',email:'ahmed.zahrani@saudifabrics.sa',sendEmail:true}]},
-];
-let sqs=[];
-let nextRFQNum=2, nextSQNum=1, selectedRFQId=null, sqLineCount=0;
-
-function refreshProcurementBadges(){
-  const elr=document.getElementById('bdg-rfq');if(elr)elr.textContent=rfqs.length;
-  const els=document.getElementById('bdg-sq');if(els)els.textContent=sqs.length;
-}
-
-/* RFQ: builder, launched from PR convert */
-function openRFQNew(prId){
-  const p=purchaseRequests.find(x=>x.id===prId);if(!p)return;
-  selectedRFQId=null;
-  document.getElementById('rfq-num').value='RFQ-'+String(nextRFQNum).padStart(3,'0');
-  document.getElementById('rfq-txdate').value=new Date().toISOString().split('T')[0];
-  document.getElementById('rfq-status').value='Draft';
-  document.getElementById('rfq-src-pr').value=prId;
-  document.getElementById('rfq-new-sub').textContent='Generated from purchase request '+prId;
-  document.getElementById('rfq-items-tbl').innerHTML=p.lines.map((l,i)=>`<tr>
-    <td style="color:var(--mute)">${i+1}</td>
-    <td style="font-weight:600;color:var(--blue)">${l.itemCode||'—'}</td>
-    <td>${l.itemName}</td>
-    <td style="color:var(--mute)">${l.reqBy}</td>
-    <td style="font-weight:700">${l.qty}</td>
-    <td>${l.uom}</td></tr>`).join('');
-  document.getElementById('rfq-sup-tbl').innerHTML='';
-  window._rfqDraftLines=p.lines.map(l=>({itemCode:l.itemCode,itemName:l.itemName,reqDate:l.reqBy,qty:l.qty,uom:l.uom}));
-  window._rfqDraftPR=prId;
-  addRFQSupplierRow();
-  document.querySelectorAll('.panel, .screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('s-rfq-new').classList.add('active');
-  window.scrollTo(0,0);
-}
-function addRFQSupplierRow(){
-  const tbody=document.getElementById('rfq-sup-tbl');
-  const n=tbody.children.length+1;
-  const rowId='rfqsup-'+Date.now()+'-'+n;
-  const tr=document.createElement('tr');tr.id=rowId;
-  tr.innerHTML=`<td style="text-align:center;color:var(--mute);font-weight:700">${n}</td>
-    <td><select class="fc rfq-sup-vendor" onchange="rfqSupplierPicked(this)">
-      <option value="">Select vendor…</option>
-      ${vendorsData.map(v=>`<option value="${v.name}">${v.name}</option>`).join('')}
-    </select></td>
-    <td><input class="fc rfq-sup-contact ro" readonly></td>
-    <td><input class="fc rfq-sup-email ro" readonly></td>
-    <td style="text-align:center"><input type="checkbox" class="rfq-sup-send" checked style="width:18px;height:18px"></td>
-    <td><button class="btn btn-ghost btn-sm" onclick="document.getElementById('${rowId}').remove()">✕</button></td>`;
-  tbody.appendChild(tr);
-}
-function rfqSupplierPicked(sel){
-  const v=vendorsData.find(x=>x.name===sel.value);
-  const tr=sel.closest('tr');
-  tr.querySelector('.rfq-sup-contact').value=v?v.contact:'';
-  tr.querySelector('.rfq-sup-email').value=v?v.email:'';
-}
-function saveRFQ(){
-  const rows=[...document.querySelectorAll('#rfq-sup-tbl tr')];
-  const suppliers=rows.map((r,i)=>({
-    no:i+1,
-    vendor:r.querySelector('.rfq-sup-vendor')?.value||'',
-    contact:r.querySelector('.rfq-sup-contact')?.value||'',
-    email:r.querySelector('.rfq-sup-email')?.value||'',
-    sendEmail:r.querySelector('.rfq-sup-send')?.checked||false,
-  })).filter(s=>s.vendor);
-  if(!suppliers.length){showToast('Add at least one supplier line','error');return;}
-  const id='RFQ-'+String(nextRFQNum++).padStart(3,'0');
-  rfqs.unshift({id,prId:window._rfqDraftPR,txDate:document.getElementById('rfq-txdate').value,status:'sent',lines:window._rfqDraftLines||[],suppliers});
-  const p=purchaseRequests.find(x=>x.id===window._rfqDraftPR);
-  if(p)p.convertedTo='rfq';
-  closeModal('m-pr-convert');
-  const toEmail=suppliers.filter(s=>s.sendEmail);
-  showToast(id+' saved — email sent to '+toEmail.length+' supplier'+(toEmail.length!==1?'s':'')+' ('+toEmail.map(s=>s.email).join(', ')+')','success');
-  renderPRList&&renderPRList();refreshBadges&&refreshBadges();
-  navigate('rfq-list');
-}
-function renderRFQList(){
-  const tb=document.getElementById('rfq-list-tbl');if(!tb)return;
-  tb.innerHTML=rfqs.length?rfqs.map(r=>`
-    <tr>
-      <td style="font-weight:700;color:var(--blue)">${r.id}</td>
-      <td>${r.prId}</td>
-      <td style="color:var(--mute)">${r.txDate}</td>
-      <td>${r.suppliers.length}</td>
-      <td>${r.lines.length}</td>
-      <td>${badge(r.status==='sent'?'review':r.status)}</td>
-      <td><div style="display:flex;gap:6px">
-        <button class="btn btn-ghost btn-sm" onclick="openRFQDetail('${r.id}')">View</button>
-        <button class="btn btn-primary btn-sm" onclick="openCreateSQ('${r.id}')">+ Create SQ</button>
-      </div></td>
-    </tr>`).join('')
-    :'<tr><td colspan="7"><div style="text-align:center;padding:30px;color:var(--mute)">No RFQs yet — convert an approved Purchase Request</div></td></tr>';
-}
-function openRFQDetail(id){
-  const r=rfqs.find(x=>x.id===id);if(!r)return;
-  document.getElementById('prd-title').textContent=r.id+' — Request For Quotation';
-  document.getElementById('prd-body').innerHTML=`
-    <div class="detail-grid" style="background:var(--violet-bg,#F5F3FF)">
-      <div><div class="dg-label">Source PR</div><div class="dg-val">${r.prId}</div></div>
-      <div><div class="dg-label">Transaction Date</div><div class="dg-val">${r.txDate}</div></div>
-      <div><div class="dg-label">Status</div><div class="dg-val">${badge(r.status==='sent'?'review':r.status)}</div></div>
-    </div>
-    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:8px">Items</div>
-    <div class="tbl-wrap" style="border:1px solid var(--border);border-radius:var(--r8);margin-bottom:16px">
-      <table><thead><tr><th>#</th><th>Item Code</th><th>Item Name</th><th>Required Date</th><th>Qty</th><th>UOM</th></tr></thead>
-      <tbody>${r.lines.map((l,i)=>`<tr><td style="color:var(--mute)">${i+1}</td><td style="font-weight:600;color:var(--blue)">${l.itemCode||'—'}</td><td>${l.itemName}</td><td style="color:var(--mute)">${l.reqDate}</td><td style="font-weight:700">${l.qty}</td><td>${l.uom}</td></tr>`).join('')}</tbody></table>
-    </div>
-    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:8px">Suppliers</div>
-    <div class="tbl-wrap" style="border:1px solid var(--border);border-radius:var(--r8)">
-      <table><thead><tr><th>No.</th><th>Vendor</th><th>Contact</th><th>Email</th><th>Sent</th></tr></thead>
-      <tbody>${r.suppliers.map(s=>`<tr><td>${s.no}</td><td style="font-weight:600">${s.vendor}</td><td>${s.contact}</td><td>${s.email}</td><td>${s.sendEmail?'✓':'—'}</td></tr>`).join('')}</tbody></table>
-    </div>`;
-  document.getElementById('prd-foot').innerHTML=`<button class="btn btn-ghost" onclick="closeModal('m-pr-detail')">Close</button><button class="btn btn-primary" onclick="closeModal('m-pr-detail');openCreateSQ('${id}')">+ Create SQ</button>`;
-  openModal('m-pr-detail');
-}
-
-/* SQ: created from a selected supplier within an RFQ */
-function openCreateSQ(rfqId){
-  selectedRFQId=rfqId;
-  const r=rfqs.find(x=>x.id===rfqId);if(!r)return;
-  document.getElementById('create-sq-vendor').innerHTML=r.suppliers.map(s=>`<option value="${s.vendor}">${s.vendor}</option>`).join('');
-  openModal('m-create-sq');
-}
-function confirmCreateSQ(){
-  const vendor=document.getElementById('create-sq-vendor').value;
-  const r=rfqs.find(x=>x.id===selectedRFQId);if(!r||!vendor)return;
-  closeModal('m-create-sq');
-  document.getElementById('sq-vendor').value=vendor;
-  document.getElementById('sq-status').value='Saved – Draft';
-  document.getElementById('sq-credate').value=new Date().toISOString().split('T')[0];
-  document.getElementById('sq-validtill').value='';
-  document.getElementById('sq-new-sub').textContent='Created from '+r.id+' — '+vendor;
-  document.getElementById('sq-items-tbl').innerHTML=r.lines.map((l,i)=>`<tr>
-    <td style="color:var(--mute)">${i+1}</td>
-    <td style="font-weight:600;color:var(--blue)">${l.itemCode||'—'}</td>
-    <td style="font-weight:700">${l.qty}</td>
-    <td>${l.uom}</td>
-    <td><input class="fc sq-amt" type="number" min="0" step="0.01" value="0" oninput="calcSQTotal()" style="max-width:140px"></td></tr>`).join('');
-  window._sqDraftRFQ=r.id;
-  calcSQTotal();
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('s-sq-new').classList.add('active');
-}
-function calcSQTotal(){
-  const amts=[...document.querySelectorAll('.sq-amt')].map(i=>parseFloat(i.value)||0);
-  document.getElementById('sq-total').textContent=amts.reduce((a,b)=>a+b,0).toLocaleString();
-}
-function saveSQ(){
-  const validTill=document.getElementById('sq-validtill').value;
-  if(!validTill){showToast('Valid Till date is required','error');return;}
-  const r=rfqs.find(x=>x.id===window._sqDraftRFQ);
-  const rows=[...document.querySelectorAll('#sq-items-tbl tr')];
-  const lines=rows.map((tr,i)=>({
-    no:i+1,
-    itemCode:r.lines[i]?.itemCode||'',
-    qty:r.lines[i]?.qty||0,
-    uom:r.lines[i]?.uom||'',
-    amount:parseFloat(tr.querySelector('.sq-amt')?.value)||0,
-  }));
-  const total=lines.reduce((s,l)=>s+l.amount,0);
-  const id='SQ-'+String(nextSQNum++).padStart(3,'0');
-  sqs.unshift({id,vendor:document.getElementById('sq-vendor').value,rfqId:r?r.id:'',status:'draft',creationDate:document.getElementById('sq-credate').value,validTill,lines,total});
-  showToast(id+' saved as draft','success');
-  navigate('sq-list');
-}
-function renderSQList(){
-  const tb=document.getElementById('sq-list-tbl');if(!tb)return;
-  tb.innerHTML=sqs.length?sqs.map(s=>`
-    <tr>
-      <td style="font-weight:700;color:var(--blue)">${s.id}</td>
-      <td>${s.vendor}</td>
-      <td>${s.rfqId}</td>
-      <td style="color:var(--mute)">${s.creationDate}</td>
-      <td style="color:var(--mute)">${s.validTill}</td>
-      <td style="font-weight:700">SAR ${s.total.toLocaleString()}</td>
-      <td>${badge(s.status==='draft'?'draft':s.status)}</td>
-      <td><div style="display:flex;gap:6px">
-        ${!s.convertedTo?`<button class="btn btn-ghost btn-sm" onclick="convertSQToPO('${s.id}')">→ PO</button><button class="btn btn-ghost btn-sm" onclick="convertSQToPI('${s.id}')">→ PI</button>`:badge(s.convertedTo)}
-      </div></td>
-    </tr>`).join('')
-    :'<tr><td colspan="8"><div style="text-align:center;padding:30px;color:var(--mute)">No supplier quotations yet — create one from an RFQ</div></td></tr>';
-}
-function convertSQToPO(id){
-  const s=sqs.find(x=>x.id===id);if(!s)return;
-  s.convertedTo='po';
-  const poId='PO-2026-'+(900+Math.floor(Math.random()*99));
-  const tb=document.getElementById('po-tbody');
-  if(tb)tb.insertAdjacentHTML('afterbegin',`<tr><td style="font-weight:700;color:var(--accent)">${poId}</td><td>${s.vendor}</td><td>${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td>—</td><td class="amount">SAR ${s.total.toLocaleString()}</td><td><span class="badge-status badge-waiting">Pending</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('PO details opened','')">👁</button></div></td></tr>`);
-  showToast(id+' converted to Purchase Order '+poId,'success');renderSQList();
-}
-function convertSQToPI(id){
-  const s=sqs.find(x=>x.id===id);if(!s)return;
-  s.convertedTo='pi';
-  const piId='BILL-2026-'+(900+Math.floor(Math.random()*99));
-  const tb=document.getElementById('bills-tbody');
-  const due=new Date();due.setDate(due.getDate()+30);
-  if(tb)tb.insertAdjacentHTML('afterbegin',`<tr><td style="font-weight:700;color:var(--accent)">${piId}</td><td>${s.vendor}</td><td>${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td>${due.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td class="amount">SAR ${s.total.toLocaleString()}</td><td><span class="badge-status badge-waiting">Unpaid</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button></div></td></tr>`);
-  showToast(id+' converted to Purchase Invoice '+piId,'success');renderSQList();
-}
-function convertPRToPI(p){
-  const piId='BILL-2026-'+(900+Math.floor(Math.random()*99));
-  const tb=document.getElementById('bills-tbody');
-  const due=new Date();due.setDate(due.getDate()+30);
-  const amount=0;
-  if(tb)tb.insertAdjacentHTML('afterbegin',`<tr><td style="font-weight:700;color:var(--accent)">${piId}</td><td>—</td><td>${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td>${due.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</td><td class="amount">SAR ${amount.toLocaleString()}</td><td><span class="badge-status badge-waiting">Unpaid</span></td><td><div class="action-group"><button class="action-btn" onclick="showToast('Bill details opened','')">👁</button></div></td></tr>`);
-  return piId;
-}
-
-let purchaseRequestsSeedDone=true;
-
 let wfItems=[
   {id:'WF-001',doc:'EXP-1007',type:'Expense Claim',requester:'Ahmed Hassan',approver:'Mohammed Al-Qahtani',amount:2350,status:'pending',created:'2026-06-20',sla:48,domain:'Finance',desc:'Team offsite meals & transport'},
   {id:'WF-002',doc:'PR-1001',type:'Purchase Request',requester:'Ahmed Hassan',approver:'Mohammed Al-Qahtani',amount:0,status:'pending',created:'2026-06-20',sla:24,domain:'Procurement',desc:'Office chairs & paper supply'},
@@ -4450,7 +4879,7 @@ function badge(s){
   const m={pending:'b-pending Pending',approved:'b-approved Approved',rejected:'b-rejected Rejected',
     draft:'b-draft Draft',review:'b-review Under Review',escalated:'b-escalated Escalated',
     active:'b-active Active',inactive:'b-inactive Inactive',
-    rfq:'b-rfq Converted to RFQ',po:'b-po Converted to PO',pi:'b-rfq Converted to PI',transfer:'b-transfer Stock Transfer'};
+    rfq:'b-rfq Converted to RFQ',po:'b-po Converted to PO',transfer:'b-transfer Stock Transfer'};
   const v=m[s]||'b-draft '+s;
   const [cls,...rest]=v.split(' ');
   return `<span class="badge ${cls}">${rest.join(' ')}</span>`;
@@ -4892,19 +5321,8 @@ function selectConvert(type,el){
 function confirmConvert(){
   if(!convertType){showToast('Please select a conversion type','error');return;}
   const p=purchaseRequests.find(x=>x.id===selectedPRId);if(!p)return;
-  if(convertType==='rfq'){
-    closeModal('m-pr-convert');
-    openRFQNew(p.id);
-    return;
-  }
-  if(convertType==='pi'){
-    p.convertedTo='pi';
-    const piId=convertPRToPI(p);
-    closeModal('m-pr-convert');showToast(selectedPRId+' converted to Purchase Invoice '+piId,'success');renderPRList();refreshBadges();
-    return;
-  }
   p.convertedTo=convertType;
-  const labels={po:'Purchase Order',transfer:'Stock Transfer'};
+  const labels={rfq:'Request For Quotation',po:'Purchase Order',transfer:'Stock Transfer'};
   closeModal('m-pr-convert');showToast(selectedPRId+' converted to '+labels[convertType],'success');renderPRList();refreshBadges();
 }
 
@@ -5229,8 +5647,10 @@ window.addEventListener('DOMContentLoaded',()=>{
 // Wrap navigate to handle both v2 panel-* IDs and c3 s-* IDs
 (function(){
   const _orig = window.navigate;
+  const PANEL_SCREENS_EXTRA = ['landing'];  // extra panel screens for landing
+
   const C3_SCREENS = ['exp-dash','exp-claims','exp-approvals','exp-new','exp-types',
-    'pr-list','pr-new','pr-approvals','rfq-list','rfq-new','sq-list','sq-new','wf-board','wf-notif','wf-templates','wf-users',
+    'pr-list','pr-new','pr-approvals','wf-board','wf-notif','wf-templates','wf-users',
     'dms-dispatch','dms-orders','dms-drivers','dms-routes'];
   const C3_META = {
     'exp-dash':{title:'Expenses Dashboard',sub:'Overview of expense claims'},
@@ -5241,10 +5661,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     'pr-list':{title:'Purchase Requests',sub:'All purchase request orders'},
     'pr-new':{title:'New Purchase Request',sub:'Request items for work purposes'},
     'pr-approvals':{title:'PR Approvals',sub:'Purchase requests pending your decision'},
-    'rfq-list':{title:'Request For Quotation',sub:'RFQs sent to vendors against approved purchase requests'},
-    'rfq-new':{title:'New Request For Quotation',sub:'Generated from purchase request'},
-    'sq-list':{title:'Vendor Quotation',sub:'Quotations received from vendors against RFQs'},
-    'sq-new':{title:'New Vendor Quotation',sub:'Created from RFQ'},
     'wf-board':{title:'Approval Board',sub:'All workflow items across modules'},
     'wf-notif':{title:'Notification Center',sub:'Actions and alerts requiring your attention'},
     'wf-templates':{title:'Workflow Templates',sub:'Manage approval workflow templates'},
@@ -5287,8 +5703,6 @@ window.addEventListener('DOMContentLoaded',()=>{
         'pr-list':()=>typeof renderPRList==='function'&&renderPRList(),
         'pr-approvals':()=>typeof renderPRApprovals==='function'&&renderPRApprovals(),
         'pr-new':()=>typeof initPRForm==='function'&&initPRForm(),
-        'rfq-list':()=>typeof renderRFQList==='function'&&renderRFQList(),
-        'sq-list':()=>typeof renderSQList==='function'&&renderSQList(),
         'wf-board':()=>typeof renderKanban==='function'&&renderKanban(),
         'wf-notif':()=>typeof renderNotifs==='function'&&renderNotifs(),
         'wf-templates':()=>typeof renderWFTemplates==='function'&&renderWFTemplates(),
@@ -5301,13 +5715,40 @@ window.addEventListener('DOMContentLoaded',()=>{
       renders[screen]&&renders[screen]();
       window.scrollTo(0,0);
     } else {
-      // v2 screens
-      if(typeof _orig === 'function') _orig(screen);
-      else {
-        document.querySelectorAll('.panel, .screen').forEach(p=>p.classList.remove('active'));
-        const el = document.getElementById('panel-'+screen);
-        if(el) el.classList.add('active');
+      // v2 screens (panel-*) and landing page
+      document.querySelectorAll('.panel, .screen').forEach(p=>p.classList.remove('active'));
+      const el = document.getElementById('panel-'+screen);
+      if(el) el.classList.add('active');
+      // Update topbar title
+      const extraMeta = {
+        'landing': {title:'QERP-Lite', sub:'Enterprise Resource Planning · Saudi Arabia'},
+        'dashboard': {title:'Dashboard', sub:'Welcome back, Ehab — here\'s what\'s happening today'},
+      };
+      const em = extraMeta[screen];
+      if(em) {
+        const tt = document.getElementById('tb-title');
+        const ts = document.getElementById('tb-sub');
+        if(tt) tt.textContent = em.title;
+        if(ts) ts.textContent = em.sub;
       }
+      // Sidebar highlight
+      document.querySelectorAll('.nav-parent, .nav-child, .sb-item').forEach(e=>e.classList.remove('active'));
+      if(screen === 'landing') {
+        document.getElementById('nav-landing')?.classList.add('active');
+      } else if(screen === 'dashboard') {
+        document.getElementById('nav-dashboard')?.classList.add('active');
+      } else {
+        document.querySelectorAll('.nav-child').forEach(e=>{
+          if(e.getAttribute('onclick')&&e.getAttribute('onclick').includes("'"+screen+"'")){
+            e.classList.add('active');
+            const grp=e.closest('.nav-children');
+            if(grp&&!grp.classList.contains('open')){grp.classList.add('open');grp.previousElementSibling&&grp.previousElementSibling.classList.add('open');}
+          }
+        });
+      }
+      window.scrollTo(0,0);
+      const mc = document.getElementById('main-content');
+      if(mc) mc.scrollTop = 0;
     }
   };
   // Unified modal
@@ -5390,6 +5831,9 @@ window.addEventListener('DOMContentLoaded', () => {
   // Ensure correct layout on load
   const mc = document.getElementById('main-content');
   if(mc){ mc.scrollTop = 0; }
+  // Start on landing page
+  document.getElementById('nav-landing')?.classList.add('active');
+  document.getElementById('nav-dashboard')?.classList.remove('active');
 
   // Set today's date in forms
   const today = new Date().toISOString().split('T')[0];
@@ -5402,4 +5846,3 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-"Update with new features"
