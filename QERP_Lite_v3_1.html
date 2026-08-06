@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>QERP-Lite — Interactive Prototype</title>
+<title>QEnterprise — Interactive Prototype</title>
 <style>
 /* ─── DESIGN TOKENS (from QERP-Lite Consolidated palette) ─────────── */
 :root {
@@ -1125,6 +1125,114 @@ body { background: var(--bg); color: var(--ink); font-size:13.5px; line-height:1
 body.on-landing #tb-title { display: none; }
 body.on-landing #tb-sub   { display: none; }
 
+
+/* ── Settings Toggle Rows ── */
+.lp-setting-row {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r10); padding: 14px 18px;
+  cursor: pointer; transition: all .18s ease;
+  user-select: none;
+}
+.lp-setting-row:hover { border-color: var(--blue); box-shadow: 0 2px 10px rgba(37,99,235,.08); }
+.lp-setting-row.expanded { border-color: var(--blue); background: var(--blue-bg); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.lp-setting-text { flex: 1; min-width: 0; }
+
+/* Toggle switch */
+.lp-toggle-wrap {
+  display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+}
+.lp-toggle-label {
+  font-size: 11px; font-weight: 600; color: var(--mute);
+  transition: color .2s; white-space: nowrap;
+}
+.lp-toggle {
+  position: relative; width: 38px; height: 21px;
+  background: var(--border2); border-radius: 11px;
+  transition: background .22s ease; flex-shrink: 0;
+  cursor: pointer;
+}
+.lp-toggle::after {
+  content: ''; position: absolute; top: 2.5px; left: 2.5px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.18);
+  transition: transform .22s cubic-bezier(.34,1.4,.64,1), background .22s;
+}
+.lp-toggle.on { background: var(--blue); }
+.lp-toggle.on::after { transform: translateX(17px); }
+.lp-setting-row.expanded .lp-toggle { background: var(--blue); }
+.lp-setting-row.expanded .lp-toggle::after { transform: translateX(17px); }
+.lp-setting-row.expanded .lp-toggle-label { color: var(--blue); }
+
+/* Expand arrow */
+.lp-setting-arrow {
+  font-size: 11px; color: var(--mute); transition: transform .2s, color .2s;
+  flex-shrink: 0;
+}
+.lp-setting-row.expanded .lp-setting-arrow { transform: rotate(90deg); color: var(--blue); }
+
+/* Expandable panel */
+.lp-setting-panel {
+  display: none;
+  border: 1px solid var(--blue); border-top: none;
+  border-bottom-left-radius: var(--r10); border-bottom-right-radius: var(--r10);
+  background: var(--surface); overflow: hidden;
+  margin-bottom: 0;
+}
+.lp-setting-panel.open { display: block; }
+.lp-setting-panel-inner {
+  padding: 16px 18px 18px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.lp-sp-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; background: var(--surface2);
+  border-radius: var(--r8); cursor: pointer;
+  transition: background .14s; font-size: 12.5px;
+}
+.lp-sp-item:hover { background: var(--blue-bg); color: var(--blue); }
+.lp-sp-icon { font-size: 14px; flex-shrink: 0; }
+.lp-sp-label { font-weight: 600; color: var(--ink); font-size: 12.5px; }
+.lp-sp-desc  { font-size: 11px; color: var(--mute); margin-top: 1px; }
+
+/* Wrap each row+panel */
+.lp-setting-block { margin-bottom: 10px; }
+
+
+/* ── Module Card Toggle ── */
+.lp-mod-toggle-wrap {
+  display: flex; align-items: center; gap: 7px;
+}
+.lp-mod-toggle-label {
+  font-size: 10.5px; font-weight: 700; color: var(--mute);
+  transition: color .2s; letter-spacing: .01em; white-space: nowrap;
+}
+.lp-mod-toggle {
+  position: relative; width: 36px; height: 20px;
+  background: var(--border2); border-radius: 10px;
+  transition: background .22s ease; flex-shrink: 0; cursor: pointer;
+}
+.lp-mod-toggle::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px; border-radius: 50%; background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.18);
+  transition: transform .22s cubic-bezier(.34,1.4,.64,1);
+}
+.lp-mod-toggle.on { background: var(--blue); }
+.lp-mod-toggle.on::after { transform: translateX(16px); }
+
+/* When toggle is on, update label color to match card accent */
+.mc-teal   .lp-mod-toggle.on { background: var(--teal); }
+.mc-amber  .lp-mod-toggle.on { background: var(--amber); }
+.mc-sky    .lp-mod-toggle.on { background: #0284C7; }
+.mc-orange .lp-mod-toggle.on { background: var(--orange); }
+.mc-lime   .lp-mod-toggle.on { background: #65A30D; }
+.mc-rose   .lp-mod-toggle.on { background: #E11D48; }
+.mc-indigo .lp-mod-toggle.on { background: #4F46E5; }
+.mc-fuchsia.lp-mod-toggle.on { background: #A21CAF; }
+
+.lp-mod-toggle.on + .lp-mod-toggle-label { color: var(--ink2); }
+
 </style>
 </head>
 <body>
@@ -1346,7 +1454,7 @@ body.on-landing #tb-sub   { display: none; }
     <div><div class="hp-lbl">What's New</div><div class="hp-desc">Latest features &amp; updates</div></div>
   </div>
   <div class="hp-divider"></div>
-  <div class="hp-version">QERP-Lite v2.1 · Qoyod © 2026</div>
+  <div class="hp-version">QEnterprise v3.0 · Qoyod © 2026</div>
 </div>
 
 <!-- ══════════ PROFILE PANEL ══════════ -->
@@ -1393,7 +1501,7 @@ body.on-landing #tb-sub   { display: none; }
   <!-- BRAND -->
   <div class="sb-brand">
     <div class="sb-brand-name">QOYOD</div>
-    <div class="sb-brand-sub">QERP Lite · Internal</div>
+    <div class="sb-brand-sub">QEnterprise · Internal</div>
   </div>
 
   <!-- DASHBOARD -->
@@ -1581,21 +1689,21 @@ body.on-landing #tb-sub   { display: none; }
     <div class="lp-hero-grid">
       <!-- Left -->
       <div>
-        <div class="lp-hero-badge"><span class="dot"></span>QERP-Lite · Enterprise ERP · Saudi Arabia</div>
+        <div class="lp-hero-badge"><span class="dot"></span>QEnterprise · Enterprise ERP · Saudi Arabia</div>
         <div class="lp-hero-title">
           One Platform.<br>
           <span>Every Business</span><br>
           Function.
         </div>
         <div class="lp-hero-sub">
-          QERP-Lite brings Trading, Procurement, Accounting, Inventory, Fixed Assets, HR, CRM, and more into a single ZATCA-compliant platform — built for Saudi SMEs and enterprise teams.
+          QEnterprise brings Trading, Procurement, Accounting, Inventory, Fixed Assets, HR, CRM, and more into a single ZATCA-compliant platform — built for Saudi mid &amp; early enterprise businesses.
         </div>
         <div class="lp-hero-btns">
           <button class="lp-btn-primary" onclick="navigate('dashboard')">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
             Open Dashboard
           </button>
-          <button class="lp-btn-ghost" onclick="scrollTo({top: document.getElementById('lp-modules').offsetTop + document.getElementById('main-content').scrollTop - 20, behavior:'smooth'})">
+          <button class="lp-btn-ghost" onclick="scrollToModules()">
             Explore Modules ↓
           </button>
         </div>
@@ -1706,9 +1814,15 @@ body.on-landing #tb-sub   { display: none; }
           <span class="lp-mod-tag">Live Map</span>
           <span class="lp-mod-tag">Drivers</span>
         </div>
-        <div class="lp-mod-footer">
+        <div class="lp-mod-footer" style="flex-wrap:wrap;gap:10px">
           <span class="lp-mod-status ms-live">● Live</span>
-          <div class="lp-mod-arrow">→</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+            <div class="lp-mod-toggle-wrap" onclick="event.stopPropagation();toggleModToggle('dms')">
+              <div class="lp-mod-toggle" id="mdt-dms"></div>
+              <span class="lp-mod-toggle-label" id="mdtl-dms">Enable</span>
+            </div>
+            <div class="lp-mod-arrow" onclick="event.stopPropagation();navigate('dms-dispatch')">→</div>
+          </div>
         </div>
       </div>
 
@@ -1757,9 +1871,15 @@ body.on-landing #tb-sub   { display: none; }
           <span class="lp-mod-tag">Disposal</span>
           <span class="lp-mod-tag">Additions</span>
         </div>
-        <div class="lp-mod-footer">
+        <div class="lp-mod-footer" style="flex-wrap:wrap;gap:10px">
           <span class="lp-mod-status ms-live">● Live</span>
-          <div class="lp-mod-arrow">→</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+            <div class="lp-mod-toggle-wrap" onclick="event.stopPropagation();toggleModToggle('assets')">
+              <div class="lp-mod-toggle" id="mdt-assets"></div>
+              <span class="lp-mod-toggle-label" id="mdtl-assets">Enable</span>
+            </div>
+            <div class="lp-mod-arrow" onclick="event.stopPropagation();navigate('fixed-assets')">→</div>
+          </div>
         </div>
       </div>
 
@@ -1791,9 +1911,15 @@ body.on-landing #tb-sub   { display: none; }
           <span class="lp-mod-tag">Activities</span>
           <span class="lp-mod-tag">Forecasting</span>
         </div>
-        <div class="lp-mod-footer">
+        <div class="lp-mod-footer" style="flex-wrap:wrap;gap:10px">
           <span class="lp-mod-status ms-beta">⚡ Beta</span>
-          <div class="lp-mod-arrow">→</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+            <div class="lp-mod-toggle-wrap" onclick="event.stopPropagation();toggleModToggle('crm')">
+              <div class="lp-mod-toggle" id="mdt-crm"></div>
+              <span class="lp-mod-toggle-label" id="mdtl-crm">Enable</span>
+            </div>
+            <div class="lp-mod-arrow" onclick="event.stopPropagation();showToast('CRM module — coming in next sprint','info')">→</div>
+          </div>
         </div>
       </div>
 
@@ -1808,9 +1934,15 @@ body.on-landing #tb-sub   { display: none; }
           <span class="lp-mod-tag">ZATCA Receipt</span>
           <span class="lp-mod-tag">Offline Mode</span>
         </div>
-        <div class="lp-mod-footer">
+        <div class="lp-mod-footer" style="flex-wrap:wrap;gap:10px">
           <span class="lp-mod-status ms-coming">◌ Coming Soon</span>
-          <div class="lp-mod-arrow">→</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+            <div class="lp-mod-toggle-wrap" onclick="event.stopPropagation();toggleModToggle('pos')">
+              <div class="lp-mod-toggle" id="mdt-pos"></div>
+              <span class="lp-mod-toggle-label" id="mdtl-pos">Enable</span>
+            </div>
+            <div class="lp-mod-arrow" onclick="event.stopPropagation();showToast('POS module — coming soon','info')">→</div>
+          </div>
         </div>
       </div>
 
@@ -1825,9 +1957,15 @@ body.on-landing #tb-sub   { display: none; }
           <span class="lp-mod-tag">WIP Tracking</span>
           <span class="lp-mod-tag">Cost Reports</span>
         </div>
-        <div class="lp-mod-footer">
+        <div class="lp-mod-footer" style="flex-wrap:wrap;gap:10px">
           <span class="lp-mod-status ms-coming">◌ Roadmap Q3</span>
-          <div class="lp-mod-arrow">→</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+            <div class="lp-mod-toggle-wrap" onclick="event.stopPropagation();toggleModToggle('prod')">
+              <div class="lp-mod-toggle" id="mdt-prod"></div>
+              <span class="lp-mod-toggle-label" id="mdtl-prod">Enable</span>
+            </div>
+            <div class="lp-mod-arrow" onclick="event.stopPropagation();showToast('Production module — roadmap Q3 2026','info')">→</div>
+          </div>
         </div>
       </div>
 
@@ -1842,9 +1980,15 @@ body.on-landing #tb-sub   { display: none; }
           <span class="lp-mod-tag">Leave</span>
           <span class="lp-mod-tag">Attendance</span>
         </div>
-        <div class="lp-mod-footer">
+        <div class="lp-mod-footer" style="flex-wrap:wrap;gap:10px">
           <span class="lp-mod-status ms-coming">◌ Roadmap Q4</span>
-          <div class="lp-mod-arrow">→</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+            <div class="lp-mod-toggle-wrap" onclick="event.stopPropagation();toggleModToggle('hrm')">
+              <div class="lp-mod-toggle" id="mdt-hrm"></div>
+              <span class="lp-mod-toggle-label" id="mdtl-hrm">Enable</span>
+            </div>
+            <div class="lp-mod-arrow" onclick="event.stopPropagation();showToast('HRM module — roadmap Q4 2026','info')">→</div>
+          </div>
         </div>
       </div>
 
@@ -1859,9 +2003,15 @@ body.on-landing #tb-sub   { display: none; }
           <span class="lp-mod-tag">Templates</span>
           <span class="lp-mod-tag">Notifications</span>
         </div>
-        <div class="lp-mod-footer">
+        <div class="lp-mod-footer" style="flex-wrap:wrap;gap:10px">
           <span class="lp-mod-status ms-live">● Live</span>
-          <div class="lp-mod-arrow">→</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+            <div class="lp-mod-toggle-wrap" onclick="event.stopPropagation();toggleModToggle('wf')">
+              <div class="lp-mod-toggle" id="mdt-wf"></div>
+              <span class="lp-mod-toggle-label" id="mdtl-wf">Enable</span>
+            </div>
+            <div class="lp-mod-arrow" onclick="event.stopPropagation();navigate('wf-board')">→</div>
+          </div>
         </div>
       </div>
 
@@ -1869,16 +2019,22 @@ body.on-landing #tb-sub   { display: none; }
       <div class="lp-mod-card mc-fuchsia" onclick="navigate('settings-integration')">
         <div class="lp-mod-icon-wrap" style="background:#FDF4FF">🔗</div>
         <div class="lp-mod-name">Integrations</div>
-        <div class="lp-mod-desc">Connect QERP-Lite with ZATCA, Saudi Open Banking, WhatsApp Business, SMTP email, Shopify, WooCommerce, and 44+ e-commerce and POS platforms via REST API.</div>
+        <div class="lp-mod-desc">Connect QEnterprise with ZATCA, Saudi Open Banking, WhatsApp Business, SMTP email, Shopify, WooCommerce, and 44+ e-commerce and POS platforms via REST API.</div>
         <div class="lp-mod-tags">
           <span class="lp-mod-tag">ZATCA</span>
           <span class="lp-mod-tag">Open Banking</span>
           <span class="lp-mod-tag">WhatsApp</span>
           <span class="lp-mod-tag">REST API</span>
         </div>
-        <div class="lp-mod-footer">
+        <div class="lp-mod-footer" style="flex-wrap:wrap;gap:10px">
           <span class="lp-mod-status ms-live">● Live</span>
-          <div class="lp-mod-arrow">→</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+            <div class="lp-mod-toggle-wrap" onclick="event.stopPropagation();toggleModToggle('integrations')">
+              <div class="lp-mod-toggle" id="mdt-integrations"></div>
+              <span class="lp-mod-toggle-label" id="mdtl-integrations">Enable</span>
+            </div>
+            <div class="lp-mod-arrow" onclick="event.stopPropagation();navigate('settings-integration')">→</div>
+          </div>
         </div>
       </div>
 
@@ -1891,7 +2047,7 @@ body.on-landing #tb-sub   { display: none; }
       <div class="lp-section-hd">
         <div class="lp-section-tag">Apps</div>
         <div class="lp-section-title">Connected Apps &amp; Add-ons</div>
-        <div class="lp-section-sub">Extend QERP-Lite with purpose-built apps — each integrated natively into the platform.</div>
+        <div class="lp-section-sub">Extend QEnterprise with purpose-built apps — each integrated natively into the platform.</div>
       </div>
       <div class="lp-apps-grid">
         <div class="lp-app-card" onclick="navigate('dms-dispatch')">
@@ -1912,36 +2068,16 @@ body.on-landing #tb-sub   { display: none; }
           <div class="lp-app-desc">Touch POS with offline mode, Mada integration, and ZATCA receipt printing.</div>
           <div class="lp-app-badge">iPad + Desktop</div>
         </div>
-        <div class="lp-app-card" onclick="showToast('ZATCA Filing App — coming soon','info')">
-          <div class="lp-app-icon">🇸🇦</div>
-          <div class="lp-app-name">ZATCA Filing</div>
-          <div class="lp-app-desc">One-click VAT return filing and e-invoice clearance status dashboard.</div>
-          <div class="lp-app-badge">Phase 2</div>
-        </div>
-        <div class="lp-app-card" onclick="showToast('Approvals App — coming soon','info')">
-          <div class="lp-app-icon">✅</div>
-          <div class="lp-app-name">Approvals App</div>
-          <div class="lp-app-desc">Mobile approve / reject any workflow item on the go — WhatsApp integration included.</div>
-          <div class="lp-app-badge">iOS + Android</div>
-        </div>
+
+
         <div class="lp-app-card" onclick="showToast('Analytics App — coming soon','info')">
           <div class="lp-app-icon">📊</div>
           <div class="lp-app-name">Analytics &amp; BI</div>
           <div class="lp-app-desc">Interactive dashboards with drill-down — revenue trends, cost analysis, KPI scorecards.</div>
           <div class="lp-app-badge">Coming Q3</div>
         </div>
-        <div class="lp-app-card" onclick="showToast('Payroll App — coming soon','info')">
-          <div class="lp-app-icon">💸</div>
-          <div class="lp-app-name">Payroll &amp; WPS</div>
-          <div class="lp-app-desc">Automated payroll with GOSI, WPS file generation, and end-of-service calculations.</div>
-          <div class="lp-app-badge">Coming Q4</div>
-        </div>
-        <div class="lp-app-card" onclick="showToast('Qoyod Marketplace coming soon','info')">
-          <div class="lp-app-icon">🛍️</div>
-          <div class="lp-app-name">App Marketplace</div>
-          <div class="lp-app-desc">Browse and install certified third-party apps — built on the QERP-Lite open API.</div>
-          <div class="lp-app-badge">Browse All</div>
-        </div>
+
+
       </div>
     </div>
   </div>
@@ -1951,49 +2087,190 @@ body.on-landing #tb-sub   { display: none; }
     <div class="lp-section-hd">
       <div class="lp-section-tag">Settings</div>
       <div class="lp-section-title">System Configuration</div>
-      <div class="lp-section-sub">Everything you need to set up, personalize, and manage your QERP-Lite instance.</div>
+      <div class="lp-section-sub">Everything you need to set up, personalize, and manage your QEnterprise instance.</div>
     </div>
-    <div class="lp-settings-grid">
-      <div class="lp-setting-row" onclick="navigate('settings-general')">
-        <div class="lp-setting-icon" style="background:#EFF6FF">🏢</div>
-        <div><div class="lp-setting-name">General</div><div class="lp-setting-desc">Company profile, localization, document series</div></div>
+    <div class="lp-settings-grid" style="grid-template-columns:1fr;">
+
+      <!-- General -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-general" onclick="toggleSetting('general')">
+          <div class="lp-setting-icon" style="background:#EFF6FF">🏢</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">General</div><div class="lp-setting-desc">Company profile, localization, document series, currency defaults</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-general">Configure</span><div class="lp-toggle" id="stgt-general"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-general">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('settings-general')"><span class="lp-sp-icon">🏢</span><div><div class="lp-sp-label">Company Info</div><div class="lp-sp-desc">Name, CR, VAT, address</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-general')"><span class="lp-sp-icon">🌐</span><div><div class="lp-sp-label">Localization</div><div class="lp-sp-desc">Language, timezone, date format</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-general')"><span class="lp-sp-icon">🔢</span><div><div class="lp-sp-label">Document Series</div><div class="lp-sp-desc">Invoice, PO, JE number prefixes</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-general')"><span class="lp-sp-icon">💰</span><div><div class="lp-sp-label">Currency &amp; VAT</div><div class="lp-sp-desc">Base currency, ZATCA phase</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="lp-setting-row" onclick="navigate('settings-integration')">
-        <div class="lp-setting-icon" style="background:#F5F3FF">🔗</div>
-        <div><div class="lp-setting-name">Integrations</div><div class="lp-setting-desc">ZATCA, banking, email, WhatsApp APIs</div></div>
+
+      <!-- Integrations -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-integration" onclick="toggleSetting('integration')">
+          <div class="lp-setting-icon" style="background:#F5F3FF">🔗</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">Integrations</div><div class="lp-setting-desc">ZATCA, open banking, email SMTP, WhatsApp Business API</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-integration">Configure</span><div class="lp-toggle" id="stgt-integration"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-integration">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('settings-integration')"><span class="lp-sp-icon">🇸🇦</span><div><div class="lp-sp-label">ZATCA e-Invoicing</div><div class="lp-sp-desc">Phase 2 clearance</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-integration')"><span class="lp-sp-icon">🏦</span><div><div class="lp-sp-label">Saudi Open Banking</div><div class="lp-sp-desc">Auto bank reconciliation</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-integration')"><span class="lp-sp-icon">📧</span><div><div class="lp-sp-label">Email (SMTP)</div><div class="lp-sp-desc">Invoice &amp; notification emails</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-integration')"><span class="lp-sp-icon">📱</span><div><div class="lp-sp-label">WhatsApp Business</div><div class="lp-sp-desc">Approvals &amp; notifications</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="lp-setting-row" onclick="navigate('settings-attachments')">
-        <div class="lp-setting-icon" style="background:#FFF7ED">📎</div>
-        <div><div class="lp-setting-name">Attachments</div><div class="lp-setting-desc">Storage, file types, size limits</div></div>
+
+      <!-- Attachments -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-attachments" onclick="toggleSetting('attachments')">
+          <div class="lp-setting-icon" style="background:#FFF7ED">📎</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">Attachments</div><div class="lp-setting-desc">Storage provider, allowed file types, size limits per module</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-attachments">Configure</span><div class="lp-toggle" id="stgt-attachments"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-attachments">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('settings-attachments')"><span class="lp-sp-icon">☁️</span><div><div class="lp-sp-label">Storage Provider</div><div class="lp-sp-desc">Local, S3, Azure, GCS</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-attachments')"><span class="lp-sp-icon">📋</span><div><div class="lp-sp-label">Allowed File Types</div><div class="lp-sp-desc">PDF, images, Office docs</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-attachments')"><span class="lp-sp-icon">⚖️</span><div><div class="lp-sp-label">Size Limits</div><div class="lp-sp-desc">Max file size per upload</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-attachments')"><span class="lp-sp-icon">📌</span><div><div class="lp-sp-label">Mandatory Rules</div><div class="lp-sp-desc">Required attachments per module</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="lp-setting-row" onclick="navigate('settings-profile')">
-        <div class="lp-setting-icon" style="background:#F0FDF4">👤</div>
-        <div><div class="lp-setting-name">My Profile</div><div class="lp-setting-desc">Personal info, password, 2FA security</div></div>
+
+      <!-- Profile -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-profile" onclick="toggleSetting('profile')">
+          <div class="lp-setting-icon" style="background:#F0FDF4">👤</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">My Profile</div><div class="lp-setting-desc">Personal info, password, 2FA, notification preferences</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-profile">Configure</span><div class="lp-toggle" id="stgt-profile"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-profile">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('settings-profile')"><span class="lp-sp-icon">✏️</span><div><div class="lp-sp-label">Personal Info</div><div class="lp-sp-desc">Name, email, mobile</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-profile')"><span class="lp-sp-icon">🔒</span><div><div class="lp-sp-label">Security</div><div class="lp-sp-desc">Password, 2FA setup</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-profile')"><span class="lp-sp-icon">🔔</span><div><div class="lp-sp-label">Notifications</div><div class="lp-sp-desc">Email &amp; in-app preferences</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-profile')"><span class="lp-sp-icon">🌐</span><div><div class="lp-sp-label">Language &amp; Theme</div><div class="lp-sp-desc">Arabic / English, display</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="lp-setting-row" onclick="navigate('settings-users')">
-        <div class="lp-setting-icon" style="background:#FFF1F2">👥</div>
-        <div><div class="lp-setting-name">Users &amp; Roles</div><div class="lp-setting-desc">Invite users, manage roles and permissions</div></div>
+
+      <!-- Users & Roles -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-users" onclick="toggleSetting('users')">
+          <div class="lp-setting-icon" style="background:#FFF1F2">👥</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">Users &amp; Roles</div><div class="lp-setting-desc">Invite users, assign roles, manage module-level permissions</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-users">Configure</span><div class="lp-toggle" id="stgt-users"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-users">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('settings-users')"><span class="lp-sp-icon">✉️</span><div><div class="lp-sp-label">Invite Users</div><div class="lp-sp-desc">Add team members</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-users')"><span class="lp-sp-icon">🛡️</span><div><div class="lp-sp-label">Manage Roles</div><div class="lp-sp-desc">Create &amp; edit permission sets</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-users')"><span class="lp-sp-icon">🔑</span><div><div class="lp-sp-label">Access Control</div><div class="lp-sp-desc">Module-level access per role</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('settings-users')"><span class="lp-sp-icon">📋</span><div><div class="lp-sp-label">Audit Log</div><div class="lp-sp-desc">User activity history</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="lp-setting-row" onclick="navigate('wf-templates')">
-        <div class="lp-setting-icon" style="background:#EEF2FF">⚙️</div>
-        <div><div class="lp-setting-name">Workflow Templates</div><div class="lp-setting-desc">Approval chains, SLA, escalation rules</div></div>
+
+      <!-- Workflow Templates -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-workflow" onclick="toggleSetting('workflow')">
+          <div class="lp-setting-icon" style="background:#EEF2FF">⚙️</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">Workflow Templates</div><div class="lp-setting-desc">Approval chains, SLA timers, escalation rules, user setup</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-workflow">Configure</span><div class="lp-toggle" id="stgt-workflow"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-workflow">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('wf-templates')"><span class="lp-sp-icon">📝</span><div><div class="lp-sp-label">Templates</div><div class="lp-sp-desc">Define approval flows</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('wf-users')"><span class="lp-sp-icon">👤</span><div><div class="lp-sp-label">User Setup</div><div class="lp-sp-desc">Assign approvers &amp; limits</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('wf-board')"><span class="lp-sp-icon">📊</span><div><div class="lp-sp-label">Approval Board</div><div class="lp-sp-desc">Live workflow status</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('wf-notif')"><span class="lp-sp-icon">🔔</span><div><div class="lp-sp-label">Notifications</div><div class="lp-sp-desc">SLA alerts &amp; reminders</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="lp-setting-row" onclick="navigate('taxes')">
-        <div class="lp-setting-icon" style="background:#F0FDFA">🧾</div>
-        <div><div class="lp-setting-name">Tax Configuration</div><div class="lp-setting-desc">VAT rates, ZATCA codes, WHT setup</div></div>
+
+      <!-- Tax Configuration -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-taxes" onclick="toggleSetting('taxes')">
+          <div class="lp-setting-icon" style="background:#F0FDFA">🧾</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">Tax Configuration</div><div class="lp-setting-desc">VAT rates, ZATCA codes, withholding tax, COA mapping</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-taxes">Configure</span><div class="lp-toggle" id="stgt-taxes"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-taxes">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('taxes')"><span class="lp-sp-icon">📊</span><div><div class="lp-sp-label">Tax Rates</div><div class="lp-sp-desc">VAT 15%, Zero-rated, Exempt</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('taxes')"><span class="lp-sp-icon">🇸🇦</span><div><div class="lp-sp-label">ZATCA Codes</div><div class="lp-sp-desc">S, Z, E, WHT codes</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('taxes')"><span class="lp-sp-icon">🏦</span><div><div class="lp-sp-label">WHT Setup</div><div class="lp-sp-desc">Withholding tax rules</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('reports')"><span class="lp-sp-icon">📋</span><div><div class="lp-sp-label">VAT Return</div><div class="lp-sp-desc">Q2 filing summary</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="lp-setting-row" onclick="navigate('fiscal-year')">
-        <div class="lp-setting-icon" style="background:#FFFBEB">📅</div>
-        <div><div class="lp-setting-name">Fiscal Year</div><div class="lp-setting-desc">Accounting periods, year-end close</div></div>
+
+      <!-- Fiscal Year -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-fiscal" onclick="toggleSetting('fiscal')">
+          <div class="lp-setting-icon" style="background:#FFFBEB">📅</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">Fiscal Year</div><div class="lp-setting-desc">Accounting periods, period locking, year-end close procedures</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-fiscal">Configure</span><div class="lp-toggle" id="stgt-fiscal"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-fiscal">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('fiscal-year')"><span class="lp-sp-icon">📅</span><div><div class="lp-sp-label">FY 2026</div><div class="lp-sp-desc">Jan–Dec · Currently open</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('fiscal-year')"><span class="lp-sp-icon">🔒</span><div><div class="lp-sp-label">Lock Period</div><div class="lp-sp-desc">Prevent backdated entries</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('fiscal-year')"><span class="lp-sp-icon">📋</span><div><div class="lp-sp-label">Year-End Close</div><div class="lp-sp-desc">Closing entries wizard</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('fiscal-year')"><span class="lp-sp-icon">📜</span><div><div class="lp-sp-label">Prior Years</div><div class="lp-sp-desc">FY 2025 — closed</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="lp-setting-row" onclick="navigate('foreign-currencies')">
-        <div class="lp-setting-icon" style="background:#FEF9C3">💱</div>
-        <div><div class="lp-setting-name">Foreign Currencies</div><div class="lp-setting-desc">Exchange rates, SAMA feed, multi-currency</div></div>
+
+      <!-- Foreign Currencies -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-currencies" onclick="toggleSetting('currencies')">
+          <div class="lp-setting-icon" style="background:#FEF9C3">💱</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">Foreign Currencies</div><div class="lp-setting-desc">Exchange rates, SAMA feed auto-update, multi-currency transactions</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-currencies">Configure</span><div class="lp-toggle" id="stgt-currencies"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-currencies">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('foreign-currencies')"><span class="lp-sp-icon">🇸🇦</span><div><div class="lp-sp-label">SAR (Base)</div><div class="lp-sp-desc">Saudi Riyal — base currency</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('foreign-currencies')"><span class="lp-sp-icon">🇺🇸</span><div><div class="lp-sp-label">USD Rate</div><div class="lp-sp-desc">1 USD = 3.7500 SAR</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('foreign-currencies')"><span class="lp-sp-icon">🇪🇺</span><div><div class="lp-sp-label">EUR Rate</div><div class="lp-sp-desc">1 EUR = 4.0820 SAR</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('foreign-currencies')"><span class="lp-sp-icon">🔄</span><div><div class="lp-sp-label">SAMA Auto-Update</div><div class="lp-sp-desc">Daily rate feed active</div></div></div>
+          </div>
+        </div>
       </div>
-      <div class="lp-setting-row" onclick="navigate('dimensions')">
-        <div class="lp-setting-icon" style="background:#F0FDF4">🧩</div>
-        <div><div class="lp-setting-name">Dimensions</div><div class="lp-setting-desc">Cost centres, branches, projects</div></div>
+
+      <!-- Dimensions -->
+      <div class="lp-setting-block">
+        <div class="lp-setting-row" id="stg-dimensions" onclick="toggleSetting('dimensions')">
+          <div class="lp-setting-icon" style="background:#F0FDF4">🧩</div>
+          <div class="lp-setting-text"><div class="lp-setting-name">Dimensions</div><div class="lp-setting-desc">Cost centres, branches, business units, project tracking</div></div>
+          <div class="lp-toggle-wrap"><span class="lp-toggle-label" id="stgl-dimensions">Configure</span><div class="lp-toggle" id="stgt-dimensions"></div></div>
+          <span class="lp-setting-arrow">▶</span>
+        </div>
+        <div class="lp-setting-panel" id="stgp-dimensions">
+          <div class="lp-setting-panel-inner">
+            <div class="lp-sp-item" onclick="navigate('dimensions')"><span class="lp-sp-icon">🏪</span><div><div class="lp-sp-label">Branches</div><div class="lp-sp-desc">Riyadh, Jeddah, Dammam</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('dimensions')"><span class="lp-sp-icon">🏢</span><div><div class="lp-sp-label">Cost Centres</div><div class="lp-sp-desc">Finance, Sales, Operations</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('dimensions')"><span class="lp-sp-icon">📁</span><div><div class="lp-sp-label">Projects</div><div class="lp-sp-desc">QERP Launch, Jeddah Expansion</div></div></div>
+            <div class="lp-sp-item" onclick="navigate('dimensions')"><span class="lp-sp-icon">➕</span><div><div class="lp-sp-label">Add Dimension</div><div class="lp-sp-desc">Create new dimension type</div></div></div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -2001,7 +2278,7 @@ body.on-landing #tb-sub   { display: none; }
   <div style="padding:0 0 20px">
     <div class="lp-cta">
       <div class="lp-cta-text">
-        <h3>Ready to explore QERP-Lite?</h3>
+        <h3>Ready to explore QEnterprise?</h3>
         <p>Jump into the fully interactive prototype — every module, every screen, live data and workflows.</p>
       </div>
       <button class="lp-cta-btn" onclick="navigate('dashboard')">
@@ -2012,14 +2289,14 @@ body.on-landing #tb-sub   { display: none; }
 
   <!-- ══ FOOTER ══ -->
   <div class="lp-footer">
-    <div class="lp-footer-logo">QERP<span>lite</span> <span style="font-weight:400;color:rgba(255,255,255,.35);font-size:13px;margin-left:6px">by Qoyod</span></div>
+    <div class="lp-footer-logo">Q<span>Enterprise</span> <span style="font-weight:400;color:rgba(255,255,255,.35);font-size:13px;margin-left:6px">by Qoyod</span></div>
     <div class="lp-footer-links">
       <a onclick="showToast('Opening documentation…','info')">Documentation</a>
       <a onclick="showToast('Opening API reference…','info')">API Reference</a>
       <a onclick="showToast('Opening changelog…','info')">Changelog</a>
       <a onclick="showToast('Opening support…','info')">Support</a>
     </div>
-    <div class="lp-footer-copy">© 2026 Qoyod. QERP-Lite Prototype v3.0</div>
+    <div class="lp-footer-copy">© 2026 Qoyod. QEnterprise Prototype v3.0</div>
   </div>
 
 </div>
@@ -5827,6 +6104,72 @@ function toggleNotif() { toggleCmdPanel('notif'); }
 function openQuickPanel() { toggleCmdPanel('quick'); }
 function closeQuickPanel() { closeAllCmdPanels(); }
 
+
+/* ── Landing Page JS ── */
+function scrollToModules() {
+  const el = document.getElementById('lp-modules');
+  const mc = document.getElementById('main-content');
+  if(el && mc) {
+    mc.scrollTo({ top: el.offsetTop - 20, behavior: 'smooth' });
+  }
+}
+
+const _openSettings = new Set();
+
+function toggleSetting(key) {
+  const row   = document.getElementById('stg-' + key);
+  const panel = document.getElementById('stgp-' + key);
+  const toggle= document.getElementById('stgt-' + key);
+  const label = document.getElementById('stgl-' + key);
+  if(!row || !panel) return;
+
+  const isOpen = panel.classList.contains('open');
+
+  if(isOpen) {
+    panel.classList.remove('open');
+    row.classList.remove('expanded');
+    if(toggle) toggle.classList.remove('on');
+    if(label)  label.textContent = 'Configure';
+    _openSettings.delete(key);
+  } else {
+    panel.classList.add('open');
+    row.classList.add('expanded');
+    if(toggle) toggle.classList.add('on');
+    if(label)  label.textContent = 'Active';
+    _openSettings.add(key);
+  }
+}
+
+
+/* ── Module Card Toggles ── */
+const _modToggles = {};
+
+function toggleModToggle(key) {
+  const tog  = document.getElementById('mdt-'  + key);
+  const lbl  = document.getElementById('mdtl-' + key);
+  if(!tog) return;
+
+  const isOn = tog.classList.contains('on');
+
+  if(isOn) {
+    tog.classList.remove('on');
+    if(lbl) lbl.textContent = 'Enable';
+    _modToggles[key] = false;
+    showToast('Module disabled', 'warn');
+  } else {
+    tog.classList.add('on');
+    if(lbl) lbl.textContent = 'Enabled';
+    _modToggles[key] = true;
+    // Map key → friendly name for toast
+    const names = {
+      dms:'Delivery Management', assets:'Fixed Assets Management',
+      crm:'CRM', pos:'Point of Sale', prod:'Production Management',
+      hrm:'Human Resources', wf:'Workflow Management', integrations:'Integrations'
+    };
+    showToast((names[key]||key) + ' enabled', 'success');
+  }
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   // Ensure correct layout on load
   const mc = document.getElementById('main-content');
@@ -5846,4 +6189,3 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-Ehab Esmat
