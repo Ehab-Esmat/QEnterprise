@@ -1233,6 +1233,27 @@ body.on-landing #tb-sub   { display: none; }
 
 .lp-mod-toggle.on + .lp-mod-toggle-label { color: var(--ink2); }
 
+
+/* ─── SALES INVOICE INSTALLMENTS ──────────────────────────────────── */
+.inst-seq{display:inline-block;background:var(--blue-bg);color:var(--blue-l);font-weight:700;
+  font-size:11px;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.inst-chip{display:inline-block;background:var(--surface3);color:var(--ink2);font-size:11px;
+  font-weight:600;padding:2px 8px;border-radius:5px;margin:2px 0;white-space:nowrap}
+.inst-bucket{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;
+  border-radius:5px;letter-spacing:.02em;white-space:nowrap}
+.ib-Current{background:var(--surface3);color:var(--mute)}
+.ib-130{background:var(--blue-bg);color:var(--blue-l)}
+.ib-3160{background:var(--amber-bg);color:var(--amber)}
+.ib-6190{background:var(--orange-bg);color:var(--orange)}
+.ib-91{background:var(--red-bg);color:var(--red)}
+.inst-note{margin-top:12px;background:var(--surface2);border-left:3px solid var(--border2);
+  border-radius:0 6px 6px 0;padding:10px 14px;font-size:12px;color:var(--ink3);line-height:1.6}
+.inst-validate{margin-top:12px;padding:10px 14px;border-radius:6px;font-size:12.5px;font-weight:600}
+.inst-validate.ok{background:var(--green-bg);color:var(--green);border:1px solid rgba(22,163,74,.25)}
+.inst-validate.bad{background:var(--red-bg);color:var(--red);border:1px solid rgba(220,38,38,.25)}
+.badge-status.badge-partial{background:var(--amber-bg);color:var(--amber)}
+#panel-installments .stats-grid{margin-bottom:16px}
+#inst-tbody td{vertical-align:top}
 </style>
 </head>
 <body>
@@ -1527,6 +1548,7 @@ body.on-landing #tb-sub   { display: none; }
         <div class="nav-child" onclick="navigate('customers')"><span class="child-icon">👥</span> Customers</div>
         <div class="nav-child" onclick="navigate('quotations')"><span class="child-icon">📋</span> Quotation</div>
         <div class="nav-child" onclick="navigate('invoices')"><span class="child-icon">🧾</span> Invoices</div>
+        <div class="nav-child" onclick="navigate('installments')"><span class="child-icon">📆</span> Installments<span class="nav-badge" id="bdg-inst-overdue" style="margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9px"></span></div>
         <div class="nav-child" onclick="navigate('credit-notes')"><span class="child-icon">↩️</span> Credit Note</div>
         <div class="nav-child" onclick="navigate('customer-receipts')"><span class="child-icon">💳</span> Customer Receipt</div>
         <div class="nav-child" onclick="navigate('delivery-orders')"><span class="child-icon">🚚</span> Delivery Note</div>
@@ -2585,7 +2607,7 @@ body.on-landing #tb-sub   { display: none; }
         <div class="card-body">
           <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:14px">
             <div class="form-group"><label class="form-label">Invoice Number</label><input class="form-control" value="INV2026-019" readonly style="background:var(--surface2)"></div>
-            <div class="form-group"><label class="form-label">Invoice Date</label><input class="form-control" type="date" id="inv-date"></div>
+            <div class="form-group"><label class="form-label">Invoice Date</label><input class="form-control" type="date" id="inv-date" onchange="INST.renderPreview()"></div>
             <div class="form-group"><label class="form-label">Customer *</label>
               <select class="form-control" id="inv-customer">
                 <option>Select customer…</option>
@@ -2594,9 +2616,9 @@ body.on-landing #tb-sub   { display: none; }
                 <option>Gulf Star Electronics</option>
               </select>
             </div>
-            <div class="form-group"><label class="form-label">Due Date</label><input class="form-control" type="date" id="inv-due"></div>
+            <div class="form-group"><label class="form-label">Due Date <span style="font-weight:400;color:var(--mute);font-size:11px">— derived from the schedule</span></label><input class="form-control" type="date" id="inv-due" readonly style="background:var(--surface2)"></div>
             <div class="form-group"><label class="form-label">Currency</label><select class="form-control"><option>SAR — Saudi Riyal</option><option>USD — US Dollar</option><option>AED — UAE Dirham</option></select></div>
-            <div class="form-group"><label class="form-label">Payment Terms</label><select class="form-control"><option>Net 30</option><option>Net 15</option><option>Immediate</option><option>Net 60</option></select></div>
+            <div class="form-group"><label class="form-label">Payment Terms</label><select class="form-control" id="inv-terms" onchange="INST.renderPreview()"></select></div>
           </div>
         </div>
       </div>
@@ -2658,7 +2680,95 @@ body.on-landing #tb-sub   { display: none; }
           </div>
         </div>
       </div>
+
+      <!-- ── FR-2 / FR-3 · Installment schedule preview ───────────────── -->
+      <div class="card" id="inv-schedule-card" style="margin-top:16px">
+        <div class="card-header">
+          <h3>📆 Payment Schedule</h3>
+          <span id="inv-sched-tag" class="badge-status badge-active" style="font-weight:600"></span>
+        </div>
+        <div class="card-body" id="inv-sched-body"></div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SALES INVOICE INSTALLMENTS
+============================================================ -->
+<div class="panel" id="panel-installments">
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Sales / <span>Installments</span></div>
+      <div class="page-title">Sales Invoice Installments</div>
+      <div class="page-subtitle">Scheduled portions, settlement and late charges</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-outline btn-sm" onclick="INST.openAging()">📊 Aging by Installment</button>
+      <button class="btn btn-warning btn-sm" onclick="INST.sweep()">⚡ Run Overdue Check</button>
+    </div>
+  </div>
+
+  <div class="stats-grid" id="inst-stats"></div>
+
+  <div class="tab-bar" style="margin-top:4px">
+    <div class="tab active" onclick="INST.tab('schedules',this)">Schedules</div>
+    <div class="tab" onclick="INST.tab('terms',this)">Payment Terms</div>
+    <div class="tab" onclick="INST.tab('charges',this)">Late Charges</div>
+  </div>
+
+  <!-- Schedules -->
+  <div id="inst-tab-schedules">
+    <div class="card"><div class="card-body no-pad"><div class="table-wrapper">
+      <table>
+        <thead><tr>
+          <th>Invoice</th><th>Customer</th><th>#</th><th>Due Date</th>
+          <th style="text-align:right">Amount</th><th style="text-align:right">Paid</th><th style="text-align:right">Balance</th>
+          <th>Bucket</th><th>Status</th><th>Actions</th>
+        </tr></thead>
+        <tbody id="inst-tbody"></tbody>
+      </table>
+    </div></div></div>
+  </div>
+
+  <!-- Payment Terms -->
+  <div id="inst-tab-terms" style="display:none">
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header"><h3>Tenant Setting</h3></div>
+      <div class="card-body">
+        <div class="form-grid" style="grid-template-columns:220px 1fr;gap:14px;align-items:center">
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Grace Days <span style="color:var(--mute);font-weight:400">(FR-10)</span></label>
+            <input class="form-control" type="number" min="0" max="30" id="inst-grace" value="0" onchange="INST.setGrace(this.value)">
+          </div>
+          <div style="font-size:12.5px;color:var(--mute);padding-top:14px">
+            Days after the due date before an installment is treated as overdue. Without it, a customer whose bank posted a day late is charged a penalty.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card"><div class="card-header">
+      <h3>Payment Term Schedules</h3>
+      <button class="btn btn-accent btn-sm" onclick="INST.newTerm()">+ New Term</button>
+    </div><div class="card-body no-pad"><div class="table-wrapper">
+      <table>
+        <thead><tr><th>Term</th><th>Installments</th><th>Schedule</th><th style="text-align:right">Late Charge</th><th>Actions</th></tr></thead>
+        <tbody id="terms-tbody"></tbody>
+      </table>
+    </div></div></div>
+  </div>
+
+  <!-- Late Charges -->
+  <div id="inst-tab-charges" style="display:none">
+    <div class="card"><div class="card-header">
+      <h3>Sales Debit Notes — Late Payment Charges</h3>
+      <span style="font-size:12px;color:var(--mute)">Generated as drafts for finance review · VAT out of scope</span>
+    </div><div class="card-body no-pad"><div class="table-wrapper">
+      <table>
+        <thead><tr><th>Debit Note</th><th>Original Invoice</th><th>Customer</th><th>Reason</th><th style="text-align:right">Amount</th><th>VAT</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="dn-tbody"></tbody>
+      </table>
+    </div></div></div>
   </div>
 </div>
 
@@ -2753,7 +2863,7 @@ body.on-landing #tb-sub   { display: none; }
     <div class="report-cat" onclick="showToast('Generating P&L Statement…','')"><div class="rc-icon">📈</div><div class="rc-title">Profit & Loss</div><div class="rc-count">Income vs Expenses</div></div>
     <div class="report-cat" onclick="showToast('Generating Balance Sheet…','')"><div class="rc-icon">⚖️</div><div class="rc-title">Balance Sheet</div><div class="rc-count">Assets, Liabilities, Equity</div></div>
     <div class="report-cat" onclick="showToast('Generating Cash Flow…','')"><div class="rc-icon">💧</div><div class="rc-title">Cash Flow</div><div class="rc-count">Operating, Investing, Financing</div></div>
-    <div class="report-cat" onclick="showToast('Generating AR Report…','')"><div class="rc-icon">📤</div><div class="rc-title">Accounts Receivable Aging</div><div class="rc-count">Outstanding by age bucket</div></div>
+    <div class="report-cat" onclick="INST.openAging()"><div class="rc-icon">📤</div><div class="rc-title">Accounts Receivable Aging</div><div class="rc-count">By installment due date</div></div>
     <div class="report-cat" onclick="showToast('Generating AP Report…','')"><div class="rc-icon">📥</div><div class="rc-title">Accounts Payable Aging</div><div class="rc-count">Payables by age bucket</div></div>
     <div class="report-cat" onclick="showToast('Generating VAT Return…','')"><div class="rc-icon">🇸🇦</div><div class="rc-title">VAT Return (ZATCA)</div><div class="rc-count">Phase 2 compliant</div></div>
     <div class="report-cat" onclick="showToast('Generating Inventory Report…','')"><div class="rc-icon">📦</div><div class="rc-title">Inventory Valuation</div><div class="rc-count">Stock on hand by location</div></div>
@@ -4218,6 +4328,42 @@ body.on-landing #tb-sub   { display: none; }
   </div>
 </div>
 
+<!-- ── INSTALLMENTS · Capture payment against a schedule (FR-5) ───────── -->
+<div class="modal-overlay" id="modal-inst-pay" onclick="if(event.target===this)closeModal('modal-inst-pay')">
+  <div class="modal" style="width:620px">
+    <div class="modal-header"><h2>💳 Capture Payment</h2><button class="modal-close" onclick="closeModal('modal-inst-pay')">✕</button></div>
+    <div class="modal-body" id="inst-pay-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-inst-pay')">Cancel</button>
+      <button class="btn btn-success" onclick="INST.applyPayment()">✓ Apply Payment</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── INSTALLMENTS · Aging by installment due date (FR-8) ────────────── -->
+<div class="modal-overlay" id="modal-inst-aging" onclick="if(event.target===this)closeModal('modal-inst-aging')">
+  <div class="modal" style="width:860px">
+    <div class="modal-header"><h2>📊 A/R Aging — bucketed by installment</h2><button class="modal-close" onclick="closeModal('modal-inst-aging')">✕</button></div>
+    <div class="modal-body" id="inst-aging-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-inst-aging')">Close</button>
+      <button class="btn btn-outline" onclick="showToast('Aging report exported','success')">⬇ Export</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── INSTALLMENTS · Payment term schedule editor (FR-1) ─────────────── -->
+<div class="modal-overlay" id="modal-inst-term" onclick="if(event.target===this)closeModal('modal-inst-term')">
+  <div class="modal" style="width:720px">
+    <div class="modal-header"><h2>📆 Payment Term Schedule</h2><button class="modal-close" onclick="closeModal('modal-inst-term')">✕</button></div>
+    <div class="modal-body" id="inst-term-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-inst-term')">Cancel</button>
+      <button class="btn btn-success" id="inst-term-save" onclick="INST.saveTerm()">✓ Save Term</button>
+    </div>
+  </div>
+</div>
+
 <!-- FAB -->
 <button class="fab" onclick="openModal('modal-record-payment')" title="Quick Action">+</button>
 
@@ -4642,6 +4788,563 @@ const INVOICE_DATA = {
   'INV2026-015': { num:'INV2026-015', customer:'Jeddah Fashion House', date:'May 25, 2026', due:'Jun 25, 2026', amount:'SAR 35,000.00', vat:'SAR 4,565.22', status:'Paid', lines:[{desc:'Abaya Collection - Summer × 100',qty:100,price:'304.35',total:'SAR 30,435'},{desc:'Packaging & Delivery',qty:1,price:'4,565',total:'SAR 4,565'}] },
   'INV2026-014': { num:'INV2026-014', customer:'Gulf Star Electronics', date:'May 12, 2026', due:'Jun 11, 2026', amount:'SAR 52,800.00', vat:'SAR 6,886.96', status:'Overdue', lines:[{desc:'Smart Watch - Silver × 42',qty:42,price:'1056',total:'SAR 44,352'},{desc:'Accessories Bundle',qty:1,price:'8,448',total:'SAR 8,448'}] },
 };
+
+/* ══════════════════════════════════════════════════════════════════════
+   SALES INVOICE INSTALLMENTS
+   Implements the PRD dated 2026-09-16.
+   FR-1 term schedule templates · FR-2 snapshot on invoice · FR-3 rounding
+   FR-5 oldest-first allocation · FR-6 overdue detection · FR-7 draft late
+   charge as a Sales Debit Note · FR-8 aging by installment · FR-10 grace days
+══════════════════════════════════════════════════════════════════════ */
+const INST = (function () {
+
+  /* ── helpers ─────────────────────────────────────────────────────── */
+  const r2    = n => Math.round((n + Number.EPSILON) * 100) / 100;
+  const money = n => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const parseAmt = s => parseFloat(String(s).replace(/[^0-9.]/g, '')) || 0;
+  // Local-calendar ISO. Never toISOString() here: it converts local midnight to
+  // UTC, which in UTC+3 drags every derived due date back a day.
+  const toISO = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const todayISO = () => toISO(new Date());
+  const addDays = (iso, d) => { const x = new Date(iso + 'T00:00:00'); x.setDate(x.getDate() + d); return toISO(x); };
+  const daysBetween = (a, b) => Math.round((new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00')) / 86400000);
+  const fmtDate = iso => new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+
+  /* ── FR-1 · payment term schedule templates ──────────────────────── */
+  let graceDays = 0;
+  let terms = [
+    { id: 't-imm',       name: 'Immediate',              rows: [{ pct: 100, days: 0 }], lateChargePct: null },
+    { id: 't-net30',     name: 'Net 30',                 rows: [{ pct: 100, days: 30 }], lateChargePct: null },
+    { id: 't-net60',     name: 'Net 60',                 rows: [{ pct: 100, days: 60 }], lateChargePct: 1.5 },
+    { id: 't-staged',    name: '30 / 30 / 40 — Staged',  rows: [{ pct: 30, days: 0 }, { pct: 30, days: 30 }, { pct: 40, days: 90 }], lateChargePct: 2 },
+    { id: 't-thirds',    name: '3 Equal Thirds',         rows: [{ pct: 33.33, days: 0 }, { pct: 33.33, days: 30 }, { pct: 33.34, days: 60 }], lateChargePct: 2 },
+    { id: 't-quarterly', name: '4 × 25% Quarterly',      rows: [{ pct: 25, days: 0 }, { pct: 25, days: 90 }, { pct: 25, days: 180 }, { pct: 25, days: 270 }], lateChargePct: 1.5 },
+  ];
+  const termById = id => terms.find(t => t.id === id);
+
+  /* ── FR-3 · rounding: installments 1..N-1 rounded, last absorbs the
+        residue, so the schedule always sums to the invoice exactly ──── */
+  function buildSchedule(total, term, issueISO) {
+    const out = [];
+    let acc = 0;
+    term.rows.forEach((row, i) => {
+      const last = i === term.rows.length - 1;
+      const amt  = last ? r2(total - acc) : r2(total * row.pct / 100);
+      if (!last) acc = r2(acc + amt);
+      out.push({
+        seq: i + 1, pct: row.pct, days: row.days,
+        amount: amt, due: addDays(issueISO, row.days),
+        paid: 0, lateChargeAt: null, dnId: null,
+        lateChargePct: term.lateChargePct   // FR-2 · snapshotted, not referenced
+      });
+    });
+    return out;
+  }
+
+  /* ── FR-6 · status and aging bucket ──────────────────────────────── */
+  function statusOf(it) {
+    if (it.paid >= it.amount - 0.005) return 'paid';
+    if (daysBetween(addDays(it.due, graceDays), todayISO()) > 0) return 'overdue';
+    return it.paid > 0 ? 'partial' : 'open';
+  }
+  const balanceOf = it => r2(it.amount - it.paid);
+  function bucketOf(it) {
+    const late = daysBetween(it.due, todayISO());
+    if (late <= 0) return 'Current';
+    if (late <= 30) return '1:30';
+    if (late <= 60) return '31:60';
+    if (late <= 90) return '61:90';
+    return '91+';
+  }
+  const BUCKETS = ['Current', '1:30', '31:60', '61:90', '91+'];
+
+  /* ── plans: one snapshotted schedule per invoice ─────────────────── */
+  let plans = [];
+  let dnSeq = 0;
+  let salesDebitNotes = [];
+
+  function addPlan(invNo, termId, payments) {
+    const inv = INVOICE_DATA[invNo];
+    if (!inv) return;
+    const term  = termById(termId);
+    const total = parseAmt(inv.amount);
+    const issue = toISO(new Date(inv.date));
+    const plan  = {
+      invoice: invNo, customer: inv.customer, total,
+      termId, termName: term.name, issue,
+      items: buildSchedule(total, term, issue)
+    };
+    (payments || []).forEach(p => {
+      const it = plan.items.find(i => i.seq === p.seq);
+      if (it) it.paid = p.amount === 'full' ? it.amount : r2(p.amount);
+    });
+    plans.push(plan);
+  }
+  const planFor = invNo => plans.find(p => p.invoice === invNo);
+
+  function seed() {
+    plans = []; salesDebitNotes = []; dnSeq = 0;
+    addPlan('INV2026-018', 't-staged',    [{ seq: 1, amount: 'full' }, { seq: 2, amount: 4000 }]);
+    addPlan('INV2026-017', 't-quarterly', [{ seq: 1, amount: 'full' }]);
+    addPlan('INV2026-016', 't-thirds',    [{ seq: 1, amount: 'full' }]);
+    addPlan('INV2026-014', 't-staged',    [{ seq: 1, amount: 'full' }]);
+    // INV2026-015 deliberately has no plan — single-due invoices coexist unchanged.
+  }
+
+  /* ── FR-5 · allocation, oldest due first, excess cascades forward ── */
+  function allocate(plan, amount, targetSeq) {
+    let rem = r2(amount);
+    const ordered = plan.items.slice().sort((a, b) => a.due < b.due ? -1 : a.due > b.due ? 1 : a.seq - b.seq);
+    const queue = targetSeq
+      ? [ordered.find(i => i.seq === +targetSeq), ...ordered.filter(i => i.seq !== +targetSeq)]
+      : ordered;
+    const touched = [];
+    for (const it of queue) {
+      if (!it || rem <= 0) continue;
+      const need = balanceOf(it);
+      if (need <= 0) continue;
+      const take = Math.min(rem, need);
+      it.paid = r2(it.paid + take);
+      rem = r2(rem - take);
+      touched.push({ seq: it.seq, take });
+    }
+    return { unallocated: rem, touched };
+  }
+
+  /* ── FR-7 · idempotent overdue sweep → draft Sales Debit Notes ───── */
+  function sweep() {
+    let created = 0, alreadyCharged = 0, noRule = 0;
+    plans.forEach(p => p.items.forEach(it => {
+      if (statusOf(it) !== 'overdue') return;
+      if (it.lateChargeAt) { alreadyCharged++; return; }      // guard: at most once
+      if (!it.lateChargePct) { noRule++; return; }
+      const dn = {
+        id: 'SDN-' + (1001 + dnSeq++),
+        invoice: p.invoice, customer: p.customer,
+        seq: it.seq, of: p.items.length, dueWas: it.due,
+        base: balanceOf(it), pct: it.lateChargePct,
+        amount: r2(balanceOf(it) * it.lateChargePct / 100),
+        vat: 0, vatCode: 'Out of scope', status: 'Draft', created: todayISO()
+      };
+      salesDebitNotes.push(dn);
+      it.lateChargeAt = todayISO();
+      it.dnId = dn.id;
+      created++;
+    }));
+    renderAll();
+    if (created) {
+      showToast(`${created} draft debit note${created > 1 ? 's' : ''} created for review`, 'success');
+    } else {
+      showToast(`Nothing to charge — ${alreadyCharged} already charged, ${noRule} with no late-charge rule`, 'info');
+    }
+    return { created, alreadyCharged, noRule };
+  }
+
+  /* ── rendering ───────────────────────────────────────────────────── */
+  const badge = s => ({
+    paid:    '<span class="badge-status badge-paid">Paid</span>',
+    partial: '<span class="badge-status badge-partial">Partial</span>',
+    overdue: '<span class="badge-status badge-overdue">Overdue</span>',
+    open:    '<span class="badge-status badge-waiting">Open</span>'
+  }[s]);
+  const bucketPill = b => `<span class="inst-bucket ib-${b.replace(/[:+]/g, '')}">${b}</span>`;
+
+  function renderStats() {
+    const all = plans.flatMap(p => p.items);
+    const overdue = all.filter(i => statusOf(i) === 'overdue');
+    const overdueAmt = overdue.reduce((s, i) => s + balanceOf(i), 0);
+    const outstanding = all.reduce((s, i) => s + balanceOf(i), 0);
+    const chargeAmt = salesDebitNotes.filter(d => d.status === 'Draft').reduce((s, d) => s + d.amount, 0);
+    const el = document.getElementById('inst-stats');
+    if (!el) return;
+    el.innerHTML = `
+      <div class="stat-card"><div class="card-accent" style="background:var(--blue)"></div>
+        <div class="card-icon" style="background:var(--blue-bg)">📆</div>
+        <div class="card-value">${all.length}</div><div class="card-label">Installments across ${plans.length} invoices</div></div>
+      <div class="stat-card"><div class="card-accent" style="background:var(--navy)"></div>
+        <div class="card-icon" style="background:var(--surface3)">💼</div>
+        <div class="card-value">${money(outstanding)}</div><div class="card-label">Outstanding (SAR)</div></div>
+      <div class="stat-card"><div class="card-accent" style="background:var(--red)"></div>
+        <div class="card-icon" style="background:var(--red-bg)">⚠️</div>
+        <div class="card-value" style="color:var(--red)">${money(overdueAmt)}</div><div class="card-label">${overdue.length} overdue installments</div></div>
+      <div class="stat-card"><div class="card-accent" style="background:var(--amber)"></div>
+        <div class="card-icon" style="background:var(--amber-bg)">🧾</div>
+        <div class="card-value">${money(chargeAmt)}</div><div class="card-label">${salesDebitNotes.length} draft late charges</div></div>`;
+    const bdg = document.getElementById('bdg-inst-overdue');
+    if (bdg) { bdg.textContent = overdue.length || ''; bdg.style.display = overdue.length ? '' : 'none'; }
+  }
+
+  function renderSchedules() {
+    const tb = document.getElementById('inst-tbody');
+    if (!tb) return;
+    let html = '';
+    plans.forEach(p => {
+      p.items.forEach((it, idx) => {
+        const st = statusOf(it);
+        html += `<tr>
+          <td>${idx === 0 ? `<span style="font-weight:700;color:var(--accent)">${p.invoice}</span><div style="font-size:11px;color:var(--mute)">${p.termName}</div>` : ''}</td>
+          <td>${idx === 0 ? p.customer : ''}</td>
+          <td><span class="inst-seq">${it.seq} of ${p.items.length}</span></td>
+          <td style="${st === 'overdue' ? 'color:var(--danger);font-weight:600' : ''}">${fmtDate(it.due)}
+            <div style="font-size:11px;color:var(--mute)">${it.pct}% · +${it.days}d</div></td>
+          <td class="amount" style="text-align:right">${money(it.amount)}</td>
+          <td class="amount" style="text-align:right;color:var(--green)">${it.paid ? money(it.paid) : '—'}</td>
+          <td class="amount" style="text-align:right;font-weight:700">${balanceOf(it) ? money(balanceOf(it)) : '—'}</td>
+          <td>${bucketPill(bucketOf(it))}</td>
+          <td>${badge(st)}${it.dnId ? `<div style="font-size:10.5px;color:var(--amber);font-weight:600;margin-top:3px">⚡ ${it.dnId}</div>` : ''}</td>
+          <td><div class="action-group">${st !== 'paid'
+              ? `<button class="action-btn" title="Capture payment" onclick="INST.openPay('${p.invoice}',${it.seq})">💳</button>` : '✓'}</div></td>
+        </tr>`;
+      });
+    });
+    tb.innerHTML = html || '<tr><td colspan="10" style="text-align:center;padding:30px;color:var(--mute)">No installment plans yet</td></tr>';
+  }
+
+  function renderTerms() {
+    const tb = document.getElementById('terms-tbody');
+    if (!tb) return;
+    tb.innerHTML = terms.map(t => {
+      const sum = r2(t.rows.reduce((s, r) => s + r.pct, 0));
+      return `<tr>
+        <td style="font-weight:700">${t.name}${t.rows.length === 1 ? '<div style="font-size:11px;color:var(--mute);font-weight:400">Single payment</div>' : ''}</td>
+        <td><span class="inst-seq">${t.rows.length}</span></td>
+        <td style="font-size:12px">${t.rows.map(r => `<span class="inst-chip">${r.pct}% @ +${r.days}d</span>`).join(' ')}
+          <span style="margin-left:6px;font-size:11px;color:${sum === 100 ? 'var(--green)' : 'var(--red)'};font-weight:700">Σ ${sum}%</span></td>
+        <td style="text-align:right">${t.lateChargePct ? `<span style="color:var(--amber);font-weight:700">${t.lateChargePct}%</span>` : '<span style="color:var(--mute)">—</span>'}</td>
+        <td><div class="action-group"><button class="action-btn" title="Edit schedule" onclick="INST.editTerm('${t.id}')">✏️</button></div></td>
+      </tr>`;
+    }).join('');
+  }
+
+  function renderCharges() {
+    const tb = document.getElementById('dn-tbody');
+    if (!tb) return;
+    if (!salesDebitNotes.length) {
+      tb.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:34px;color:var(--mute)">
+        No late charges yet. Run <b>⚡ Overdue Check</b> to generate drafts for overdue installments.</td></tr>`;
+      return;
+    }
+    tb.innerHTML = salesDebitNotes.map(d => `<tr>
+      <td style="font-weight:700;color:var(--accent)">${d.id}</td>
+      <td>${d.invoice}</td>
+      <td>${d.customer}</td>
+      <td style="font-size:12px">Installment ${d.seq} of ${d.of}, due ${fmtDate(d.dueWas)}<div style="font-size:11px;color:var(--mute)">${d.pct}% of ${money(d.base)}</div></td>
+      <td class="amount" style="text-align:right;font-weight:700">${money(d.amount)}</td>
+      <td><span class="inst-chip" style="background:var(--surface3);color:var(--ink3)">${d.vatCode}</span></td>
+      <td>${d.status === 'Draft' ? '<span class="badge-status badge-draft">Draft</span>' : '<span class="badge-status badge-approved">Issued</span>'}</td>
+      <td><div class="action-group">${d.status === 'Draft'
+        ? `<button class="action-btn" title="Approve and issue" onclick="INST.issueDN('${d.id}')">✓</button>
+           <button class="action-btn" title="Discard" onclick="INST.discardDN('${d.id}')">✕</button>` : '—'}</div></td>
+    </tr>`).join('');
+  }
+
+  /* ── FR-8 · invoice list shows next unpaid installment ───────────── */
+  function renderInvoiceList() {
+    document.querySelectorAll('#invoices-tbody tr').forEach(tr => {
+      const no = tr.cells[0] ? tr.cells[0].textContent.trim() : '';
+      const p = planFor(no);
+      if (!p || !tr.cells[3]) return;
+      const open = p.items.filter(i => statusOf(i) !== 'paid').sort((a, b) => a.due < b.due ? -1 : 1);
+      const next = open[0] || p.items[p.items.length - 1];
+      const paidCount = p.items.filter(i => statusOf(i) === 'paid').length;
+      const od = statusOf(next) === 'overdue';
+      tr.cells[3].innerHTML = `<span style="${od ? 'color:var(--danger);font-weight:600' : ''}">${fmtDate(next.due)}</span>
+        <div style="font-size:11px;color:var(--mute)">📆 ${Math.min(paidCount + 1, p.items.length)} of ${p.items.length}</div>`;
+    });
+  }
+
+  /* ── FR-2 / FR-3 · live schedule preview on the invoice form ─────── */
+  function renderPreview() {
+    const sel = document.getElementById('inv-terms');
+    const body = document.getElementById('inv-sched-body');
+    const tag = document.getElementById('inv-sched-tag');
+    if (!sel || !body) return;
+    const term = termById(sel.value) || terms[0];
+    const issue = document.getElementById('inv-date').value || todayISO();
+    const total = parseAmt(document.getElementById('inv-grand').textContent);
+    const sched = buildSchedule(total, term, issue);
+    const sum = r2(sched.reduce((s, i) => s + i.amount, 0));
+
+    const dueEl = document.getElementById('inv-due');
+    if (dueEl) dueEl.value = sched[0].due;   // FR-4 · derived, earliest open
+
+    if (tag) tag.textContent = sched.length === 1 ? 'Single payment' : sched.length + ' installments';
+
+    body.innerHTML = `
+      <div style="font-size:12.5px;color:var(--mute);margin-bottom:12px">
+        Generated from <b style="color:var(--ink)">${term.name}</b> and frozen onto the invoice when it is saved.
+        Editing this term later will not change invoices already issued.
+        ${term.lateChargePct ? `A <b style="color:var(--amber)">${term.lateChargePct}%</b> one-time late charge applies to any installment left unpaid past its due date.` : ''}
+      </div>
+      <div class="table-wrapper"><table>
+        <thead><tr><th>#</th><th>Share</th><th>Due Date</th><th style="text-align:right">Amount (SAR)</th></tr></thead>
+        <tbody>${sched.map(i => `<tr>
+          <td><span class="inst-seq">${i.seq}</span></td>
+          <td>${i.pct}% <span style="color:var(--mute);font-size:11px">· issue +${i.days}d</span></td>
+          <td>${fmtDate(i.due)}</td>
+          <td class="amount" style="text-align:right;font-weight:700">${money(i.amount)}</td></tr>`).join('')}
+        </tbody>
+        <tfoot><tr style="border-top:2px solid var(--border2)">
+          <td colspan="3" style="font-weight:700;padding-top:10px">Schedule total</td>
+          <td class="amount" style="text-align:right;font-weight:800;padding-top:10px">${money(sum)}</td></tr>
+          <tr><td colspan="3" style="color:var(--mute);font-size:12px">Invoice total</td>
+          <td class="amount" style="text-align:right;color:var(--mute);font-size:12px">${money(total)}</td></tr>
+          <tr><td colspan="3" style="font-size:12px;font-weight:700;color:${sum === total ? 'var(--green)' : 'var(--red)'}">Variance</td>
+          <td class="amount" style="text-align:right;font-weight:800;color:${sum === total ? 'var(--green)' : 'var(--red)'}">${sum === total ? '0.00 ✓' : money(r2(sum - total))}</td></tr>
+        </tfoot>
+      </table></div>
+      ${sched.length > 1 ? `<div class="inst-note">The last installment absorbs the rounding remainder, so the schedule always sums to the invoice exactly — no fils drifts out of the subledger.</div>` : ''}`;
+  }
+
+  function fillTermSelect() {
+    const sel = document.getElementById('inv-terms');
+    if (!sel) return;
+    sel.innerHTML = terms.map(t => `<option value="${t.id}">${t.name}${t.rows.length > 1 ? ' — ' + t.rows.length + ' installments' : ''}</option>`).join('');
+    sel.value = 't-staged';
+  }
+
+  /* ── payment modal ───────────────────────────────────────────────── */
+  let payCtx = null;
+  function openPay(invNo, seq) {
+    const p = planFor(invNo);
+    if (!p) return;
+    payCtx = { invoice: invNo, seq };
+    const it = p.items.find(i => i.seq === seq);
+    document.getElementById('inst-pay-body').innerHTML = `
+      <div class="detail-row"><span class="detail-label">Invoice</span><span class="detail-value">${p.invoice} — ${p.customer}</span></div>
+      <div class="detail-row"><span class="detail-label">Installment</span><span class="detail-value">${seq} of ${p.items.length}, due ${fmtDate(it.due)}</span></div>
+      <div class="detail-row"><span class="detail-label">Balance on this installment</span><span class="detail-value" style="font-weight:800">SAR ${money(balanceOf(it))}</span></div>
+      <div class="form-divider"></div>
+      <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:14px">
+        <div class="form-group"><label class="form-label">Amount Received (SAR)</label>
+          <input class="form-control" type="number" step="0.01" id="inst-pay-amt" value="${balanceOf(it).toFixed(2)}"></div>
+        <div class="form-group"><label class="form-label">Date</label>
+          <input class="form-control" type="date" id="inst-pay-date" value="${todayISO()}"></div>
+        <div class="form-group" style="grid-column:1/-1"><label class="form-label">Allocation</label>
+          <select class="form-control" id="inst-pay-mode">
+            <option value="oldest">Oldest installment first — cascade excess forward (default)</option>
+            <option value="target" selected>Apply to installment ${seq} first, then cascade</option>
+          </select></div>
+      </div>
+      <div class="inst-note">Excess beyond this installment cascades to the next one rather than sitting unallocated.</div>`;
+    openModal('modal-inst-pay');
+  }
+
+  function applyPayment() {
+    if (!payCtx) return;
+    const p = planFor(payCtx.invoice);
+    const amt = parseFloat(document.getElementById('inst-pay-amt').value) || 0;
+    if (amt <= 0) { showToast('Enter an amount greater than zero', 'error'); return; }
+    const mode = document.getElementById('inst-pay-mode').value;
+    const res = allocate(p, amt, mode === 'target' ? payCtx.seq : null);
+    closeModal('modal-inst-pay');
+    renderAll();
+    const where = res.touched.map(t => `#${t.seq} ${money(t.take)}`).join(', ');
+    showToast(`SAR ${money(amt)} applied to ${p.invoice} — ${where}` + (res.unallocated > 0 ? ` · ${money(res.unallocated)} unallocated` : ''), 'success');
+  }
+
+  /* ── aging modal ─────────────────────────────────────────────────── */
+  function openAging() {
+    const byCustomer = {};
+    plans.forEach(p => p.items.forEach(it => {
+      const bal = balanceOf(it);
+      if (bal <= 0) return;
+      byCustomer[p.customer] = byCustomer[p.customer] || { Current: 0, '1:30': 0, '31:60': 0, '61:90': 0, '91+': 0, total: 0, rows: [] };
+      const c = byCustomer[p.customer];
+      c[bucketOf(it)] += bal; c.total += bal;
+      c.rows.push({ inv: p.invoice, seq: it.seq, of: p.items.length, due: it.due, bal, bucket: bucketOf(it) });
+    }));
+    const names = Object.keys(byCustomer);
+    const tot = BUCKETS.reduce((o, b) => (o[b] = names.reduce((s, n) => s + byCustomer[n][b], 0), o), {});
+    const grand = names.reduce((s, n) => s + byCustomer[n].total, 0);
+
+    document.getElementById('inst-aging-body').innerHTML = `
+      <div style="font-size:12.5px;color:var(--mute);margin-bottom:14px">
+        As of <b style="color:var(--ink)">${fmtDate(todayISO())}</b> · grace ${graceDays} day${graceDays === 1 ? '' : 's'}.
+        Every open installment is aged by <b style="color:var(--ink)">its own</b> due date, so one invoice can occupy several buckets at once.
+      </div>
+      <div class="table-wrapper"><table>
+        <thead><tr><th>Customer</th>${BUCKETS.map(b => `<th style="text-align:right">${b}</th>`).join('')}<th style="text-align:right">Total</th></tr></thead>
+        <tbody>
+          ${names.map(n => `<tr>
+            <td style="font-weight:700">${n}</td>
+            ${BUCKETS.map(b => `<td class="amount" style="text-align:right;${b === '91+' && byCustomer[n][b] ? 'color:var(--danger);font-weight:700' : ''}">${byCustomer[n][b] ? money(byCustomer[n][b]) : '<span style="color:var(--mute2)">—</span>'}</td>`).join('')}
+            <td class="amount" style="text-align:right;font-weight:800">${money(byCustomer[n].total)}</td></tr>`).join('')}
+        </tbody>
+        <tfoot><tr style="border-top:2px solid var(--border2)">
+          <td style="font-weight:800;padding-top:10px">Total</td>
+          ${BUCKETS.map(b => `<td class="amount" style="text-align:right;font-weight:800;padding-top:10px">${money(tot[b])}</td>`).join('')}
+          <td class="amount" style="text-align:right;font-weight:800;padding-top:10px">${money(grand)}</td></tr></tfoot>
+      </table></div>
+      <div class="form-divider"></div>
+      <div style="font-size:12px;font-weight:700;color:var(--ink2);margin-bottom:8px">Detail — the installments behind those buckets</div>
+      <div class="table-wrapper"><table>
+        <thead><tr><th>Invoice</th><th>Installment</th><th>Due</th><th>Days late</th><th>Bucket</th><th style="text-align:right">Balance</th></tr></thead>
+        <tbody>${names.flatMap(n => byCustomer[n].rows).sort((a, b) => a.due < b.due ? -1 : 1).map(r => `<tr>
+          <td>${r.inv}</td><td><span class="inst-seq">${r.seq} of ${r.of}</span></td><td>${fmtDate(r.due)}</td>
+          <td>${Math.max(0, daysBetween(r.due, todayISO()))}</td>
+          <td>${bucketPill(r.bucket)}</td>
+          <td class="amount" style="text-align:right;font-weight:700">${money(r.bal)}</td></tr>`).join('')}
+        </tbody></table></div>`;
+    openModal('modal-inst-aging');
+  }
+
+  /* ── term editor ─────────────────────────────────────────────────── */
+  let termCtx = null;
+  function termEditor(t) {
+    termCtx = JSON.parse(JSON.stringify(t));
+    drawTermEditor();
+    openModal('modal-inst-term');
+  }
+  function drawTermEditor() {
+    const t = termCtx;
+    const sum = r2(t.rows.reduce((s, r) => s + (parseFloat(r.pct) || 0), 0));
+    const ordered = t.rows.every((r, i) => i === 0 || r.days >= t.rows[i - 1].days);
+    document.getElementById('inst-term-body').innerHTML = `
+      <div class="form-grid" style="grid-template-columns:2fr 1fr;gap:14px">
+        <div class="form-group"><label class="form-label">Term Name</label>
+          <input class="form-control" id="term-name" value="${t.name}" oninput="INST.termField('name',this.value)"></div>
+        <div class="form-group"><label class="form-label">Late Charge % <span style="color:var(--mute);font-weight:400">(one-time)</span></label>
+          <input class="form-control" type="number" step="0.1" min="0" max="100" id="term-late" value="${t.lateChargePct ?? ''}" placeholder="none" oninput="INST.termField('lateChargePct',this.value)"></div>
+      </div>
+      <div class="form-divider"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:12px;font-weight:700;color:var(--ink2)">Schedule rows</div>
+        <button class="btn btn-outline btn-sm" onclick="INST.termRow('add')">+ Add Installment</button>
+      </div>
+      <div class="table-wrapper"><table>
+        <thead><tr><th>#</th><th>Percentage</th><th>Days after issue</th><th></th></tr></thead>
+        <tbody>${t.rows.map((r, i) => `<tr>
+          <td><span class="inst-seq">${i + 1}</span></td>
+          <td><input class="form-control" style="width:110px" type="number" step="0.01" value="${r.pct}" oninput="INST.termRow('pct',${i},this.value)"></td>
+          <td><input class="form-control" style="width:110px" type="number" step="1" min="0" value="${r.days}" oninput="INST.termRow('days',${i},this.value)"></td>
+          <td>${t.rows.length > 1 ? `<button class="action-btn" title="Remove" onclick="INST.termRow('del',${i})">🗑</button>` : ''}</td>
+        </tr>`).join('')}</tbody>
+      </table></div>
+      <div class="inst-validate ${sum === 100 && ordered ? 'ok' : 'bad'}">
+        ${sum === 100 ? '✓' : '✕'} Percentages total <b>${sum}%</b>${sum === 100 ? '' : ' — must be exactly 100%'}
+        ${ordered ? '' : '<br>✕ Days after issue must not decrease across the sequence'}
+      </div>
+      <div class="inst-note">Worked example on a 10,000.00 SAR invoice issued today:
+        ${(() => { const s = buildSchedule(10000, { rows: t.rows.map(r => ({ pct: +r.pct || 0, days: +r.days || 0 })), lateChargePct: null }, todayISO());
+          return s.map(i => `<span class="inst-chip">#${i.seq} ${money(i.amount)} on ${fmtDate(i.due)}</span>`).join(' '); })()}
+      </div>`;
+    const btn = document.getElementById('inst-term-save');
+    if (btn) { btn.disabled = !(sum === 100 && ordered); btn.style.opacity = (sum === 100 && ordered) ? '1' : '.45'; }
+  }
+  function termField(k, v) { termCtx[k] = k === 'lateChargePct' ? (v === '' ? null : parseFloat(v)) : v; drawTermEditor(); }
+  function termRow(op, i, v) {
+    if (op === 'add') termCtx.rows.push({ pct: 0, days: (termCtx.rows.at(-1)?.days || 0) + 30 });
+    else if (op === 'del') termCtx.rows.splice(i, 1);
+    else termCtx.rows[i][op] = parseFloat(v) || 0;
+    drawTermEditor();
+  }
+  function saveTerm() {
+    const sum = r2(termCtx.rows.reduce((s, r) => s + (+r.pct || 0), 0));
+    if (sum !== 100) { showToast(`Percentages total ${sum}% — must be exactly 100%`, 'error'); return; }
+    const existing = terms.findIndex(t => t.id === termCtx.id);
+    if (existing >= 0) terms[existing] = termCtx; else terms.push(termCtx);
+    closeModal('modal-inst-term');
+    renderAll(); fillTermSelect();
+    showToast(`Payment term "${termCtx.name}" saved · issued invoices are unaffected`, 'success');
+  }
+
+  /* ── misc actions ────────────────────────────────────────────────── */
+  function issueDN(id) {
+    const d = salesDebitNotes.find(x => x.id === id);
+    if (!d) return;
+    d.status = 'Issued';
+    renderAll();
+    showToast(`${id} issued to ${d.customer} — SAR ${money(d.amount)}, VAT out of scope`, 'success');
+  }
+  function discardDN(id) {
+    const i = salesDebitNotes.findIndex(x => x.id === id);
+    if (i < 0) return;
+    const d = salesDebitNotes[i];
+    const p = planFor(d.invoice);
+    const it = p && p.items.find(x => x.seq === d.seq);
+    if (it) { it.lateChargeAt = null; it.dnId = null; }   // discarding re-arms the sweep
+    salesDebitNotes.splice(i, 1);
+    renderAll();
+    showToast(`${id} discarded`, 'warn');
+  }
+  function setGrace(v) {
+    graceDays = Math.max(0, parseInt(v) || 0);
+    renderAll();
+    showToast(`Grace period set to ${graceDays} day${graceDays === 1 ? '' : 's'}`, 'info');
+  }
+  function tab(name, el) {
+    el.closest('.tab-bar').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    ['schedules', 'terms', 'charges'].forEach(n => {
+      const d = document.getElementById('inst-tab-' + n);
+      if (d) d.style.display = n === name ? '' : 'none';
+    });
+  }
+
+  function renderAll() { renderStats(); renderSchedules(); renderTerms(); renderCharges(); renderInvoiceList(); }
+
+  /* ── invoice detail modal gets a schedule section ─────────────────── */
+  function detailHTML(invNo) {
+    const p = planFor(invNo);
+    if (!p) return '';
+    return `<div class="form-divider"></div>
+      <div style="font-size:12px;font-weight:800;color:var(--ink2);margin-bottom:8px">📆 PAYMENT SCHEDULE — ${p.termName}</div>
+      <table style="width:100%;font-size:12.5px;border-collapse:collapse">
+        <thead><tr style="border-bottom:2px solid var(--border)">
+          <th style="text-align:left;padding:6px 0;font-size:11px;color:var(--text-muted)">#</th>
+          <th style="text-align:left;font-size:11px;color:var(--text-muted)">DUE</th>
+          <th style="text-align:right;font-size:11px;color:var(--text-muted)">AMOUNT</th>
+          <th style="text-align:right;font-size:11px;color:var(--text-muted)">BALANCE</th>
+          <th style="text-align:right;font-size:11px;color:var(--text-muted)">STATUS</th></tr></thead>
+        <tbody>${p.items.map(i => { const st = statusOf(i); return `<tr>
+          <td style="padding:8px 0;border-bottom:1px solid var(--border)">${i.seq}</td>
+          <td style="border-bottom:1px solid var(--border);${st === 'overdue' ? 'color:var(--danger);font-weight:600' : ''}">${fmtDate(i.due)}</td>
+          <td style="border-bottom:1px solid var(--border);text-align:right">${money(i.amount)}</td>
+          <td style="border-bottom:1px solid var(--border);text-align:right;font-weight:700">${balanceOf(i) ? money(balanceOf(i)) : '—'}</td>
+          <td style="border-bottom:1px solid var(--border);text-align:right">${badge(st)}</td></tr>`; }).join('')}
+        </tbody></table>`;
+  }
+
+  /* ── boot ────────────────────────────────────────────────────────── */
+  function init() {
+    seed();
+    fillTermSelect();
+    const g = document.getElementById('inst-grace');
+    if (g) g.value = graceDays;
+    renderAll();
+  }
+
+  return {
+    init, renderAll, renderPreview, renderInvoiceList, detailHTML,
+    sweep, openPay, applyPayment, openAging, tab, setGrace,
+    editTerm: id => termEditor(termById(id)),
+    newTerm: () => termEditor({ id: 't-' + Date.now(), name: 'New Term', rows: [{ pct: 50, days: 0 }, { pct: 50, days: 30 }], lateChargePct: 2 }),
+    termField, termRow, saveTerm, issueDN, discardDN
+  };
+})();
+
+/* Wire into the app once every later script block has finished redefining
+   navigate(), openNewInvoice() and viewInvoice(). */
+document.addEventListener('DOMContentLoaded', function () {
+  const _nav = window.navigate;
+  window.navigate = function (s) {
+    _nav(s);
+    if (s === 'installments') INST.renderAll();
+    if (s === 'invoices') INST.renderInvoiceList();
+  };
+  const _new = window.openNewInvoice;
+  window.openNewInvoice = function () { _new(); INST.renderPreview(); };
+  const _view = window.viewInvoice;
+  window.viewInvoice = function (id) {
+    _view(id);
+    const extra = INST.detailHTML(id);
+    if (extra) document.getElementById('modal-inv-body').insertAdjacentHTML('beforeend', extra);
+  };
+  const _recalc = window.recalcInvoice;
+  window.recalcInvoice = function () { _recalc(); INST.renderPreview(); };
+  INST.init();
+});
 
 /* ─── NAVIGATION ────────────────────────────────────────────────────── */
 function navigate(screen) {
