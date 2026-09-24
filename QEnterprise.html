@@ -1255,6 +1255,93 @@ body.on-landing #tb-sub   { display: none; }
 #panel-installments .stats-grid{margin-bottom:16px}
 #inst-tbody td{vertical-align:top}
 </style>
+<style id="ql-launcher-css">
+/* ══════════ APP LAUNCHER (entry page) ══════════ */
+body.ql-launcher-on #sidebar,
+body.ql-launcher-on #main-content { display: none !important; }
+#ql-launcher {
+  display: none; position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0;
+  z-index: 950; overflow-y: auto; color: #fff;
+  background:
+    radial-gradient(900px 420px at 50% -120px, rgba(37,99,235,.38), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.03' stroke-width='1'%3E%3Crect x='22' y='22' width='28' height='28'/%3E%3Crect x='22' y='22' width='28' height='28' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='6'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(180deg, #1B2B45 0%, #152236 100%);
+}
+body.ql-launcher-on #ql-launcher { display: block; }
+.ql-wrap { max-width: 920px; margin: 0 auto; padding: 48px 24px 64px; }
+.ql-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+.ql-greet { font-size: 26px; font-weight: 700; letter-spacing: -.4px; line-height: 1.2; }
+.ql-company { font-size: 13px; color: rgba(255,255,255,.6); margin-top: 4px; }
+.ql-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ql-search { position: relative; }
+.ql-search input {
+  width: 260px; max-width: 70vw; padding: 10px 14px 10px 36px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.07); color: #fff;
+  font: inherit; font-size: 13.5px; outline: none;
+}
+.ql-search input::placeholder { color: rgba(255,255,255,.5); }
+.ql-search input:focus { border-color: #60A5FA; background: rgba(255,255,255,.11); }
+.ql-search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: .6; }
+.ql-all-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.22); background: #fff; color: var(--navy);
+  font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer;
+}
+.ql-all-btn:hover { background: #EFF6FF; }
+.ql-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 30px 12px; }
+.ql-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 4px;
+  background: none; border: 0; border-radius: 14px; color: #fff; cursor: pointer; font: inherit;
+  position: relative;
+}
+.ql-tile[hidden], .ql-badge[hidden], .ql-hit[hidden] { display: none !important; }
+.ql-tile:focus-visible { outline: 2px solid #93C5FD; outline-offset: 2px; }
+.ql-ic {
+  width: 72px; height: 72px; border-radius: 18px; display: flex; align-items: center; justify-content: center;
+  background: var(--c); position: relative;
+  box-shadow: inset 0 -6px 0 rgba(0,0,0,.14), 0 8px 18px rgba(0,0,0,.28);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.ql-ic svg { width: 34px; height: 34px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ql-tile:hover .ql-ic { transform: translateY(-3px); box-shadow: inset 0 -6px 0 rgba(0,0,0,.14), 0 12px 24px rgba(0,0,0,.34); }
+.ql-tile:active .ql-ic { transform: translateY(0) scale(.96); }
+.ql-tile.ql-all .ql-ic { background: rgba(255,255,255,.1); border: 1.5px dashed rgba(255,255,255,.45); box-shadow: none; }
+.ql-lbl { font-size: 13px; font-weight: 600; text-align: center; line-height: 1.25; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
+.ql-hit { font-size: 11px; color: #93C5FD; margin-top: -6px; text-align: center; }
+.ql-badge {
+  position: absolute; top: -6px; right: -8px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px;
+  background: #DC2626; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  border: 2px solid #1B2B45;
+}
+.ql-tile.ql-last .ql-lbl::after { content: ''; display: block; width: 5px; height: 5px; border-radius: 50%; background: #60A5FA; margin: 5px auto 0; }
+.ql-empty { display: none; text-align: center; padding: 40px 0; color: rgba(255,255,255,.7); }
+.ql-empty button { margin-top: 14px; }
+.ql-foot { margin-top: 56px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 12px; color: rgba(255,255,255,.45); }
+.ql-foot a { color: rgba(255,255,255,.7); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 900px) { .ql-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 600px) { .ql-grid { grid-template-columns: repeat(3, 1fr); gap: 24px 6px; } .ql-ic { width: 60px; height: 60px; border-radius: 15px; } .ql-ic svg { width: 28px; height: 28px; } .ql-wrap { padding-top: 28px; } }
+@media (max-width: 380px) { .ql-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .ql-ic { transition: none; } .ql-tile:hover .ql-ic { transform: none; } }
+
+/* Header apps button */
+#ql-apps-btn { background: none; border: 0; padding: 6px; border-radius: 6px; cursor: pointer; color: var(--mute); display: flex; flex-shrink: 0; }
+#ql-apps-btn:hover { background: var(--surface2); color: var(--navy); }
+body.ql-launcher-on #ql-apps-btn { color: var(--blue); background: var(--blue-bg); }
+body.ql-launcher-on #sidebarToggle { visibility: hidden; }
+
+/* Scoped sidebar header */
+#ql-sb-head { display: none; padding: 12px 10px 12px; border-bottom: 1px solid rgba(255,255,255,.08); }
+#sidebar.ql-scoped #ql-sb-head { display: block; }
+.ql-sb-apps { display: flex; align-items: center; gap: 8px; width: 100%; padding: 7px 8px; border: 0; border-radius: 6px; background: none; color: rgba(255,255,255,.62); font: inherit; font-size: 12.5px; cursor: pointer; white-space: nowrap; }
+.ql-sb-apps:hover { background: var(--navy-h); color: #fff; }
+.ql-sb-mod { display: flex; align-items: center; gap: 10px; padding: 12px 8px 6px; white-space: nowrap; overflow: hidden; }
+.ql-sb-chip { width: 32px; height: 32px; border-radius: 9px; background: var(--c); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.ql-sb-chip svg { width: 17px; height: 17px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ql-sb-name { font-size: 15px; font-weight: 700; color: #fff; }
+.ql-sb-all { margin: 4px 8px 0; padding: 0; border: 0; background: none; color: #93C5FD; font: inherit; font-size: 12px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.ql-sb-all:hover { color: #fff; }
+#sidebar.ql-scoped .nav-children.open { max-height: 900px; }
+</style>
 </head>
 <body>
 
@@ -1264,8 +1351,13 @@ body.on-landing #tb-sub   { display: none; }
   <!-- Sidebar toggle -->
   <button class="header-toggle" id="sidebarToggle" onclick="toggleSidebar()" style="flex-shrink:0">☰</button>
 
+  <!-- Apps launcher -->
+  <button id="ql-apps-btn" onclick="QL.open()" title="Apps" aria-label="Open apps">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg>
+  </button>
+
   <!-- Logo -->
-  <div style="cursor:pointer;font-size:16px;font-weight:800;color:var(--navy);letter-spacing:-.5px;display:flex;align-items:center;gap:7px;flex-shrink:0" onclick="navigate('dashboard')">
+  <div style="cursor:pointer;font-size:16px;font-weight:800;color:var(--navy);letter-spacing:-.5px;display:flex;align-items:center;gap:7px;flex-shrink:0" onclick="QL.open()" title="Apps">
     <div style="width:28px;height:28px;background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:900">Q</div>
     QERP<span style="color:var(--blue)">lite</span>
   </div>
@@ -1517,6 +1609,37 @@ body.on-landing #tb-sub   { display: none; }
 
 <!-- notifications panel now in header block above -->
 
+<!-- ══════════ APP LAUNCHER (entry page) ══════════ -->
+<div id="ql-launcher" role="region" aria-label="Apps">
+  <div class="ql-wrap">
+    <div class="ql-top">
+      <div>
+        <div class="ql-greet" id="ql-greet">Welcome back, Ehab</div>
+        <div class="ql-company">Ibda Fashion Co. · QEnterprise Scale plan</div>
+      </div>
+      <div class="ql-actions">
+        <label class="ql-search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <input id="ql-search" type="search" placeholder="Search modules or menus" autocomplete="off" aria-label="Search modules or menus"/>
+        </label>
+        <button class="ql-all-btn" type="button" onclick="QL.openAll()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          All modules
+        </button>
+      </div>
+    </div>
+    <div class="ql-grid" id="ql-grid"></div>
+    <div class="ql-empty" id="ql-empty">
+      <div id="ql-empty-msg">No module matches your search.</div>
+      <button class="ql-all-btn" type="button" onclick="QL.openAll()">Open all modules</button>
+    </div>
+    <div class="ql-foot">
+      <span>Select a module to work in it, or open all modules to see the full menu.</span>
+      <a onclick="QL.openOverview()">Product overview</a>
+    </div>
+  </div>
+</div>
+
 <!-- ===== SIDEBAR ===== -->
 <aside id="sidebar" style="width:var(--sidebar-w);background:var(--navy);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;overflow-x:hidden;position:fixed;top:var(--header-h);left:0;bottom:0;z-index:900;transition:width .2s ease">
   <!-- BRAND -->
@@ -1525,10 +1648,20 @@ body.on-landing #tb-sub   { display: none; }
     <div class="sb-brand-sub">QEnterprise · Internal</div>
   </div>
 
+  <!-- Scoped-module header (shown only when a single module is open) -->
+  <div id="ql-sb-head">
+    <button class="ql-sb-apps" type="button" onclick="QL.open()" title="Back to apps">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      Apps
+    </button>
+    <div class="ql-sb-mod"><div class="ql-sb-chip" id="ql-sb-chip"></div><div class="ql-sb-name" id="ql-sb-name"></div></div>
+    <button class="ql-sb-all" type="button" onclick="QL.showAllInSidebar()">Show all modules</button>
+  </div>
+
   <!-- DASHBOARD -->
   <div class="sb-section">
     <div class="sb-item" id="nav-landing" onclick="navigate('landing')" style="border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:10px;margin-bottom:2px">
-      <span class="si">🏠</span><span class="sl">Home</span>
+      <span class="si">⊞</span><span class="sl">Apps</span>
     </div>
     <div class="sb-item" id="nav-dashboard" onclick="navigate('dashboard')">
       <span class="si">📊</span><span class="sl">Dashboard</span>
@@ -6890,5 +7023,236 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('[onclick="toggleGroup(\'sales-group\')"]')?.classList.add('open');
 });
 </script>
+<script id="ql-launcher-js">
+/* ══════════════════════════════════════════════════════════════
+   APP LAUNCHER + MODULE-SCOPED SIDEBAR
+   States: 'launcher' | 'module' (one module in sidebar) | 'all'
+══════════════════════════════════════════════════════════════ */
+window.QL = (function () {
+  const I = {
+    sales:'<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>',
+    delivery:'<path d="M1.5 6.5h12v10h-12z"/><path d="M13.5 10h4l3.5 3.5v3h-7.5"/><circle cx="5.5" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/>',
+    purchasing:'<circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 7H6"/>',
+    requisitions:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2.8h6V4"/><path d="M9 13l2 2 4-4"/>',
+    expense:'<path d="M5 3h14v18l-2.5-1.6L14 21l-2-1.6L10 21l-2.5-1.6L5 21z"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+    inventory:'<path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>',
+    assets:'<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8.5 7h2M13.5 7h2M8.5 11h2M13.5 11h2M8.5 15h2M13.5 15h2"/><path d="M10 21v-3h4v3"/>',
+    accounting:'<path d="M5 4h10.5A2.5 2.5 0 0 1 18 6.5V20H7.5A2.5 2.5 0 0 1 5 17.5z"/><path d="M5 17.5A2.5 2.5 0 0 1 7.5 15H18"/><path d="M9 8.5h5"/>',
+    workflow:'<rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/><path d="M6.5 10v3.5a3 3 0 0 0 3 3H14"/><path d="M15.5 6.5l1.5 1.5 3-3"/>',
+    settings:'<path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/>',
+    all:'<rect x="3.5" y="3.5" width="6" height="6" rx="1.4"/><rect x="14.5" y="3.5" width="6" height="6" rx="1.4"/><rect x="3.5" y="14.5" width="6" height="6" rx="1.4"/><rect x="14.5" y="14.5" width="6" height="6" rx="1.4"/>'
+  };
+  const MODULES = [
+    { key:'sales',        name:'Sales',           group:'sales-group',       color:'#2563EB', badge:'bdg-inst-overdue' },
+    { key:'delivery',     name:'Delivery',        group:'delivery-group',    color:'#0F766E', badge:'bdg-orders' },
+    { key:'purchasing',   name:'Purchasing',      group:'purchases-group',   color:'#B45309' },
+    { key:'requisitions', name:'Requisitions',    group:'requisition-group', color:'#6D28D9', badge:'bdg-pr-ap' },
+    { key:'expense',      name:'Expense Claims',  group:'expense-group',     color:'#BE185D', badge:'bdg-exp-ap' },
+    { key:'inventory',    name:'Inventory',       group:'inventory-group',   color:'#0E7490' },
+    { key:'assets',       name:'Fixed Assets',    group:'assets-group',      color:'#475569' },
+    { key:'accounting',   name:'Accounting',      group:'accounting-group',  color:'#15803D' },
+    { key:'workflow',     name:'Workflow Engine', group:'settings-group',    color:'#C2410C', badge:'bdg-notif',
+      screens:['wf-board','wf-notif','wf-templates','wf-users'] },
+    { key:'settings',     name:'Settings',        group:'settings-group',    color:'#334155',
+      screens:['settings-general','settings-integration','settings-attachments','settings-profile','settings-users'] }
+  ];
+  const byKey = {}; MODULES.forEach(m => byKey[m.key] = m);
+  const SCREEN_MOD = {};          // screen id -> module key
+  let mode = 'launcher', current = null, lastKey = null, baseNav = null;
+  let hidden = [];                // elements hidden by scoping (restored on clear)
+
+  const svg = (k) => '<svg viewBox="0 0 24 24" aria-hidden="true">' + I[k] + '</svg>';
+  const screenOf = (el) => { const m = (el.getAttribute('onclick') || '').match(/navigate\('([^']+)'\)/); return m ? m[1] : null; };
+
+  /* Read each module's menus from the live sidebar so tiles never drift from the nav */
+  function indexModules() {
+    MODULES.forEach(m => {
+      const g = document.getElementById(m.group);
+      m.menus = [];
+      if (!g) return;
+      g.querySelectorAll('.nav-child').forEach(ch => {
+        const s = screenOf(ch); if (!s) return;
+        if (m.screens && !m.screens.includes(s)) return;
+        const label = ch.cloneNode(true); label.querySelectorAll('.child-icon,.nav-badge').forEach(x => x.remove());
+        m.menus.push({ screen: s, label: label.textContent.trim() });
+        SCREEN_MOD[s] = m.key;
+      });
+      m.def = m.menus[0] && m.menus[0].screen;
+    });
+  }
+
+  function renderGrid() {
+    const grid = document.getElementById('ql-grid');
+    grid.innerHTML = MODULES.filter(m => m.def).map(m =>
+      `<button class="ql-tile${m.key === lastKey ? ' ql-last' : ''}" type="button" data-key="${m.key}" aria-label="Open ${m.name} module">
+         <span class="ql-ic" style="--c:${m.color}">${svg(m.key)}<span class="ql-badge" data-badge="${m.badge || ''}" hidden></span></span>
+         <span class="ql-lbl">${m.name}</span><span class="ql-hit" hidden></span>
+       </button>`).join('') +
+      `<button class="ql-tile ql-all" type="button" data-key="__all" aria-label="Open all modules">
+         <span class="ql-ic">${svg('all')}</span><span class="ql-lbl">All modules</span><span class="ql-hit" hidden></span>
+       </button>`;
+    grid.querySelectorAll('.ql-tile').forEach(t => t.addEventListener('click', () => {
+      const k = t.dataset.key, hit = t.dataset.hitScreen;
+      if (k === '__all') openAll(); else openModule(k, hit);
+    }));
+    refreshBadges();
+  }
+
+  function refreshBadges() {
+    document.querySelectorAll('#ql-grid .ql-badge').forEach(b => {
+      const src = b.dataset.badge && document.getElementById(b.dataset.badge);
+      const n = src ? parseInt(src.textContent, 10) : 0;
+      if (n > 0) { b.textContent = n > 99 ? '99+' : n; b.hidden = false; } else b.hidden = true;
+    });
+  }
+
+  function greet() {
+    const h = new Date().getHours();
+    document.getElementById('ql-greet').textContent =
+      (h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening') + ', Ehab';
+  }
+
+  /* ── Sidebar scoping ── */
+  function hide(el) { if (el && el.style.display !== 'none') { hidden.push([el, el.style.display]); el.style.display = 'none'; } }
+  function clearScope() {
+    hidden.forEach(([el, d]) => el.style.display = d); hidden = [];
+    const sb = document.getElementById('sidebar');
+    sb.classList.remove('ql-scoped');
+    sb.querySelectorAll('[data-ql-mt]').forEach(s => { s.style.marginTop = s.dataset.qlMt; delete s.dataset.qlMt; });
+  }
+  function applyScope(key) {
+    const m = byKey[key]; if (!m) return;
+    clearScope();
+    const sb = document.getElementById('sidebar');
+    const group = document.getElementById(m.group);
+    const groupWrap = group && group.closest('.nav-group');
+    sb.querySelectorAll(':scope > .sb-section, :scope > .nav-section').forEach(sec => {
+      if (!groupWrap || !sec.contains(groupWrap)) { hide(sec); return; }
+      sec.querySelectorAll('.sb-section-lbl, .nav-section-label').forEach(hide);
+      sec.querySelectorAll('.nav-group').forEach(g => { if (g !== groupWrap) hide(g); });
+      if (sec.style.marginTop) { sec.dataset.qlMt = sec.style.marginTop; sec.style.marginTop = '0'; }
+    });
+    hide(groupWrap.querySelector('.nav-parent'));
+    group.querySelectorAll('.nav-child').forEach(ch => { const s = screenOf(ch); if (m.screens && !m.screens.includes(s)) hide(ch); });
+    // First visible child in a filtered group should not carry the inline divider
+    const firstVis = [...group.querySelectorAll('.nav-child')].find(ch => ch.style.display !== 'none');
+    if (firstVis && firstVis.style.borderTop) { firstVis.dataset.qlBt = firstVis.getAttribute('style'); firstVis.style.borderTop = '0'; firstVis.style.marginTop = '0'; firstVis.style.paddingTop = ''; }
+    group.classList.add('open');
+    sb.classList.add('ql-scoped');
+    const chip = document.getElementById('ql-sb-chip');
+    chip.style.setProperty('--c', m.color); chip.innerHTML = svg(m.key);
+    document.getElementById('ql-sb-name').textContent = m.name;
+    current = key; lastKey = key; mode = 'module';
+    sb.scrollTop = 0;
+  }
+  function restoreDividers() {
+    document.querySelectorAll('[data-ql-bt]').forEach(el => { el.setAttribute('style', el.dataset.qlBt); delete el.dataset.qlBt; });
+  }
+
+  /* Default top-bar title; screens that set their own title overwrite it */
+  function setTitle(screen, key) {
+    const tt = document.getElementById('tb-title'), ts = document.getElementById('tb-sub');
+    const m = key && byKey[key], menu = m && m.menus.find(x => x.screen === screen);
+    if (tt) tt.textContent = menu ? menu.label : (screen === 'dashboard' ? 'Dashboard' : tt.textContent);
+    if (ts) ts.textContent = m ? m.name : (screen === 'dashboard' ? 'Welcome back, Ehab' : ts.textContent);
+  }
+
+  /* ── Launcher visibility ── */
+  function showLauncher() {
+    closeAllCmdPanels && closeAllCmdPanels();
+    document.body.classList.add('ql-launcher-on');
+    mode = 'launcher';
+    renderGrid(); greet();
+    const tt = document.getElementById('tb-title'), ts = document.getElementById('tb-sub');
+    if (tt) tt.textContent = 'Apps'; if (ts) ts.textContent = 'Choose where to work';
+    const q = document.getElementById('ql-search'); q.value = ''; filter('');
+    document.getElementById('ql-launcher').scrollTop = 0;
+  }
+  function hideLauncher() { document.body.classList.remove('ql-launcher-on'); }
+
+  function openModule(key, screen) {
+    const m = byKey[key]; if (!m) return;
+    hideLauncher(); restoreDividers(); applyScope(key);
+    setTitle(screen || m.def, key); baseNav(screen || m.def);
+  }
+  function openAll(screen) {
+    hideLauncher(); restoreDividers(); clearScope(); mode = 'all'; current = null;
+    setTitle(screen || 'dashboard', SCREEN_MOD[screen]); baseNav(screen || 'dashboard');
+  }
+  function showAllInSidebar() { restoreDividers(); clearScope(); mode = 'all'; current = null; }
+  function openOverview() { hideLauncher(); restoreDividers(); clearScope(); mode = 'all'; baseNav('landing'); }
+
+  /* ── Launcher search: module names and menu names ── */
+  function filter(term) {
+    const t = term.trim().toLowerCase(); let shown = 0;
+    document.querySelectorAll('#ql-grid .ql-tile').forEach(tile => {
+      const k = tile.dataset.key, hitEl = tile.querySelector('.ql-hit');
+      delete tile.dataset.hitScreen; hitEl.hidden = true;
+      if (!t) { tile.hidden = false; shown++; return; }
+      if (k === '__all') { tile.hidden = !'all modules'.includes(t); if (!tile.hidden) shown++; return; }
+      const m = byKey[k];
+      let ok = m.name.toLowerCase().includes(t);
+      if (!ok) {
+        const menu = m.menus.find(x => x.label.toLowerCase().includes(t));
+        if (menu) { ok = true; hitEl.textContent = menu.label; hitEl.hidden = false; tile.dataset.hitScreen = menu.screen; }
+      }
+      tile.hidden = !ok; if (ok) shown++;
+    });
+    const empty = document.getElementById('ql-empty');
+    empty.style.display = shown ? 'none' : 'block';
+    document.getElementById('ql-empty-msg').textContent = shown ? '' : `No module or menu matches "${term.trim()}".`;
+  }
+
+  function onKey(e) {
+    if (!document.body.classList.contains('ql-launcher-on')) {
+      // Esc from inside a scoped sidebar returns to the launcher
+      if (e.key === 'Escape' && mode === 'module' && document.activeElement && document.activeElement.closest('#sidebar')) showLauncher();
+      return;
+    }
+    const q = document.getElementById('ql-search');
+    const tiles = [...document.querySelectorAll('#ql-grid .ql-tile:not([hidden])')];
+    const i = tiles.indexOf(document.activeElement);
+    if (e.target === q) {
+      if (e.key === 'Enter' && tiles[0]) { e.preventDefault(); tiles[0].click(); }
+      if (e.key === 'ArrowDown' && tiles[0]) { e.preventDefault(); tiles[0].focus(); }
+      return;
+    }
+    if (i >= 0 && ['ArrowRight','ArrowLeft','ArrowUp','ArrowDown'].includes(e.key)) {
+      e.preventDefault();
+      const cols = tiles.filter(t => t.offsetTop === tiles[0].offsetTop).length || 1;
+      const d = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: cols, ArrowUp: -cols }[e.key];
+      const n = tiles[Math.max(0, Math.min(tiles.length - 1, i + d))]; n && n.focus();
+      return;
+    }
+    // Type-to-search
+    if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey && !/input|textarea|select/i.test(e.target.tagName)) q.focus();
+  }
+
+  function init() {
+    indexModules();
+    baseNav = window.navigate;
+    // Every navigation goes through here so the sidebar always matches the screen
+    window.navigate = function (s) {
+      if (s === 'landing') { showLauncher(); return; }           // Home = launcher
+      const mk = SCREEN_MOD[s];
+      if (mode === 'launcher') { hideLauncher(); restoreDividers(); if (mk) applyScope(mk); else { clearScope(); mode = 'all'; } }
+      else if (mode === 'module') {
+        if (mk && mk !== current) { restoreDividers(); applyScope(mk); }   // auto-follow
+        else if (s === 'dashboard') { restoreDividers(); clearScope(); mode = 'all'; current = null; }
+      }
+      setTitle(s, SCREEN_MOD[s]);
+      baseNav(s);
+    };
+    document.getElementById('ql-search').addEventListener('input', e => filter(e.target.value));
+    document.addEventListener('keydown', onKey);
+    showLauncher();
+  }
+
+  return { init, open: showLauncher, openModule, openAll, showAllInSidebar, openOverview, refreshBadges };
+})();
+// Registered last, so it wraps every earlier navigate() override
+window.addEventListener('DOMContentLoaded', () => QL.init());
+</script>
+
 </body>
 </html>
