@@ -1342,6 +1342,69 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
 .ql-sb-all:hover { color: #fff; }
 #sidebar.ql-scoped .nav-children.open { max-height: 900px; }
 </style>
+<style id="wa-integration-css">
+/* ══════ WHATSAPP APPROVAL INTEGRATION (PRD 2026-09-29 · module 7.10) ══════ */
+.wa-banner{display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:var(--r8);font-size:12.5px;margin-bottom:14px;background:#ECFDF5;border:1px solid #A7F3D0;color:#065F46}
+.wa-banner.live{background:#EFF6FF;border-color:#BFDBFE;color:#1E40AF}
+.wa-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.wa-kpi{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.wa-kpi .v{font-size:22px;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums}
+.wa-kpi .l{font-size:11.5px;color:var(--mute);margin-top:2px}
+.wa-tabpane{display:none}.wa-tabpane.active{display:block}
+.wa-sim{display:grid;grid-template-columns:384px minmax(0,1fr);gap:18px;align-items:start}
+.wa-phone{width:360px;height:680px;border-radius:40px;background:#16181B;padding:11px;box-shadow:0 14px 40px rgba(0,0,0,.22);margin:0 auto}
+.wa-screen{height:100%;border-radius:30px;overflow:hidden;display:flex;flex-direction:column;background:#EFE7DE}
+.wa-head{background:#075E54;color:#fff;padding:26px 14px 10px;display:flex;gap:10px;align-items:center}
+.wa-av{width:34px;height:34px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12.5px;flex-shrink:0}
+.wa-hname{font-weight:700;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wa-hsub{font-size:11px;opacity:.82;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wa-chat{flex:1;overflow-y:auto;padding:10px 10px 6px;background-color:#EFE7DE;background-image:radial-gradient(rgba(0,0,0,.04) 1px,transparent 1px);background-size:14px 14px}
+.wa-day{width:max-content;margin:2px auto 10px;background:#fff;color:#54656F;font-size:11px;padding:4px 10px;border-radius:8px;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.wa-row{display:flex;flex-direction:column;margin-bottom:8px;max-width:86%}
+.wa-row.biz{margin-right:auto}
+.wa-row.me{margin-left:auto;align-items:flex-end}
+.wa-bub{background:#fff;border-radius:0 10px 10px 10px;padding:7px 9px 5px;font-size:12.8px;line-height:1.45;color:#111B21;box-shadow:0 1px 1px rgba(0,0,0,.12);overflow-wrap:anywhere}
+.wa-row.me .wa-bub{background:#D9FDD3;border-radius:10px 0 10px 10px}
+.wa-meta{font-size:10px;color:#667781;text-align:end;margin-top:2px}
+.wa-meta .tick{color:#53BDEB;margin-inline-start:3px}
+.wa-btns{display:flex;flex-direction:column;gap:2px;margin-top:2px}
+.wa-btn{background:#fff;border:none;border-radius:8px;padding:8px;font-size:12.8px;font-weight:600;color:#027EB5;cursor:pointer;box-shadow:0 1px 1px rgba(0,0,0,.1);font-family:inherit}
+.wa-btn:hover{background:#F5F6F6}
+.wa-inputbar{display:flex;gap:6px;padding:8px 8px 14px;background:#F0F2F5}
+.wa-inputbar input{flex:1;min-width:0;border:none;border-radius:20px;padding:9px 14px;font-size:13px;outline:none;font-family:inherit}
+.wa-inputbar button{width:38px;height:38px;border-radius:50%;border:none;background:#00A884;color:#fff;cursor:pointer;font-size:15px;flex-shrink:0}
+.wa-empty{text-align:center;color:#54656F;font-size:12px;margin-top:40px;padding:0 24px;line-height:1.6}
+.wa-ctrl .card{margin-bottom:14px}
+.wa-ctrl-body{padding:0 20px 16px}
+.wa-btnrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.wa-session{background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;border-radius:8px;padding:8px 12px;font-size:12px;margin-top:10px}
+.wa-steps{margin:0;padding-left:18px;font-size:12.5px;color:var(--text);line-height:1.75}
+.wa-ch{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap}
+.wa-ch-wa{background:#DCFCE7;color:#166534}.wa-ch-web{background:var(--blue-bg);color:var(--blue)}.wa-ch-sys{background:var(--surface3);color:var(--mute)}
+.wa-kchips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.wa-docpanel{border-top:1px solid var(--border);margin-top:14px;padding-top:12px}
+.wa-dp-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:8px}
+.wa-cm{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 11px;font-size:12.5px;margin-bottom:6px}
+.wa-cm.question{border-left:3px solid #25D366}.wa-cm.answer{border-left:3px solid var(--blue)}
+.wa-cm-hd{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:3px;font-size:12px}
+.wa-cm-hd .t{color:var(--mute);font-size:11px}
+.wa-reply{display:flex;gap:8px;align-items:flex-end;margin-top:6px}.wa-reply textarea{flex:1}
+.wa-act{display:flex;flex-direction:column;gap:6px}
+.wa-act-row{display:flex;gap:8px;align-items:center;font-size:12px}
+.wa-act-t{color:var(--mute);font-variant-numeric:tabular-nums;min-width:40px}
+.wa-empty-sm{font-size:12px;color:var(--mute);padding:2px 0 8px}
+.wa-sw{position:relative;display:inline-block;width:36px;height:20px;vertical-align:middle}
+.wa-sw input{opacity:0;width:0;height:0}
+.wa-sw span{position:absolute;inset:0;background:#D1D5DB;border-radius:20px;cursor:pointer;transition:.2s}
+.wa-sw span::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.wa-sw input:checked+span{background:#25D366}.wa-sw input:checked+span::after{transform:translateX(16px)}
+.wa-note{font-size:12px;color:var(--mute);padding:10px 20px 16px}
+.wa-st{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.wa-st.verified{background:#DCFCE7;color:#166534}.wa-st.pending{background:#FEF3C7;color:#92400E}.wa-st.none{background:var(--surface3);color:var(--mute)}
+.wa-pf-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.wa-pf-note{font-size:12px;color:var(--text-muted,var(--mute));margin-top:10px;line-height:1.55}
+@media (max-width:1180px){.wa-sim{grid-template-columns:minmax(0,1fr)}.wa-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
 </head>
 <body>
 
@@ -1825,6 +1888,7 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
         <div class="nav-child" onclick="navigate('wf-notif')"><span class="child-icon">🔔</span> Notifications</div>
         <div class="nav-child" onclick="navigate('wf-templates')"><span class="child-icon">⚙</span> WF Templates</div>
         <div class="nav-child" onclick="navigate('wf-users')"><span class="child-icon">👥</span> User Setup</div>
+        <div class="nav-child" onclick="navigate('wa-center')"><span class="child-icon">📱</span> WhatsApp Approvals</div>
       </div>
     </div>
   </div>
@@ -2166,6 +2230,25 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
               <span class="lp-mod-toggle-label" id="mdtl-wf">Enable</span>
             </div>
             <div class="lp-mod-arrow" onclick="event.stopPropagation();navigate('wf-board')">→</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Approvals (PRD 7.10 · Milestone 3) -->
+      <div class="lp-mod-card mc-green" onclick="navigate('wa-center')">
+        <div class="lp-mod-icon-wrap" style="background:#ECFDF5">📱</div>
+        <div class="lp-mod-name">WhatsApp Approvals</div>
+        <div class="lp-mod-desc">Approve, reject, or ask for clarification on any workflow item straight from WhatsApp — with SLA reminders, requester status updates, and a full channel audit trail.</div>
+        <div class="lp-mod-tags">
+          <span class="lp-mod-tag">Meta Cloud API</span>
+          <span class="lp-mod-tag">One-tap Approve</span>
+          <span class="lp-mod-tag">SLA Reminders</span>
+          <span class="lp-mod-tag">AR / EN</span>
+        </div>
+        <div class="lp-mod-footer" style="flex-wrap:wrap;gap:10px">
+          <span class="lp-mod-status ms-new">★ Milestone 3</span>
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+            <div class="lp-mod-arrow" onclick="event.stopPropagation();navigate('wa-center')">→</div>
           </div>
         </div>
       </div>
@@ -3943,12 +4026,20 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
         <button class="btn btn-outline btn-sm" onclick="showToast('Test email sent to ehab@ibdafashion.com','success')">📨 Send Test</button>
       </div>
     </div></div>
-    <div class="card" style="margin-bottom:0"><div class="card-header"><h3>📱 WhatsApp Business</h3><span class="badge-status badge-waiting">Pending</span></div><div class="card-body">
-      <div style="font-size:12.5px;color:var(--text-muted);margin-bottom:14px">Send invoice reminders and delivery notifications via WhatsApp.</div>
+    <div class="card" style="margin-bottom:0"><div class="card-header"><h3>📱 WhatsApp Business</h3><span class="badge-status badge-approved" id="wa-int-badge">Connected · Simulator</span></div><div class="card-body">
+      <div style="font-size:12.5px;color:var(--text-muted);margin-bottom:14px">Approve, reject and ask for clarification on workflow items from WhatsApp, and keep requesters updated at every stage (module 7.10).</div>
       <div style="display:grid;gap:10px">
-        <div class="form-group"><label class="form-label">API Key</label><input class="form-control" placeholder="Enter Meta Cloud API key" type="password"></div>
-        <div class="form-group"><label class="form-label">Business Number</label><input class="form-control" placeholder="+966XXXXXXXXX"></div>
-        <button class="btn btn-success btn-sm" onclick="showToast('WhatsApp connected','success')">✅ Activate</button>
+        <div class="form-group"><label class="form-label">Mode</label><select class="form-control" id="wa-mode" onchange="waSetMode(this.value)"><option value="simulator">Simulator — messages stay inside QERP</option><option value="live">Live — Meta Cloud API</option></select></div>
+        <div class="form-group"><label class="form-label">Display Name</label><input class="form-control" value="Ibda Fashion Approvals"></div>
+        <div class="form-group"><label class="form-label">Business Number</label><input class="form-control" value="+966 11 555 0100"></div>
+        <div class="form-group"><label class="form-label">Phone Number ID</label><input class="form-control" id="wa-int-pnid" placeholder="Meta phone number ID"></div>
+        <div class="form-group"><label class="form-label">Access Token</label><input class="form-control" id="wa-int-token" placeholder="Meta Cloud API access token" type="password"></div>
+        <div class="form-group"><label class="form-label">App Secret</label><input class="form-control" placeholder="Verifies inbound webhook signatures" type="password"></div>
+        <div id="wa-int-health" style="font-size:12px;color:#166534">● Simulator active · webhook &amp; signature check simulated</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-outline btn-sm" onclick="waTestConn()">🔌 Test Connection</button>
+          <button class="btn btn-success btn-sm" onclick="navigate('wa-center')">📱 Open WhatsApp Approvals</button>
+        </div>
       </div>
     </div></div>
   </div>
@@ -4025,6 +4116,7 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
           <div class="form-group"><label class="form-label">Department</label><select class="form-control"><option selected>Finance</option><option>Operations</option><option>Sales</option></select></div>
         </div>
       </div></div>
+      <div class="card" style="margin-bottom:16px" id="wa-profile-card"><div class="card-header"><h3>📱 WhatsApp Approvals</h3><span id="wa-pf-badge"></span></div><div class="card-body" id="wa-profile"></div></div>
       <div class="card" style="margin-bottom:0"><div class="card-header"><h3>🔒 Security</h3></div><div class="card-body">
         <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:14px">
           <div class="form-group"><label class="form-label">Current Password</label><input class="form-control" type="password" placeholder="••••••••"></div>
@@ -4278,6 +4370,76 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
 <div class="screen" id="s-wf-users"><div class="pw">
   <div class="sec-hdr"><div><div class="sec-title">Approval User Setup</div><div class="sec-sub">Assign users to approval chains</div></div><button class="btn btn-primary btn-sm" onclick="openModal('m-assign-user')">+ Add Assignment</button></div>
   <div class="card"><div class="tbl-wrap"><table><thead><tr><th>User</th><th>Workflow</th><th>Amount Limit</th><th>Approver</th><th>Effective</th><th>Status</th></tr></thead><tbody id="wf-users-tbl"></tbody></table></div></div>
+</div></div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     WORKFLOW — WHATSAPP APPROVALS (PRD 2026-09-29 · module 7.10 · Milestone 3)
+══════════════════════════════════════════════════════════════════ -->
+<div class="screen" id="s-wa-center"><div class="pw" id="wa-root">
+  <div class="sec-hdr"><div><div class="sec-title">WhatsApp Approvals</div><div class="sec-sub">Approve, reject and ask for clarification on workflow items directly from WhatsApp</div></div>
+    <div class="sec-actions"><button class="btn btn-ghost btn-sm" onclick="navigate('settings-integration')">⚙ Connection</button><button class="btn btn-ghost btn-sm" onclick="navigate('wf-board')">📊 Approval Board</button></div>
+  </div>
+  <div id="wa-banner"></div>
+  <div class="wa-kpis" id="wa-kpis"></div>
+  <div class="tabs" id="wa-tabs">
+    <button class="tab active" data-tab="sim" onclick="waTab('sim')">📱 Phone Simulator</button>
+    <button class="tab" data-tab="log" onclick="waTab('log')">🧾 Message Log</button>
+    <button class="tab" data-tab="events" onclick="waTab('events')">⚙ Event Settings</button>
+    <button class="tab" data-tab="numbers" onclick="waTab('numbers')">👥 Linked Numbers</button>
+    <button class="tab" data-tab="audit" onclick="waTab('audit')">📜 Audit Trail</button>
+  </div>
+
+  <div class="wa-tabpane active" id="wa-tab-sim">
+    <div class="wa-sim">
+      <div class="wa-phone"><div class="wa-screen">
+        <div class="wa-head"><div class="wa-av">IF</div><div style="min-width:0"><div class="wa-hname">Ibda Fashion Approvals <span title="Verified business account">✔</span></div><div class="wa-hsub" id="wa-hsub"></div></div></div>
+        <div class="wa-chat" id="wa-chat"></div>
+        <div class="wa-inputbar"><input id="wa-input" placeholder="Type a message" onkeydown="if(event.key==='Enter')waSendText()"><button onclick="waSendText()" title="Send" aria-label="Send">➤</button></div>
+      </div></div>
+      <div class="wa-ctrl">
+        <div class="card"><div class="card-head"><div class="card-title">Viewing WhatsApp as</div></div><div class="wa-ctrl-body">
+          <select class="fc" id="wa-persona" onchange="waSetPersona(this.value)"></select>
+          <div id="wa-pinfo" style="margin-top:10px;font-size:12.5px;color:var(--mute);line-height:1.55"></div>
+          <div id="wa-psess"></div>
+        </div></div>
+        <div class="card"><div class="card-head"><div class="card-title">Simulate workflow events</div></div><div class="wa-ctrl-body">
+          <label class="fl" for="wa-sim-item">Waiting item</label>
+          <select class="fc" id="wa-sim-item" style="margin-top:4px"></select>
+          <div class="wa-btnrow">
+            <button class="btn btn-ghost btn-sm" onclick="waSimulate('request')">📨 Resend approval request</button>
+            <button class="btn btn-ghost btn-sm" onclick="waSimulate('sla50')">⏰ SLA 50% reminder</button>
+            <button class="btn btn-ghost btn-sm" onclick="waSimulate('sla90')">⚠️ SLA 90% reminder</button>
+            <button class="btn btn-danger btn-sm" onclick="waSimulate('escalate')">⤴️ Escalate (SLA 100%)</button>
+          </div>
+          <div class="wa-btnrow" style="align-items:center"><button class="btn btn-ghost btn-sm" onclick="waFastForward()">⏩ Fast-forward 31 min</button><span style="font-size:11.5px;color:var(--mute)">Expires open reject / clarification prompts</span></div>
+        </div></div>
+        <div class="card"><div class="card-head"><div class="card-title">Try it</div></div><div class="wa-ctrl-body">
+          <ol class="wa-steps">
+            <li>As <b>Mohammed</b>, tap <b>Approve</b> on EXP-1007, then view as <b>Ahmed</b> to see his update.</li>
+            <li>Tap <b>Reject</b> on PR-1001 and type the reason, or tap Cancel.</li>
+            <li>Tap <b>Ask for clarification</b> on EXP-1008 and type a question, then view as <b>Sara</b> (Arabic).</li>
+            <li>Tap Approve on EXP-1007 again: the stale button is refused.</li>
+            <li>Escalate EXP-1008, then view as <b>Fatima</b> (Arabic) to act on it.</li>
+            <li>Submit a new expense claim: the approval request arrives here.</li>
+            <li>Link your own number in <a href="#" onclick="navigate('settings-profile');return false">My Profile</a>.</li>
+          </ol>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wa-tabpane" id="wa-tab-log"><div class="card"><div class="card-head"><div class="card-title">WhatsApp message log</div><span style="font-size:12px;color:var(--mute)">Every message sent and every reply received</span></div>
+    <div class="tbl-wrap"><table><thead><tr><th>Time</th><th>Direction</th><th>User</th><th>Number</th><th>Event</th><th>Document</th><th>Status</th><th>Mode</th></tr></thead><tbody id="wa-log-tbl"></tbody></table></div></div></div>
+
+  <div class="wa-tabpane" id="wa-tab-events"><div class="card"><div class="card-head"><div class="card-title">WhatsApp events per workflow template</div><select class="fc" id="wa-ev-tpl" style="width:auto;min-width:240px" onchange="waEvTpl(this.value)"></select></div>
+    <div class="tbl-wrap"><table><thead><tr><th>Event</th><th>Recipient</th><th>Default</th><th>In-app &amp; email</th><th>WhatsApp</th></tr></thead><tbody id="wa-ev-tbl"></tbody></table></div>
+    <div class="wa-note">Events switched off stay in-app &amp; email only. Verification codes, reason prompts, action confirmations and refusals are always sent and cannot be switched off.</div></div></div>
+
+  <div class="wa-tabpane" id="wa-tab-numbers"><div class="card"><div class="card-head"><div class="card-title">Linked WhatsApp numbers</div><span style="font-size:12px;color:var(--mute)">Users link and verify their own number from My Profile</span></div>
+    <div class="tbl-wrap"><table><thead><tr><th>User</th><th>Role</th><th>WhatsApp number</th><th>Status</th><th>Language</th><th>Opted in</th><th>Actions</th></tr></thead><tbody id="wa-num-tbl"></tbody></table></div></div></div>
+
+  <div class="wa-tabpane" id="wa-tab-audit"><div class="card"><div class="card-head"><div class="card-title">Workflow audit trail by channel</div><select class="fc" id="wa-au-ch" style="width:auto;min-width:160px" onchange="waRender()"><option value="">All channels</option><option>WhatsApp</option><option>Web</option><option>System</option></select></div>
+    <div class="tbl-wrap"><table><thead><tr><th>Time</th><th>Document</th><th>Actor</th><th>Action</th><th>Channel</th><th>Detail</th></tr></thead><tbody id="wa-au-tbl"></tbody></table></div></div></div>
 </div></div>
 
 <!-- ══════════════════════════════════════════════════════════════════
@@ -6763,7 +6925,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   const PANEL_SCREENS_EXTRA = ['landing'];  // extra panel screens for landing
 
   const C3_SCREENS = ['exp-dash','exp-claims','exp-approvals','exp-new','exp-types',
-    'pr-list','pr-new','pr-approvals','wf-board','wf-notif','wf-templates','wf-users',
+    'pr-list','pr-new','pr-approvals','wf-board','wf-notif','wf-templates','wf-users','wa-center',
     'dms-dispatch','dms-orders','dms-drivers','dms-routes'];
   const C3_META = {
     'exp-dash':{title:'Expenses Dashboard',sub:'Overview of expense claims'},
@@ -6778,6 +6940,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     'wf-notif':{title:'Notification Center',sub:'Actions and alerts requiring your attention'},
     'wf-templates':{title:'Workflow Templates',sub:'Manage approval workflow templates'},
     'wf-users':{title:'Approval User Setup',sub:'Assign users to approval chains'},
+    'wa-center':{title:'WhatsApp Approvals',sub:'Approve, reject and clarify workflow items from WhatsApp'},
     'dms-dispatch':{title:'Dispatch Dashboard',sub:'Live driver and order management'},
     'dms-orders':{title:'Orders',sub:'All delivery orders'},
     'dms-drivers':{title:'Driver Management',sub:'Roster, payments, performance'},
@@ -6820,6 +6983,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         'wf-notif':()=>typeof renderNotifs==='function'&&renderNotifs(),
         'wf-templates':()=>typeof renderWFTemplates==='function'&&renderWFTemplates(),
         'wf-users':()=>typeof renderWFUsers==='function'&&renderWFUsers(),
+        'wa-center':()=>typeof waRender==='function'&&waRender(),
         'dms-dispatch':()=>typeof renderDispatch==='function'&&renderDispatch(),
         'dms-orders':()=>typeof renderOrders==='function'&&renderOrders(),
         'dms-drivers':()=>typeof renderDrivers==='function'&&renderDrivers(),
@@ -7052,7 +7216,7 @@ window.QL = (function () {
     { key:'assets',       name:'Fixed Assets',    group:'assets-group',      color:'#475569' },
     { key:'accounting',   name:'Accounting',      group:'accounting-group',  color:'#15803D' },
     { key:'workflow',     name:'Workflow Engine', group:'settings-group',    color:'#C2410C', badge:'bdg-notif',
-      screens:['wf-board','wf-notif','wf-templates','wf-users'] },
+      screens:['wf-board','wf-notif','wf-templates','wf-users','wa-center'] },
     { key:'settings',     name:'Settings',        group:'settings-group',    color:'#334155',
       screens:['settings-general','settings-integration','settings-attachments','settings-profile','settings-users'] }
   ];
@@ -7252,6 +7416,535 @@ window.QL = (function () {
 })();
 // Registered last, so it wraps every earlier navigate() override
 window.addEventListener('DOMContentLoaded', () => QL.init());
+</script>
+
+<script id="wa-integration-js">
+/* ══════════════════════════════════════════════════════════════════════
+   WHATSAPP APPROVAL INTEGRATION — PRD 2026-09-29 (module 7.10, Milestone 3)
+   FR-1 simulator/live · FR-3 linking · FR-4..7 approve/reject/clarify
+   FR-8 SLA · FR-9 requester updates · FR-10 event toggles · FR-11 audit
+   FR-12 action validity · FR-13 bilingual
+══════════════════════════════════════════════════════════════════════ */
+(function(){
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmt = s => esc(s).replace(/\*([^*\n]+)\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+  const T = (l, en, ar) => l === 'ar' ? ar : en;
+
+  const WA = {
+    mode:'simulator', offset:0, persona:'Mohammed Al-Qahtani', tab:'sim', evTpl:'Expense Claim',
+    seq:1, msgs:[], audit:[], comments:{}, sessions:{}, codes:{}, events:{},
+    users:{
+      'Mohammed Al-Qahtani':{role:'Approver',     phone:'+966 50 123 4567', status:'verified', lang:'en', optIn:'01 Sep 2026'},
+      'Fatima Al-Dosari':   {role:'Approver',     phone:'+966 55 987 6543', status:'verified', lang:'ar', optIn:'03 Sep 2026'},
+      'Abdullah Al-Harbi':  {role:'Approver',     phone:'',                 status:'none',     lang:'ar'},
+      'Ahmed Hassan':       {role:'Employee',     phone:'+966 54 222 3344', status:'verified', lang:'en', optIn:'02 Sep 2026'},
+      'Sara Al-Otaibi':     {role:'Employee',     phone:'+966 53 765 4321', status:'verified', lang:'ar', optIn:'05 Sep 2026'},
+      'Nasser Al-Ghamdi':   {role:'Employee',     phone:'+966 59 111 2020', status:'pending',  lang:'en'},
+      'Khalid Mansour':     {role:'Employee',     phone:'',                 status:'none',     lang:'en'},
+      'Lina Al-Zahrani':    {role:'Accountant',   phone:'',                 status:'none',     lang:'ar'},
+      'Ehab Hassan':        {role:'Administrator',phone:'',                 status:'none',     lang:'en'},
+    }
+  };
+  window.WA = WA;
+  const ME = 'Ehab Hassan';                       // logged-in web user (My Profile)
+  const UNKNOWN = '__unknown', UNKNOWN_PHONE = '+966 56 000 0000';
+  const ESC_TARGET = {'Mohammed Al-Qahtani':'Fatima Al-Dosari','Fatima Al-Dosari':'Abdullah Al-Harbi'};
+  const TYPE_AR = {'Expense Claim':'مطالبة مصروفات','Purchase Request':'طلب شراء','Invoice Approval':'اعتماد فاتورة','Journal Entry':'قيد يومية','Budget Revision':'تعديل ميزانية'};
+  const TPL_FOR = {'Expense Claim':'Expense Claim','Purchase Request':'Purchase Requisition','Invoice Approval':'Invoice Approval','Budget Revision':'Budget Revision'};
+  const DEFAULT_TPL = 'Default (other documents)';
+  const EVENTS = [
+    {k:'approval_requested', en:'Approval requested',      to:'Approver',     def:true},
+    {k:'sla50',              en:'SLA reminder 50%',        to:'Approver',     def:true},
+    {k:'sla90',              en:'SLA reminder 90%',        to:'Approver',     def:true},
+    {k:'escalated',          en:'Escalated',               to:'New approver', def:true},
+    {k:'submitted',          en:'Submitted',               to:'Requester',    def:true},
+    {k:'under_review',       en:'Under review',            to:'Requester',    def:false},
+    {k:'approved',           en:'Approved',                to:'Requester',    def:true},
+    {k:'rejected',           en:'Rejected',                to:'Requester',    def:true},
+    {k:'revision',           en:'Revision requested',      to:'Requester',    def:true},
+    {k:'clarification',      en:'Clarification requested', to:'Requester',    def:true},
+  ];
+  const KIND_LABEL = {verification:'Verification code', confirm:'Action confirmation', prompt:'Reason prompt',
+    refusal:'Action refused', help:'Help reply', tap:'Button tap', text:'Text reply', linked:'Number linked'};
+  EVENTS.forEach(e => KIND_LABEL[e.k] = e.en);
+
+  /* ─── time (the simulator clock can be fast-forwarded) ─── */
+  const now = () => new Date(Date.now() + WA.offset);
+  const hhmm = d => d.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
+  const stamp = d => d.toLocaleString('en-GB', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
+  const dueStr = (d, l) => d.toLocaleString(l === 'ar' ? 'ar-SA-u-ca-gregory-nu-latn' : 'en-GB', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
+
+  /* ─── lookups ─── */
+  const wfOf = doc => wfItems.find(x => x.doc === doc);
+  const tplOf = w => TPL_FOR[w && w.type] || DEFAULT_TPL;
+  const tplNames = () => [...wfTemplates.map(t => t.name), DEFAULT_TPL];
+  function evCfg(tpl){ if(!WA.events[tpl]){ WA.events[tpl] = {}; EVENTS.forEach(e => WA.events[tpl][e.k] = e.def); } return WA.events[tpl]; }
+  const user = n => WA.users[n] || {role:'Unknown', phone:UNKNOWN_PHONE, status:'none', lang:'en'};
+  const canReceive = n => (WA.users[n] || {}).status === 'verified';
+  const ensureDue = w => { if(!w.due) w.due = new Date(now().getTime() + (w.sla || 24) * 3600e3); };
+  const open = w => w && ['pending','review'].includes(w.status);
+
+  function amount(w, l){ if(!w.amount) return ''; const n = w.amount.toLocaleString('en-US'); return l === 'ar' ? n + ' ر.س' : 'SAR ' + n; }
+  function details(w, l){
+    const p = purchaseRequests.find(x => x.id === w.doc), c = expClaims.find(x => x.id === w.doc);
+    if(p){ const n = p.lines.length; return T(l, `${n} line${n !== 1 ? 's' : ''} · required by ${p.reqBy}`, `${n} بند · مطلوب بتاريخ ${p.reqBy}`); }
+    if(c) return `${c.type} — ${c.desc}`;
+    return w.desc;
+  }
+
+  /* ─── message templates (FR-4, FR-8, FR-9, FR-13) ─── */
+  const actionButtons = (w, l) => [
+    {a:'approve', l:T(l,'Approve','اعتماد')},
+    {a:'reject',  l:T(l,'Reject','رفض')},
+    {a:'clarify', l:T(l,'Ask for clarification','طلب توضيح')},
+    {a:'view',    l:T(l,'View','عرض') + ' ↗'},
+  ].map(b => ({...b, doc:w.doc, wf:w.id}));
+  const viewButton = (w, l, label) => [{a:'view', l:(label || T(l,'View in QERP','عرض في QERP')) + ' ↗', doc:w.doc, wf:w.id}];
+  function approvalBody(w, l){
+    ensureDue(w);
+    const typ = l === 'ar' ? (TYPE_AR[w.type] || w.type) : w.type, a = amount(w, l);
+    return T(l,
+      `*Approval needed* — ${w.doc}\n${typ}${a ? ' · ' + a : ''}\nRequester: ${w.requester}\n${details(w, l)}\nLevel 1 of 1 · due ${dueStr(w.due, l)}`,
+      `*مطلوب اعتماد* — ${w.doc}\n${typ}${a ? ' · ' + a : ''}\nمقدم الطلب: ${w.requester}\n${details(w, l)}\nالمستوى 1 من 1 · الموعد النهائي ${dueStr(w.due, l)}`);
+  }
+  const BUILD = {
+    approval_requested: (w,l) => ({text:approvalBody(w,l), buttons:actionButtons(w,l)}),
+    sla50: (w,l) => ({text:T(l,`⏰ *Reminder* — 50% of the approval time for ${w.doc} has passed.\n\n`,`⏰ *تذكير* — انقضى 50% من مهلة اعتماد ${w.doc}.\n\n`) + approvalBody(w,l), buttons:actionButtons(w,l)}),
+    sla90: (w,l) => ({text:T(l,`⚠️ *Urgent* — ${w.doc} escalates soon (90% of the SLA used).\n\n`,`⚠️ *عاجل* — سيتم تصعيد ${w.doc} قريباً (انقضى 90% من المهلة).\n\n`) + approvalBody(w,l), buttons:actionButtons(w,l)}),
+    escalated: (w,l,x) => ({text:T(l,`⤴️ *Escalated to you* — ${x.from} did not act on ${w.doc} within the SLA.\n\n`,`⤴️ *تم التصعيد إليك* — لم يتخذ ${x.from} إجراءً على ${w.doc} خلال المهلة.\n\n`) + approvalBody(w,l), buttons:actionButtons(w,l)}),
+    submitted: (w,l) => { ensureDue(w); return {text:T(l,`📨 *Submitted* — ${w.doc} was sent to ${w.approver} for approval.\nExpected decision by ${dueStr(w.due,l)}.`,`📨 *تم الإرسال* — أُرسل ${w.doc} إلى ${w.approver} للاعتماد.\nالقرار المتوقع قبل ${dueStr(w.due,l)}.`), buttons:viewButton(w,l)}; },
+    under_review: (w,l) => ({text:T(l,`👀 *Under review* — ${w.approver} opened ${w.doc}.`,`👀 *قيد المراجعة* — فتح ${w.approver} المستند ${w.doc}.`), buttons:viewButton(w,l)}),
+    approved: (w,l,x) => ({text:T(l,`✅ *Approved* — ${w.doc} was approved by ${x.actor}.` + (x.note ? `\nComment: ${x.note}` : ''),`✅ *تم الاعتماد* — اعتمد ${x.actor} المستند ${w.doc}.` + (x.note ? `\nتعليق: ${x.note}` : '')), buttons:viewButton(w,l)}),
+    rejected: (w,l,x) => ({text:T(l,`❌ *Rejected* — ${w.doc} was rejected by ${x.actor}.\nReason: ${x.note || '—'}`,`❌ *تم الرفض* — رفض ${x.actor} المستند ${w.doc}.\nالسبب: ${x.note || '—'}`), buttons:viewButton(w,l)}),
+    clarification: (w,l,x) => ({text:T(l,`❓ *Question from ${x.actor}* about ${w.doc}:\n“${x.note}”\n\nPlease answer in QERP — replies in this chat are not recorded.`,`❓ *استفسار من ${x.actor}* بخصوص ${w.doc}:\n«${x.note}»\n\nيرجى الرد عبر QERP — الردود في هذه المحادثة لا تُسجَّل.`), buttons:viewButton(w,l,T(l,'Answer in QERP','الرد في QERP'))}),
+  };
+
+  /* ─── sending & logging ─── */
+  function push(to, dir, kind, doc, text, buttons, extra){
+    const m = {id:'M' + (WA.seq++), user:to, dir, kind, doc:doc || '', text, buttons:buttons || [], ts:now(),
+      lang:user(to).lang, status:dir === 'out' ? 'Delivered' : 'Received', mode:WA.mode === 'live' ? 'Meta Cloud API' : 'Simulator', ...(extra || {})};
+    WA.msgs.push(m); return m;
+  }
+  function sendEvent(to, ev, w, ctx){                         // honours FR-3 (verified) and FR-10 (toggles)
+    if(!canReceive(to) || !evCfg(tplOf(w))[ev]) return false;
+    const b = BUILD[ev](w, user(to).lang, ctx || {});
+    push(to, 'out', ev, w.doc, b.text, b.buttons); return true;
+  }
+  const sys = (to, kind, doc, en, ar, buttons) => push(to, 'out', kind, doc, user(to).lang === 'ar' ? ar : en, buttons);
+  const audit = (doc, actor, action, channel, detail) => WA.audit.unshift({ts:now(), doc, actor, action, channel, detail:detail || ''});
+  const addComment = (doc, c) => (WA.comments[doc] = WA.comments[doc] || []).push({...c, ts:now()});
+  const clearSessions = doc => Object.keys(WA.sessions).forEach(u => { if(WA.sessions[u].doc === doc) delete WA.sessions[u]; });
+
+  /* ─── engine bridge: one decision path for both channels (FR-5, FR-6, FR-12) ─── */
+  function applyDecision(w, decision, actor, channel, note){
+    const c = expClaims.find(x => x.id === w.doc), p = purchaseRequests.find(x => x.id === w.doc);
+    [c, p].forEach(d => { if(d){ d.status = decision; if(decision === 'rejected') d.rejectionReason = note; } });
+    w.status = decision; w.decidedBy = actor; w.channel = channel;
+    clearSessions(w.doc);
+    audit(w.doc, actor, decision === 'approved' ? 'Approved' : 'Rejected', channel, note);
+    sendEvent(w.requester, decision, w, {actor, note});
+  }
+  function refusalFor(w, who){
+    const l = user(who).lang;
+    if(!canReceive(who)) return T(l,'⚠️ This number is not linked to an active QERP user. No action taken.','⚠️ هذا الرقم غير مرتبط بمستخدم نشط في QERP. لم يُتخذ أي إجراء.');
+    if(!w) return T(l,'⚠️ This document no longer exists. No action taken.','⚠️ هذا المستند لم يعد موجوداً. لم يُتخذ أي إجراء.');
+    if(!open(w)){
+      const by = w.decidedBy || w.approver, ch = w.channel || 'Web';
+      if(w.status === 'approved' || w.status === 'rejected')
+        return T(l, `⚠️ *${w.doc}* was already ${w.status} by ${by} via ${ch}. No action taken.`,
+                    `⚠️ سبق ${w.status === 'approved' ? 'اعتماد' : 'رفض'} *${w.doc}* بواسطة ${by} عبر ${ch === 'WhatsApp' ? 'واتساب' : 'البوابة'}. لم يُتخذ أي إجراء.`);
+      return T(l, `⚠️ *${w.doc}* is no longer waiting for approval. No action taken.`, `⚠️ لم يعد *${w.doc}* بانتظار الاعتماد. لم يُتخذ أي إجراء.`);
+    }
+    if(w.approver !== who) return T(l, `⚠️ *${w.doc}* was escalated to ${w.approver}. This button no longer acts on it.`, `⚠️ تم تصعيد *${w.doc}* إلى ${w.approver}. لم يعد هذا الزر فعّالاً.`);
+    return null;
+  }
+  function openDoc(w, who){
+    if(!w) return;
+    if(w.approver === who && w.status === 'pending'){
+      w.status = 'review'; audit(w.doc, who, 'Opened — under review', 'WhatsApp', '');
+      sendEvent(w.requester, 'under_review', w);
+    }
+    if(expClaims.find(x => x.id === w.doc)) openExpDetail(w.doc);
+    else if(purchaseRequests.find(x => x.id === w.doc)) openPRDetail(w.doc);
+    else openWFAction(w.id);
+  }
+
+  /* ─── inbound: button taps (FR-5, FR-6, FR-7, FR-12) ─── */
+  window.waTap = function(msgId, idx){
+    const m = WA.msgs.find(x => x.id === msgId), b = m && m.buttons[idx]; if(!b) return;
+    const who = m.user, l = user(who).lang, w = wfItems.find(x => x.id === b.wf) || wfOf(b.doc);
+    const tap = push(who, 'in', 'tap', b.doc, b.l.replace(' ↗',''));
+    if(b.a === 'view'){ tap.status = 'Processed'; waRefresh(); openDoc(w, who); return; }
+    if(b.a === 'cancel'){
+      const s = WA.sessions[who];
+      if(s && s.doc === b.doc){ delete WA.sessions[who]; tap.status = 'Processed';
+        sys(who, 'confirm', b.doc, `Cancelled. *${b.doc}* is unchanged.`, `تم الإلغاء. لم يتغير *${b.doc}*.`); }
+      else { tap.status = 'Ignored'; sys(who, 'help', b.doc, 'There is nothing to cancel.', 'لا يوجد ما يمكن إلغاؤه.'); }
+      return waRefresh();
+    }
+    const bad = refusalFor(w, who);
+    if(bad){ tap.status = 'Refused'; push(who, 'out', 'refusal', b.doc, bad); audit(b.doc, who, 'Action refused', 'WhatsApp', b.l + ' — ' + (open(w) ? 'no longer the approver' : 'already ' + (w ? w.status : 'removed'))); return waRefresh(); }
+    tap.status = 'Processed';
+    if(b.a === 'approve'){
+      applyDecision(w, 'approved', who, 'WhatsApp', '');
+      sys(who, 'confirm', w.doc, `✅ *${w.doc}* approved. ${w.requester} has been notified.`, `✅ تم اعتماد *${w.doc}*. تم إشعار ${w.requester}.`);
+      showToast(w.doc + ' approved via WhatsApp', 'success');
+    } else {
+      const replaced = WA.sessions[who] && WA.sessions[who].doc !== w.doc ? WA.sessions[who].doc : null;
+      WA.sessions[who] = {mode:b.a, doc:w.doc, wf:w.id, expires:new Date(now().getTime() + 30 * 60e3)};
+      const cancel = [{a:'cancel', l:T(l,'Cancel','إلغاء'), doc:w.doc, wf:w.id}];
+      const pre = replaced ? T(l, `(Your open prompt for ${replaced} was cancelled.)\n`, `(تم إلغاء الطلب المفتوح لـ ${replaced}.)\n`) : '';
+      if(b.a === 'reject') sys(who, 'prompt', w.doc, pre + `✍️ Please type the rejection reason for *${w.doc}*.\nThis request expires in 30 minutes.`, pre + `✍️ يرجى كتابة سبب رفض *${w.doc}*.\nتنتهي صلاحية هذا الطلب خلال 30 دقيقة.`, cancel);
+      else sys(who, 'prompt', w.doc, pre + `✍️ Type your question for ${w.requester} about *${w.doc}*.\nThis request expires in 30 minutes.`, pre + `✍️ اكتب استفسارك إلى ${w.requester} بخصوص *${w.doc}*.\nتنتهي صلاحية هذا الطلب خلال 30 دقيقة.`, cancel);
+      setTimeout(() => document.getElementById('wa-input')?.focus(), 50);
+    }
+    waRefresh();
+  };
+
+  /* ─── inbound: free text ─── */
+  window.waSendText = function(){
+    const inp = document.getElementById('wa-input'), txt = inp.value.trim(); if(!txt) return; inp.value = '';
+    const who = WA.persona;
+    if(who === UNKNOWN){
+      push(UNKNOWN, 'in', 'text', '', txt);
+      push(UNKNOWN, 'out', 'help', '', "This number isn't linked to a QERP user, so no document information can be shared. Ask your administrator, or link your number from your QERP profile.");
+      audit('—', UNKNOWN_PHONE, 'Message from unknown number', 'WhatsApp', 'Ignored — no data shared');
+      return waRefresh();
+    }
+    push(who, 'in', 'text', '', txt);
+    const u = user(who), l = u.lang;
+    if(u.status === 'pending'){ sys(who, 'help', '', 'Enter the verification code in QERP to finish linking this number.', 'أدخل رمز التحقق في QERP لإكمال ربط هذا الرقم.'); return waRefresh(); }
+    const s = WA.sessions[who];
+    if(s){
+      delete WA.sessions[who];
+      const w = wfItems.find(x => x.id === s.wf), bad = refusalFor(w, who);
+      if(bad){ push(who, 'out', 'refusal', s.doc, bad); return waRefresh(); }
+      if(s.mode === 'reject'){
+        applyDecision(w, 'rejected', who, 'WhatsApp', txt);
+        sys(who, 'confirm', w.doc, `❌ *${w.doc}* rejected. ${w.requester} has been notified with your reason.`, `❌ تم رفض *${w.doc}*. تم إشعار ${w.requester} بالسبب.`);
+        showToast(w.doc + ' rejected via WhatsApp', 'error');
+      } else {
+        addComment(w.doc, {by:who, text:txt, channel:'WhatsApp', kind:'question'});
+        audit(w.doc, who, 'Clarification requested', 'WhatsApp', txt);
+        sendEvent(w.requester, 'clarification', w, {actor:who, note:txt});
+        sys(who, 'confirm', w.doc, `📨 Question sent to ${w.requester}. *${w.doc}* is still waiting for your decision — the buttons above still work.`, `📨 تم إرسال الاستفسار إلى ${w.requester}. لا يزال *${w.doc}* بانتظار قرارك — الأزرار أعلاه ما زالت فعّالة.`);
+        showToast('Clarification logged on ' + w.doc, 'info');
+      }
+      return waRefresh();
+    }
+    const q = [...WA.msgs].reverse().find(m => m.user === who && m.kind === 'clarification');
+    if(q){ const w = wfOf(q.doc); sys(who, 'help', q.doc, "Replies here aren't recorded. Please answer the question in QERP.", 'الردود هنا لا تُسجَّل. يرجى الرد على الاستفسار عبر QERP.', w ? viewButton(w, l, T(l,'Answer in QERP','الرد في QERP')) : []); }
+    else sys(who, 'help', '', 'I can only act on the buttons of an approval message. Tap *View* on any message to open QERP.', 'يمكنني فقط تنفيذ الإجراءات عبر أزرار رسائل الاعتماد. اضغط *عرض* في أي رسالة لفتح QERP.');
+    waRefresh();
+  };
+
+  /* ─── prompt expiry & simulation controls (FR-6, FR-7, FR-8) ─── */
+  function expireSessions(){
+    Object.keys(WA.sessions).forEach(who => {
+      const s = WA.sessions[who]; if(now() < s.expires) return;
+      delete WA.sessions[who];
+      const [en, ar] = s.mode === 'reject' ? ['rejection', 'الرفض'] : ['question', 'الاستفسار'];
+      sys(who, 'prompt', s.doc, `⌛ The ${en} request for *${s.doc}* expired. The document is unchanged.`, `⌛ انتهت صلاحية طلب ${ar} لـ *${s.doc}*. لم يتغير المستند.`);
+      audit(s.doc, who, 'Prompt expired', 'WhatsApp', s.mode === 'reject' ? 'Rejection reason not received in 30 min' : 'Question not received in 30 min');
+    });
+  }
+  window.waFastForward = function(){ WA.offset += 31 * 60e3; expireSessions(); showToast('⏩ Simulator clock advanced 31 minutes', 'info'); waRefresh(); };
+  function report(ok, who, w){
+    if(ok) showToast('📱 Sent to ' + who + ' on WhatsApp', 'success');
+    else if(!canReceive(who)) showToast(who + ' has no verified WhatsApp number — in-app & email only', 'warn');
+    else showToast('This event is email-only for the ' + tplOf(w) + ' template', 'warn');
+  }
+  window.waSimulate = function(kind){
+    const w = wfItems.find(x => x.id === document.getElementById('wa-sim-item').value);
+    if(!w){ showToast('Select a waiting item', 'error'); return; }
+    if(!open(w)){ showToast(w.doc + ' is already decided', 'error'); return; }
+    ensureDue(w);
+    if(kind === 'request'){ report(sendEvent(w.approver, 'approval_requested', w), w.approver, w); audit(w.doc, 'System', 'Approval request re-sent', 'System', 'to ' + w.approver); }
+    if(kind === 'sla50' || kind === 'sla90'){ report(sendEvent(w.approver, kind, w), w.approver, w); audit(w.doc, 'System', kind === 'sla50' ? 'SLA reminder 50%' : 'SLA reminder 90%', 'System', 'to ' + w.approver); }
+    if(kind === 'escalate'){
+      const from = w.approver, to = ESC_TARGET[from] || 'Mohammed Al-Qahtani';
+      w.approver = to; w.escalatedFrom = from; w.due = new Date(now().getTime() + (w.sla || 24) * 3600e3);
+      const c = expClaims.find(x => x.id === w.doc); if(c) c.approver = to;
+      if(WA.sessions[from] && WA.sessions[from].doc === w.doc) delete WA.sessions[from];
+      audit(w.doc, 'System', 'Escalated', 'System', from + ' → ' + to);
+      report(sendEvent(to, 'escalated', w, {from}), to, w);
+    }
+    waRefresh();
+  };
+
+  /* ─── admin: mode, connection, events, numbers (FR-1, FR-2, FR-3, FR-10) ─── */
+  window.waSetMode = function(v){
+    WA.mode = v;
+    const b = document.getElementById('wa-int-badge'), h = document.getElementById('wa-int-health');
+    if(b) b.textContent = v === 'live' ? 'Connected · Live' : 'Connected · Simulator';
+    if(h) h.innerHTML = v === 'live' ? '● Live · Meta Cloud API · webhook signature check on' : '● Simulator active · webhook &amp; signature check simulated';
+    showToast(v === 'live' ? 'Live mode — messages go through the Meta Cloud API (templates must be Meta-approved)' : 'Simulator mode — messages stay inside QERP', 'info');
+    waRefresh();
+  };
+  window.waTestConn = function(){
+    if(WA.mode === 'live' && (!document.getElementById('wa-int-token').value || !document.getElementById('wa-int-pnid').value)){
+      showToast('Enter the Phone Number ID and Access Token first', 'error'); return; }
+    showToast(WA.mode === 'live' ? 'Connection OK — webhook verified. Templates need Meta approval before live sends.' : 'Simulator OK — webhook, signature check and templates simulated', 'success');
+  };
+  window.waEvTpl = function(v){ WA.evTpl = v; waRender(); };
+  window.waToggleEv = function(k, on){
+    evCfg(WA.evTpl)[k] = on;
+    audit('—', ME + ' (admin)', 'WhatsApp event ' + (on ? 'enabled' : 'disabled'), 'Web', WA.evTpl + ' · ' + KIND_LABEL[k]);
+    showToast(KIND_LABEL[k] + ' — WhatsApp ' + (on ? 'on' : 'off') + ' for ' + WA.evTpl, 'success');
+  };
+  window.waUnlink = function(n){
+    const u = WA.users[n]; if(!u) return;
+    u.status = 'none'; u.phone = ''; u.optIn = ''; delete WA.codes[n];
+    delete WA.sessions[n];
+    audit('—', n === ME ? ME : ME + ' (admin)', 'WhatsApp number unlinked', 'Web', n);
+    if(WA.persona === n) WA.persona = 'Mohammed Al-Qahtani';
+    showToast(n + ' — WhatsApp number unlinked', 'warn'); waRefresh();
+  };
+  function sendCode(n){
+    const code = String(Math.floor(100000 + Math.random() * 900000)); WA.codes[n] = code;
+    sys(n, 'verification', '', `Your QERP verification code is *${code}*. It expires in 10 minutes. Don't share it with anyone.`, `رمز التحقق الخاص بك في QERP هو *${code}*. صالح لمدة 10 دقائق. لا تشاركه مع أحد.`);
+    return code;
+  }
+  window.waResend = function(n){ sendCode(n); showToast('Verification code re-sent to ' + n + ' on WhatsApp', 'success'); waRefresh(); };
+
+  /* ─── My Profile: link & verify (FR-3, FR-13) ─── */
+  window.waPfSend = function(){
+    const phone = document.getElementById('wa-pf-phone').value.trim(), lang = document.getElementById('wa-pf-lang').value;
+    if(!/^\+\d[\d\s]{8,16}$/.test(phone)){ showToast('Enter the number in international format, e.g. +966 5X XXX XXXX', 'error'); return; }
+    const norm = s => s.replace(/\s/g, '');
+    const taken = Object.keys(WA.users).find(n => n !== ME && WA.users[n].status !== 'none' && norm(WA.users[n].phone) === norm(phone));
+    if(taken){ showToast('This number is already linked to ' + taken, 'error'); return; }
+    Object.assign(WA.users[ME], {phone, lang, status:'pending'});
+    sendCode(ME);
+    audit('—', ME, 'Verification code sent', 'WhatsApp', phone);
+    showToast('Code sent on WhatsApp — in the simulator, view as ' + ME + ' to read it', 'success');
+    waRefresh();
+  };
+  window.waPfVerify = function(){
+    const code = document.getElementById('wa-pf-code').value.trim();
+    if(code !== WA.codes[ME]){ showToast('Incorrect code — check the latest WhatsApp message', 'error'); return; }
+    const u = WA.users[ME]; u.status = 'verified'; u.optIn = new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'});
+    delete WA.codes[ME];
+    sys(ME, 'linked', '', `✅ This number is now linked to QERP as ${ME}. Approval requests and updates will arrive here.`, `✅ تم ربط هذا الرقم بـ QERP باسم ${ME}. ستصلك طلبات الاعتماد والتحديثات هنا.`);
+    audit('—', ME, 'WhatsApp number verified — opted in', 'Web', u.phone);
+    showToast('WhatsApp linked — you will receive workflow messages on ' + u.phone, 'success');
+    waRefresh();
+  };
+  window.waPfChange = function(){ const u = WA.users[ME]; u.status = 'none'; delete WA.codes[ME]; waRefresh(); };
+  window.waPfLang = function(v){ WA.users[ME].lang = v; showToast('WhatsApp messages will be sent in ' + (v === 'ar' ? 'Arabic' : 'English'), 'success'); waRefresh(); };
+  window.waOpenAs = function(n){ WA.persona = n; WA.tab = 'sim'; navigate('wa-center'); };
+
+  /* ─── web portal answer to a clarification (FR-7) ─── */
+  window.waWebAnswer = function(doc){
+    const ta = document.getElementById('wa-reply-' + doc), t = ta && ta.value.trim();
+    if(!t){ showToast('Type an answer first', 'error'); return; }
+    const w = wfOf(doc);
+    addComment(doc, {by:w.requester, text:t, channel:'Web', kind:'answer'});
+    audit(doc, w.requester, 'Clarification answered', 'Web', t);
+    showToast('Answer posted — ' + w.approver + ' notified in-app & by email', 'success');
+    document.querySelectorAll('.wa-docpanel[data-doc="' + doc + '"]').forEach(el => el.outerHTML = docPanel(doc));
+    waRefresh();
+  };
+  const chip = ch => { const m = {WhatsApp:['wa-ch-wa','📱 WhatsApp'], Web:['wa-ch-web','🖥 Web'], System:['wa-ch-sys','⚙ System']}; const x = m[ch] || m.System; return `<span class="wa-ch ${x[0]}">${x[1]}</span>`; };
+  function docPanel(doc){
+    const w = wfOf(doc), cs = WA.comments[doc] || [], au = WA.audit.filter(a => a.doc === doc);
+    let h = `<div class="wa-docpanel" data-doc="${esc(doc)}"><div class="wa-dp-title">💬 Clarifications &amp; comments</div>`;
+    h += cs.length ? cs.map(c => `<div class="wa-cm ${c.kind}"><div class="wa-cm-hd"><b>${esc(c.by)}</b>${chip(c.channel)}<span class="t">${c.kind === 'question' ? 'asked' : 'answered'} · ${hhmm(c.ts)}</span></div><div>${esc(c.text)}</div></div>`).join('')
+                   : '<div class="wa-empty-sm">No clarification requests yet.</div>';
+    if(w && cs.some(c => c.kind === 'question'))
+      h += `<div class="wa-reply"><textarea class="fc" id="wa-reply-${esc(doc)}" rows="2" placeholder="Answer as ${esc(w.requester)} (requester, web portal)…"></textarea><button class="btn btn-primary btn-sm" onclick="waWebAnswer('${esc(doc)}')">Send answer</button></div>`;
+    h += '<div class="wa-dp-title" style="margin-top:14px">📜 Activity &amp; channel</div>';
+    h += au.length ? `<div class="wa-act">${au.map(a => `<div class="wa-act-row"><span class="wa-act-t">${hhmm(a.ts)}</span>${chip(a.channel)}<span><b>${esc(a.action)}</b> — ${esc(a.actor)}${a.detail ? ': ' + esc(a.detail) : ''}</span></div>`).join('')}</div>`
+                   : '<div class="wa-empty-sm">No activity recorded yet.</div>';
+    return h + '</div>';
+  }
+
+  /* ─── hooks into the existing web approval flows ─── */
+  function wrap(name, before, after){
+    const orig = window[name]; if(typeof orig !== 'function') return;
+    window[name] = function(...args){
+      const ctx = before ? before(...args) : undefined;
+      const r = orig.apply(this, args);
+      try { after(ctx, ...args); } catch(e){ console.error('[whatsapp]', e); }
+      return r;
+    };
+  }
+  function afterWebDecision(doc, decision, note){
+    const w = wfOf(doc); if(!w || w.status !== decision || w.channel) return;
+    w.decidedBy = w.approver; w.channel = 'Web'; clearSessions(doc);
+    audit(doc, w.approver, decision === 'approved' ? 'Approved' : 'Rejected', 'Web', note);
+    sendEvent(w.requester, decision, w, {actor:w.approver, note});
+    waRefresh();
+  }
+  const val = id => ((document.getElementById(id) || {}).value || '').trim();
+  wrap('confirmApprove',   () => ({doc:activeItem,   note:val('app-comment')}), x => afterWebDecision(x.doc, 'approved', x.note));
+  wrap('confirmReject',    () => ({doc:activeItem,   note:val('rej-reason')}),  x => afterWebDecision(x.doc, 'rejected', x.note));
+  wrap('confirmPRApprove', () => ({doc:selectedPRId, note:val('pra-comment')}), x => afterWebDecision(x.doc, 'approved', x.note));
+  wrap('confirmPRReject',  () => ({doc:selectedPRId, note:val('prr-reason')}),  x => afterWebDecision(x.doc, 'rejected', x.note));
+  wrap('wfApprove', id => (wfItems.find(x => x.id === id) || {}).doc, doc => afterWebDecision(doc, 'approved', ''));
+  wrap('wfReject',  id => (wfItems.find(x => x.id === id) || {}).doc, doc => afterWebDecision(doc, 'rejected', 'Rejected from the Approval Board'));
+  function onSubmitted(doc){
+    const w = wfOf(doc); if(!w) return;
+    w.due = new Date(now().getTime() + (w.sla || 24) * 3600e3);
+    audit(doc, w.requester, 'Submitted', 'Web', 'Routed to ' + w.approver);
+    const sent = sendEvent(w.approver, 'approval_requested', w);
+    sendEvent(w.requester, 'submitted', w);
+    if(sent) setTimeout(() => showToast('📱 WhatsApp approval request sent to ' + w.approver, 'success'), 700);
+    waRefresh();
+  }
+  wrap('submitExpClaim', () => expClaims.length, n => { if(expClaims.length > n) onSubmitted(expClaims[0].id); });
+  wrap('submitPR', () => purchaseRequests.length, n => { if(purchaseRequests.length > n) onSubmitted(purchaseRequests[0].id); });
+  wrap('openWFAction', null, (_, id) => { const w = wfItems.find(x => x.id === id); if(w) document.getElementById('wfa-body').insertAdjacentHTML('beforeend', docPanel(w.doc)); });
+  wrap('openExpDetail', null, (_, id) => { if(wfOf(id)) document.getElementById('cd-body').insertAdjacentHTML('beforeend', docPanel(id)); });
+  wrap('openPRDetail',  null, (_, id) => { if(wfOf(id)) document.getElementById('prd-body').insertAdjacentHTML('beforeend', docPanel(id)); });
+  wrap('renderKanban', null, () => {
+    document.querySelectorAll('#wf-kanban .k-card').forEach(card => {
+      const m = (card.getAttribute('onclick') || '').match(/openWFAction\('([^']+)'\)/), w = m && wfItems.find(x => x.id === m[1]);
+      if(!w) return;
+      const bits = [];
+      if(w.channel === 'WhatsApp') bits.push('<span class="wa-ch wa-ch-wa">📱 via WhatsApp</span>');
+      else if(open(w) && canReceive(w.approver)) bits.push('<span class="wa-ch wa-ch-wa" title="The approver can act from WhatsApp">📱 WhatsApp ready</span>');
+      const n = (WA.comments[w.doc] || []).length; if(n) bits.push(`<span class="wa-ch wa-ch-sys">💬 ${n}</span>`);
+      if(bits.length) card.insertAdjacentHTML('beforeend', `<div class="wa-kchips">${bits.join('')}</div>`);
+    });
+  });
+
+  /* ─── rendering ─── */
+  window.waTab = function(t){ WA.tab = t; waRender(); };
+  window.waSetPersona = function(v){ WA.persona = v; waRender(); };
+  function renderChat(){
+    const chat = document.getElementById('wa-chat'); if(!chat) return;
+    const who = WA.persona, u = user(who), mine = WA.msgs.filter(m => m.user === who);
+    mine.forEach(m => { if(m.dir === 'out') m.status = 'Read'; });
+    document.getElementById('wa-hsub').textContent = who === UNKNOWN ? 'to ' + UNKNOWN_PHONE + ' · not linked' : 'to ' + (u.phone || '—') + ' · ' + (u.lang === 'ar' ? 'العربية' : 'English');
+    chat.innerHTML = mine.length ? '<div class="wa-day">Today</div>' + mine.map(m => {
+      const rtl = m.lang === 'ar' && m.dir === 'out' ? ' dir="rtl"' : '';
+      if(m.dir === 'in') return `<div class="wa-row me"><div class="wa-bub">${fmt(m.text)}<div class="wa-meta">${hhmm(m.ts)}<span class="tick">✓✓</span></div></div></div>`;
+      const btns = m.buttons.length ? `<div class="wa-btns">${m.buttons.map((b, i) => `<button class="wa-btn" onclick="waTap('${m.id}',${i})">${esc(b.l)}</button>`).join('')}</div>` : '';
+      return `<div class="wa-row biz"${rtl}><div class="wa-bub">${fmt(m.text)}<div class="wa-meta">${hhmm(m.ts)}</div></div>${btns}</div>`;
+    }).join('') : `<div class="wa-empty">No messages yet.<br>Messages QERP sends to ${esc(who === UNKNOWN ? UNKNOWN_PHONE : who)} will appear here.</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  }
+  function renderControls(){
+    const sel = document.getElementById('wa-persona'); if(!sel) return;
+    const list = Object.keys(WA.users).filter(n => WA.users[n].status !== 'none');
+    if(!list.includes(WA.persona) && WA.persona !== UNKNOWN) WA.persona = list[0];
+    sel.innerHTML = list.map(n => `<option value="${esc(n)}"${n === WA.persona ? ' selected' : ''}>${esc(n)} — ${WA.users[n].role}${WA.users[n].status === 'pending' ? ' (verification pending)' : ''}</option>`).join('')
+      + `<option value="${UNKNOWN}"${WA.persona === UNKNOWN ? ' selected' : ''}>Unknown number (${UNKNOWN_PHONE})</option>`;
+    const u = user(WA.persona);
+    const waiting = wfItems.filter(w => open(w) && w.approver === WA.persona).map(w => w.doc);
+    document.getElementById('wa-pinfo').innerHTML = WA.persona === UNKNOWN
+      ? 'A number that is not linked to any QERP user. Anything it sends gets a generic reply with no document data.'
+      : `<span class="wa-st ${u.status}">${u.status === 'verified' ? 'Verified' : 'Verification pending'}</span> &nbsp;${esc(u.phone)} · ${u.lang === 'ar' ? 'Arabic' : 'English'} · ${esc(u.role)}`
+        + (waiting.length ? `<br>Waiting for this user's decision: <b>${waiting.map(esc).join(', ')}</b>` : '');
+    const s = WA.sessions[WA.persona];
+    document.getElementById('wa-psess').innerHTML = s
+      ? `<div class="wa-session">✍️ Waiting for the ${s.mode === 'reject' ? 'rejection reason' : 'clarification question'} for <b>${esc(s.doc)}</b> — type it in the chat. Expires ${hhmm(s.expires)}.</div>` : '';
+    const item = document.getElementById('wa-sim-item'), keep = item.value;
+    const opts = wfItems.filter(open);
+    item.innerHTML = opts.length ? opts.map(w => `<option value="${w.id}">${esc(w.doc)} — ${esc(w.type)} · approver ${esc(w.approver)}</option>`).join('') : '<option value="">No waiting items</option>';
+    if(opts.some(w => w.id === keep)) item.value = keep;
+  }
+  function renderKpis(){
+    const decisions = WA.audit.filter(a => a.channel === 'WhatsApp' && (a.action === 'Approved' || a.action === 'Rejected')).length;
+    const approvers = Object.values(WA.users).filter(u => u.role === 'Approver');
+    const k = [
+      [WA.msgs.filter(m => m.dir === 'out').length, 'Messages sent'],
+      [decisions, 'Decisions taken via WhatsApp'],
+      [`${approvers.filter(u => u.status === 'verified').length} / ${approvers.length}`, 'Approvers with a verified number'],
+      [Object.keys(WA.sessions).length, 'Open reason prompts'],
+    ];
+    document.getElementById('wa-kpis').innerHTML = k.map(([v, l]) => `<div class="wa-kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
+    document.getElementById('wa-banner').innerHTML = WA.mode === 'live'
+      ? '<div class="wa-banner live">🟢 <span><b>Live mode · Meta Cloud API</b> from +966 11 555 0100. In this prototype, messages are still shown in the phone simulator.</span></div>'
+      : '<div class="wa-banner">🧪 <span><b>Simulator mode</b> — no messages leave QERP. Approvals behave exactly as they will in live mode. Switch modes in Settings → Integration.</span></div>';
+  }
+  function renderLog(){
+    const rows = [...WA.msgs].reverse();
+    document.getElementById('wa-log-tbl').innerHTML = rows.length ? rows.map(m => {
+      const u = user(m.user), name = m.user === UNKNOWN ? '—' : m.user;
+      const st = {Read:'b-approved', Delivered:'b-review', Received:'b-draft', Processed:'b-approved', Refused:'b-rejected', Ignored:'b-draft'}[m.status] || 'b-draft';
+      return `<tr><td style="white-space:nowrap;color:var(--mute)">${stamp(m.ts)}</td><td>${m.dir === 'out' ? '→ Sent' : '← Received'}</td><td style="font-weight:600">${esc(name)}</td><td style="white-space:nowrap">${esc(m.user === UNKNOWN ? UNKNOWN_PHONE : u.phone || '—')}</td><td>${esc(KIND_LABEL[m.kind] || m.kind)}</td><td style="font-weight:600;color:var(--blue)">${esc(m.doc || '—')}</td><td><span class="badge ${st}">${m.status}</span></td><td style="color:var(--mute);font-size:12px">${m.mode}</td></tr>`;
+    }).join('') : '<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--mute)">No messages yet</td></tr>';
+  }
+  function renderEvents(){
+    const sel = document.getElementById('wa-ev-tpl');
+    sel.innerHTML = tplNames().map(n => `<option${n === WA.evTpl ? ' selected' : ''}>${esc(n)}</option>`).join('');
+    const cfg = evCfg(WA.evTpl);
+    document.getElementById('wa-ev-tbl').innerHTML = EVENTS.map(e => `<tr><td style="font-weight:600">${e.en}</td><td>${e.to}</td><td style="color:var(--mute)">${e.def ? 'On' : 'Off'}</td><td style="color:var(--green)">✓ Always</td>
+      <td><label class="wa-sw" title="Send on WhatsApp"><input type="checkbox"${cfg[e.k] ? ' checked' : ''} onchange="waToggleEv('${e.k}',this.checked)"><span></span></label></td></tr>`).join('');
+  }
+  function renderNumbers(){
+    document.getElementById('wa-num-tbl').innerHTML = Object.keys(WA.users).map(n => {
+      const u = WA.users[n], lbl = {verified:'Verified', pending:'Pending verification', none:'Not linked'}[u.status];
+      const act = u.status === 'verified' ? `<button class="btn btn-ghost btn-sm" onclick="waOpenAs('${esc(n)}')">View chat</button> <button class="btn btn-ghost btn-sm" style="color:var(--red)" onclick="waUnlink('${esc(n)}')">Unlink</button>`
+        : u.status === 'pending' ? `<button class="btn btn-ghost btn-sm" onclick="waResend('${esc(n)}')">Resend code</button> <button class="btn btn-ghost btn-sm" style="color:var(--red)" onclick="waUnlink('${esc(n)}')">Unlink</button>`
+        : '<span style="color:var(--mute);font-size:12px">Links from own profile</span>';
+      return `<tr><td style="font-weight:600">${esc(n)}</td><td>${esc(u.role)}</td><td style="white-space:nowrap">${esc(u.phone || '—')}</td><td><span class="wa-st ${u.status}">${lbl}</span></td><td>${u.lang === 'ar' ? 'Arabic' : 'English'}</td><td style="color:var(--mute)">${esc(u.optIn || '—')}</td><td style="white-space:nowrap">${act}</td></tr>`;
+    }).join('');
+  }
+  function renderAudit(){
+    const f = document.getElementById('wa-au-ch').value, rows = WA.audit.filter(a => !f || a.channel === f);
+    document.getElementById('wa-au-tbl').innerHTML = rows.length ? rows.map(a => `<tr><td style="white-space:nowrap;color:var(--mute)">${stamp(a.ts)}</td><td style="font-weight:600;color:var(--blue)">${esc(a.doc)}</td><td>${esc(a.actor)}</td><td style="font-weight:600">${esc(a.action)}</td><td>${chip(a.channel)}</td><td style="color:var(--mute);font-size:12px">${esc(a.detail || '—')}</td></tr>`).join('')
+      : '<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--mute)">No entries</td></tr>';
+  }
+  window.waRender = function(){
+    if(!document.getElementById('wa-root')) return;
+    expireSessions();
+    document.querySelectorAll('#wa-tabs .tab').forEach(b => b.classList.toggle('active', b.dataset.tab === WA.tab));
+    document.querySelectorAll('#wa-root .wa-tabpane').forEach(p => p.classList.toggle('active', p.id === 'wa-tab-' + WA.tab));
+    renderKpis(); renderControls(); renderChat(); renderLog(); renderEvents(); renderNumbers(); renderAudit();
+  };
+  window.waProfileRender = function(){
+    const el = document.getElementById('wa-profile'); if(!el) return;
+    const u = WA.users[ME], badge = document.getElementById('wa-pf-badge');
+    const langSel = (id, on) => `<select class="form-control" id="${id}"${on ? ` onchange="${on}"` : ''}><option value="en"${u.lang === 'en' ? ' selected' : ''}>English</option><option value="ar"${u.lang === 'ar' ? ' selected' : ''}>العربية (Arabic)</option></select>`;
+    if(badge) badge.innerHTML = `<span class="wa-st ${u.status}">${{verified:'Verified', pending:'Code sent', none:'Not linked'}[u.status]}</span>`;
+    if(u.status === 'none') el.innerHTML = `
+      <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:14px">
+        <div class="form-group"><label class="form-label">WhatsApp Number</label><input class="form-control" id="wa-pf-phone" placeholder="+966 5X XXX XXXX" value="${esc(u.phone)}"></div>
+        <div class="form-group"><label class="form-label">Message Language</label>${langSel('wa-pf-lang')}</div>
+      </div>
+      <div class="wa-pf-note">Approve, reject or ask for clarification from WhatsApp without logging in. We'll send a 6-digit code to this number on WhatsApp; confirming it opts you in to workflow messages. You can unlink at any time.</div>
+      <div class="wa-pf-row"><button class="btn btn-success btn-sm" onclick="waPfSend()">📨 Send verification code</button></div>`;
+    else if(u.status === 'pending') el.innerHTML = `
+      <div style="font-size:13px">We sent a 6-digit code to <b>${esc(u.phone)}</b> on WhatsApp. It expires in 10 minutes.</div>
+      <div class="wa-pf-row"><input class="form-control" id="wa-pf-code" maxlength="6" inputmode="numeric" placeholder="6-digit code" style="max-width:160px" onkeydown="if(event.key==='Enter')waPfVerify()">
+        <button class="btn btn-success btn-sm" onclick="waPfVerify()">✅ Verify</button><button class="btn btn-outline btn-sm" onclick="waResend('${ME}')">Resend code</button><button class="btn btn-outline btn-sm" onclick="waPfChange()">Change number</button></div>
+      <div class="wa-pf-note">Simulator: <a href="#" onclick="waOpenAs('${ME}');return false">open the phone simulator as ${ME}</a> to read the code.</div>`;
+    else el.innerHTML = `
+      <div style="font-size:13px">✅ <b>${esc(u.phone)}</b> is verified · opted in ${esc(u.optIn)}. Workflow messages are sent to this number.</div>
+      <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:12px"><div class="form-group"><label class="form-label">Message Language</label>${langSel('wa-pf-lang-v', 'waPfLang(this.value)')}</div></div>
+      <div class="wa-pf-row"><button class="btn btn-outline btn-sm" onclick="waOpenAs('${ME}')">📱 Open my chat</button><button class="btn btn-outline btn-sm" style="color:var(--red)" onclick="waUnlink('${ME}')">Unlink number</button></div>`;
+  };
+  function waRefresh(){
+    try { waRender(); waProfileRender(); } catch(e){ console.error('[whatsapp]', e); }
+    const active = [...document.querySelectorAll('.screen.active')].map(s => s.id.replace(/^s-/, ''))[0];
+    const r = {'wf-board':window.renderKanban, 'wf-notif':window.renderNotifs, 'exp-approvals':window.renderExpApprovals, 'exp-claims':window.renderMyClaims, 'exp-dash':window.renderExpDash, 'pr-list':window.renderPRList, 'pr-approvals':window.renderPRApprovals}[active];
+    try { if(typeof r === 'function') r(); if(typeof refreshBadges === 'function') refreshBadges(); } catch(e){ console.error('[whatsapp]', e); }
+  }
+
+  /* ─── seed demo conversation from the existing workflow items ─── */
+  function seed(){
+    const base = Date.now(), at = m => new Date(base - m * 60e3);
+    const stampAll = (fn, mins) => { const n = WA.msgs.length; fn(); for(let i = n; i < WA.msgs.length; i++) WA.msgs[i].ts = at(mins); };
+    const W = id => wfItems.find(x => x.id === id);
+    [['WF-004', 300], ['WF-003', 240], ['WF-001', 180], ['WF-002', 120]].forEach(([id, mins]) => {
+      const w = W(id); if(!w) return;
+      w.due = new Date(at(mins).getTime() + w.sla * 3600e3);
+      stampAll(() => { sendEvent(w.approver, 'approval_requested', w); sendEvent(w.requester, 'submitted', w); }, mins);
+      WA.audit.push({ts:at(mins), doc:w.doc, actor:w.requester, action:'Submitted', channel:'Web', detail:'Routed to ' + w.approver});
+    });
+    const w4 = W('WF-004'); if(w4){ stampAll(() => sendEvent(w4.approver, 'sla50', w4), 60); WA.audit.push({ts:at(60), doc:w4.doc, actor:'System', action:'SLA reminder 50%', channel:'System', detail:'to ' + w4.approver}); }
+    [['WF-005', 2000], ['WF-006', 4000], ['WF-007', 5000]].forEach(([id, mins]) => {
+      const w = W(id); if(!w) return; w.channel = 'Web'; w.decidedBy = w.approver;
+      WA.audit.push({ts:at(mins), doc:w.doc, actor:w.approver, action:w.status === 'approved' ? 'Approved' : 'Rejected', channel:'Web', detail:''});
+    });
+    WA.msgs.sort((a, b) => a.ts - b.ts); WA.audit.sort((a, b) => b.ts - a.ts);
+    WA.msgs.forEach(m => { if(m.user !== WA.persona) m.status = 'Delivered'; });
+  }
+  window.addEventListener('DOMContentLoaded', () => { try { seed(); waRender(); waProfileRender(); } catch(e){ console.error('[whatsapp]', e); } });
+})();
 </script>
 
 </body>
