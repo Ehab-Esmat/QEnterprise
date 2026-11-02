@@ -1405,6 +1405,50 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
 .wa-pf-note{font-size:12px;color:var(--text-muted,var(--mute));margin-top:10px;line-height:1.55}
 @media (max-width:1180px){.wa-sim{grid-template-columns:minmax(0,1fr)}.wa-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
+<style id="slx-css">
+/* ══ Shipments, Receipts & Lot/Expiry — PRD 2026-11-01 ══ */
+.slx-off{border:1px dashed var(--border2);border-radius:var(--r10);padding:34px;text-align:center;background:var(--surface)}
+.slx-off h3{font-size:15px;margin-bottom:6px}.slx-off p{color:var(--mute);margin-bottom:14px}
+.slx-t{width:100%;border-collapse:collapse;font-size:12.5px}
+.slx-t th{background:var(--surface3);padding:8px 10px;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--mute);text-align:left;white-space:nowrap;cursor:default}
+.slx-t td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.slx-t td.n,.slx-t th.n{text-align:right;font-variant-numeric:tabular-nums}
+.slx-t tr.sub td{background:var(--surface2);font-size:12px}
+.slx-t tr.grp td{background:var(--blue-bg);font-weight:700}
+.slx-t .fc,.slx-t .form-control{padding:5px 8px;font-size:12.5px}
+.slx-t input.form-control{min-width:70px}
+.slx-mb{padding:18px 20px;overflow-y:auto}
+.slx-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.slx-grid.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.slx-grid.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.slx-ro{background:var(--surface2)!important;color:var(--ink3)}
+.slx-chip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.slx-chip.exp{background:var(--red-bg);color:var(--red)}.slx-chip.near{background:var(--warn-bg);color:var(--warn)}
+.slx-chip.ok{background:var(--green-bg);color:var(--green)}.slx-chip.info{background:var(--blue-bg);color:var(--blue)}
+.slx-chip.mute{background:var(--surface3);color:var(--mute)}.slx-chip.vio{background:var(--violet-bg);color:var(--violet)}
+.slx-hint{font-size:11px;color:var(--mute);margin-top:3px}
+.slx-err{background:var(--red-bg);color:var(--red);border:1px solid #FECACA;border-radius:var(--r8);padding:9px 12px;font-size:12.5px;margin-bottom:12px}
+.slx-warn{background:var(--warn-bg);color:#92400E;border:1px solid #FDE68A;border-radius:var(--r8);padding:9px 12px;font-size:12.5px;margin-bottom:12px}
+.slx-ok{background:var(--green-bg);color:#166534;border:1px solid #BBF7D0;border-radius:var(--r8);padding:9px 12px;font-size:12.5px;margin-bottom:12px}
+.slx-tot{display:flex;justify-content:flex-end;gap:28px;padding:12px 4px 0;font-size:13px}
+.slx-tot b{font-variant-numeric:tabular-nums}
+.slx-sec{font-size:12px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 8px}
+.slx-x{background:none;border:none;color:var(--mute);cursor:pointer;font-size:15px;padding:2px 6px;border-radius:var(--r4)}
+.slx-x:hover{background:var(--red-bg);color:var(--red)}
+.slx-link{color:var(--blue);font-weight:700;cursor:pointer}.slx-link:hover{text-decoration:underline}
+.slx-sw{display:flex;align-items:flex-start;gap:12px;padding:14px;border:1px solid var(--border);border-radius:var(--r10);background:var(--surface2)}
+.slx-sw input{width:18px;height:18px;margin-top:2px;accent-color:var(--blue)}
+.slx-tip{position:relative;display:inline-block;width:16px;height:16px;border-radius:50%;background:var(--surface3);color:var(--mute);font-size:11px;text-align:center;line-height:16px;cursor:help}
+.slx-tip:hover::after{content:attr(data-tip);position:absolute;left:20px;top:-6px;width:280px;background:var(--navy);color:#fff;font-size:11.5px;font-weight:500;line-height:1.45;padding:8px 10px;border-radius:var(--r6);z-index:50}
+.slx-kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.slx-kpi div{border:1px solid var(--border);border-radius:var(--r8);padding:10px 12px;background:var(--surface)}
+.slx-kpi b{display:block;font-size:20px}.slx-kpi span{font-size:11.5px;color:var(--mute)}
+.slx-tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:16px;flex-wrap:wrap}
+.slx-tabs button{padding:9px 14px;font-size:13px;font-weight:600;color:var(--mute);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer}
+.slx-tabs button.on{color:var(--blue);border-bottom-color:var(--blue)}
+.slx-je td{font-size:12px}
+.slx-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--mute);margin:-4px 0 10px}
+#slx-m2{z-index:1100}
+</style>
 </head>
 <body>
 
@@ -1743,7 +1787,9 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
       <div class="nav-children" id="sales-group">
         <div class="nav-child" onclick="navigate('customers')"><span class="child-icon">👥</span> Customers</div>
         <div class="nav-child" onclick="navigate('quotations')"><span class="child-icon">📋</span> Quotation</div>
+        <div class="nav-child" data-slx-nav onclick="navigate('sales-orders')"><span class="child-icon">📝</span> Sales Orders</div>
         <div class="nav-child" onclick="navigate('invoices')"><span class="child-icon">🧾</span> Invoices</div>
+        <div class="nav-child" data-slx-nav onclick="navigate('shipments')"><span class="child-icon">📤</span> Customer Items Shipment</div>
         <div class="nav-child" onclick="navigate('installments')"><span class="child-icon">📆</span> Installments<span class="nav-badge" id="bdg-inst-overdue" style="margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9px"></span></div>
         <div class="nav-child" onclick="navigate('credit-notes')"><span class="child-icon">↩️</span> Credit Note</div>
         <div class="nav-child" onclick="navigate('customer-receipts')"><span class="child-icon">💳</span> Customer Receipt</div>
@@ -1782,7 +1828,7 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
         <div class="nav-child" onclick="navigate('simple-bills')"><span class="child-icon">📝</span> Simple Bill</div>
         <div class="nav-child" onclick="navigate('vendor-payments')"><span class="child-icon">💸</span> Vendor Payment</div>
         <div class="nav-child" onclick="navigate('purchase-returns')"><span class="child-icon">↩️</span> Purchase Return</div>
-        <div class="nav-child" onclick="navigate('vendor-receipts')"><span class="child-icon">📥</span> Vendor Receipt</div>
+        <div class="nav-child" data-slx-nav onclick="navigate('vendor-receipts')"><span class="child-icon">📥</span> Vendor Items Receipt</div>
         <div class="nav-child" onclick="navigate('price-discount')"><span class="child-icon">🏷️</span> Price &amp; Discount Schema</div>
       </div>
     </div>
@@ -1823,12 +1869,13 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
       </div>
       <div class="nav-children" id="inventory-group">
         <div class="nav-child" onclick="navigate('items')"><span class="child-icon">🏷️</span> Items</div>
-        <div class="nav-child" onclick="navigate('warehouses')"><span class="child-icon">🏢</span> Warehouses</div>
+        <div class="nav-child" onclick="navigate('warehouses')"><span class="child-icon">🏢</span> Locations</div>
         <div class="nav-child" onclick="navigate('stock-transfers')"><span class="child-icon">🔄</span> Stock Transfers</div>
         <div class="nav-child" onclick="navigate('stock-adjustments')"><span class="child-icon">⚖️</span> Stock Adjustments</div>
         <div class="nav-child" onclick="navigate('product-attributes')"><span class="child-icon">🔖</span> Product Attributes</div>
         <div class="nav-child" onclick="navigate('product-categories')"><span class="child-icon">📂</span> Product Categories</div>
         <div class="nav-child" onclick="navigate('uom')"><span class="child-icon">📏</span> Units of Measure</div>
+        <div class="nav-child" data-slx-nav onclick="navigate('lot-reports')"><span class="child-icon">🧪</span> Lot &amp; Expiry Reports</div>
       </div>
     </div>
   </div>
@@ -1879,6 +1926,7 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
       </div>
       <div class="nav-children" id="settings-group">
         <div class="nav-child" onclick="navigate('settings-general')"><span class="child-icon">🏢</span> General</div>
+        <div class="nav-child" data-slx-nav="always" onclick="navigate('settings-inventory')"><span class="child-icon">📦</span> Inventory &amp; Lots</div>
         <div class="nav-child" onclick="navigate('settings-integration')"><span class="child-icon">🔗</span> Integration</div>
         <div class="nav-child" onclick="navigate('settings-attachments')"><span class="child-icon">📎</span> Attachments</div>
         <div class="nav-child" onclick="navigate('settings-profile')"><span class="child-icon">👤</span> Profile</div>
@@ -3264,45 +3312,7 @@ body.ql-launcher-on #sidebarToggle { visibility: hidden; }
 <!-- ============================================================
      PURCHASE — VENDOR RECEIPTS
 ============================================================ -->
-<div class="panel" id="panel-vendor-receipts">
-  <div class="page-header">
-    <div>
-      <div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Procurement / <span>Vendor Receipts</span></div>
-      <div class="page-title">Vendor Receipts</div>
-      <div class="page-subtitle">Record goods received from suppliers against purchase orders</div>
-    </div>
-    <div class="page-actions">
-      <button class="btn btn-outline btn-sm" onclick="showToast('Exported to Excel','success')">⬇ Export</button>
-      <button class="btn btn-primary" onclick="openModal('modal-new-receipt')">+ New Receipt</button>
-    </div>
-  </div>
-  <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
-    <div class="stat-card"><div class="card-accent" style="background:var(--accent)"></div><div class="card-icon" style="background:#e0f2fe">📥</div><div class="card-value">18</div><div class="card-label">Total Receipts (Jun)</div><div class="card-trend trend-up">↑ 4 this week</div></div>
-    <div class="stat-card"><div class="card-accent" style="background:var(--warning)"></div><div class="card-icon" style="background:#fef3c7">⏳</div><div class="card-value">3</div><div class="card-label">Pending Inspection</div><div class="card-trend">Awaiting QC sign-off</div></div>
-    <div class="stat-card"><div class="card-accent" style="background:var(--accent2)"></div><div class="card-icon" style="background:#dcfce7">✅</div><div class="card-value">14</div><div class="card-label">Fully Received</div><div class="card-trend trend-up">On schedule</div></div>
-    <div class="stat-card"><div class="card-accent" style="background:var(--danger)"></div><div class="card-icon" style="background:#fee2e2">⚠️</div><div class="card-value">1</div><div class="card-label">Short Received</div><div class="card-trend trend-down">Variance noted</div></div>
-  </div>
-  <div class="card">
-    <div class="filter-bar">
-      <input class="filter-input" type="text" placeholder="Search receipts…" oninput="filterTable('vendor-receipts-table',this.value)">
-      <select class="filter-select"><option>All Vendors</option><option>Saudi Fabrics Co.</option><option>Al-Yamama Suppliers</option><option>Gulf Packaging Ltd.</option></select>
-      <select class="filter-select"><option>All Status</option><option>Draft</option><option>Confirmed</option><option>Short Received</option></select>
-    </div>
-    <div class="card-body no-pad">
-      <div class="table-wrapper">
-        <table id="vendor-receipts-table">
-          <thead><tr><th>Receipt #</th><th>Vendor</th><th>PO Reference</th><th>Receipt Date</th><th>Items</th><th>Total Value</th><th>Status</th><th>Actions</th></tr></thead>
-          <tbody>
-            <tr onclick="openModal('modal-receipt-detail')"><td style="font-weight:700;color:var(--accent)">VR-2026-018</td><td>Saudi Fabrics Co.</td><td>PO-2026-008</td><td>Jun 22, 2026</td><td>3 lines</td><td class="amount">SAR 24,000</td><td><span class="badge-status badge-approved">Confirmed</span></td><td onclick="event.stopPropagation()"><div class="action-group"><button class="action-btn" onclick="openModal('modal-receipt-detail')" title="View">👁</button><button class="action-btn" onclick="showToast('Bill created from receipt','success')" title="Create Bill">🧾</button><button class="action-btn" onclick="showToast('PDF printed','')">🖨</button></div></td></tr>
-            <tr onclick="openModal('modal-receipt-detail')"><td style="font-weight:700;color:var(--accent)">VR-2026-017</td><td>Al-Yamama Suppliers</td><td>PO-2026-007</td><td>Jun 18, 2026</td><td>5 lines</td><td class="amount">SAR 38,500</td><td><span class="badge-status badge-waiting">Pending Inspection</span></td><td onclick="event.stopPropagation()"><div class="action-group"><button class="action-btn" onclick="openModal('modal-receipt-detail')">👁</button><button class="action-btn" onclick="showToast('Receipt confirmed','success')">✅</button></div></td></tr>
-            <tr onclick="openModal('modal-receipt-detail')"><td style="font-weight:700;color:var(--accent)">VR-2026-016</td><td>Gulf Packaging Ltd.</td><td>PO-2026-006</td><td>Jun 15, 2026</td><td>2 lines</td><td class="amount">SAR 6,800</td><td><span class="badge-status badge-overdue">Short Received</span></td><td onclick="event.stopPropagation()"><div class="action-group"><button class="action-btn" onclick="openModal('modal-receipt-detail')">👁</button><button class="action-btn" onclick="showToast('Back-order created','')">🔄</button></div></td></tr>
-            <tr onclick="openModal('modal-receipt-detail')"><td style="font-weight:700;color:var(--accent)">VR-2026-015</td><td>Saudi Fabrics Co.</td><td>PO-2026-005</td><td>Jun 8, 2026</td><td>4 lines</td><td class="amount">SAR 15,800</td><td><span class="badge-status badge-approved">Confirmed</span></td><td onclick="event.stopPropagation()"><div class="action-group"><button class="action-btn" onclick="openModal('modal-receipt-detail')">👁</button><button class="action-btn" onclick="showToast('PDF printed','')">🖨</button></div></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="panel" id="panel-vendor-receipts"><!-- rendered by slx-js (Vendor Items Receipt, PRD 2026-11-01) --></div>
 
 <!-- ============================================================
      PURCHASE — PRICE & DISCOUNT SCHEMA
@@ -7218,7 +7228,7 @@ window.QL = (function () {
     { key:'workflow',     name:'Workflow Engine', group:'settings-group',    color:'#C2410C', badge:'bdg-notif',
       screens:['wf-board','wf-notif','wf-templates','wf-users','wa-center'] },
     { key:'settings',     name:'Settings',        group:'settings-group',    color:'#334155',
-      screens:['settings-general','settings-integration','settings-attachments','settings-profile','settings-users'] }
+      screens:['settings-general','settings-inventory','settings-integration','settings-attachments','settings-profile','settings-users'] }
   ];
   const byKey = {}; MODULES.forEach(m => byKey[m.key] = m);
   const SCREEN_MOD = {};          // screen id -> module key
@@ -7944,6 +7954,1602 @@ window.addEventListener('DOMContentLoaded', () => QL.init());
     WA.msgs.forEach(m => { if(m.user !== WA.persona) m.status = 'Delivered'; });
   }
   window.addEventListener('DOMContentLoaded', () => { try { seed(); waRender(); waProfileRender(); } catch(e){ console.error('[whatsapp]', e); } });
+})();
+</script>
+
+<script id="slx-js">
+/* ══════════════════════════════════════════════════════════════════════
+   SALES ORDERS · CUSTOMER ITEMS SHIPMENT · VENDOR ITEMS RECEIPT · LOT & EXPIRY
+   PRD 2026-11-01 (docs/prd/2026-11-01-shipment-receipt-lot-expiry-prd.md)
+   §7.1 switch + GRNI · §7.2 lot settings · §7.3 item card · §7.4 FEFO/reservation
+   §7.5 SO · §7.6 CIS · §7.7 VIR · §7.8 PO · §7.9 Bill · §7.10 other documents
+   §8 journals · §9 Product Health Check · §10 reports
+══════════════════════════════════════════════════════════════════════ */
+(function(){
+  const TODAY = '2026-11-01';
+  const VAT = 0.15;
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const n2 = v => Number(v || 0).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const qf = v => Number(v || 0).toLocaleString('en-US', {maximumFractionDigits:2});
+  const pad = (v, w) => String(v).padStart(w, '0');
+  const iso = d => d.getFullYear() + '-' + pad(d.getMonth() + 1, 2) + '-' + pad(d.getDate(), 2);
+  const dd = s => s ? new Date(s + 'T00:00:00').toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}) : '—';
+  const days = (a, b) => Math.round((new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00')) / 864e5);
+  const addShelf = (d, n, u) => {
+    const x = new Date(d + 'T00:00:00'); n = +n || 0;
+    if (u === 'Day') x.setDate(x.getDate() + n); else if (u === 'Week') x.setDate(x.getDate() + 7 * n);
+    else if (u === 'Month') x.setMonth(x.getMonth() + n); else x.setFullYear(x.getFullYear() + n);
+    return iso(x);
+  };
+  const toast = (m, t) => window.showToast(m, t || 'info');
+  const clone = o => JSON.parse(JSON.stringify(o));
+
+  /* ─── seed data ─── */
+  function seed() {
+    const S = {
+      enabled:false, locked:false,
+      perm:{override:false, health:true},
+      lot:{mode:'auto', prefix:'LOT-', next:124, expiry:true},
+      num:{
+        so: {mode:'locked', prefix:'SO-2026-',  next:3, notes:'Thank you for your order.', terms:'Delivery within 3 working days.', email:true, wf:'', header:'', footer:'', cols:{sku:true, lot:false, vat:true, discount:true}},
+        cis:{mode:'locked', prefix:'CIS-2026-', next:1, wf:'', header:'', footer:'', cols:{sku:true, lot:true, expiry:true, location:true}},
+        vir:{mode:'locked', prefix:'VIR-2026-', next:1, wf:'', header:'', footer:'', cols:{sku:true, lot:true, expiry:true, category:true}}
+      },
+      accts:[
+        {code:'2150', name:'GRNI — Goods Received Not Invoiced', type:'Liability'},
+        {code:'2155', name:'GRNI — Jeddah Branch', type:'Liability'},
+        {code:'2100', name:'Accounts Payable', type:'Liability'},
+        {code:'2300', name:'VAT Payable', type:'Liability'},
+        {code:'1310', name:'Inventory', type:'Asset'},
+        {code:'5000', name:'Cost of Goods Sold', type:'Expense'}
+      ],
+      locs:[
+        {id:'MAIN', name:'Main Warehouse', city:'Riyadh', inv:'1310 · Inventory',            grni:'2150'},
+        {id:'JED',  name:'Jeddah Branch',  city:'Jeddah', inv:'1311 · Inventory — Jeddah',   grni:''},
+        {id:'RET',  name:'Returns Area',   city:'Riyadh', inv:'1312 · Inventory — Returns',  grni:'2150'}
+      ],
+      items:[
+        {id:'PAR', sku:'SKU-50010', name:'Paracetamol 500mg — Box of 24', cat:'Pharma',        uom:'Box',    price:18,  cost:9.5, track:true,  mand:true,  shelf:{n:24, u:'Month'}, basis:'issue',  alert:60},
+        {id:'VTC', sku:'SKU-50022', name:'Vitamin C 1000mg — 30 tabs',    cat:'Pharma',        uom:'Bottle', price:45,  cost:22,  track:false, mand:false, shelf:{n:18, u:'Month'}, basis:'issue',  alert:45},
+        {id:'SAN', sku:'SKU-60005', name:'Hand Sanitizer 500ml',          cat:'Personal Care', uom:'Bottle', price:25,  cost:11,  track:true,  mand:false, shelf:{n:2,  u:'Year'},  basis:'manual', alert:30},
+        {id:'DRS', sku:'SKU-10021', name:'Dress - Red / M',               cat:'Clothing',      uom:'Piece',  price:150, cost:95,  track:false, mand:false, shelf:{n:0, u:'Month'}, basis:'manual', alert:0},
+        {id:'ABY', sku:'SKU-10045', name:'Abaya - Classic Black',         cat:'Clothing',      uom:'Piece',  price:220, cost:140, track:false, mand:false, shelf:{n:0, u:'Month'}, basis:'manual', alert:0},
+        {id:'BOX', sku:'SKU-70001', name:'Gift Box — Large',              cat:'Packaging',     uom:'Piece',  price:15,  cost:12,  track:false, mand:false, shelf:{n:0, u:'Month'}, basis:'manual', alert:0}
+      ],
+      plain:{'VTC|MAIN':500, 'DRS|MAIN':42, 'DRS|JED':8, 'ABY|MAIN':78, 'BOX|MAIN':600},
+      lots:[], ledger:[], seq:10,
+      customers:[
+        {name:'Al-Noor Pharmacy',       addr:'King Fahd Rd, Riyadh',      cur:'SAR'},
+        {name:'Riyadh Medical Center',  addr:'Olaya St, Riyadh',          cur:'SAR'},
+        {name:'Jeddah Fashion House',   addr:'Tahlia St, Jeddah',         cur:'SAR'},
+        {name:'Gulf Star Electronics',  addr:'Dammam Industrial City',    cur:'USD'}
+      ],
+      vendors:['Gulf Pharma Co.', 'CleanCare Trading', 'Saudi Fabrics Co.', 'Al-Yamama Suppliers', 'Gulf Packaging Ltd.'],
+      pos:[
+        {no:'PO-2026-010', vendor:'CleanCare Trading',   date:'2026-10-30', loc:'JED',  status:'Approved', lines:[{item:'SAN', qty:80,  price:11,  rec:0,   inv:0}]},
+        {no:'PO-2026-009', vendor:'Gulf Pharma Co.',     date:'2026-10-28', loc:'MAIN', status:'Approved', lines:[{item:'PAR', qty:100, price:10,  rec:0,   inv:0}, {item:'VTC', qty:60, price:22, rec:0, inv:0}]},
+        {no:'PO-2026-008', vendor:'Saudi Fabrics Co.',   date:'2026-06-18', loc:'MAIN', status:'Approved', lines:[{item:'DRS', qty:160, price:150, rec:0,   inv:160}]},
+        {no:'PO-2026-007', vendor:'Al-Yamama Suppliers', date:'2026-06-12', loc:'MAIN', status:'Draft',    lines:[{item:'ABY', qty:175, price:220, rec:0,   inv:0}]},
+        {no:'PO-2026-006', vendor:'Gulf Packaging Ltd.', date:'2026-05-28', loc:'MAIN', status:'Approved', lines:[{item:'BOX', qty:600, price:12,  rec:600, inv:600}]}
+      ],
+      bills:[
+        {no:'BILL-2026-022', vendor:'Saudi Fabrics Co.',   date:'2026-06-18', loc:'MAIN', status:'Approved', pay:'Unpaid',  legacy:24000,  po:'PO-2026-008', virs:[], lines:[]},
+        {no:'BILL-2026-021', vendor:'Al-Yamama Suppliers', date:'2026-06-01', loc:'MAIN', status:'Approved', pay:'Partial', legacy:38500,  po:'',            virs:[], lines:[]},
+        {no:'BILL-2026-020', vendor:'Gulf Packaging Ltd.', date:'2026-05-28', loc:'MAIN', status:'Approved', pay:'Paid',    legacy:7200,   po:'PO-2026-006', virs:[], lines:[]}
+      ],
+      billNext:23,
+      sos:[
+        {no:'SO-2026-001', customer:'Al-Noor Pharmacy',      addr:'King Fahd Rd, Riyadh', cur:'SAR', date:'2026-10-29', terms:'Net 30', loc:'MAIN', desc:'Monthly pharmacy order', status:'Draft',
+          lines:[{item:'PAR', desc:'', qty:60, price:18, disc:0, dt:'%', incl:false, del:0, inv:0, rev:0, project:''}, {item:'SAN', desc:'', qty:30, price:25, disc:5, dt:'%', incl:false, del:0, inv:0, rev:0, project:''}]},
+        {no:'SO-2026-002', customer:'Riyadh Medical Center', addr:'Olaya St, Riyadh',     cur:'SAR', date:'2026-10-31', terms:'Net 30', loc:'MAIN', desc:'Clinic restock', status:'Draft',
+          lines:[{item:'PAR', desc:'', qty:20, price:18, disc:0, dt:'%', incl:false, del:0, inv:0, rev:0, project:''}]}
+      ],
+      cis:[], virs:[], invs:[], cns:[], rets:[], trs:[], adjs:[], je:[], jeNext:49,
+      invNext:30, cnNext:5, retNext:1, trNext:8, adjNext:9, doNext:19,
+      dos:[
+        {no:'DO-2026-018', customer:'Al-Noor Trading Co.',  src:'INV2026-018', srcType:'Invoice', date:'2026-06-18', status:'Pending'},
+        {no:'DO-2026-017', customer:'Jeddah Fashion House', src:'INV2026-015', srcType:'Invoice', date:'2026-06-15', status:'Delivered'}
+      ],
+      ui:{stab:'inv', rtab:'expiry', virSel:{}, hcLoc:'ALL', rLoc:'ALL', rStatus:'ALL', rLot:'', tFrom:'2026-10-01', tTo:'2026-12-31', tOpen:{}, tLotOnly:false}
+    };
+    // lots with history (received → partly sold) so the reports have something to show
+    const L = (item, no, exp, vendor, created, recv, sold) => {
+      const id = 'L' + (++S.seq);
+      const qty = {}; Object.keys(recv).forEach(k => qty[k] = recv[k] - ((sold && sold.loc === k) ? sold.qty : 0));
+      S.lots.push({id, item, no, exp, vendor, src:'Opening balance', created, qty});
+      Object.keys(recv).forEach(k => S.ledger.push({date:created, item, lot:id, loc:k, qty:recv[k], type:'OPEN', doc:'Opening balance', party:vendor}));
+      if (sold) S.ledger.push({date:sold.date, item, lot:id, loc:sold.loc, qty:-sold.qty, type:'INV', doc:sold.doc, party:sold.cust});
+    };
+    L('PAR', 'LOT-000109', '2026-10-20', 'Gulf Pharma Co.',   '2026-03-02', {MAIN:15},  {loc:'MAIN', qty:10, date:'2026-09-01', doc:'INV2026-004', cust:'Al-Noor Pharmacy'});
+    L('PAR', 'LOT-000118', '2026-12-10', 'Gulf Pharma Co.',   '2026-06-10', {MAIN:50},  {loc:'MAIN', qty:20, date:'2026-10-12', doc:'INV2026-011', cust:'Al-Noor Pharmacy'});
+    L('PAR', 'LOT-000121', '2027-04-30', 'Gulf Pharma Co.',   '2026-08-15', {MAIN:50, JED:20});
+    L('SAN', 'LOT-000120', '2026-11-25', 'CleanCare Trading', '2026-07-01', {MAIN:60},  {loc:'MAIN', qty:20, date:'2026-10-05', doc:'INV2026-009', cust:'Riyadh Medical Center'});
+    L('SAN', 'LOT-000123', '2028-06-01', 'CleanCare Trading', '2026-09-20', {MAIN:120});
+    Object.keys(S.plain).forEach(k => { const [item, loc] = k.split('|'); S.ledger.push({date:'2026-01-01', item, lot:null, loc, qty:S.plain[k], type:'OPEN', doc:'Opening balance', party:''}); });
+    return S;
+  }
+  let S = seed();
+  let F = null;      // the document being edited in the modal
+  let V = null;      // the document being viewed
+
+  /* ─── lookups ─── */
+  const IT  = id => S.items.find(i => i.id === id);
+  const LOC = id => S.locs.find(l => l.id === id);
+  const LOT = id => S.lots.find(l => l.id === id);
+  const ACC = code => S.accts.find(a => a.code === code);
+  const SO  = no => S.sos.find(s => s.no === no);
+  const PO  = no => S.pos.find(p => p.no === no);
+  const BILL= no => S.bills.find(b => b.no === no);
+  const INV = no => S.invs.find(i => i.no === no);
+  const VIR = no => S.virs.find(v => v.no === no);
+  const CIS = no => S.cis.find(c => c.no === no);
+  const tracked = it => S.enabled && IT(it)?.track;
+
+  /* ─── quantities (§7.4 FR-4.3) ─── */
+  const lotQty = (l, loc) => l.qty[loc] || 0;
+  const onHand = (it, loc) => S.lots.filter(l => l.item === it).reduce((s, l) => s + lotQty(l, loc), 0) + (S.plain[it + '|' + loc] || 0);
+  const onHandAll = it => S.locs.reduce((s, l) => s + onHand(it, l.id), 0);
+  const soRemaining = l => Math.max(0, l.qty - l.del - l.rev);
+  const reserved = (it, loc) => !S.enabled ? 0 : S.sos.filter(s => s.status === 'Approved' && s.loc === loc)
+    .reduce((t, s) => t + s.lines.filter(l => l.item === it).reduce((a, l) => a + soRemaining(l), 0), 0);
+  const reservedAll = it => S.locs.reduce((s, l) => s + reserved(it, l.id), 0);
+  const avail = (it, loc) => onHand(it, loc) - reserved(it, loc);
+  const qtyTip = (it, loc) => `On hand ${qf(onHand(it, loc))} · Reserved ${qf(reserved(it, loc))} · Available ${qf(avail(it, loc))}`;
+
+  /* SO reservation shortfall (FR-4.8): allocate on-hand to approved SOs oldest first */
+  function shortfallSOs() {
+    const out = new Set(), left = {};
+    S.sos.filter(s => s.status === 'Approved').sort((a, b) => a.date.localeCompare(b.date) || a.no.localeCompare(b.no)).forEach(s => {
+      s.lines.forEach(l => {
+        const k = l.item + '|' + s.loc;
+        if (!(k in left)) left[k] = onHand(l.item, s.loc);
+        const need = soRemaining(l);
+        if (need > left[k]) out.add(s.no);
+        left[k] = Math.max(0, left[k] - need);
+      });
+    });
+    return out;
+  }
+
+  /* ─── lots, expiry and FEFO (FR-4.4 … FR-4.6) ─── */
+  const daysLeft = l => l.exp ? days(TODAY, l.exp) : null;
+  function lotState(l) {
+    if (!S.lot.expiry || !l.exp) return 'valid';
+    const d = daysLeft(l);
+    if (d < 0) return 'expired';
+    if (d <= (IT(l.item).alert || 0)) return 'near';
+    return 'valid';
+  }
+  function expChip(l) {
+    if (!S.lot.expiry) return '';
+    if (!l.exp) return '<span class="slx-chip mute">No expiry</span>';
+    const s = lotState(l), d = daysLeft(l);
+    if (s === 'expired') return `<span class="slx-chip exp">Expired ${-d}d ago</span>`;
+    if (s === 'near') return `<span class="slx-chip near">${d}d left</span>`;
+    return `<span class="slx-chip ok">${d}d left</span>`;
+  }
+  const fefoSort = (a, b) => (a.exp && b.exp) ? a.exp.localeCompare(b.exp) : a.exp ? -1 : b.exp ? 1 : a.created.localeCompare(b.created);
+  const lotsAt = (it, loc) => S.lots.filter(l => l.item === it && lotQty(l, loc) > 0).sort(fefoSort);
+  function fefo(it, loc, qty, allowExpired) {
+    const rows = []; let need = qty;
+    lotsAt(it, loc).filter(l => allowExpired || lotState(l) !== 'expired').forEach(l => {
+      if (need <= 0) return;
+      const take = Math.min(need, lotQty(l, loc));
+      rows.push({lot:l.id, qty:take}); need -= take;
+    });
+    return {rows, short:Math.max(0, need)};
+  }
+  function lotOptions(it, loc, sel, opts = {}) {
+    const list = (opts.list || lotsAt(it, loc));
+    return `<option value="">— Select lot —</option>` + list.map(l => {
+      const ex = lotState(l) === 'expired', dis = ex && !opts.allowExpired;
+      const q = opts.qtyOf ? opts.qtyOf(l) : lotQty(l, loc);
+      return `<option value="${l.id}"${l.id === sel ? ' selected' : ''}${dis ? ' disabled' : ''}>${esc(l.no)} · ${S.lot.expiry ? (l.exp ? 'Exp ' + dd(l.exp) : 'No expiry') + ' · ' : ''}${qf(q)} ${opts.qtyLabel || 'on hand'}${ex ? ' (expired)' : ''}</option>`;
+    }).join('');
+  }
+  function move(it, loc, lotId, delta, ref) {
+    if (lotId) { const l = LOT(lotId); l.qty[loc] = (l.qty[loc] || 0) + delta; }
+    else S.plain[it + '|' + loc] = (S.plain[it + '|' + loc] || 0) + delta;
+    S.ledger.push({date:ref.date || TODAY, item:it, lot:lotId || null, loc, qty:delta, type:ref.type, doc:ref.doc, party:ref.party || ''});
+  }
+  const nextLotNo = () => S.lot.prefix + pad(S.lot.next++, 6);
+  const lotPreview = () => S.lot.prefix + pad(S.lot.next, 6);
+  function newLot(it, no, exp, src, vendor, date) {
+    const id = 'L' + (++S.seq);
+    S.lots.push({id, item:it, no, exp:exp || '', src, vendor:vendor || '', created:date || TODAY, qty:{}});
+    return id;
+  }
+
+  /* ─── numbering, journals, workflow ─── */
+  const numPreview = k => S.num[k].prefix + pad(S.num[k].next, 3);
+  const takeNo = (k, typed) => { if (S.num[k].mode === 'editable' && typed && typed !== numPreview(k)) return typed; const n = numPreview(k); S.num[k].next++; return n; };
+  const invAcc = loc => LOC(loc).inv;
+  const grniAcc = loc => { const a = ACC(LOC(loc).grni); return a ? a.code + ' · ' + a.name : ''; };
+  function postJE(doc, desc, lines, date) {
+    const rows = lines.filter(l => Math.abs(l.dr || 0) > 0.004 || Math.abs(l.cr || 0) > 0.004).map(l => {
+      // a negative debit is shown as a credit (price differences can go either way)
+      if ((l.dr || 0) < 0) return {acc:l.acc, dr:0, cr:-l.dr};
+      if ((l.cr || 0) < 0) return {acc:l.acc, dr:-l.cr, cr:0};
+      return {acc:l.acc, dr:l.dr || 0, cr:l.cr || 0};
+    });
+    const je = {no:'JE-2026-' + pad(S.jeNext++, 3), date:date || TODAY, doc, desc, lines:rows};
+    S.je.push(je);
+    return je;
+  }
+  const jeOf = doc => S.je.filter(j => j.doc === doc);
+  function jeTable(list) {
+    if (!list.length) return '<div class="slx-hint">No journal entry for this document.</div>';
+    return list.map(je => {
+      const dr = je.lines.reduce((s, l) => s + l.dr, 0), cr = je.lines.reduce((s, l) => s + l.cr, 0);
+      return `<div class="slx-sec">${esc(je.no)} · ${dd(je.date)} · ${esc(je.desc)}</div>
+      <table class="slx-t slx-je"><thead><tr><th>Account</th><th class="n">Debit</th><th class="n">Credit</th></tr></thead><tbody>
+      ${je.lines.map(l => `<tr><td${l.cr ? ' style="padding-left:28px"' : ''}>${esc(l.acc)}</td><td class="n">${l.dr ? n2(l.dr) : ''}</td><td class="n">${l.cr ? n2(l.cr) : ''}</td></tr>`).join('')}
+      <tr><td style="font-weight:700">Total</td><td class="n" style="font-weight:700">${n2(dr)}</td><td class="n" style="font-weight:700">${n2(cr)}</td></tr></tbody></table>`;
+    }).join('');
+  }
+  const wfFor = k => S.num[k] && S.num[k].wf;
+  const lockFeature = () => { if (!S.locked) { S.locked = true; } };
+
+  /* ─── modal plumbing ─── */
+  function ensureOverlays() {
+    ['slx-m1', 'slx-m2'].forEach(id => {
+      if (document.getElementById(id)) return;
+      const o = document.createElement('div'); o.className = 'overlay'; o.id = id;
+      o.innerHTML = '<div class="modal modal-xl" id="' + id + '-box"></div>';
+      o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
+      document.body.appendChild(o);
+    });
+  }
+  function modal(title, body, foot, size, which) {
+    const id = which || 'slx-m1';
+    const box = document.getElementById(id + '-box');
+    box.className = 'modal ' + (size || 'modal-xl');
+    box.innerHTML = `<div class="modal-hd"><span class="modal-title">${title}</span><button class="mc" onclick="SLX.close('${id}')">✕</button></div>
+      <div class="slx-mb">${body}</div>${foot ? `<div class="modal-foot">${foot}</div>` : ''}`;
+    document.getElementById(id).classList.add('open');
+  }
+  const close = id => document.getElementById(id || 'slx-m1').classList.remove('open');
+  const showJE = (doc, title) => modal('Journal entry — ' + esc(doc), jeTable(jeOf(doc)), `<button class="btn btn-primary" onclick="SLX.close('slx-m2')">Done</button>`, 'modal-md', 'slx-m2');
+  const err = list => list.length ? `<div class="slx-err">${list.map(esc).join('<br>')}</div>` : '';
+
+  function setPath(obj, path, val) {
+    const ks = path.split('.'); let o = obj;
+    ks.slice(0, -1).forEach(k => o = o[k]);
+    const last = ks[ks.length - 1];
+    const cur = o[last];
+    o[last] = typeof cur === 'number' ? (val === '' ? 0 : +val) : typeof cur === 'boolean' ? !!val : val;
+  }
+
+  /* ─── line maths (SO / invoice) ─── */
+  function calc(l) {
+    const base = (+l.qty || 0) * (+l.price || 0);
+    const disc = l.dt === '%' ? base * (+l.disc || 0) / 100 : (+l.disc || 0);
+    const net = base - disc;
+    const tbv = l.incl ? net / (1 + VAT) : net;
+    const vat = tbv * VAT;
+    return {tbv, vat, amt:tbv + vat};
+  }
+  const sumCalc = lines => lines.reduce((t, l) => { const c = calc(l); t.tbv += c.tbv; t.vat += c.vat; t.amt += c.amt; return t; }, {tbv:0, vat:0, amt:0});
+  const totals = t => `<div class="slx-tot"><span>Total before VAT <b>${n2(t.tbv)}</b></span><span>VAT value <b>${n2(t.vat)}</b></span><span>Total <b>SAR ${n2(t.amt)}</b></span></div>`;
+  const badge = (txt, cls) => `<span class="badge-status ${cls}">${esc(txt)}</span>`;
+  const itemOpts = (sel, filter) => S.items.filter(filter || (() => true)).map(i => `<option value="${i.id}"${i.id === sel ? ' selected' : ''}>${esc(i.sku)} — ${esc(i.name)}</option>`).join('');
+  const locOpts = sel => S.locs.map(l => `<option value="${l.id}"${l.id === sel ? ' selected' : ''}>${esc(l.name)}</option>`).join('');
+  const custOpts = sel => S.customers.map(c => `<option${c.name === sel ? ' selected' : ''}>${esc(c.name)}</option>`).join('');
+  const vendOpts = sel => S.vendors.map(v => `<option${v === sel ? ' selected' : ''}>${esc(v)}</option>`).join('');
+  const offState = what => `<div class="slx-off"><h3>${what} is not enabled</h3><p>Turn on <b>Enable Shipments, Receipts &amp; Lot/Expiry tracking</b> in Settings → Inventory &amp; Lots to use this screen.</p><button class="btn btn-primary" onclick="navigate('settings-inventory')">Open Inventory Settings</button></div>`;
+
+  /* ══════════ SETTINGS (§7.1, §7.2, FR-5.1, FR-6.1, FR-7.1) ══════════ */
+  function missingGRNI() { return S.locs.filter(l => !ACC(l.grni)); }
+  function renderSettings() {
+    const p = document.getElementById('panel-settings-inventory'); if (!p) return;
+    const t = S.ui.stab;
+    const tab = (k, l) => `<button class="${t === k ? 'on' : ''}" onclick="SLX.stab('${k}')">${l}</button>`;
+    let body = '';
+    if (t === 'inv') {
+      const miss = missingGRNI();
+      body = `<div class="card"><div class="card-header"><h3>Inventory Settings</h3></div><div class="card-body">
+        <label class="slx-sw"><input type="checkbox" ${S.enabled ? 'checked' : ''} ${S.locked ? 'disabled' : ''} onchange="SLX.toggleFeature(this.checked)">
+          <div><div style="font-weight:700">Enable Shipments, Receipts &amp; Lot/Expiry tracking
+            <span class="slx-tip" data-tip="Activates Customer Items Shipment and Vendor Items Receipt documents, and lot number and expiry date tracking.">?</span></div>
+          <div class="slx-hint">Off by default. Turning it on requires a GRNI (Clearing) account on every location.</div>
+          ${S.locked ? '<div class="slx-hint" style="color:var(--amber);font-weight:600">🔒 Cannot be turned off after Shipments or Receipts have been approved.</div>' : ''}</div></label>
+        ${!S.enabled && miss.length ? `<div class="slx-warn" style="margin-top:12px">These locations have no GRNI account yet: ${miss.map(l => `<span class="slx-link" onclick="SLX.editLoc('${l.id}')">${esc(l.name)}</span>`).join(', ')}</div>` : ''}
+      </div></div>
+      <div class="card"><div class="card-header"><h3>Prototype controls</h3><span class="slx-hint">Not part of the product — lets the demo play each persona</span></div><div class="card-body">
+        <label style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><input type="checkbox" ${S.perm.override ? 'checked' : ''} onchange="SLX.perm('override',this.checked)"> Current user has <b>Override reserved stock</b></label>
+        <label style="display:flex;gap:8px;align-items:center;margin-bottom:12px"><input type="checkbox" ${S.perm.health ? 'checked' : ''} onchange="SLX.perm('health',this.checked)"> Current user has <b>View Product Health Check</b></label>
+        <button class="btn btn-outline btn-sm" onclick="SLX.reset()">↺ Reset demo data</button>
+      </div></div>`;
+    } else if (t === 'lot') {
+      const L = S.lot;
+      body = `<div class="card"><div class="card-header"><h3>Lot Number Settings</h3></div><div class="card-body">
+        <div class="slx-grid">
+          <div class="form-group"><label class="form-label">Mode</label>
+            <div style="display:flex;gap:14px;padding-top:6px"><label><input type="radio" name="slx-lm" ${L.mode === 'manual' ? 'checked' : ''} onchange="SLX.lotSet('mode','manual')"> Manual</label>
+            <label><input type="radio" name="slx-lm" ${L.mode === 'auto' ? 'checked' : ''} onchange="SLX.lotSet('mode','auto')"> Automatic</label></div></div>
+          <div class="form-group"><label class="form-label">Prefix ${L.mode === 'auto' ? '<span style="color:var(--red)">*</span>' : ''}</label><input class="form-control" value="${esc(L.prefix)}" onchange="SLX.lotSet('prefix',this.value)"></div>
+          <div class="form-group"><label class="form-label">Next number (Increments)</label><input class="form-control" type="number" min="1" value="${L.next}" onchange="SLX.lotSet('next',this.value)"></div>
+          <div class="form-group"><label class="form-label">Include expiry date</label><label style="padding-top:6px"><input type="checkbox" ${L.expiry ? 'checked' : ''} onchange="SLX.lotSet('expiry',this.checked)"> Track expiry dates</label></div>
+        </div>
+        <div class="slx-ok">Next lot number: <b>${L.mode === 'auto' ? esc(lotPreview()) : 'typed by the user on the Receipt (Manual mode)'}</b></div>
+      </div></div>`;
+    } else {
+      const k = t, N = S.num[k];
+      const title = {so:'Sales Order Settings', cis:'Customer Items Shipment Settings', vir:'Vendor Items Receipt Settings'}[k];
+      const tpls = (typeof wfTemplates !== 'undefined' ? wfTemplates : []).map(x => x.name);
+      body = `<div class="card"><div class="card-header"><h3>${title}</h3></div><div class="card-body">
+        <div class="slx-grid">
+          <div class="form-group"><label class="form-label">Create numbering</label>
+            <div style="display:flex;gap:14px;padding-top:6px"><label><input type="radio" name="slx-nm-${k}" ${N.mode === 'editable' ? 'checked' : ''} onchange="SLX.numSet('${k}','mode','editable')"> Editable</label>
+            <label><input type="radio" name="slx-nm-${k}" ${N.mode === 'locked' ? 'checked' : ''} onchange="SLX.numSet('${k}','mode','locked')"> Locked</label></div></div>
+          <div class="form-group"><label class="form-label">Prefix number <span style="color:var(--red)">*</span></label><input class="form-control" value="${esc(N.prefix)}" onchange="SLX.numSet('${k}','prefix',this.value)"></div>
+          <div class="form-group"><label class="form-label">Sequence number <span style="color:var(--red)">*</span></label><input class="form-control" type="number" min="1" value="${N.next}" onchange="SLX.numSet('${k}','next',this.value)"></div>
+          <div class="form-group"><label class="form-label">Approval workflow</label><select class="form-control" onchange="SLX.numSet('${k}','wf',this.value)"><option value="">None — approve directly</option>${tpls.map(n => `<option${n === N.wf ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select></div>
+        </div>
+        ${k === 'so' ? `<div class="slx-grid c2">
+          <div class="form-group"><label class="form-label">Notes</label><textarea class="form-control" rows="2" onchange="SLX.numSet('so','notes',this.value)">${esc(N.notes)}</textarea></div>
+          <div class="form-group"><label class="form-label">Terms and Conditions</label><textarea class="form-control" rows="2" onchange="SLX.numSet('so','terms',this.value)">${esc(N.terms)}</textarea></div></div>
+          <label style="display:flex;gap:8px;align-items:center;margin-bottom:12px"><input type="checkbox" ${N.email ? 'checked' : ''} onchange="SLX.numSet('so','email',this.checked)"> Automatic email to the customer on approval</label>` : ''}
+        <div class="slx-sec">Printing Format Settings</div>
+        <div class="slx-grid c2">
+          <div class="form-group"><label class="form-label">Header</label><textarea class="form-control" rows="2" placeholder="Header text" onchange="SLX.numSet('${k}','header',this.value)">${esc(N.header)}</textarea></div>
+          <div class="form-group"><label class="form-label">Footer</label><textarea class="form-control" rows="2" placeholder="Footer text" onchange="SLX.numSet('${k}','footer',this.value)">${esc(N.footer)}</textarea></div></div>
+        <div class="form-label" style="margin-bottom:6px">Select columns to display</div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">${Object.keys(N.cols).map(c => `<label><input type="checkbox" ${N.cols[c] ? 'checked' : ''} onchange="SLX.colSet('${k}','${c}',this.checked)"> ${c[0].toUpperCase() + c.slice(1)}</label>`).join('')}</div>
+        <div class="slx-hint" style="margin-top:10px">Next number: <b>${esc(numPreview(k))}</b></div>
+      </div></div>`;
+    }
+    p.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Settings / <span>Inventory &amp; Lots</span></div>
+      <div class="page-title">Inventory &amp; Lot Settings</div><div class="page-subtitle">Shipments, receipts, lot numbering and expiry tracking</div></div>
+      <div class="page-actions"><button class="btn btn-success" onclick="SLX.saveSettings()">💾 Save Changes</button></div></div>
+      <div class="slx-tabs">${tab('inv', 'Inventory Settings')}${tab('lot', 'Lot Number Settings')}${S.enabled ? tab('so', 'Sales Order Settings') + tab('cis', 'Customer Items Shipment Settings') + tab('vir', 'Vendor Items Receipt Settings') : ''}</div>${body}`;
+  }
+  function toggleFeature(on) {
+    if (!on) { if (S.locked) { toast('This setting cannot be turned off after shipments or receipts have been approved.', 'error'); } else { S.enabled = false; toast('Shipments, Receipts & Lot tracking turned off', 'warn'); } return refresh(); }
+    const miss = missingGRNI();
+    if (miss.length) { toast('Location ' + miss.map(l => l.name).join(', ') + ' has no GRNI account.', 'error'); return refresh(); }
+    S.enabled = true; toast('Shipments, Receipts & Lot/Expiry tracking enabled', 'success'); refresh();
+  }
+  function saveSettings() {
+    const t = S.ui.stab;
+    if (t === 'lot' && S.lot.mode === 'auto' && !S.lot.prefix.trim()) return toast('Prefix is required in Automatic mode', 'error');
+    if (S.num[t] && !S.num[t].prefix.trim()) return toast('Prefix number is required', 'error');
+    toast('Settings saved', 'success');
+  }
+
+  /* ══════════ LOCATIONS (FR-1.2) ══════════ */
+  function renderLocations() {
+    const p = document.getElementById('panel-warehouses'); if (!p) return;
+    p.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Inventory / <span>Locations</span></div><div class="page-title">Locations</div><div class="page-subtitle">Warehouses and their inventory accounts</div></div>
+      <div class="page-actions"><button class="btn btn-primary" onclick="SLX.editLoc('')">+ New Location</button></div></div>
+      <div class="card"><div class="card-body no-pad"><table class="slx-t"><thead><tr><th>Location</th><th>City</th><th>Inventory Asset Account</th><th>GRNI (Clearing) Account</th><th class="n">Items on hand</th><th></th></tr></thead><tbody>
+      ${S.locs.map(l => { const a = ACC(l.grni); const cnt = S.items.filter(i => onHand(i.id, l.id) > 0).length;
+        return `<tr><td style="font-weight:700">${esc(l.name)}</td><td>${esc(l.city)}</td><td>${esc(l.inv)}</td>
+        <td>${a ? esc(a.code + ' · ' + a.name) : `<span class="slx-chip ${S.enabled ? 'exp' : 'near'}">Not set${S.enabled ? ' — required' : ''}</span>`}</td><td class="n">${cnt}</td>
+        <td><button class="btn btn-outline btn-xs" onclick="SLX.editLoc('${l.id}')">Edit</button></td></tr>`; }).join('')}
+      </tbody></table></div></div>`;
+  }
+  function editLoc(id) {
+    const l = id ? clone(LOC(id)) : {id:'', name:'', city:'', inv:'1310 · Inventory', grni:''};
+    F = {kind:'loc', l};
+    const liab = S.accts.filter(a => a.type === 'Liability');
+    modal(id ? 'Edit Location — ' + esc(l.name) : 'New Location', `
+      <div class="slx-grid c2">
+        <div class="form-group"><label class="form-label">English Name *</label><input class="form-control" value="${esc(l.name)}" onchange="SLX.fv('l.name',this.value,1)"></div>
+        <div class="form-group"><label class="form-label">City</label><input class="form-control" value="${esc(l.city)}" onchange="SLX.fv('l.city',this.value,1)"></div>
+        <div class="form-group"><label class="form-label">Inventory Asset Account *</label><input class="form-control slx-ro" value="${esc(l.inv)}" readonly></div>
+        <div class="form-group"><label class="form-label">GRNI (Clearing) Account ${S.enabled ? '*' : ''}</label>
+          <select class="form-control" onchange="SLX.fv('l.grni',this.value,1)"><option value="">— Select a liability account —</option>${liab.map(a => `<option value="${a.code}"${a.code === l.grni ? ' selected' : ''}>${esc(a.code + ' · ' + a.name)}</option>`).join('')}</select>
+          <div class="slx-hint">Liability accounts only. Receipts post Cr GRNI here; Bills linked to receipts clear it.</div></div>
+      </div>`, `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-primary" onclick="SLX.saveLoc()">Save</button>`, 'modal-md');
+  }
+  function saveLoc() {
+    const l = F.l;
+    if (!l.name.trim()) return toast('English name is required', 'error');
+    if (S.enabled && !l.grni) return toast('GRNI account is required while the feature is on', 'error');
+    if (l.id) Object.assign(LOC(l.id), l); else { l.id = 'LOC' + (++S.seq); S.locs.push(l); }
+    close(); toast('Location saved', 'success'); refresh();
+  }
+
+  /* ══════════ ITEMS + item card (§7.3, FR-4.9) ══════════ */
+  function renderItems() {
+    const p = document.getElementById('panel-items'); if (!p) return;
+    const on = S.enabled;
+    p.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Inventory / <span>Items</span></div><div class="page-title">Items Catalog</div><div class="page-subtitle">Products, services and materials</div></div>
+      <div class="page-actions"><button class="btn btn-outline btn-sm" onclick="showToast('Exported','success')">⬇ Export</button><button class="btn btn-primary" onclick="showToast('New item form opened','')">+ New Item</button></div></div>
+      <div class="card"><div class="card-body no-pad"><table class="slx-t"><thead><tr><th>SKU</th><th>Item Name</th><th>Category</th><th class="n">Price (SAR)</th><th class="n">Avg cost</th><th class="n">On Hand</th>${on ? '<th class="n">Reserved</th><th class="n">Available</th><th>Lots</th>' : ''}<th></th></tr></thead><tbody>
+      ${S.items.map(i => { const oh = onHandAll(i.id), r = reservedAll(i.id);
+        return `<tr><td style="font-weight:700">${esc(i.sku)}</td><td><span class="slx-link" onclick="SLX.itemCard('${i.id}')">${esc(i.name)}</span></td><td>${esc(i.cat)}</td><td class="n">${n2(i.price)}</td><td class="n">${n2(i.cost)}</td>
+        <td class="n" style="font-weight:600">${qf(oh)}</td>${on ? `<td class="n">${qf(r)}</td><td class="n" style="font-weight:700;color:${oh - r < 0 ? 'var(--red)' : 'var(--ink)'}">${qf(oh - r)}</td>
+        <td>${i.track ? `<span class="slx-chip info">Tracked${i.mand ? ' · Mandatory' : ''}</span>` : '<span class="slx-chip mute">Not tracked</span>'}</td>` : ''}
+        <td><button class="btn btn-outline btn-xs" onclick="SLX.itemCard('${i.id}')">Open</button></td></tr>`; }).join('')}
+      </tbody></table></div></div>`;
+  }
+  function itemCard(id) {
+    const i = IT(id); F = {kind:'item', id, i:clone(i), openExp:''};
+    drawItemCard();
+  }
+  function drawItemCard() {
+    const i = F.i, on = S.enabled, auto = S.lot.mode === 'auto' && S.lot.expiry;
+    const hasMoves = S.ledger.some(m => m.item === i.id && m.lot && m.type !== 'OPEN') || S.lots.some(l => l.item === i.id && l.src !== 'Opening balance' && l.src !== 'Opening lot');
+    const lots = S.lots.filter(l => l.item === i.id && Object.values(l.qty).some(q => q > 0)).sort(fefoSort);
+    const logi = !on ? '<div class="slx-hint">Logistic Management appears when Shipments, Receipts &amp; Lot tracking is enabled.</div>' : `
+      <div class="slx-grid">
+        <div class="form-group"><label class="form-label">Track lots</label><label style="padding-top:6px"><input type="checkbox" ${i.track ? 'checked' : ''} ${i.track && hasMoves ? 'disabled' : ''} onchange="SLX.trackLots(this.checked)"> Track lot numbers</label>
+          ${i.track && hasMoves ? '<div class="slx-hint">Cannot be turned off — lot movements exist.</div>' : ''}</div>
+        ${i.track ? `<div class="form-group"><label class="form-label">Mandatory</label><label style="padding-top:6px"><input type="checkbox" ${i.mand ? 'checked' : ''} onchange="SLX.fv('i.mand',this.checked,2)"> Lot required to approve</label></div>` : ''}
+        ${i.track && auto ? `<div class="form-group"><label class="form-label">Shelf life (# of times)</label><div style="display:flex;gap:6px"><input class="form-control" type="number" min="0" style="width:80px" value="${i.shelf.n}" onchange="SLX.fv('i.shelf.n',this.value,2)">
+          <select class="form-control" onchange="SLX.fv('i.shelf.u',this.value,2)">${['Day', 'Week', 'Month', 'Year'].map(u => `<option${u === i.shelf.u ? ' selected' : ''}>${u}</option>`).join('')}</select></div><div class="slx-hint">e.g. Day 10 = 10 days, Week 5 = 5 weeks</div></div>
+          <div class="form-group"><label class="form-label">Expiry basis (Sell-to date)</label><select class="form-control" onchange="SLX.fv('i.basis',this.value,2)"><option value="issue"${i.basis === 'issue' ? ' selected' : ''}>Issue date</option><option value="manual"${i.basis === 'manual' ? ' selected' : ''}>Manual entry date</option></select>
+          <div class="slx-hint">${i.basis === 'issue' ? 'Expiry = receipt issue date + shelf life (editable)' : 'User types the expiry date'}</div></div>` : ''}
+        ${i.track && S.lot.expiry ? `<div class="form-group"><label class="form-label"># of days before alert</label><input class="form-control" type="number" min="0" value="${i.alert}" onchange="SLX.fv('i.alert',this.value,2)"><div class="slx-hint">Shown in Product Health Check</div></div>` : ''}
+      </div>
+      ${F.openExp !== '' ? `<div class="slx-warn">Turning on lot tracking creates an <b>OPENING-${esc(i.sku)}</b> lot per location with stock. Optional expiry date for it:
+        <input type="date" class="form-control" style="width:170px;display:inline-block;margin:0 8px" value="${esc(F.openExp === '-' ? '' : F.openExp)}" onchange="SLX.fv('openExp',this.value||'-',2)"> (leave empty — it sorts last in FEFO)</div>` : ''}`;
+    modal('Item — ' + esc(i.name), `
+      <div class="slx-grid">
+        <div class="form-group"><label class="form-label">SKU</label><input class="form-control slx-ro" value="${esc(i.sku)}" readonly></div>
+        <div class="form-group"><label class="form-label">Category</label><input class="form-control slx-ro" value="${esc(i.cat)}" readonly></div>
+        <div class="form-group"><label class="form-label">Unit Type</label><input class="form-control slx-ro" value="${esc(i.uom)}" readonly></div>
+        <div class="form-group"><label class="form-label">Selling Price</label><input class="form-control slx-ro" value="${n2(i.price)}" readonly></div>
+      </div>
+      <div class="slx-sec">Reorder Point &amp; quantities per location</div>
+      <table class="slx-t"><thead><tr><th>Location</th><th class="n">On hand</th>${on ? '<th class="n">Reserved</th><th class="n">Available</th>' : ''}</tr></thead><tbody>
+      ${S.locs.map(l => `<tr><td>${esc(l.name)}</td><td class="n">${qf(onHand(i.id, l.id))}</td>${on ? `<td class="n">${qf(reserved(i.id, l.id))}</td><td class="n" style="font-weight:700">${qf(avail(i.id, l.id))}</td>` : ''}</tr>`).join('')}</tbody></table>
+      <div class="slx-sec">Logistic Management</div>${logi}
+      ${on && IT(i.id).track && lots.length ? `<div class="slx-sec">Lots (FEFO order)</div><table class="slx-t"><thead><tr><th>Lot</th><th>Expiry</th><th></th>${S.locs.map(l => `<th class="n">${esc(l.name)}</th>`).join('')}<th>Source</th></tr></thead><tbody>
+        ${lots.map(l => `<tr><td style="font-weight:700"><span class="slx-link" onclick="SLX.trace('${l.id}')">${esc(l.no)}</span></td><td>${dd(l.exp)}</td><td>${expChip(l)}</td>${S.locs.map(x => `<td class="n">${qf(lotQty(l, x.id))}</td>`).join('')}<td>${esc(l.src)}</td></tr>`).join('')}</tbody></table>` : ''}`,
+      `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-primary" onclick="SLX.saveItem()">Apply Changes</button>`, 'modal-lg');
+  }
+  function trackLots(on) {
+    F.i.track = on;
+    const plainQty = S.locs.reduce((s, l) => s + (S.plain[F.i.id + '|' + l.id] || 0), 0);
+    F.openExp = on && !IT(F.id).track && plainQty > 0 ? (F.openExp || '-') : '';
+    drawItemCard();
+  }
+  function saveItem() {
+    const i = IT(F.id), was = i.track;
+    Object.assign(i, {track:F.i.track, mand:F.i.mand, shelf:F.i.shelf, basis:F.i.basis, alert:+F.i.alert});
+    if (!was && i.track) {   // FR-3.2 opening lot
+      const exp = F.openExp && F.openExp !== '-' ? F.openExp : '';
+      let made = 0;
+      S.locs.forEach(l => {
+        const k = i.id + '|' + l.id, q = S.plain[k] || 0;
+        if (q <= 0) return;
+        let lot = S.lots.find(x => x.item === i.id && x.no === 'OPENING-' + i.sku);
+        if (!lot) { const id = newLot(i.id, 'OPENING-' + i.sku, exp, 'Opening lot', '', TODAY); lot = LOT(id); }
+        lot.qty[l.id] = q; S.plain[k] = 0; made++;
+        S.ledger.push({date:TODAY, item:i.id, lot:lot.id, loc:l.id, qty:q, type:'OPEN', doc:'Opening lot', party:''});
+        S.ledger.push({date:TODAY, item:i.id, lot:null, loc:l.id, qty:-q, type:'OPEN', doc:'Opening lot', party:''});
+      });
+      if (made) toast(`OPENING-${i.sku} lot created in ${made} location(s) — no journal entry`, 'success');
+    }
+    close(); toast('Item saved', 'success'); refresh();
+  }
+
+  /* ══════════ SALES ORDER (§7.5) ══════════ */
+  function soState(s) {
+    const q = s.lines.reduce((a, l) => a + l.qty, 0), dl = s.lines.reduce((a, l) => a + l.del + l.rev, 0), iv = s.lines.reduce((a, l) => a + l.inv, 0), nq = s.lines.reduce((a, l) => a + l.qty - l.rev, 0);
+    return {del:dl <= 0 ? 'Not delivered' : dl >= q ? 'Delivered' : 'Partially delivered', inv:iv <= 0 ? 'Not invoiced' : iv >= nq ? 'Invoiced' : 'Partially invoiced'};
+  }
+  function autoClose(s) {
+    if (s.status !== 'Approved') return;
+    if (s.lines.every(l => l.del + l.rev >= l.qty && l.inv >= l.qty - l.rev)) { s.status = 'Closed'; toast(s.no + ' closed — fully delivered and invoiced', 'success'); }
+  }
+  const stBadge = st => badge(st, {Draft:'badge-draft', 'Awaiting approval':'badge-waiting', Approved:'badge-approved', Closed:'badge-paid', Cancelled:'badge-cancelled'}[st] || 'badge-draft');
+  const progBadge = t => badge(t, /^Not/.test(t) ? 'badge-draft' : /^Partially/.test(t) ? 'badge-partial' : 'badge-delivered');
+  function renderSO() {
+    const p = document.getElementById('panel-sales-orders'); if (!p) return;
+    const head = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Sales / <span>Sales Orders</span></div><div class="page-title">Sales Orders</div><div class="page-subtitle">Orders reserve stock on approval · Available = On hand − Reserved</div></div>
+      <div class="page-actions">${S.enabled ? '<button class="btn btn-primary" onclick="SLX.soNew()">+ New Sales Order</button>' : ''}</div></div>`;
+    if (!S.enabled) { p.innerHTML = head + offState('Sales Orders'); return; }
+    const sf = shortfallSOs();
+    p.innerHTML = head + `<div class="card"><div class="card-body no-pad"><table class="slx-t"><thead><tr><th>Order No.</th><th>Customer</th><th>Issue Date</th><th>Location</th><th class="n">Amount</th><th>Delivery</th><th>Invoicing</th><th>Status</th><th></th></tr></thead><tbody>
+      ${S.sos.slice().reverse().map(s => { const st = soState(s), live = s.status === 'Approved';
+        return `<tr><td><span class="slx-link" onclick="SLX.soView('${s.no}')">${esc(s.no)}</span></td><td>${esc(s.customer)}</td><td>${dd(s.date)}</td><td>${esc(LOC(s.loc).name)}</td><td class="n">SAR ${n2(sumCalc(s.lines).amt)}</td>
+        <td>${progBadge(st.del)}</td><td>${progBadge(st.inv)}</td><td>${stBadge(s.status)}${sf.has(s.no) ? ' <span class="slx-chip exp">Reservation shortfall</span>' : ''}</td>
+        <td style="white-space:nowrap"><button class="btn btn-outline btn-xs" onclick="SLX.soView('${s.no}')">👁</button>
+          ${live && s.lines.some(l => soRemaining(l) > 0) ? `<button class="btn btn-outline btn-xs" title="Create Shipment" onclick="SLX.cisNew('SO','${s.no}')">🚚</button>` : ''}
+          ${live && s.lines.some(l => l.qty - l.rev - l.inv > 0) ? `<button class="btn btn-outline btn-xs" title="Create Invoice" onclick="SLX.invFromSO('${s.no}')">🧾</button>` : ''}</td></tr>`; }).join('')}
+      </tbody></table></div></div>`;
+  }
+  function soNew() {
+    const c = S.customers[0];
+    F = {kind:'so', isNew:true, no:numPreview('so'), customer:c.name, addr:c.addr, cur:c.cur, date:TODAY, terms:'Net 30', loc:'MAIN', desc:'', status:'Draft',
+      lines:[{item:'PAR', desc:'', qty:1, price:IT('PAR').price, disc:0, dt:'%', incl:false, del:0, inv:0, rev:0, project:''}], errs:[]};
+    drawSO();
+  }
+  function soEdit(no) { F = Object.assign(clone(SO(no)), {kind:'so', isNew:false, errs:[]}); drawSO(); }
+  function drawSO() {
+    const ed = S.num.so.mode === 'editable' && F.isNew;
+    const wf = wfFor('so');
+    modal((F.isNew ? 'New Sales Order' : 'Edit Sales Order') + ' — ' + esc(F.no), err(F.errs) + `
+      <div class="slx-grid">
+        <div class="form-group"><label class="form-label">Order No.</label><input class="form-control ${ed ? '' : 'slx-ro'}" value="${esc(F.no)}" ${ed ? `onchange="SLX.fv('no',this.value)"` : 'readonly'}></div>
+        <div class="form-group"><label class="form-label">Customer *</label><div style="display:flex;gap:6px"><select class="form-control" onchange="SLX.soCust(this.value)">${custOpts(F.customer)}</select><button class="btn btn-outline btn-sm" title="Quick add customer" onclick="SLX.quickCust()">＋</button></div></div>
+        <div class="form-group"><label class="form-label">Currency</label><select class="form-control" onchange="SLX.fv('cur',this.value)">${['SAR', 'USD'].map(c => `<option${c === F.cur ? ' selected' : ''}>${c}</option>`).join('')}</select><div class="slx-hint">From the customer card</div></div>
+        <div class="form-group"><label class="form-label">Issue Date</label><input class="form-control" type="date" value="${F.date}" onchange="SLX.fv('date',this.value)"></div>
+        <div class="form-group" style="grid-column:span 2"><label class="form-label">Shipment Address</label><input class="form-control" value="${esc(F.addr)}" onchange="SLX.fv('addr',this.value)"></div>
+        <div class="form-group"><label class="form-label">Payment Terms</label><select class="form-control" onchange="SLX.fv('terms',this.value)">${['Net 30', 'Net 15', 'Immediate'].map(c => `<option${c === F.terms ? ' selected' : ''}>${c}</option>`).join('')}</select></div>
+        <div class="form-group"><label class="form-label">Location</label><select class="form-control" onchange="SLX.fv('loc',this.value)">${locOpts(F.loc)}</select></div>
+        <div class="form-group" style="grid-column:span 4"><label class="form-label">Order Description</label><input class="form-control" value="${esc(F.desc)}" onchange="SLX.fv('desc',this.value)"></div>
+      </div>
+      <div style="overflow-x:auto"><table class="slx-t"><thead><tr><th>#</th><th>Item</th><th>Description</th><th class="n">Qty</th><th class="n">Delivered</th><th class="n">Invoiced</th><th class="n">Reversed</th><th>UOM</th><th class="n">Unit price</th><th>Incl.</th><th>Discount</th><th class="n">Total before VAT</th><th class="n">VAT %</th><th class="n">VAT</th><th class="n">Amount</th><th></th></tr></thead><tbody>
+      ${F.lines.map((l, x) => { const c = calc(l), it = IT(l.item);
+        return `<tr><td>${x + 1}</td><td style="min-width:200px"><select class="form-control" onchange="SLX.soItem(${x},this.value)">${itemOpts(l.item)}</select><div class="slx-hint">${qtyTip(l.item, F.loc)}</div></td>
+        <td><input class="form-control" value="${esc(l.desc)}" placeholder="${esc(it.name)}" onchange="SLX.fv('lines.${x}.desc',this.value)"></td>
+        <td><input class="form-control" type="number" min="1" style="width:70px" value="${l.qty}" onchange="SLX.fv('lines.${x}.qty',this.value)"></td>
+        <td class="n">${qf(l.del)}</td><td class="n">${qf(l.inv)}</td><td class="n">${qf(l.rev)}</td><td>${esc(it.uom)}</td>
+        <td><input class="form-control" type="number" min="0" step="0.01" style="width:85px" value="${l.price}" onchange="SLX.fv('lines.${x}.price',this.value)"></td>
+        <td><input type="checkbox" ${l.incl ? 'checked' : ''} onchange="SLX.fv('lines.${x}.incl',this.checked)"></td>
+        <td style="white-space:nowrap"><input class="form-control" type="number" min="0" style="width:60px;display:inline-block" value="${l.disc}" onchange="SLX.fv('lines.${x}.disc',this.value)">
+          <select class="form-control" style="width:62px;display:inline-block" onchange="SLX.fv('lines.${x}.dt',this.value)"><option${l.dt === '%' ? ' selected' : ''}>%</option><option${l.dt === 'SAR' ? ' selected' : ''}>SAR</option></select></td>
+        <td class="n">${n2(c.tbv)}</td><td class="n">15%</td><td class="n">${n2(c.vat)}</td><td class="n" style="font-weight:700">${n2(c.amt)}</td>
+        <td style="white-space:nowrap"><button class="slx-x" title="Projects · Cost/Profit Centers" onclick="SLX.lineDims(${x})">⋯</button><button class="slx-x" onclick="SLX.delLine(${x})">×</button></td></tr>`; }).join('')}
+      </tbody></table></div>
+      <button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="SLX.soAddLine()">+ Add line</button>
+      ${totals(sumCalc(F.lines))}
+      <div class="slx-grid c2" style="margin-top:12px"><div class="form-group"><label class="form-label">Notes</label><textarea class="form-control slx-ro" rows="2" readonly>${esc(S.num.so.notes)}</textarea></div>
+      <div class="form-group"><label class="form-label">Terms and Conditions</label><textarea class="form-control" rows="2" readonly>${esc(S.num.so.terms)}</textarea></div></div>`,
+      `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-outline" onclick="SLX.soSave(false)">Save Draft</button><button class="btn btn-primary" onclick="SLX.soSave(true)">${wf ? 'Save & Submit for approval' : 'Save & Approve'}</button>`);
+  }
+  function soSave(approve) {
+    F.errs = [];
+    if (!F.lines.length) F.errs.push('Add at least one line.');
+    F.lines.forEach((l, x) => { if (!(l.qty > 0)) F.errs.push(`Line ${x + 1}: quantity must be greater than zero.`); });
+    if (F.errs.length) return drawSO();
+    const doc = clone(F); delete doc.kind; delete doc.isNew; delete doc.errs;
+    if (F.isNew) { doc.no = takeNo('so', F.no); S.sos.push(doc); } else Object.assign(SO(F.no), doc);
+    close();
+    if (approve) soApprove(doc.no); else { toast(doc.no + ' saved as draft', 'success'); refresh(); }
+  }
+  function soApprove(no) {
+    const s = SO(no);
+    if (s.status === 'Draft' && wfFor('so')) { s.status = 'Awaiting approval'; toast(no + ' submitted to workflow “' + wfFor('so') + '” — reserves stock on final approval', 'info'); return refresh(); }
+    s.status = 'Approved';
+    toast(no + ' approved — ' + s.lines.map(l => qf(soRemaining(l)) + ' ' + IT(l.item).uom + ' ' + IT(l.item).sku).join(', ') + ' reserved at ' + LOC(s.loc).name, 'success');
+    if (S.num.so.email) toast('Sales order emailed to ' + s.customer, 'info');
+    refresh(); if (V && V.kind === 'so' && V.no === no) soView(no);
+  }
+  function soView(no) {
+    const s = SO(no); V = {kind:'so', no}; const st = soState(s), live = s.status === 'Approved', sf = shortfallSOs().has(no);
+    modal('Sales Order — ' + esc(no), `
+      ${sf ? '<div class="slx-err">Reservation shortfall — stock reserved for this order was taken by a document approved with “Override reserved stock”.</div>' : ''}
+      <div class="slx-grid"><div><div class="form-label">Customer</div><b>${esc(s.customer)}</b><div class="slx-hint">${esc(s.addr)}</div></div><div><div class="form-label">Issue date · Terms</div>${dd(s.date)} · ${esc(s.terms)}</div>
+      <div><div class="form-label">Location</div>${esc(LOC(s.loc).name)}</div><div><div class="form-label">Status</div>${stBadge(s.status)} ${progBadge(st.del)} ${progBadge(st.inv)}</div></div>
+      ${s.desc ? `<div class="slx-hint" style="margin-bottom:10px">${esc(s.desc)}</div>` : ''}
+      <table class="slx-t"><thead><tr><th>#</th><th>Item</th><th class="n">Qty</th><th class="n">Delivered</th><th class="n">Invoiced</th><th class="n">Reversed</th><th class="n">Reserved now</th><th>UOM</th><th class="n">Unit price</th><th class="n">Amount</th><th></th></tr></thead><tbody>
+      ${s.lines.map((l, x) => `<tr><td>${x + 1}</td><td>${esc(IT(l.item).name)}<div class="slx-hint">${qtyTip(l.item, s.loc)}</div></td><td class="n">${qf(l.qty)}</td><td class="n">${qf(l.del)}</td><td class="n">${qf(l.inv)}</td><td class="n">${qf(l.rev)}</td>
+        <td class="n" style="font-weight:700">${live ? qf(soRemaining(l)) : '—'}</td><td>${esc(IT(l.item).uom)}</td><td class="n">${n2(l.price)}</td><td class="n">${n2(calc(l).amt)}</td>
+        <td>${live && soRemaining(l) > 0 ? `<button class="btn btn-outline btn-xs" onclick="SLX.soReverse(${x})">Reverse remaining qty</button>` : ''}</td></tr>`).join('')}
+      </tbody></table>${totals(sumCalc(s.lines))}
+      <div class="slx-sec">Linked documents</div><div class="slx-hint">${[...S.cis.filter(c => c.srcNo === no).map(c => `<span class="slx-link" onclick="SLX.cisView('${c.no}')">${c.no}</span>`), ...S.invs.filter(i => i.so === no).map(i => `<span class="slx-link" onclick="SLX.invView('${i.no}')">${i.no}</span>`)].join(' · ') || 'None yet'}</div>`,
+      `${s.status === 'Draft' ? `<button class="btn btn-outline" onclick="SLX.soEdit('${no}')">Edit</button>` : ''}
+       ${['Draft', 'Approved', 'Awaiting approval'].includes(s.status) ? `<button class="btn btn-ghost" onclick="SLX.soCancel('${no}')">Cancel order</button>` : ''}
+       <button class="btn btn-outline" onclick="showToast('Sales order PDF generated','info')">🖨 Print</button>
+       ${s.status === 'Draft' ? `<button class="btn btn-primary" onclick="SLX.soApprove('${no}')">${wfFor('so') ? 'Submit for approval' : 'Approve'}</button>` : ''}
+       ${s.status === 'Awaiting approval' ? `<button class="btn btn-primary" onclick="SLX.soFinal('${no}')">Final approval</button>` : ''}
+       ${live && s.lines.some(l => soRemaining(l) > 0) ? `<button class="btn btn-teal" onclick="SLX.cisNew('SO','${no}')">🚚 Create Shipment</button>` : ''}
+       ${live && s.lines.some(l => l.qty - l.rev - l.inv > 0) ? `<button class="btn btn-primary" onclick="SLX.invFromSO('${no}')">🧾 Create Invoice</button>` : ''}`);
+  }
+  function soReverse(x) {
+    const s = SO(V.no), l = s.lines[x], max = soRemaining(l);
+    const v = prompt(`Reverse remaining quantity for ${IT(l.item).name} (max ${max}):`, max);
+    if (v === null) return;
+    const q = +v; if (!(q > 0) || q > max) return toast(`Quantity exceeds the remaining quantity (${max}).`, 'error');
+    l.rev += q; toast(`${q} reversed — reservation released`, 'success'); autoClose(s); refresh(); soView(s.no);
+  }
+  function soCancel(no) { const s = SO(no); s.status = 'Cancelled'; toast(no + ' cancelled — reservation released', 'warn'); close(); refresh(); }
+
+  /* ══════════ CUSTOMER ITEMS SHIPMENT (§7.6) ══════════ */
+  function shipSources() {
+    const so = S.sos.filter(s => s.status === 'Approved' && s.lines.some(l => soRemaining(l) > 0)).map(s => ({type:'SO', no:s.no, label:s.no + ' — ' + s.customer}));
+    const inv = S.invs.filter(i => i.status === 'Approved' && i.noStock && !i.so && i.lines.some(l => l.qty - l.shipped > 0)).map(i => ({type:'INV', no:i.no, label:i.no + ' — ' + i.customer + ' (deliver later)'}));
+    return {so, inv};
+  }
+  function renderCIS() {
+    const p = document.getElementById('panel-shipments'); if (!p) return;
+    const head = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Sales / <span>Customer Items Shipment</span></div><div class="page-title">Customer Items Shipment</div><div class="page-subtitle">Ships stock against a Sales Order or a deliver-later invoice · lots picked by FEFO</div></div>
+      <div class="page-actions">${S.enabled ? '<button class="btn btn-primary" onclick="SLX.cisNew()">+ New Shipment</button>' : ''}</div></div>`;
+    if (!S.enabled) { p.innerHTML = head + offState('Customer Items Shipment'); return; }
+    p.innerHTML = head + `<div class="card"><div class="card-body no-pad">${S.cis.length ? `<table class="slx-t"><thead><tr><th>Shipment No.</th><th>Customer</th><th>Source</th><th>Issue Date</th><th>Movement Date</th><th>Location</th><th class="n">Qty</th><th>Status</th><th></th></tr></thead><tbody>
+      ${S.cis.slice().reverse().map(c => `<tr><td><span class="slx-link" onclick="SLX.cisView('${c.no}')">${esc(c.no)}</span></td><td>${esc(c.customer)}</td><td>${esc(c.srcNo)}</td><td>${dd(c.date)}</td><td>${dd(c.mdate)}</td><td>${esc(LOC(c.loc).name)}</td>
+        <td class="n">${qf(c.lines.reduce((a, l) => a + l.qty, 0))}</td><td>${stBadge(c.status)}</td><td><button class="btn btn-outline btn-xs" onclick="SLX.cisView('${c.no}')">👁</button></td></tr>`).join('')}</tbody></table>`
+      : '<div class="slx-off" style="border:none"><h3>No shipments yet</h3><p>Create one from an approved Sales Order (🚚) or with + New Shipment.</p></div>'}</div></div>`;
+  }
+  function cisNew(type, no) {
+    F = {kind:'cis', no:numPreview('cis'), srcType:type || 'SO', srcNo:'', date:TODAY, mdate:'', customer:'', addr:'', loc:'', lines:[], errs:[], warn:[]};
+    if (no) cisLoad(no); else drawCIS();
+  }
+  function cisLoad(no) {
+    F.srcNo = no; F.lines = []; F.errs = []; F.warn = [];
+    if (!no) return drawCIS();
+    const src = F.srcType === 'SO' ? SO(no) : INV(no);
+    Object.assign(F, {customer:src.customer, addr:(S.customers.find(c => c.name === src.customer) || {}).addr || src.addr || '', loc:src.loc, mdate:src.date});
+    src.lines.forEach((l, x) => {
+      const rem = F.srcType === 'SO' ? soRemaining(l) : l.qty - l.shipped;
+      if (rem <= 0) return;
+      if (tracked(l.item)) {
+        const r = fefo(l.item, src.loc, rem, false);
+        r.rows.forEach(row => F.lines.push({item:l.item, src:x, qty:row.qty, lot:row.lot, sug:row.lot}));
+        if (r.short) { F.lines.push({item:l.item, src:x, qty:r.short, lot:'', sug:''}); F.warn.push(`${IT(l.item).name}: lot quantity is short by ${qf(r.short)} — save as draft or reduce the quantity.`); }
+      } else F.lines.push({item:l.item, src:x, qty:rem, lot:'', sug:''});
+    });
+    drawCIS();
+  }
+  function cisRemaining(src) {
+    const d = F.srcType === 'SO' ? SO(F.srcNo) : INV(F.srcNo);
+    const l = d.lines[src]; return F.srcType === 'SO' ? soRemaining(l) : l.qty - l.shipped;
+  }
+  function drawCIS() {
+    const srcs = shipSources(), ed = S.num.cis.mode === 'editable';
+    const list = F.srcType === 'SO' ? srcs.so : srcs.inv;
+    const rows = F.lines.map((l, x) => {
+      const it = IT(l.item), lot = l.lot && LOT(l.lot), tr = tracked(l.item);
+      return `<tr><td>${x + 1}</td><td class="slx-ro">${esc(it.name)}</td><td class="slx-ro">${esc(it.sku)}</td><td>${esc(it.uom)}</td>
+        <td><input class="form-control" type="number" min="0" style="width:75px" value="${l.qty}" onchange="SLX.fv('lines.${x}.qty',this.value)"></td>
+        <td style="min-width:270px">${tr ? `<select class="form-control" onchange="SLX.fv('lines.${x}.lot',this.value)">${lotOptions(l.item, F.loc, l.lot)}</select>
+          ${l.lot && l.sug && l.lot !== l.sug ? '<span class="slx-chip vio" style="margin-top:4px">FEFO overridden</span>' : ''}${it.mand ? '' : '<div class="slx-hint">Optional — FEFO fills it on approval</div>'}` : '<span class="slx-hint">Not lot-tracked</span>'}</td>
+        <td class="slx-ro">${lot ? dd(lot.exp) + ' ' + expChip(lot) : '—'}</td><td><button class="slx-x" onclick="SLX.delLine(${x})">×</button></td></tr>`;
+    }).join('');
+    const groups = [...new Set(F.lines.map(l => l.src))].map(sx => {
+      const ls = F.lines.filter(l => l.src === sx), rem = cisRemaining(sx), tot = ls.reduce((a, l) => a + (+l.qty || 0), 0);
+      return `<span class="slx-chip ${tot > rem ? 'exp' : 'info'}">${esc(IT(ls[0].item).sku)}: ${qf(tot)} of ${qf(rem)} remaining</span> <button class="btn btn-ghost btn-xs" onclick="SLX.cisFefo(${sx})">↻ Re-apply FEFO</button>`;
+    }).join(' ');
+    modal('New Customer Items Shipment — ' + esc(F.no), err(F.errs) + (F.warn.length ? `<div class="slx-warn">${F.warn.map(esc).join('<br>')}</div>` : '') + `
+      <div class="slx-grid">
+        <div class="form-group"><label class="form-label">Shipment No.</label><input class="form-control ${ed ? '' : 'slx-ro'}" value="${esc(F.no)}" ${ed ? `onchange="SLX.fv('no',this.value)"` : 'readonly'}></div>
+        <div class="form-group"><label class="form-label">Source</label><select class="form-control" onchange="SLX.cisType(this.value)"><option value="SO"${F.srcType === 'SO' ? ' selected' : ''}>Sales Order No.</option><option value="INV"${F.srcType === 'INV' ? ' selected' : ''}>Sales Invoice No.</option></select></div>
+        <div class="form-group" style="grid-column:span 2"><label class="form-label">${F.srcType === 'SO' ? 'Sales Order No.' : 'Sales Invoice No.'} *</label><select class="form-control" onchange="SLX.cisLoad(this.value)"><option value="">— Select —</option>${list.map(o => `<option value="${o.no}"${o.no === F.srcNo ? ' selected' : ''}>${esc(o.label)}</option>`).join('')}</select>
+          <div class="slx-hint">${F.srcType === 'SO' ? 'Approved orders with quantity left to ship' : 'Only invoices that did not move stock (marked Deliver later)'}</div></div>
+        <div class="form-group"><label class="form-label">Issue Date</label><input class="form-control" type="date" value="${F.date}" onchange="SLX.fv('date',this.value)"></div>
+        <div class="form-group"><label class="form-label">Movement Date</label><input class="form-control" type="date" value="${F.mdate}" onchange="SLX.fv('mdate',this.value)"></div>
+        <div class="form-group"><label class="form-label">Customer</label><input class="form-control slx-ro" value="${esc(F.customer)}" readonly></div>
+        <div class="form-group"><label class="form-label">Location</label><input class="form-control slx-ro" value="${F.loc ? esc(LOC(F.loc).name) : ''}" readonly></div>
+        <div class="form-group" style="grid-column:span 4"><label class="form-label">Customer Address</label><input class="form-control" value="${esc(F.addr)}" onchange="SLX.fv('addr',this.value)"></div>
+      </div>
+      ${F.lines.length ? `<div style="margin-bottom:8px">${groups}</div><table class="slx-t"><thead><tr><th>#</th><th>Item</th><th>SKU</th><th>UOM</th><th>Movement Qty</th><th>Lot number</th><th>Expiry Date</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+      <div class="slx-legend"><span>Lots sorted by FEFO — earliest expiry first; expired lots cannot be selected.</span></div>` : '<div class="slx-hint">Select a source document to load its lines.</div>'}`,
+      `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-outline" onclick="SLX.cisSave(false)">Save Draft</button><button class="btn btn-primary" onclick="SLX.cisSave(true)">${wfFor('cis') ? 'Save & Submit' : 'Save & Approve'}</button>`);
+  }
+  function cisFefo(sx) {
+    const rem = cisRemaining(sx), it = F.lines.find(l => l.src === sx).item;
+    const want = Math.min(rem, F.lines.filter(l => l.src === sx).reduce((a, l) => a + (+l.qty || 0), 0)) || rem;
+    const keep = F.lines.filter(l => l.src !== sx);
+    if (tracked(it)) { const r = fefo(it, F.loc, want, false); r.rows.forEach(row => keep.push({item:it, src:sx, qty:row.qty, lot:row.lot, sug:row.lot})); if (r.short) keep.push({item:it, src:sx, qty:r.short, lot:'', sug:''}); }
+    else keep.push({item:it, src:sx, qty:want, lot:'', sug:''});
+    F.lines = keep.sort((a, b) => a.src - b.src); drawCIS();
+  }
+  // shared outgoing-lot validation (CIS, invoice, transfer, return)
+  function checkOut(lines, loc, opts) {
+    const errs = [], use = {};
+    lines.forEach((l, x) => {
+      const it = IT(l.item), q = +l.qty || 0;
+      if (q <= 0) return;
+      if (tracked(l.item)) {
+        if (!l.lot) {
+          if (it.mand) { errs.push(`Line ${x + 1}: Lot number is required for this item.`); return; }
+          const r = fefo(l.item, loc, q, opts.allowExpired);   // non-mandatory: FEFO fills it silently
+          if (r.short) { errs.push(`Line ${x + 1}: Lot quantity is short by ${qf(r.short)}.`); return; }
+          l.autoRows = r.rows; r.rows.forEach(rw => use[rw.lot] = (use[rw.lot] || 0) + rw.qty); return;
+        }
+        const lot = LOT(l.lot);
+        if (lotState(lot) === 'expired' && !opts.allowExpired) errs.push(`Line ${x + 1}: Lot ${lot.no} expired on ${dd(lot.exp)} and cannot be sold.`);
+        use[l.lot] = (use[l.lot] || 0) + q;
+      }
+    });
+    Object.keys(use).forEach(id => { const l = LOT(id), have = lotQty(l, loc); if (use[id] > have) errs.push(`Lot ${l.no}: lot quantity is short by ${qf(use[id] - have)}.`); });
+    if (opts.checkAvail) {
+      const need = {};
+      lines.forEach(l => need[l.item] = (need[l.item] || 0) + (+l.qty || 0));
+      Object.keys(need).forEach(it => {
+        const a = avail(it, loc), r = reserved(it, loc);
+        if (need[it] > a) {
+          if (need[it] > onHand(it, loc)) errs.push(`${IT(it).name}: only ${qf(onHand(it, loc))} on hand.`);
+          else if (!S.perm.override) errs.push(`${IT(it).name}: Available quantity is ${qf(a)}. ${qf(r)} units are reserved for sales orders.`);
+          else opts.overrides.push(`${IT(it).name}: takes ${qf(need[it] - a)} from reserved stock (Override reserved stock).`);
+        }
+      });
+    }
+    return errs;
+  }
+  function expandLots(lines) {   // turn auto-filled rows into one line per lot
+    const out = [];
+    lines.forEach(l => { if (l.autoRows) l.autoRows.forEach(r => out.push(Object.assign({}, l, {lot:r.lot, qty:r.qty, autoRows:null}))); else if ((+l.qty || 0) > 0) out.push(l); });
+    return out;
+  }
+  function cisSave(approve) {
+    F.errs = [];
+    if (!F.srcNo) F.errs.push('Select a Sales Order or Sales Invoice.');
+    [...new Set(F.lines.map(l => l.src))].forEach(sx => {
+      const rem = cisRemaining(sx), tot = F.lines.filter(l => l.src === sx).reduce((a, l) => a + (+l.qty || 0), 0);
+      if (tot > rem) F.errs.push(`${IT(F.lines.find(l => l.src === sx).item).name}: Quantity exceeds the remaining quantity (${qf(rem)}).`);
+    });
+    if (!F.lines.some(l => +l.qty > 0)) F.errs.push('Nothing to ship.');
+    const overrides = [];
+    if (approve && !F.errs.length) {
+      const srcInv = F.srcType === 'INV' ? INV(F.srcNo) : null;
+      F.errs = checkOut(F.lines, F.loc, {allowExpired:false, checkAvail:!!srcInv && !srcInv.so, overrides});
+    }
+    if (F.errs.length) return drawCIS();
+    if (overrides.length && !confirm(overrides.join('\n') + '\n\nApprove anyway?')) return;
+    const doc = {no:takeNo('cis', F.no), srcType:F.srcType, srcNo:F.srcNo, date:F.date, mdate:F.mdate || F.date, customer:F.customer, addr:F.addr, loc:F.loc,
+      lines:(approve ? expandLots(F.lines) : F.lines).map(l => ({item:l.item, src:l.src, qty:+l.qty, lot:l.lot || '', sug:l.sug || ''})), status:'Draft'};
+    S.cis.push(doc); close();
+    if (approve) cisApprove(doc.no); else { toast(doc.no + ' saved as draft', 'success'); refresh(); }
+  }
+  function cisApprove(no) {
+    const c = CIS(no);
+    if (c.status === 'Draft' && wfFor('cis')) { c.status = 'Awaiting approval'; toast(no + ' submitted — stock moves on final approval', 'info'); return refresh(); }
+    const errs = checkOut(c.lines, c.loc, {allowExpired:false, checkAvail:false, overrides:[]});   // drafts are re-checked on approval
+    if (errs.length) { toast(errs[0], 'error'); return; }
+    c.lines = expandLots(c.lines);
+    const src = c.srcType === 'SO' ? SO(c.srcNo) : INV(c.srcNo);
+    let cost = 0;
+    c.lines.forEach(l => {
+      move(l.item, c.loc, tracked(l.item) ? l.lot : null, -l.qty, {date:c.mdate, type:'CIS', doc:c.no, party:c.customer});
+      cost += l.qty * IT(l.item).cost;
+      if (c.srcType === 'SO') src.lines[l.src].del += l.qty; else src.lines[l.src].shipped += l.qty;
+    });
+    c.status = 'Approved'; lockFeature();
+    postJE(c.no, 'Customer items shipment — ' + c.customer, [{acc:'5000 · Cost of Goods Sold', dr:cost}, {acc:invAcc(c.loc), cr:cost}], c.mdate);
+    if (c.srcType === 'SO') autoClose(src);
+    toast(no + ' approved — stock deducted per lot, COGS posted', 'success'); refresh(); showJE(no);
+  }
+  function cisView(no) {
+    const c = CIS(no); V = {kind:'cis', no};
+    modal('Customer Items Shipment — ' + esc(no), `
+      <div class="slx-grid"><div><div class="form-label">Customer</div><b>${esc(c.customer)}</b><div class="slx-hint">${esc(c.addr)}</div></div><div><div class="form-label">Source</div>${esc(c.srcNo)}</div>
+      <div><div class="form-label">Issue · Movement date</div>${dd(c.date)} · ${dd(c.mdate)}</div><div><div class="form-label">Location · Status</div>${esc(LOC(c.loc).name)} ${stBadge(c.status)}</div></div>
+      <table class="slx-t"><thead><tr><th>#</th><th>Item</th><th>UOM</th><th class="n">Movement Qty</th><th>Lot number</th><th>Expiry Date</th></tr></thead><tbody>
+      ${c.lines.map((l, x) => { const lot = l.lot && LOT(l.lot); return `<tr><td>${x + 1}</td><td>${esc(IT(l.item).name)}</td><td>${esc(IT(l.item).uom)}</td><td class="n">${qf(l.qty)}</td>
+        <td>${lot ? `<span class="slx-link" onclick="SLX.trace('${lot.id}')">${esc(lot.no)}</span>${l.sug && l.sug !== l.lot ? ' <span class="slx-chip vio">FEFO overridden</span>' : ''}` : '—'}</td><td>${lot ? dd(lot.exp) : '—'}</td></tr>`; }).join('')}</tbody></table>
+      ${c.status === 'Approved' ? '<div class="slx-sec">Journal</div>' + jeTable(jeOf(no)) : ''}
+      ${S.dos.filter(d => d.src === no).length ? `<div class="slx-sec">Delivery Orders</div>${S.dos.filter(d => d.src === no).map(d => esc(d.no)).join(', ')}` : ''}`,
+      `<button class="btn btn-outline" onclick="showToast('Delivery note with lots and expiry dates printed','info')">🖨 Print</button>
+       ${c.status === 'Draft' ? `<button class="btn btn-primary" onclick="SLX.close();SLX.cisApprove('${no}')">${wfFor('cis') ? 'Submit for approval' : 'Approve'}</button>` : ''}
+       ${c.status === 'Awaiting approval' ? `<button class="btn btn-primary" onclick="SLX.close();SLX.cisApprove('${no}')">Final approval</button>` : ''}
+       ${c.status === 'Approved' ? `<button class="btn btn-teal" onclick="SLX.doFromCIS('${no}')">🚚 Create Delivery Order</button>` : ''}`);
+  }
+  function doFromCIS(no) {
+    const c = CIS(no);
+    F = {kind:'do', src:no, customer:c.customer, phone:'+966 5', addr:c.addr, driver:'Unassigned', pay:'Prepaid', date:TODAY};
+    modal('New Delivery Order — from ' + esc(no), `
+      <div class="slx-grid c3"><div class="form-group"><label class="form-label">Recipient Name *</label><input class="form-control" value="${esc(F.customer)}" onchange="SLX.fv('customer',this.value,1)"></div>
+      <div class="form-group"><label class="form-label">Recipient Phone *</label><input class="form-control" value="${esc(F.phone)}" onchange="SLX.fv('phone',this.value,1)"></div>
+      <div class="form-group"><label class="form-label">Delivery Date</label><input class="form-control" type="date" value="${F.date}" onchange="SLX.fv('date',this.value,1)"></div>
+      <div class="form-group" style="grid-column:span 2"><label class="form-label">Address *</label><input class="form-control" value="${esc(F.addr)}" onchange="SLX.fv('addr',this.value,1)"></div>
+      <div class="form-group"><label class="form-label">Payment Method *</label><select class="form-control" onchange="SLX.fv('pay',this.value,1)"><option>Prepaid</option><option>Cash on delivery</option></select></div></div>
+      <div class="slx-sec">Items (copied from the shipment)</div><table class="slx-t"><thead><tr><th>Item</th><th class="n">Qty</th><th>Lot</th><th>Expiry</th></tr></thead><tbody>
+      ${c.lines.map(l => { const lot = l.lot && LOT(l.lot); return `<tr><td>${esc(IT(l.item).name)}</td><td class="n">${qf(l.qty)}</td><td>${lot ? esc(lot.no) : '—'}</td><td>${lot ? dd(lot.exp) : '—'}</td></tr>`; }).join('')}</tbody></table>`,
+      `<button class="btn btn-ghost" onclick="SLX.close('slx-m2')">Cancel</button><button class="btn btn-primary" onclick="SLX.saveDO()">Create Delivery Order</button>`, 'modal-lg', 'slx-m2');
+  }
+  function saveDO() {
+    const no = 'DO-2026-' + pad(S.doNext++, 3);
+    S.dos.unshift({no, customer:F.customer, src:F.src, srcType:'Customer Items Shipment', date:F.date, status:'Pending'});
+    close('slx-m2'); close(); toast(no + ' created from ' + F.src, 'success'); refresh(); navigate('delivery-orders');
+  }
+  function renderDO() {
+    const p = document.getElementById('panel-delivery-orders'); if (!p) return;
+    p.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Sales / <span>Delivery Orders</span></div><div class="page-title">Delivery Orders</div><div class="page-subtitle">Logistics: recipient, driver and payment on delivery${S.enabled ? ' · create from an Invoice or a Customer Items Shipment' : ''}</div></div>
+      <div class="page-actions"><button class="btn btn-primary" onclick="showToast('New delivery order','')">+ New DO</button></div></div>
+      <div class="card"><div class="card-body no-pad"><table class="slx-t"><thead><tr><th>DO #</th><th>Customer</th><th>Source</th><th>Source type</th><th>Date</th><th>Status</th></tr></thead><tbody>
+      ${S.dos.map(d => `<tr><td style="font-weight:700;color:var(--accent)">${esc(d.no)}</td><td>${esc(d.customer)}</td><td>${d.srcType === 'Invoice' ? esc(d.src) : `<span class="slx-link" onclick="SLX.cisView('${d.src}')">${esc(d.src)}</span>`}</td><td>${esc(d.srcType)}</td><td>${dd(d.date)}</td><td>${badge(d.status, d.status === 'Delivered' ? 'badge-delivered' : 'badge-waiting')}</td></tr>`).join('')}
+      </tbody></table></div></div>`;
+  }
+
+  /* ══════════ VENDOR ITEMS RECEIPT (§7.7) ══════════ */
+  function recvSources() {
+    const po = S.pos.filter(p => p.status === 'Approved' && p.lines.some(l => l.qty - l.rec > 0)).map(p => ({no:p.no, label:p.no + ' — ' + p.vendor + ' · ' + LOC(p.loc).name}));
+    const bill = S.bills.filter(b => b.status === 'Approved' && b.receiveLater && b.lines.some(l => l.qty - l.rec > 0)).map(b => ({no:b.no, label:b.no + ' — ' + b.vendor + ' (receive later)'}));
+    return {po, bill};
+  }
+  const virValue = v => v.lines.reduce((a, l) => a + l.qty * l.price, 0);
+  const virBilled = v => { const q = v.lines.reduce((a, l) => a + l.qty, 0), b = v.lines.reduce((a, l) => a + l.billed, 0); return b <= 0 ? 'No' : b >= q ? 'Yes' : 'Partial'; };
+  function renderVIR() {
+    const p = document.getElementById('panel-vendor-receipts'); if (!p) return;
+    const sel = Object.keys(S.ui.virSel).filter(k => S.ui.virSel[k]);
+    const head = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Procurement / <span>Vendor Items Receipt</span></div><div class="page-title">Vendor Items Receipt</div><div class="page-subtitle">Receive against a Purchase Order or a receive-later Bill · Dr Inventory / Cr GRNI</div></div>
+      <div class="page-actions">${S.enabled ? `<button class="btn btn-outline" ${sel.length ? '' : 'disabled style="opacity:.5"'} onclick="SLX.convertToBill()">🧾 Convert to Purchase Invoice${sel.length ? ' (' + sel.length + ')' : ''}</button><button class="btn btn-primary" onclick="SLX.virNew()">+ New Receipt</button>` : ''}</div></div>`;
+    if (!S.enabled) { p.innerHTML = head + offState('Vendor Items Receipt'); return; }
+    p.innerHTML = head + `<div class="card"><div class="card-body no-pad">${S.virs.length ? `<table class="slx-t"><thead><tr><th></th><th>Receipt No.</th><th>Vendor</th><th>Source</th><th>Issue Date</th><th>Movement Date</th><th>Location</th><th class="n">Value</th><th>Status</th><th>Billed</th><th></th></tr></thead><tbody>
+      ${S.virs.slice().reverse().map(v => { const b = virBilled(v), can = v.status === 'Approved' && b !== 'Yes';
+        return `<tr><td>${can ? `<input type="checkbox" ${S.ui.virSel[v.no] ? 'checked' : ''} onchange="SLX.virPick('${v.no}',this.checked)">` : ''}</td><td><span class="slx-link" onclick="SLX.virView('${v.no}')">${esc(v.no)}</span></td><td>${esc(v.vendor)}</td><td>${esc(v.srcNo)}</td><td>${dd(v.date)}</td><td>${dd(v.mdate)}</td><td>${esc(LOC(v.loc).name)}</td>
+        <td class="n">SAR ${n2(virValue(v))}</td><td>${stBadge(v.status)}</td><td>${badge(b, b === 'Yes' ? 'badge-paid' : b === 'Partial' ? 'badge-partial' : 'badge-draft')}</td><td><button class="btn btn-outline btn-xs" onclick="SLX.virView('${v.no}')">👁</button></td></tr>`; }).join('')}
+      </tbody></table>` : '<div class="slx-off" style="border:none"><h3>No receipts yet</h3><p>Create one from an approved Purchase Order (📥) or with + New Receipt.</p></div>'}</div></div>`;
+  }
+  function virNew(type, no) {
+    F = {kind:'vir', no:numPreview('vir'), srcType:type || 'PO', srcNo:'', date:TODAY, mdate:'', vendor:'', loc:'', lines:[], errs:[]};
+    if (no) virLoad(no); else drawVIR();
+  }
+  function expDefault(it, date) {
+    const i = IT(it);
+    return S.lot.expiry && i.track && S.lot.mode === 'auto' && i.basis === 'issue' && i.shelf.n > 0 ? addShelf(date, i.shelf.n, i.shelf.u) : '';
+  }
+  function virLoad(no) {
+    F.srcNo = no; F.lines = []; F.errs = [];
+    if (!no) return drawVIR();
+    const src = F.srcType === 'PO' ? PO(no) : BILL(no);
+    Object.assign(F, {vendor:src.vendor, loc:src.loc, mdate:src.date});
+    src.lines.forEach((l, x) => {
+      const rem = l.qty - l.rec; if (rem <= 0) return;
+      F.lines.push({item:l.item, src:x, qty:rem, lotNo:'', exp:expDefault(l.item, F.date), expAuto:true, price:l.price});
+    });
+    drawVIR();
+  }
+  function drawVIR() {
+    const srcs = recvSources(), list = F.srcType === 'PO' ? srcs.po : srcs.bill, ed = S.num.vir.mode === 'editable', auto = S.lot.mode === 'auto';
+    let gen = S.lot.next;
+    const rows = F.lines.map((l, x) => {
+      const it = IT(l.item), tr = tracked(l.item);
+      const lotCell = !tr ? '<span class="slx-hint">Not lot-tracked</span>' : auto
+        ? `<input class="form-control slx-ro" value="${esc(S.lot.prefix + pad(gen++, 6))}" readonly title="Generated on save">`
+        : `<input class="form-control" value="${esc(l.lotNo)}" placeholder="${it.mand ? 'Required' : 'Lot number'}" onchange="SLX.fv('lines.${x}.lotNo',this.value)">`;
+      return `<tr><td>${x + 1}</td><td class="slx-ro">${esc(it.name)}</td><td class="slx-ro">${esc(it.uom)}</td><td class="slx-ro">${esc(it.cat)}</td>
+        <td><input class="form-control" type="number" min="0" style="width:75px" value="${l.qty}" onchange="SLX.fv('lines.${x}.qty',this.value)"></td>
+        <td style="min-width:150px">${lotCell}</td>
+        <td>${tr && S.lot.expiry ? `<input class="form-control" type="date" value="${esc(l.exp)}" onchange="SLX.virExp(${x},this.value)">${l.expAuto && l.exp ? '<div class="slx-hint">Issue date + shelf life</div>' : ''}` : '—'}</td>
+        <td style="white-space:nowrap">${tr ? `<button class="btn btn-ghost btn-xs" title="Split into several lots" onclick="SLX.virSplit(${x})">Split</button>` : ''}<button class="slx-x" onclick="SLX.delLine(${x})">×</button></td></tr>`;
+    }).join('');
+    const loc = F.loc && LOC(F.loc);
+    modal('New Vendor Items Receipt — ' + esc(F.no), err(F.errs) + `
+      ${loc && !ACC(loc.grni) ? `<div class="slx-err">Location ${esc(loc.name)} has no GRNI account. <span class="slx-link" onclick="SLX.editLoc('${loc.id}')">Set it on the location</span>.</div>` : ''}
+      <div class="slx-grid">
+        <div class="form-group"><label class="form-label">Items Receipt No.</label><input class="form-control ${ed ? '' : 'slx-ro'}" value="${esc(F.no)}" ${ed ? `onchange="SLX.fv('no',this.value)"` : 'readonly'}></div>
+        <div class="form-group"><label class="form-label">Source</label><select class="form-control" onchange="SLX.virType(this.value)"><option value="PO"${F.srcType === 'PO' ? ' selected' : ''}>Purchase Order No.</option><option value="BILL"${F.srcType === 'BILL' ? ' selected' : ''}>Purchase Invoice (Bill) No.</option></select></div>
+        <div class="form-group" style="grid-column:span 2"><label class="form-label">${F.srcType === 'PO' ? 'Purchase Order No.' : 'Purchase Invoice No.'} *</label><select class="form-control" onchange="SLX.virLoad(this.value)"><option value="">— Select —</option>${list.map(o => `<option value="${o.no}"${o.no === F.srcNo ? ' selected' : ''}>${esc(o.label)}</option>`).join('')}</select>
+          <div class="slx-hint">${F.srcType === 'PO' ? 'Approved purchase orders with quantity left to receive' : 'Only Bills marked “Receive later”'}</div></div>
+        <div class="form-group"><label class="form-label">Issue Date</label><input class="form-control" type="date" value="${F.date}" onchange="SLX.virDate(this.value)"></div>
+        <div class="form-group"><label class="form-label">Movement Date</label><input class="form-control" type="date" value="${F.mdate}" onchange="SLX.fv('mdate',this.value)"></div>
+        <div class="form-group"><label class="form-label">Vendor</label><input class="form-control slx-ro" value="${esc(F.vendor)}" readonly></div>
+        <div class="form-group"><label class="form-label">Location</label><input class="form-control slx-ro" value="${loc ? esc(loc.name) : ''}" readonly></div>
+      </div>
+      ${F.lines.length ? `<table class="slx-t"><thead><tr><th>#</th><th>Item</th><th>UOM</th><th>Product Category</th><th>Movement Qty</th><th>Lot number ${auto ? '(Automatic)' : '(Manual)'}</th><th>Expiry Date</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+        <div class="slx-legend"><span>Movement Qty can be lowered, never raised above the remaining quantity.</span></div>` : '<div class="slx-hint">Select a source document to load its lines.</div>'}`,
+      `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-outline" onclick="SLX.virSave(false)">Save Draft</button><button class="btn btn-primary" onclick="SLX.virSave(true)">${wfFor('vir') ? 'Save & Submit' : 'Save & Approve'}</button>`);
+  }
+  function virDate(v) { F.date = v; F.lines.forEach(l => { if (l.expAuto) l.exp = expDefault(l.item, v); }); drawVIR(); }
+  function virExp(x, v) { F.lines[x].exp = v; F.lines[x].expAuto = false; drawVIR(); }
+  function virSplit(x) {
+    const l = F.lines[x], half = Math.floor((+l.qty || 0) / 2);
+    if (half < 1) return toast('Quantity too small to split', 'warn');
+    l.qty = l.qty - half; F.lines.splice(x + 1, 0, Object.assign({}, l, {qty:half, lotNo:'', expAuto:false}));
+    drawVIR();
+  }
+  function virRemaining(src) { const d = F.srcType === 'PO' ? PO(F.srcNo) : BILL(F.srcNo); const l = d.lines[src]; return l.qty - l.rec; }
+  function virSave(approve) {
+    F.errs = [];
+    if (!F.srcNo) F.errs.push('Select a Purchase Order or Purchase Invoice.');
+    [...new Set(F.lines.map(l => l.src))].forEach(sx => {
+      const rem = virRemaining(sx), tot = F.lines.filter(l => l.src === sx).reduce((a, l) => a + (+l.qty || 0), 0);
+      if (tot > rem) F.errs.push(`${IT(F.lines.find(l => l.src === sx).item).name}: Quantity exceeds the remaining quantity (${qf(rem)}).`);
+    });
+    if (approve) {
+      if (F.loc && !ACC(LOC(F.loc).grni)) F.errs.push(`Location ${LOC(F.loc).name} has no GRNI account.`);
+      F.lines.forEach((l, x) => {
+        if (!tracked(l.item) || !(+l.qty > 0)) return;
+        const it = IT(l.item);
+        if (S.lot.mode === 'manual' && it.mand && !l.lotNo.trim()) F.errs.push(`Line ${x + 1}: Lot number is required for this item.`);
+        if (S.lot.expiry && it.mand && !l.exp) F.errs.push(`Line ${x + 1}: Expiry date is required for this item.`);
+        if (S.lot.mode === 'manual' && l.lotNo.trim()) {
+          const ex = S.lots.find(z => z.item === l.item && z.no === l.lotNo.trim());
+          if (ex && (ex.exp || '') !== (l.exp || '')) F.errs.push(`Line ${x + 1}: Lot ${ex.no} already exists for this item with a different expiry date.`);
+        }
+      });
+    }
+    if (F.errs.length) return drawVIR();
+    const doc = {no:takeNo('vir', F.no), srcType:F.srcType, srcNo:F.srcNo, date:F.date, mdate:F.mdate || F.date, vendor:F.vendor, loc:F.loc, status:'Draft',
+      lines:F.lines.filter(l => +l.qty > 0).map(l => ({item:l.item, src:l.src, qty:+l.qty, lotNo:l.lotNo.trim(), exp:l.exp, price:l.price, billed:0, lot:''}))};
+    S.virs.push(doc); close();
+    if (approve) virApprove(doc.no); else { toast(doc.no + ' saved as draft', 'success'); refresh(); }
+  }
+  function virApprove(no) {
+    const v = VIR(no);
+    if (v.status === 'Draft' && wfFor('vir')) { v.status = 'Awaiting approval'; toast(no + ' submitted — stock moves on final approval', 'info'); return refresh(); }
+    const miss = v.lines.findIndex(l => tracked(l.item) && IT(l.item).mand && ((S.lot.mode === 'manual' && !l.lotNo) || (S.lot.expiry && !l.exp)));
+    if (miss >= 0) { toast(`Line ${miss + 1}: lot number and expiry date are required for this item.`, 'error'); return; }
+    if (!ACC(LOC(v.loc).grni)) { toast(`Location ${LOC(v.loc).name} has no GRNI account.`, 'error'); return; }
+    const src = v.srcType === 'PO' ? PO(v.srcNo) : BILL(v.srcNo);
+    let val = 0;
+    v.lines.forEach(l => {
+      let lotId = null;
+      if (tracked(l.item)) {
+        const no2 = S.lot.mode === 'auto' || !l.lotNo ? nextLotNo() : l.lotNo;
+        const ex = S.lots.find(z => z.item === l.item && z.no === no2);
+        lotId = ex ? ex.id : newLot(l.item, no2, l.exp, v.no, v.vendor, v.mdate);
+        l.lot = lotId; l.lotNo = no2;
+      }
+      move(l.item, v.loc, lotId, l.qty, {date:v.mdate, type:'VIR', doc:v.no, party:v.vendor});
+      src.lines[l.src].rec += l.qty;
+      if (v.srcType === 'BILL' && src.po) { const p = PO(src.po); const pl = p && p.lines.find(z => z.item === l.item); if (pl) pl.rec += l.qty; }
+      val += l.qty * l.price;
+    });
+    v.status = 'Approved'; lockFeature();
+    postJE(v.no, 'Vendor items receipt — ' + v.vendor + ' (' + v.srcNo + ')', [{acc:invAcc(v.loc), dr:val}, {acc:grniAcc(v.loc), cr:val}], v.mdate);
+    const made = v.lines.filter(l => l.lot).map(l => l.lotNo);
+    toast(no + ' approved — stock received' + (made.length ? ' into ' + made.join(', ') : ''), 'success');
+    refresh(); showJE(no);
+  }
+  function virView(no) {
+    const v = VIR(no); V = {kind:'vir', no};
+    modal('Vendor Items Receipt — ' + esc(no), `
+      <div class="slx-grid"><div><div class="form-label">Vendor</div><b>${esc(v.vendor)}</b></div><div><div class="form-label">Source</div>${esc(v.srcNo)}</div>
+      <div><div class="form-label">Issue · Movement date</div>${dd(v.date)} · ${dd(v.mdate)}</div><div><div class="form-label">Location · Status</div>${esc(LOC(v.loc).name)} ${stBadge(v.status)}</div></div>
+      <table class="slx-t"><thead><tr><th>#</th><th>Item</th><th>UOM</th><th>Category</th><th class="n">Movement Qty</th><th class="n">Billed</th><th>Lot number</th><th>Expiry Date</th><th class="n">Unit price</th></tr></thead><tbody>
+      ${v.lines.map((l, x) => `<tr><td>${x + 1}</td><td>${esc(IT(l.item).name)}</td><td>${esc(IT(l.item).uom)}</td><td>${esc(IT(l.item).cat)}</td><td class="n">${qf(l.qty)}</td><td class="n">${qf(l.billed)}</td>
+        <td>${l.lot ? `<span class="slx-link" onclick="SLX.trace('${l.lot}')">${esc(l.lotNo)}</span>` : esc(l.lotNo || '—')}</td><td>${dd(l.exp)}</td><td class="n">${n2(l.price)}</td></tr>`).join('')}</tbody></table>
+      ${v.status === 'Approved' ? '<div class="slx-sec">Journal</div>' + jeTable(jeOf(no)) : ''}`,
+      `<button class="btn btn-outline" onclick="showToast('Receipt printed','info')">🖨 Print</button>
+       ${v.status === 'Draft' ? `<button class="btn btn-primary" onclick="SLX.close();SLX.virApprove('${no}')">${wfFor('vir') ? 'Submit for approval' : 'Approve'}</button>` : ''}
+       ${v.status === 'Awaiting approval' ? `<button class="btn btn-primary" onclick="SLX.close();SLX.virApprove('${no}')">Final approval</button>` : ''}
+       ${v.status === 'Approved' && virBilled(v) !== 'Yes' ? `<button class="btn btn-primary" onclick="SLX.close();SLX.virPickOnly('${no}')">🧾 Convert to Purchase Invoice</button>` : ''}`);
+  }
+  function virPickOnly(no) { S.ui.virSel = {}; S.ui.virSel[no] = true; convertToBill(); }
+  function convertToBill() {
+    const list = Object.keys(S.ui.virSel).filter(k => S.ui.virSel[k]).map(VIR);
+    if (!list.length) return;
+    const v0 = list[0];
+    if (list.some(v => v.vendor !== v0.vendor || v.loc !== v0.loc)) return toast('Selected receipts must have the same vendor, currency and location.', 'error');
+    F = {kind:'bill', isNew:true, vendor:v0.vendor, date:TODAY, loc:v0.loc, po:'', receiveLater:false, virs:list.map(v => v.no), errs:[],
+      lines:[].concat(...list.map(v => v.lines.map((l, x) => ({item:l.item, qty:l.qty - l.billed, price:l.price, recPrice:l.price, vir:v.no, virLine:x, lotNo:'', exp:''})).filter(l => l.qty > 0)))};
+    S.ui.virSel = {};
+    drawBill(); refresh();
+  }
+
+  /* ══════════ PURCHASE ORDERS (§7.8) ══════════ */
+  function poState(p) {
+    const q = p.lines.reduce((a, l) => a + l.qty, 0), r = p.lines.reduce((a, l) => a + l.rec, 0), i = p.lines.reduce((a, l) => a + l.inv, 0);
+    return {rec:r <= 0 ? 'Not received' : r >= q ? 'Received' : 'Partially received', inv:i <= 0 ? 'Not billed' : i >= q ? 'Billed' : 'Partially billed'};
+  }
+  const poAmount = p => p.lines.reduce((a, l) => a + l.qty * l.price, 0);
+  function renderPO() {
+    const pnl = document.getElementById('panel-purchase-orders'); if (!pnl) return;
+    pnl.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Procurement / <span>Purchase Orders</span></div><div class="page-title">Purchase Orders</div><div class="page-subtitle">Manage supplier purchase orders</div></div>
+      <div class="page-actions"><button class="btn btn-primary" onclick="openModal('modal-new-po')">+ New PO</button></div></div>
+      <div class="card"><div class="card-body no-pad"><table class="slx-t"><thead><tr><th>PO #</th><th>Vendor</th><th>Date</th><th>Location</th><th class="n">Amount</th>${S.enabled ? '<th>Receiving</th>' : ''}<th>Billing</th><th>Status</th><th></th></tr></thead><tbody>
+      ${S.pos.map(p => { const st = poState(p), canRec = S.enabled && p.status === 'Approved' && p.lines.some(l => l.qty - l.rec > 0);
+        return `<tr><td><span class="slx-link" onclick="SLX.poView('${p.no}')">${esc(p.no)}</span></td><td>${esc(p.vendor)}</td><td>${dd(p.date)}</td><td>${esc(LOC(p.loc).name)}</td><td class="n">SAR ${n2(poAmount(p))}</td>
+        ${S.enabled ? `<td>${progBadge(st.rec)}</td>` : ''}<td>${progBadge(st.inv)}</td><td>${stBadge(p.status)}</td>
+        <td style="white-space:nowrap"><button class="btn btn-outline btn-xs" onclick="SLX.poView('${p.no}')">👁</button>${canRec ? `<button class="btn btn-outline btn-xs" title="Create Receipt" onclick="SLX.virNew('PO','${p.no}')">📥</button>` : ''}
+          ${p.status === 'Draft' ? `<button class="btn btn-outline btn-xs" onclick="SLX.poApprove('${p.no}')">✅</button>` : ''}</td></tr>`; }).join('')}
+      </tbody></table></div></div>`;
+  }
+  function poApprove(no) { PO(no).status = 'Approved'; toast(no + ' approved', 'success'); refresh(); }
+  function poView(no) {
+    const p = PO(no), on = S.enabled;
+    modal('Purchase Order — ' + esc(no), `
+      <div class="slx-grid"><div><div class="form-label">Vendor</div><b>${esc(p.vendor)}</b></div><div><div class="form-label">Issue date</div>${dd(p.date)}</div><div><div class="form-label">Location</div>${esc(LOC(p.loc).name)}</div><div><div class="form-label">Status</div>${stBadge(p.status)}</div></div>
+      <table class="slx-t"><thead><tr><th>#</th><th>Item</th><th class="n">Qty</th>${on ? '<th class="n">Qty Received</th>' : ''}<th class="n">Qty Invoiced</th><th class="n">Unit price</th><th class="n">Total before VAT</th></tr></thead><tbody>
+      ${p.lines.map((l, x) => `<tr><td>${x + 1}</td><td>${esc(IT(l.item).name)}</td><td class="n">${qf(l.qty)}</td>${on ? `<td class="n">${qf(l.rec)}</td>` : ''}<td class="n">${qf(l.inv)}</td><td class="n">${n2(l.price)}</td><td class="n">${n2(l.qty * l.price)}</td></tr>`).join('')}</tbody></table>
+      ${on ? `<div class="slx-sec">Receipts &amp; Bills</div><div class="slx-hint">${[...S.virs.filter(v => v.srcNo === no).map(v => `<span class="slx-link" onclick="SLX.virView('${v.no}')">${v.no}</span>`), ...S.bills.filter(b => b.po === no || b.virs.some(r => VIR(r) && VIR(r).srcNo === no)).map(b => `<span class="slx-link" onclick="SLX.billView('${b.no}')">${b.no}</span>`)].join(' · ') || 'None yet'}</div>` : ''}`,
+      `${p.status === 'Draft' ? `<button class="btn btn-primary" onclick="SLX.close();SLX.poApprove('${no}')">Approve</button>` : ''}
+       ${on && p.status === 'Approved' && p.lines.some(l => l.qty - l.rec > 0) ? `<button class="btn btn-teal" onclick="SLX.virNew('PO','${no}')">📥 Create Receipt</button>` : ''}
+       ${poToBill(p) ? `<button class="btn btn-primary" onclick="SLX.billFromPO('${no}')">🧾 Create Bill</button>` : ''}`, 'modal-lg');
+  }
+
+  /* ══════════ BILLS (§7.9) ══════════ */
+  const billNet = b => b.legacy ? b.legacy / (1 + VAT) : b.lines.reduce((a, l) => a + l.qty * l.price, 0);
+  function renderBills() {
+    const p = document.getElementById('panel-bills'); if (!p) return;
+    p.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Procurement / <span>Bills</span></div><div class="page-title">Vendor Bills</div><div class="page-subtitle">Manage supplier invoices and payables</div></div>
+      <div class="page-actions"><button class="btn btn-primary" onclick="SLX.billNew()">+ New Bill</button></div></div>
+      <div class="card"><div class="card-body no-pad"><table class="slx-t"><thead><tr><th>Bill #</th><th>Vendor</th><th>Date</th><th>Purchase Order</th>${S.enabled ? '<th>Vendor Items Receipt No.</th><th>Stock</th>' : ''}<th class="n">Amount</th><th>Status</th><th></th></tr></thead><tbody>
+      ${S.bills.slice().sort((a, b) => b.no.localeCompare(a.no)).map(b => `<tr><td>${b.legacy ? `<b style="color:var(--accent)">${esc(b.no)}</b>` : `<span class="slx-link" onclick="SLX.billView('${b.no}')">${esc(b.no)}</span>`}</td><td>${esc(b.vendor)}</td><td>${dd(b.date)}</td><td>${esc(b.po || '—')}</td>
+        ${S.enabled ? `<td>${b.virs.length ? b.virs.map(esc).join(', ') : '—'}</td><td>${b.legacy ? '—' : b.virs.length ? '<span class="slx-chip info">Clears GRNI</span>' : b.receiveLater ? '<span class="slx-chip near">Receive later</span>' : '<span class="slx-chip mute">Moves stock</span>'}</td>` : ''}
+        <td class="n">SAR ${n2(billNet(b) * (1 + VAT))}</td><td>${b.status === 'Draft' ? stBadge('Draft') : badge(b.pay, b.pay === 'Paid' ? 'badge-paid' : b.pay === 'Partial' ? 'badge-partial' : 'badge-waiting')}</td>
+        <td>${b.legacy ? '' : `<button class="btn btn-outline btn-xs" onclick="SLX.billView('${b.no}')">👁</button>`}</td></tr>`).join('')}
+      </tbody></table></div></div>`;
+  }
+  const poOpen = l => l.qty - (S.enabled ? Math.max(l.inv, l.rec) : l.inv);
+  const poToBill = p => p.status === 'Approved' && p.lines.some(l => poOpen(l) > 0);
+  function billNew() { F = {kind:'bill', isNew:true, vendor:S.vendors[0], date:TODAY, loc:'MAIN', po:'', receiveLater:false, virs:[], errs:[], lines:[{item:'PAR', qty:1, price:10, lotNo:'', exp:''}]}; drawBill(); }
+  function billFromPO(no) { close(); F = {kind:'bill', isNew:true, date:TODAY, receiveLater:false, virs:[], errs:[]}; billPO(no); }
+  function billPO(no) {   // Purchase Order on the bill: fills the lines; clearing it returns to an unlinked bill
+    if (!no) { Object.assign(F, {po:'', lines:[{item:'PAR', qty:1, price:10, lotNo:'', exp:''}]}); return drawBill(); }
+    const p = PO(no);
+    Object.assign(F, {vendor:p.vendor, loc:p.loc, po:no, virs:[],
+      lines:p.lines.map((l, x) => ({item:l.item, qty:poOpen(l), price:l.price, poLine:x, lotNo:'', exp:expDefault(l.item, TODAY)})).filter(l => l.qty > 0)});
+    drawBill();
+  }
+  function billVirs(vendor) { return S.virs.filter(v => v.vendor === vendor && v.status === 'Approved' && virBilled(v) !== 'Yes'); }
+  function drawBill() {
+    const on = S.enabled, linked = F.virs.length > 0;
+    const unlinkedStock = on && !linked && !F.receiveLater;
+    const net = F.lines.reduce((a, l) => a + (+l.qty || 0) * (+l.price || 0), 0);
+    let gen = S.lot.next;
+    modal((F.isNew ? 'New Purchase Invoice' : 'Purchase Invoice'), err(F.errs) + `
+      <div class="slx-grid">
+        <div class="form-group"><label class="form-label">Vendor *</label><select class="form-control" ${linked ? 'disabled' : ''} onchange="SLX.billVend(this.value)">${vendOpts(F.vendor)}</select></div>
+        <div class="form-group"><label class="form-label">Issue Date</label><input class="form-control" type="date" value="${F.date}" onchange="SLX.fv('date',this.value)"></div>
+        <div class="form-group"><label class="form-label">Location</label><select class="form-control" ${linked || F.po ? 'disabled' : ''} onchange="SLX.fv('loc',this.value)">${locOpts(F.loc)}</select></div>
+        <div class="form-group"><label class="form-label">Purchase Order</label>${linked ? `<input class="form-control slx-ro" value="${esc([...new Set(F.virs.map(r => VIR(r).srcNo))].join(', '))}" readonly><div class="slx-hint">Taken from the selected receipts</div>`
+          : `<select class="form-control" onchange="SLX.billPO(this.value)"><option value="">— None (unlinked) —</option>${S.pos.filter(p => p.vendor === F.vendor && (poToBill(p) || p.no === F.po)).map(p => `<option value="${p.no}"${p.no === F.po ? ' selected' : ''}>${esc(p.no)} · ${dd(p.date)}</option>`).join('')}</select><div class="slx-hint">${S.enabled ? 'Approved orders with quantity not yet received or billed' : 'Approved orders with quantity left to bill'}</div>`}</div>
+        ${on ? `<div class="form-group" style="grid-column:span 3"><label class="form-label">Vendor Items Receipt No.</label>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:4px">${billVirs(F.vendor).concat(F.virs.map(VIR).filter(v => !billVirs(F.vendor).includes(v))).map(v => `<label><input type="checkbox" ${F.virs.includes(v.no) ? 'checked' : ''} onchange="SLX.billVir('${v.no}',this.checked)"> ${esc(v.no)} (${esc(v.srcNo)})</label>`).join('') || '<span class="slx-hint">No unbilled receipts for this vendor</span>'}</div></div>
+        <div class="form-group"><label class="form-label">Receive later</label><label style="padding-top:6px"><input type="checkbox" ${F.receiveLater ? 'checked' : ''} ${linked ? 'disabled' : ''} onchange="SLX.fv('receiveLater',this.checked)"> Goods arrive later (Vendor Items Receipt)</label></div>` : ''}
+      </div>
+      <table class="slx-t"><thead><tr><th>#</th><th>Item</th><th class="n">Qty</th><th class="n">Unit price</th>${linked ? '<th>Receipt</th><th class="n">Receipt price</th><th class="n">Difference</th>' : ''}${unlinkedStock ? '<th>Lot number</th><th>Expiry</th>' : ''}<th class="n">VAT 15%</th><th class="n">Amount</th><th></th></tr></thead><tbody>
+      ${F.lines.map((l, x) => { const amt = (+l.qty || 0) * (+l.price || 0), tr = tracked(l.item);
+        return `<tr><td>${x + 1}</td><td style="min-width:200px">${linked || F.po ? esc(IT(l.item).name) : `<select class="form-control" onchange="SLX.fv('lines.${x}.item',this.value)">${itemOpts(l.item)}</select>`}</td>
+        <td><input class="form-control" type="number" min="0" style="width:75px" value="${l.qty}" ${linked ? 'readonly class="slx-ro"' : ''} onchange="SLX.fv('lines.${x}.qty',this.value)"></td>
+        <td><input class="form-control" type="number" min="0" step="0.01" style="width:90px" value="${l.price}" onchange="SLX.fv('lines.${x}.price',this.value)"></td>
+        ${linked ? `<td>${esc(l.vir)}</td><td class="n">${n2(l.recPrice)}</td><td class="n" style="color:${l.price - l.recPrice ? 'var(--amber)' : 'inherit'}">${n2((l.price - l.recPrice) * l.qty)}</td>` : ''}
+        ${unlinkedStock ? `<td>${tr ? (S.lot.mode === 'auto' ? `<input class="form-control slx-ro" readonly value="${esc(S.lot.prefix + pad(gen++, 6))}">` : `<input class="form-control" value="${esc(l.lotNo)}" onchange="SLX.fv('lines.${x}.lotNo',this.value)">`) : '—'}</td>
+          <td>${tr && S.lot.expiry ? `<input class="form-control" type="date" value="${esc(l.exp)}" onchange="SLX.fv('lines.${x}.exp',this.value)">` : '—'}</td>` : ''}
+        <td class="n">${n2(amt * VAT)}</td><td class="n">${n2(amt * (1 + VAT))}</td><td>${linked ? '' : `<button class="slx-x" onclick="SLX.delLine(${x})">×</button>`}</td></tr>`; }).join('')}
+      </tbody></table>${linked || F.po ? '' : '<button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="SLX.billAddLine()">+ Add line</button>'}
+      <div class="slx-tot"><span>Total before VAT <b>${n2(net)}</b></span><span>VAT <b>${n2(net * VAT)}</b></span><span>Total <b>SAR ${n2(net * (1 + VAT))}</b></span></div>
+      ${on ? `<div class="slx-hint" style="margin-top:8px">${linked ? 'Linked to receipts: posts Dr GRNI at receipt value; any price difference posts to Inventory and re-averages the cost. No stock movement.' : F.receiveLater ? 'Receive later: posts Dr GRNI / Cr AP. Stock moves later through a Vendor Items Receipt.' : 'Unlinked: posts Dr Inventory / Cr AP and moves stock now (as today).'}</div>` : ''}`,
+      `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-outline" onclick="SLX.billSave(false)">Save Draft</button><button class="btn btn-primary" onclick="SLX.billSave(true)">Save &amp; Approve</button>`);
+  }
+  function billVir(no, on) {
+    if (on) { if (!F.virs.includes(no)) F.virs.push(no); } else F.virs = F.virs.filter(v => v !== no);
+    if (F.virs.length) {
+      const vs = F.virs.map(VIR);
+      if (vs.some(v => v.loc !== vs[0].loc)) { F.virs = F.virs.filter(v => v !== no); toast('Selected receipts must have the same vendor, currency and location.', 'error'); }
+      F.loc = VIR(F.virs[0]).loc; F.po = ''; F.receiveLater = false;
+      F.lines = [].concat(...F.virs.map(VIR).map(v => v.lines.map((l, x) => ({item:l.item, qty:l.qty - l.billed, price:l.price, recPrice:l.price, vir:v.no, virLine:x, lotNo:'', exp:''})).filter(l => l.qty > 0)));
+    } else F.lines = [{item:'PAR', qty:1, price:10, lotNo:'', exp:''}];
+    drawBill();
+  }
+  function billSave(approve) {
+    F.errs = [];
+    if (!F.lines.some(l => +l.qty > 0)) F.errs.push('Add at least one line.');
+    const linked = F.virs.length > 0, unlinkedStock = S.enabled && !linked && !F.receiveLater;
+    if (approve && unlinkedStock) F.lines.forEach((l, x) => {
+      if (!tracked(l.item)) return; const it = IT(l.item);
+      if (S.lot.mode === 'manual' && it.mand && !l.lotNo.trim()) F.errs.push(`Line ${x + 1}: Lot number is required for this item.`);
+      if (S.lot.expiry && it.mand && !l.exp) F.errs.push(`Line ${x + 1}: Expiry date is required for this item.`);
+    });
+    if (approve && F.receiveLater && !ACC(LOC(F.loc).grni)) F.errs.push(`Location ${LOC(F.loc).name} has no GRNI account.`);
+    if (F.errs.length) return drawBill();
+    const viaVir = [...new Set(F.virs.map(VIR).filter(v => v.srcType === 'PO').map(v => v.srcNo))].join(', ');
+    const b = {no:'BILL-2026-' + pad(S.billNext++, 3), vendor:F.vendor, date:F.date, loc:F.loc, po:F.po || viaVir, receiveLater:F.receiveLater, virs:F.virs.slice(), status:'Draft', pay:'Unpaid',
+      lines:F.lines.filter(l => +l.qty > 0).map(l => Object.assign({}, l, {qty:+l.qty, price:+l.price, rec:0}))};
+    S.bills.push(b); close();
+    if (approve) billApprove(b.no); else { toast(b.no + ' saved as draft', 'success'); refresh(); }
+  }
+  function billApprove(no) {
+    const b = BILL(no), net = billNet(b), vat = net * VAT, je = [];
+    if (b.virs.length) {
+      let grni = 0, diff = 0;
+      b.lines.forEach(l => {
+        const v = VIR(l.vir), vl = v.lines[l.virLine];
+        grni += l.qty * l.recPrice; diff += l.qty * (l.price - l.recPrice);
+        vl.billed += l.qty;
+        if (v.srcType === 'PO') PO(v.srcNo).lines[vl.src].inv += l.qty;
+        const it = IT(l.item), oh = onHandAll(l.item), d = l.qty * (l.price - l.recPrice);   // FR-9.2 re-average
+        if (d && oh > 0) it.cost = Math.round(((it.cost * oh) + d) / oh * 10000) / 10000;
+      });
+      je.push({acc:grniAcc(b.loc), dr:grni});
+      if (Math.abs(diff) > 0.004) je.push({acc:invAcc(b.loc) + ' (price difference)', dr:diff});
+    } else if (b.receiveLater && S.enabled) {
+      je.push({acc:grniAcc(b.loc), dr:net});
+      if (b.po) b.lines.forEach(l => { const pl = PO(b.po).lines[l.poLine]; if (pl) pl.inv += l.qty; });
+    } else {
+      b.lines.forEach(l => {
+        let lotId = null;
+        if (tracked(l.item)) { const n = S.lot.mode === 'auto' || !l.lotNo ? nextLotNo() : l.lotNo; const ex = S.lots.find(z => z.item === l.item && z.no === n); lotId = ex ? ex.id : newLot(l.item, n, l.exp, b.no, b.vendor, b.date); l.lotNo = n; }
+        move(l.item, b.loc, lotId, l.qty, {date:b.date, type:'BILL', doc:b.no, party:b.vendor});
+        if (b.po) { const pl = PO(b.po).lines[l.poLine]; if (pl) { pl.inv += l.qty; pl.rec += l.qty; } }
+      });
+      je.push({acc:invAcc(b.loc), dr:net});
+    }
+    je.push({acc:'1350 · VAT Receivable (Input)', dr:vat}, {acc:'2100 · Accounts Payable — ' + b.vendor, cr:net + vat});
+    b.status = 'Approved';
+    postJE(b.no, 'Purchase invoice — ' + b.vendor, je, b.date);
+    toast(no + ' approved' + (b.virs.length ? ' — GRNI cleared for ' + b.virs.join(', ') : ''), 'success'); refresh(); showJE(no);
+  }
+  function billView(no) {
+    const b = BILL(no);
+    modal('Purchase Invoice — ' + esc(no), `
+      <div class="slx-grid"><div><div class="form-label">Vendor</div><b>${esc(b.vendor)}</b></div><div><div class="form-label">Issue date</div>${dd(b.date)}</div>
+      <div><div class="form-label">Vendor Items Receipt No.</div>${b.virs.length ? b.virs.map(esc).join(', ') : '—'}</div><div><div class="form-label">Status</div>${stBadge(b.status)}${b.receiveLater ? ' <span class="slx-chip near">Receive later</span>' : ''}</div></div>
+      <table class="slx-t"><thead><tr><th>#</th><th>Item</th><th class="n">Qty</th><th class="n">Unit price</th>${b.virs.length ? '<th class="n">Receipt price</th>' : ''}${b.receiveLater ? '<th class="n">Received</th>' : ''}<th class="n">Amount</th></tr></thead><tbody>
+      ${b.lines.map((l, x) => `<tr><td>${x + 1}</td><td>${esc(IT(l.item).name)}${l.lotNo ? ` <span class="slx-chip info">${esc(l.lotNo)}</span>` : ''}</td><td class="n">${qf(l.qty)}</td><td class="n">${n2(l.price)}</td>${b.virs.length ? `<td class="n">${n2(l.recPrice)}</td>` : ''}${b.receiveLater ? `<td class="n">${qf(l.rec)}</td>` : ''}<td class="n">${n2(l.qty * l.price * (1 + VAT))}</td></tr>`).join('')}</tbody></table>
+      ${b.status === 'Approved' ? '<div class="slx-sec">Journal</div>' + jeTable(jeOf(no)) : ''}`,
+      `${b.status === 'Draft' ? `<button class="btn btn-primary" onclick="SLX.close();SLX.billApprove('${no}')">Approve</button>` : ''}
+       ${S.enabled && b.status === 'Approved' && b.receiveLater && b.lines.some(l => l.qty - l.rec > 0) ? `<button class="btn btn-teal" onclick="SLX.virNew('BILL','${no}')">📥 Create Receipt</button>` : ''}`, 'modal-lg');
+  }
+
+  /* ══════════ SALES INVOICE — stock-aware (§7.10) ══════════ */
+  const soToInv = s => s.status === 'Approved' && s.lines.some(l => l.qty - l.rev - l.inv > 0);
+  function invFromSO(no) { close(); F = {kind:'inv', date:TODAY, errs:[], req:[]}; invSO(no); }
+  function invSO(no) {   // Sales Order No. on the invoice: fills the lines; clearing it returns to an unlinked invoice
+    if (!no) { Object.assign(F, {so:'', deliverLater:false, req:[], lines:[]}); return invAddLine('PAR'); }
+    const s = SO(no);
+    Object.assign(F, {customer:s.customer, loc:s.loc, so:no, deliverLater:true, req:[],
+      lines:s.lines.map((l, x) => ({item:l.item, qty:l.qty - l.rev - l.inv, price:l.price, disc:l.disc, dt:l.dt, incl:l.incl, soLine:x, lot:'', sug:''})).filter(l => l.qty > 0)});
+    drawInv();
+  }
+  function invNew() { F = {kind:'inv', customer:S.customers[0].name, date:TODAY, loc:'MAIN', so:'', deliverLater:false, errs:[], req:[], lines:[]}; invAddLine('PAR'); }
+  function invAddLine(it) { F.req.push({item:it || 'PAR', qty:1, price:IT(it || 'PAR').price, disc:0, dt:'%', incl:false}); invFefo(); }
+  function invFefo() {   // unlinked invoice: requested lines → one line per lot (FEFO), editable
+    const out = [];
+    F.req.forEach((r, rx) => {
+      const base = Object.assign({}, r, {rx, lot:'', sug:''});
+      if (F.deliverLater || !tracked(r.item)) return out.push(base);
+      const f = fefo(r.item, F.loc, +r.qty || 0, false);
+      f.rows.forEach(row => out.push(Object.assign({}, base, {qty:row.qty, lot:row.lot, sug:row.lot})));
+      if (f.short) out.push(Object.assign({}, base, {qty:f.short}));
+    });
+    F.lines = out; drawInv();
+  }
+  function drawInv() {
+    const showLot = S.enabled && !F.so && !F.deliverLater;
+    modal('New Sales Invoice' + (F.so ? ' — from ' + esc(F.so) : ''), err(F.errs) + (F.warn && F.warn.length ? `<div class="slx-warn">${F.warn.map(esc).join('<br>')}</div>` : '') + `
+      <div class="slx-grid">
+        <div class="form-group"><label class="form-label">Customer *</label><select class="form-control" onchange="SLX.invCust(this.value)">${custOpts(F.customer)}</select></div>
+        <div class="form-group"><label class="form-label">Issue Date</label><input class="form-control" type="date" value="${F.date}" onchange="SLX.fv('date',this.value)"></div>
+        <div class="form-group"><label class="form-label">Location</label><select class="form-control" ${F.so ? 'disabled' : ''} onchange="SLX.invLoc(this.value)">${locOpts(F.loc)}</select></div>
+        <div class="form-group"><label class="form-label">Sales Order No.</label>${S.enabled ? `<select class="form-control" onchange="SLX.invSO(this.value)"><option value="">— None (unlinked) —</option>${S.sos.filter(o => o.customer === F.customer && (soToInv(o) || o.no === F.so)).map(o => `<option value="${o.no}"${o.no === F.so ? ' selected' : ''}>${esc(o.no)} · ${dd(o.date)}</option>`).join('')}</select><div class="slx-hint">Approved orders of this customer with quantity left to invoice</div>` : '<input class="form-control slx-ro" value="—" readonly>'}</div>
+        ${S.enabled && !F.so ? `<div class="form-group" style="grid-column:span 4"><label><input type="checkbox" ${F.deliverLater ? 'checked' : ''} onchange="SLX.invDL(this.checked)"> <b>Deliver later</b> — no stock movement or COGS now; ship it with a Customer Items Shipment</label></div>` : ''}
+      </div>
+      <table class="slx-t"><thead><tr><th>#</th><th>Item</th><th class="n">Qty</th><th class="n">Unit price</th><th class="n">Total before VAT</th><th class="n">VAT</th><th class="n">Amount</th><th></th></tr></thead><tbody>
+      ${(F.so ? F.lines : F.req).map((l, x) => { const c = calc(l);
+        return `<tr><td>${x + 1}</td><td style="min-width:200px">${F.so ? esc(IT(l.item).name) : `<select class="form-control" onchange="SLX.invItem(${x},this.value)">${itemOpts(l.item)}</select>`}${S.enabled ? `<div class="slx-hint">${qtyTip(l.item, F.loc)}</div>` : ''}</td>
+        <td><input class="form-control" type="number" min="0" style="width:75px" value="${l.qty}" onchange="SLX.invQty(${x},this.value)"></td>
+        <td class="n">${n2(l.price)}</td><td class="n">${n2(c.tbv)}</td><td class="n">${n2(c.vat)}</td><td class="n">${n2(c.amt)}</td><td>${F.so ? '' : `<button class="slx-x" onclick="SLX.invDel(${x})">×</button>`}</td></tr>`; }).join('')}
+      </tbody></table>${F.so ? '' : '<button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="SLX.invAddLine()">+ Add line</button>'}
+      ${showLot ? `<div class="slx-sec">Lots — filled by FEFO, split across lots, editable</div><table class="slx-t"><thead><tr><th>Item</th><th class="n">Qty</th><th>Lot</th><th>Expiry</th></tr></thead><tbody>
+        ${F.lines.map((l, x) => { const lot = l.lot && LOT(l.lot); return `<tr><td>${esc(IT(l.item).name)}</td><td class="n">${qf(l.qty)}</td>
+          <td style="min-width:280px">${tracked(l.item) ? `<select class="form-control" onchange="SLX.fv('lines.${x}.lot',this.value)">${lotOptions(l.item, F.loc, l.lot)}</select>${l.lot && l.sug && l.lot !== l.sug ? '<span class="slx-chip vio">FEFO overridden</span>' : ''}` : '<span class="slx-hint">Not lot-tracked</span>'}</td>
+          <td>${lot ? dd(lot.exp) + ' ' + expChip(lot) : '—'}</td></tr>`; }).join('')}</tbody></table>` : ''}
+      ${totals(sumCalc(F.lines))}
+      ${S.enabled ? `<div class="slx-hint" style="margin-top:8px">${F.so ? 'From a Sales Order: posts AR / Revenue / VAT only. Stock and COGS move on the shipment.' : F.deliverLater ? 'Deliver later: posts AR / Revenue / VAT only.' : 'Unlinked: checked against Available, moves stock per lot and posts COGS (as today).'}</div>` : ''}`,
+      `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-primary" onclick="SLX.invSave()">Save &amp; Approve</button>`);
+  }
+  function invSave() {
+    F.errs = [];
+    if (!F.lines.some(l => +l.qty > 0)) F.errs.push('Add at least one line.');
+    if (F.so) F.lines.forEach(l => { const sl = SO(F.so).lines[l.soLine], max = sl.qty - sl.rev - sl.inv; if (l.qty > max) F.errs.push(`${IT(l.item).name}: Quantity exceeds the remaining quantity (${qf(max)}).`); });
+    const moves = S.enabled ? !F.so && !F.deliverLater : true, overrides = [];
+    if (!F.errs.length && moves && S.enabled) F.errs = checkOut(F.lines, F.loc, {allowExpired:false, checkAvail:true, overrides});
+    if (!F.errs.length && moves && !S.enabled) F.lines.forEach(l => { if (l.qty > onHand(l.item, F.loc)) F.errs.push(`${IT(l.item).name}: only ${qf(onHand(l.item, F.loc))} on hand.`); });
+    if (F.errs.length) return drawInv();
+    if (overrides.length && !confirm(overrides.join('\n') + '\n\nApprove anyway?')) return;
+    const lines = moves && S.enabled ? expandLots(F.lines) : F.lines.filter(l => +l.qty > 0);
+    const inv = {no:'INV2026-' + pad(S.invNext++, 3), customer:F.customer, date:F.date, loc:F.loc, so:F.so, noStock:!moves, status:'Approved',
+      lines:lines.map(l => Object.assign({}, l, {qty:+l.qty, shipped:0}))};
+    S.invs.push(inv);
+    const t = sumCalc(inv.lines);
+    const je = [{acc:'1200 · Accounts Receivable — ' + inv.customer, dr:t.amt}, {acc:'4000 · Revenue - Sales', cr:t.tbv}, {acc:'2300 · VAT Payable (Output)', cr:t.vat}];
+    if (moves) {
+      let cost = 0;
+      inv.lines.forEach(l => { move(l.item, inv.loc, tracked(l.item) ? l.lot : null, -l.qty, {date:inv.date, type:'INV', doc:inv.no, party:inv.customer}); cost += l.qty * IT(l.item).cost; });
+      je.push({acc:'5000 · Cost of Goods Sold', dr:cost}, {acc:invAcc(inv.loc), cr:cost});
+    }
+    if (F.so) { const s = SO(F.so); inv.lines.forEach(l => s.lines[l.soLine].inv += l.qty); autoClose(s); }
+    postJE(inv.no, 'Sales invoice — ' + inv.customer, je, inv.date);
+    close(); toast(inv.no + ' approved' + (moves ? ' — stock deducted, COGS posted' : ' — no stock movement'), 'success'); refresh(); showJE(inv.no);
+  }
+  function invView(no) {
+    const i = INV(no);
+    modal('Sales Invoice — ' + esc(no), `<div class="slx-grid"><div><div class="form-label">Customer</div><b>${esc(i.customer)}</b></div><div><div class="form-label">Issue date</div>${dd(i.date)}</div><div><div class="form-label">Sales Order</div>${esc(i.so || '—')}</div><div><div class="form-label">Stock</div>${i.noStock ? '<span class="slx-chip near">Deliver later / via shipment</span>' : '<span class="slx-chip mute">Moved on invoice</span>'}</div></div>
+      <table class="slx-t"><thead><tr><th>Item</th><th class="n">Qty</th><th class="n">Shipped</th><th>Lot</th><th class="n">Amount</th></tr></thead><tbody>
+      ${i.lines.map(l => `<tr><td>${esc(IT(l.item).name)}</td><td class="n">${qf(l.qty)}</td><td class="n">${i.noStock ? qf(l.shipped) : '—'}</td><td>${l.lot ? esc(LOT(l.lot).no) : '—'}</td><td class="n">${n2(calc(l).amt)}</td></tr>`).join('')}</tbody></table>
+      <div class="slx-sec">Journal</div>${jeTable(jeOf(no))}`,
+      `${i.noStock && !i.so && i.lines.some(l => l.qty - l.shipped > 0) ? `<button class="btn btn-teal" onclick="SLX.cisNew('INV','${no}')">🚚 Create Shipment</button>` : ''}`, 'modal-lg');
+  }
+  function renderInvCard() {
+    const p = document.getElementById('panel-invoices'); if (!p) return;
+    let c = document.getElementById('slx-inv-card');
+    if (!S.enabled) { if (c) c.remove(); return; }
+    if (!c) { c = document.createElement('div'); c.id = 'slx-inv-card'; c.className = 'card'; p.querySelector('.page-header').after(c); }
+    c.innerHTML = `<div class="card-header"><h3>📦 Stock-linked invoices</h3><div style="display:flex;gap:8px"><span class="slx-hint" style="align-self:center">Sales Order, Deliver later, and lot (FEFO) on unlinked invoices</span><button class="btn btn-primary btn-sm" onclick="SLX.invNew()">+ New Invoice (lots)</button></div></div>
+      <div class="card-body no-pad">${S.invs.length ? `<table class="slx-t"><thead><tr><th>Invoice</th><th>Customer</th><th>Date</th><th>Sales Order</th><th>Stock</th><th class="n">Amount</th></tr></thead><tbody>
+      ${S.invs.slice().reverse().map(i => `<tr><td><span class="slx-link" onclick="SLX.invView('${i.no}')">${esc(i.no)}</span></td><td>${esc(i.customer)}</td><td>${dd(i.date)}</td><td>${esc(i.so || '—')}</td><td>${i.noStock ? (i.lines.every(l => l.shipped >= l.qty) ? '<span class="slx-chip ok">Shipped</span>' : '<span class="slx-chip near">To ship</span>') : '<span class="slx-chip mute">Moved on invoice</span>'}</td><td class="n">SAR ${n2(sumCalc(i.lines).amt)}</td></tr>`).join('')}
+      </tbody></table>` : '<div class="slx-hint" style="padding:14px 20px">No stock-linked invoices yet.</div>'}</div>`;
+  }
+
+  /* ══════════ CREDIT NOTE, DEBIT NOTE, TRANSFER, ADJUSTMENT (§7.10) ══════════ */
+  function shippedTo(doc) {   // lots shipped on a CIS or a stock-moving invoice, less what was already returned
+    const out = {};
+    S.ledger.filter(m => m.doc === doc && m.qty < 0).forEach(m => { const k = m.item + '|' + (m.lot || ''); out[k] = (out[k] || 0) - m.qty; });
+    S.cns.filter(c => c.src === doc).forEach(c => c.lines.forEach(l => { const k = l.item + '|' + (l.lot || ''); out[k] = (out[k] || 0) - l.qty; }));
+    return out;
+  }
+  function renderCN() {
+    const p = document.getElementById('panel-credit-notes'); if (!p) return;
+    p.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Sales / <span>Credit Notes</span></div><div class="page-title">Credit Notes</div></div>
+      <div class="page-actions"><button class="btn btn-primary" onclick="${S.enabled ? 'SLX.cnNew()' : `showToast('New credit note opened','')`}">+ New Credit Note</button></div></div>
+      <div class="card"><div class="card-body no-pad"><table class="slx-t"><thead><tr><th>Credit #</th><th>Customer</th><th>Original document</th><th>Date</th>${S.enabled ? '<th>Lots</th>' : ''}<th class="n">Amount</th><th>Status</th></tr></thead><tbody>
+      ${S.cns.slice().reverse().map(c => `<tr><td style="font-weight:700;color:var(--accent)">${esc(c.no)}</td><td>${esc(c.customer)}</td><td>${esc(c.src || 'Unlinked')}</td><td>${dd(c.date)}</td>${S.enabled ? `<td>${c.lines.map(l => l.lot ? esc(LOT(l.lot).no) : '—').join(', ')}</td>` : ''}<td class="n">SAR ${n2(c.amt)}</td><td>${badge('Applied', 'badge-approved')}</td></tr>`).join('')}
+      <tr><td style="font-weight:700;color:var(--accent)">CN2026-004</td><td>Hassan Brothers</td><td>INV2026-012</td><td>${dd('2026-06-08')}</td>${S.enabled ? '<td>—</td>' : ''}<td class="n">SAR 2,400.00</td><td>${badge('Applied', 'badge-approved')}</td></tr>
+      <tr><td style="font-weight:700;color:var(--accent)">CN2026-003</td><td>Riyadh Supplies LLC</td><td>INV2026-009</td><td>${dd('2026-05-14')}</td>${S.enabled ? '<td>—</td>' : ''}<td class="n">SAR 850.00</td><td>${badge('Draft', 'badge-draft')}</td></tr>
+      </tbody></table></div></div>`;
+  }
+  function cnSources(cust) {
+    return [...S.cis.filter(c => c.customer === cust && c.status === 'Approved').map(c => c.no), ...S.invs.filter(i => i.customer === cust && !i.noStock).map(i => i.no)];
+  }
+  function cnNew() { F = {kind:'cn', customer:S.customers[0].name, src:'', loc:'MAIN', date:TODAY, errs:[], lines:[]}; cnLoad(''); }
+  function cnLoad(src) {
+    F.src = src; F.lines = [];
+    if (src) {
+      const d = CIS(src) || INV(src); F.loc = d.loc;
+      const sh = shippedTo(src);
+      Object.keys(sh).filter(k => sh[k] > 0).forEach(k => { const [item, lot] = k.split('|'); F.lines.push({item, lot, max:sh[k], qty:0, price:(SO(d.srcNo || d.so || '') ? SO(d.srcNo || d.so).lines.find(l => l.item === item).price : IT(item).price)}); });
+    } else F.lines.push({item:'PAR', lot:'', max:null, qty:1, price:IT('PAR').price});
+    drawCN();
+  }
+  function drawCN() {
+    const linked = !!F.src;
+    modal('New Credit Note', err(F.errs) + `
+      <div class="slx-grid">
+        <div class="form-group"><label class="form-label">Customer</label><select class="form-control" onchange="SLX.fv('customer',this.value);SLX.cnLoad('')">${custOpts(F.customer)}</select></div>
+        <div class="form-group" style="grid-column:span 2"><label class="form-label">Original Invoice / Shipment</label><select class="form-control" onchange="SLX.cnLoad(this.value)"><option value="">Unlinked — any lot of the item</option>${cnSources(F.customer).map(s => `<option${s === F.src ? ' selected' : ''}>${esc(s)}</option>`).join('')}</select>
+          <div class="slx-hint">${linked ? 'Only the lots shipped to this customer on that document are offered, with the quantity still returnable.' : 'Linked returns are limited to the original lots.'}</div></div>
+        <div class="form-group"><label class="form-label">Location</label><select class="form-control" ${linked ? 'disabled' : ''} onchange="SLX.fv('loc',this.value)">${locOpts(F.loc)}</select></div>
+      </div>
+      <table class="slx-t"><thead><tr><th>Item</th><th>Lot</th>${linked ? '<th class="n">Returnable</th>' : ''}<th class="n">Return qty</th><th class="n">Unit price</th><th class="n">Amount</th></tr></thead><tbody>
+      ${F.lines.map((l, x) => { const lot = l.lot && LOT(l.lot);
+        return `<tr><td>${linked ? esc(IT(l.item).name) : `<select class="form-control" onchange="SLX.fv('lines.${x}.item',this.value);SLX.fv('lines.${x}.lot','')">${itemOpts(l.item)}</select>`}</td>
+        <td>${linked ? (lot ? esc(lot.no) + ' ' + expChip(lot) : '—') : tracked(l.item) ? `<select class="form-control" onchange="SLX.fv('lines.${x}.lot',this.value)">${lotOptions(l.item, F.loc, l.lot, {list:S.lots.filter(z => z.item === l.item).sort(fefoSort), allowExpired:true})}</select>` : '—'}</td>
+        ${linked ? `<td class="n">${qf(l.max)}</td>` : ''}<td><input class="form-control" type="number" min="0" style="width:75px" value="${l.qty}" onchange="SLX.fv('lines.${x}.qty',this.value)"></td><td class="n">${n2(l.price)}</td><td class="n">${n2(l.qty * l.price * (1 + VAT))}</td></tr>`; }).join('')}
+      </tbody></table>`,
+      `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-primary" onclick="SLX.cnSave()">Save &amp; Approve</button>`, 'modal-lg');
+  }
+  function cnSave() {
+    F.errs = [];
+    const lines = F.lines.filter(l => +l.qty > 0);
+    if (!lines.length) F.errs.push('Enter a return quantity.');
+    lines.forEach(l => { if (l.max !== null && l.qty > l.max) F.errs.push(`${IT(l.item).name}: Quantity exceeds the remaining quantity (${qf(l.max)}).`); if (tracked(l.item) && IT(l.item).mand && !l.lot) F.errs.push(`${IT(l.item).name}: Lot number is required for this item.`); });
+    if (F.errs.length) return drawCN();
+    const no = 'CN2026-' + pad(S.cnNext++, 3); let cost = 0, net = 0;
+    lines.forEach(l => { move(l.item, F.loc, l.lot || null, +l.qty, {type:'CN', doc:no, party:F.customer}); cost += l.qty * IT(l.item).cost; net += l.qty * l.price; });
+    S.cns.push({no, customer:F.customer, src:F.src, loc:F.loc, date:TODAY, lines:lines.map(l => ({item:l.item, lot:l.lot, qty:+l.qty})), amt:net * (1 + VAT)});
+    postJE(no, 'Credit note — ' + F.customer, [{acc:invAcc(F.loc), dr:cost}, {acc:'4000 · Revenue - Sales', dr:net}, {acc:'2300 · VAT Payable (Output)', dr:net * VAT}, {acc:'5000 · Cost of Goods Sold', cr:cost}, {acc:'1200 · Accounts Receivable — ' + F.customer, cr:net * (1 + VAT)}]);
+    close(); toast(no + ' approved — stock returned to the original lot', 'success'); refresh(); showJE(no);
+  }
+
+  function renderReturns() {
+    const p = document.getElementById('panel-purchase-returns'); if (!p) return;
+    p.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Procurement / <span>Purchase Returns (Debit Notes)</span></div><div class="page-title">Purchase Returns</div></div>
+      <div class="page-actions"><button class="btn btn-primary" onclick="${S.enabled ? 'SLX.retNew()' : `showToast('New return form','')`}">+ New Return</button></div></div>
+      <div class="card"><div class="card-body${S.rets.length ? ' no-pad' : ''}">${S.rets.length ? `<table class="slx-t"><thead><tr><th>Debit Note</th><th>Vendor</th><th>Date</th><th>Location</th><th>Lots</th><th class="n">Qty</th></tr></thead><tbody>
+      ${S.rets.slice().reverse().map(r => `<tr><td style="font-weight:700;color:var(--accent)">${esc(r.no)}</td><td>${esc(r.vendor)}</td><td>${dd(r.date)}</td><td>${esc(LOC(r.loc).name)}</td><td>${r.lines.map(l => l.lot ? esc(LOT(l.lot).no) : '—').join(', ')}</td><td class="n">${qf(r.lines.reduce((a, l) => a + l.qty, 0))}</td></tr>`).join('')}</tbody></table>`
+      : '<div class="empty-state"><div class="empty-icon">↩️</div><h3>No purchase returns</h3><p>Purchase returns will appear here when created against a vendor bill.</p></div>'}</div></div>`;
+  }
+  function retNew() { F = {kind:'ret', vendor:'Gulf Pharma Co.', loc:'MAIN', errs:[], lines:[{item:'PAR', lot:'', qty:1}]}; drawRet(); }
+  function drawRet() {
+    modal('New Purchase Return (Debit Note)', err(F.errs) + `
+      <div class="slx-grid c3"><div class="form-group"><label class="form-label">Vendor</label><select class="form-control" onchange="SLX.fv('vendor',this.value)">${vendOpts(F.vendor)}</select></div>
+      <div class="form-group"><label class="form-label">Location</label><select class="form-control" onchange="SLX.fv('loc',this.value)">${locOpts(F.loc)}</select></div></div>
+      <table class="slx-t"><thead><tr><th>Item</th><th>Lot (received from this vendor)</th><th>Expiry</th><th class="n">Qty</th><th></th></tr></thead><tbody>
+      ${F.lines.map((l, x) => { const lot = l.lot && LOT(l.lot), list = S.lots.filter(z => z.item === l.item && z.vendor === F.vendor && lotQty(z, F.loc) > 0).sort(fefoSort);
+        return `<tr><td><select class="form-control" onchange="SLX.fv('lines.${x}.item',this.value);SLX.fv('lines.${x}.lot','')">${itemOpts(l.item)}</select><div class="slx-hint">${qtyTip(l.item, F.loc)}</div></td>
+        <td>${tracked(l.item) ? (list.length ? `<select class="form-control" onchange="SLX.fv('lines.${x}.lot',this.value)">${lotOptions(l.item, F.loc, l.lot, {list, allowExpired:true})}</select>` : '<span class="slx-hint">No lots from this vendor with stock here</span>') : '—'}</td>
+        <td>${lot ? dd(lot.exp) + ' ' + expChip(lot) : '—'}</td><td><input class="form-control" type="number" min="0" style="width:75px" value="${l.qty}" onchange="SLX.fv('lines.${x}.qty',this.value)"></td><td><button class="slx-x" onclick="SLX.delLine(${x})">×</button></td></tr>`; }).join('')}
+      </tbody></table><div class="slx-legend"><span>Expired lots can be returned to the vendor.</span></div>`,
+      `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-primary" onclick="SLX.retSave()">Save &amp; Approve</button>`, 'modal-lg');
+  }
+  function retSave() {
+    const overrides = [];
+    F.errs = checkOut(F.lines, F.loc, {allowExpired:true, checkAvail:true, overrides});
+    F.lines.forEach((l, x) => { if (tracked(l.item) && !l.lot) F.errs.push(`Line ${x + 1}: Lot number is required for this item.`); });
+    if (F.errs.length) return drawRet();
+    if (overrides.length && !confirm(overrides.join('\n') + '\n\nApprove anyway?')) return;
+    const no = 'DN-2026-' + pad(S.retNext++, 3); let cost = 0;
+    const lines = F.lines.filter(l => +l.qty > 0);
+    lines.forEach(l => { move(l.item, F.loc, l.lot || null, -l.qty, {type:'DN', doc:no, party:F.vendor}); cost += l.qty * IT(l.item).cost; });
+    S.rets.push({no, vendor:F.vendor, loc:F.loc, date:TODAY, lines:lines.map(l => ({item:l.item, lot:l.lot, qty:+l.qty}))});
+    postJE(no, 'Purchase return — ' + F.vendor, [{acc:'2100 · Accounts Payable — ' + F.vendor, dr:cost * (1 + VAT)}, {acc:invAcc(F.loc), cr:cost}, {acc:'1350 · VAT Receivable (Input)', cr:cost * VAT}]);
+    close(); toast(no + ' approved', 'success'); refresh(); showJE(no);
+  }
+
+  function renderTransfers() {
+    const p = document.getElementById('panel-stock-transfers'); if (!p) return;
+    p.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Inventory / <span>Stock Transfers</span></div><div class="page-title">Stock Transfers</div></div>
+      <div class="page-actions"><button class="btn btn-primary" onclick="${S.enabled ? 'SLX.trNew()' : `showToast('New transfer','')`}">+ New Transfer</button></div></div>
+      <div class="card"><div class="card-body no-pad"><table class="slx-t"><thead><tr><th>Transfer #</th><th>From</th><th>To</th><th>Date</th><th>Items</th>${S.enabled ? '<th>Lots</th>' : ''}<th>Status</th></tr></thead><tbody>
+      ${S.trs.slice().reverse().map(t => `<tr><td style="font-weight:700;color:var(--accent)">${esc(t.no)}</td><td>${esc(LOC(t.from).name)}</td><td>${esc(LOC(t.to).name)}</td><td>${dd(t.date)}</td><td>${t.lines.length} lines</td>${S.enabled ? `<td>${t.lines.map(l => l.lot ? esc(LOT(l.lot).no) : '—').join(', ')}</td>` : ''}<td>${badge('Completed', 'badge-approved')}</td></tr>`).join('')}
+      <tr><td style="font-weight:700;color:var(--accent)">ST-2026-007</td><td>Jeddah Branch</td><td>Main Warehouse</td><td>${dd('2026-06-20')}</td><td>4 lines</td>${S.enabled ? '<td>—</td>' : ''}<td>${badge('In Transit', 'badge-waiting')}</td></tr>
+      <tr><td style="font-weight:700;color:var(--accent)">ST-2026-006</td><td>Main Warehouse</td><td>Jeddah Branch</td><td>${dd('2026-06-15')}</td><td>12 lines</td>${S.enabled ? '<td>—</td>' : ''}<td>${badge('Completed', 'badge-approved')}</td></tr>
+      </tbody></table></div></div>`;
+  }
+  function trNew() { F = {kind:'tr', from:'MAIN', to:'JED', errs:[], req:[{item:'PAR', qty:10}], lines:[]}; trFefo(); }
+  function trFefo() {
+    F.lines = [];
+    F.req.forEach((r, rx) => {
+      if (!tracked(r.item)) return F.lines.push({item:r.item, qty:+r.qty, lot:'', sug:'', rx});
+      const f = fefo(r.item, F.from, +r.qty, false);   // expired lots stay selectable by hand (e.g. to a quarantine location)
+      f.rows.forEach(row => F.lines.push({item:r.item, qty:row.qty, lot:row.lot, sug:row.lot, rx}));
+      if (f.short) F.lines.push({item:r.item, qty:f.short, lot:'', sug:'', rx});
+    });
+    drawTr();
+  }
+  function drawTr() {
+    modal('New Stock Transfer', err(F.errs) + `
+      <div class="slx-grid c3"><div class="form-group"><label class="form-label">From location</label><select class="form-control" onchange="SLX.fv('from',this.value);SLX.trFefo()">${locOpts(F.from)}</select></div>
+      <div class="form-group"><label class="form-label">To location</label><select class="form-control" onchange="SLX.fv('to',this.value)">${locOpts(F.to)}</select></div></div>
+      <div class="slx-sec">Requested</div>
+      <table class="slx-t"><thead><tr><th>Item</th><th class="n">Qty</th><th></th></tr></thead><tbody>
+      ${F.req.map((r, x) => `<tr><td><select class="form-control" onchange="SLX.fv('req.${x}.item',this.value);SLX.trFefo()">${itemOpts(r.item)}</select><div class="slx-hint">${qtyTip(r.item, F.from)}</div></td><td><input class="form-control" type="number" min="1" style="width:80px" value="${r.qty}" onchange="SLX.fv('req.${x}.qty',this.value);SLX.trFefo()"></td><td><button class="slx-x" onclick="SLX.trDel(${x})">×</button></td></tr>`).join('')}
+      </tbody></table><button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="SLX.trAdd()">+ Add item</button>
+      <div class="slx-sec">Lots to move (FEFO suggestion — lots keep their number and expiry at the destination)</div>
+      <table class="slx-t"><thead><tr><th>Item</th><th class="n">Qty</th><th>Lot</th><th>Expiry</th></tr></thead><tbody>
+      ${F.lines.map((l, x) => { const lot = l.lot && LOT(l.lot); return `<tr><td>${esc(IT(l.item).name)}</td><td class="n">${qf(l.qty)}</td>
+        <td>${tracked(l.item) ? `<select class="form-control" onchange="SLX.fv('lines.${x}.lot',this.value)">${lotOptions(l.item, F.from, l.lot, {allowExpired:true})}</select>${l.lot && l.sug && l.lot !== l.sug ? '<span class="slx-chip vio">FEFO overridden</span>' : ''}` : '—'}</td><td>${lot ? dd(lot.exp) + ' ' + expChip(lot) : '—'}</td></tr>`; }).join('')}
+      </tbody></table>`,
+      `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-primary" onclick="SLX.trSave()">Save &amp; Approve</button>`, 'modal-lg');
+  }
+  function trSave() {
+    const overrides = [];
+    F.errs = F.from === F.to ? ['From and To locations must differ.'] : checkOut(F.lines, F.from, {allowExpired:true, checkAvail:true, overrides});
+    if (F.errs.length) return drawTr();
+    if (overrides.length && !confirm(overrides.join('\n') + '\n\nApprove anyway?')) return;
+    const no = 'ST-2026-' + pad(S.trNext++, 3), lines = expandLots(F.lines); let cost = 0;
+    lines.forEach(l => { const lot = tracked(l.item) ? l.lot : null; move(l.item, F.from, lot, -l.qty, {type:'TR', doc:no, party:LOC(F.to).name}); move(l.item, F.to, lot, l.qty, {type:'TR', doc:no, party:LOC(F.from).name}); cost += l.qty * IT(l.item).cost; });
+    S.trs.push({no, from:F.from, to:F.to, date:TODAY, lines:lines.map(l => ({item:l.item, lot:l.lot, qty:l.qty}))});
+    postJE(no, 'Stock transfer ' + LOC(F.from).name + ' → ' + LOC(F.to).name, [{acc:invAcc(F.to), dr:cost}, {acc:invAcc(F.from), cr:cost}]);
+    close(); toast(no + ' approved — lots moved to ' + LOC(F.to).name, 'success'); refresh();
+  }
+
+  function renderAdjustments() {
+    const p = document.getElementById('panel-stock-adjustments'); if (!p) return;
+    p.innerHTML = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Inventory / <span>Stock Adjustments</span></div><div class="page-title">Stock Adjustments</div></div>
+      <div class="page-actions">${S.enabled ? `<button class="btn btn-outline" onclick="SLX.adjNew('reclass')">⇄ Lot reclass</button><button class="btn btn-primary" onclick="SLX.adjNew('count')">+ New Adjustment</button>` : `<button class="btn btn-primary" onclick="showToast('New adjustment','')">+ New Adjustment</button>`}</div></div>
+      <div class="card"><div class="card-body no-pad"><table class="slx-t"><thead><tr><th>Ref #</th><th>Location</th><th>Date</th><th>Reason</th><th>Lines</th><th>Status</th></tr></thead><tbody>
+      ${S.adjs.slice().reverse().map(a => `<tr><td style="font-weight:700;color:var(--accent)">${esc(a.no)}</td><td>${esc(LOC(a.loc).name)}</td><td>${dd(a.date)}</td><td>${esc(a.reason)}</td><td>${a.lines}</td><td>${badge('Posted', 'badge-approved')}</td></tr>`).join('')}
+      <tr><td style="font-weight:700;color:var(--accent)">ADJ-2026-008</td><td>Main Warehouse</td><td>${dd('2026-06-22')}</td><td>Annual Stocktake</td><td>38</td><td>${badge('Posted', 'badge-approved')}</td></tr>
+      <tr><td style="font-weight:700;color:var(--accent)">ADJ-2026-007</td><td>Jeddah Branch</td><td>${dd('2026-06-10')}</td><td>Damaged Goods</td><td>5</td><td>${badge('Posted', 'badge-approved')}</td></tr>
+      </tbody></table></div></div>`;
+  }
+  function adjNew(mode, item, loc) {
+    F = {kind:'adj', mode, loc:loc || 'MAIN', item:item || 'PAR', reason:mode === 'reclass' ? 'Lot reclass' : 'Expired stock write-off', errs:[], rows:[], rc:{from:'', to:'', newNo:'', newExp:'', qty:0}};
+    adjLoad();
+  }
+  function adjLoad() {
+    if (F.mode === 'count') {
+      F.rows = tracked(F.item)
+        ? lotsAt(F.item, F.loc).map(l => ({lot:l.id, cur:lotQty(l, F.loc), actual:lotQty(l, F.loc)}))
+        : [{lot:'', cur:S.plain[F.item + '|' + F.loc] || 0, actual:S.plain[F.item + '|' + F.loc] || 0}];
+    }
+    drawAdj();
+  }
+  function drawAdj() {
+    const it = IT(F.item);
+    let body = `<div class="slx-grid c3"><div class="form-group"><label class="form-label">Location</label><select class="form-control" onchange="SLX.fv('loc',this.value);SLX.adjLoad()">${locOpts(F.loc)}</select></div>
+      <div class="form-group"><label class="form-label">Item</label><select class="form-control" onchange="SLX.fv('item',this.value);SLX.adjLoad()">${itemOpts(F.item, F.mode === 'reclass' ? (i => i.track) : null)}</select></div>
+      <div class="form-group"><label class="form-label">Reason</label><input class="form-control" value="${esc(F.reason)}" onchange="SLX.fv('reason',this.value)"></div></div>`;
+    if (F.mode === 'count') {
+      body += `<table class="slx-t"><thead><tr><th>Lot</th><th>Expiry</th><th class="n">Current Qty</th><th>Actual Qty</th><th class="n">Variance</th><th class="n">Value</th></tr></thead><tbody>
+        ${F.rows.map((r, x) => { const lot = r.lot && r.lot !== 'new' && LOT(r.lot), v = (+r.actual || 0) - r.cur;
+          return `<tr><td>${r.lot === 'new' ? `<input class="form-control" placeholder="${S.lot.mode === 'auto' ? esc(lotPreview()) + ' (auto)' : 'New lot number'}" value="${esc(r.newNo || '')}" ${S.lot.mode === 'auto' ? 'readonly class="slx-ro"' : ''} onchange="SLX.fv('rows.${x}.newNo',this.value)">` : lot ? esc(lot.no) : '<span class="slx-hint">No lot</span>'}</td>
+          <td>${r.lot === 'new' ? (S.lot.expiry ? `<input class="form-control" type="date" value="${esc(r.newExp || '')}" onchange="SLX.fv('rows.${x}.newExp',this.value)">` : '—') : lot ? dd(lot.exp) + ' ' + expChip(lot) : '—'}</td>
+          <td class="n">${qf(r.cur)}</td><td><input class="form-control" type="number" min="0" style="width:80px" value="${r.actual}" onchange="SLX.fv('rows.${x}.actual',this.value)"></td>
+          <td class="n" style="color:${v < 0 ? 'var(--red)' : v > 0 ? 'var(--green)' : 'inherit'};font-weight:700">${v > 0 ? '+' : ''}${qf(v)}</td><td class="n">${n2(v * it.cost)}</td></tr>`; }).join('')}
+        </tbody></table>${tracked(F.item) ? '<button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="SLX.adjNewLot()">+ New lot (increase)</button>' : ''}
+        <div class="slx-legend"><span>Decreases are checked against Available. Expired lots can be written off here.</span></div>`;
+    } else {
+      const lots = lotsAt(F.item, F.loc), rc = F.rc;
+      body += `<div class="slx-ok">Lot reclass moves quantity between lots of the same item and location. <b>No journal entry.</b> Use it to split an OPENING lot into real lots.</div>
+        <div class="slx-grid">
+          <div class="form-group" style="grid-column:span 2"><label class="form-label">From lot</label><select class="form-control" onchange="SLX.fv('rc.from',this.value)">${lotOptions(F.item, F.loc, rc.from, {allowExpired:true})}</select></div>
+          <div class="form-group"><label class="form-label">Quantity</label><input class="form-control" type="number" min="0" value="${rc.qty}" onchange="SLX.fv('rc.qty',this.value)"></div><div></div>
+          <div class="form-group" style="grid-column:span 2"><label class="form-label">To lot</label><select class="form-control" onchange="SLX.fv('rc.to',this.value)"><option value="new"${rc.to === 'new' ? ' selected' : ''}>+ New lot</option>${lots.filter(l => l.id !== rc.from).map(l => `<option value="${l.id}"${l.id === rc.to ? ' selected' : ''}>${esc(l.no)}</option>`).join('')}</select></div>
+          ${rc.to === 'new' || !rc.to ? `<div class="form-group"><label class="form-label">New lot number</label><input class="form-control ${S.lot.mode === 'auto' ? 'slx-ro' : ''}" ${S.lot.mode === 'auto' ? `readonly value="${esc(lotPreview())}"` : `value="${esc(rc.newNo)}" onchange="SLX.fv('rc.newNo',this.value)"`}></div>
+          ${S.lot.expiry ? `<div class="form-group"><label class="form-label">Expiry Date</label><input class="form-control" type="date" value="${esc(rc.newExp)}" onchange="SLX.fv('rc.newExp',this.value)"></div>` : ''}` : ''}
+        </div>`;
+    }
+    modal(F.mode === 'count' ? 'New Stock Adjustment' : 'Lot reclass', err(F.errs) + body, `<button class="btn btn-ghost" onclick="SLX.close()">Cancel</button><button class="btn btn-primary" onclick="SLX.adjSave()">Save &amp; Approve</button>`, 'modal-lg');
+  }
+  function adjSave() {
+    F.errs = [];
+    const no = 'ADJ-2026-' + pad(S.adjNext++, 3), it = IT(F.item);
+    if (F.mode === 'reclass') {
+      const rc = F.rc, from = LOT(rc.from), q = +rc.qty;
+      if (!from) F.errs.push('Select the lot to move from.');
+      else if (!(q > 0) || q > lotQty(from, F.loc)) F.errs.push(`Quantity exceeds the remaining quantity (${qf(from ? lotQty(from, F.loc) : 0)}).`);
+      if (S.lot.mode === 'manual' && (rc.to === 'new' || !rc.to) && !rc.newNo.trim()) F.errs.push('Enter the new lot number.');
+      if (F.errs.length) { S.adjNext--; return drawAdj(); }
+      const toId = rc.to && rc.to !== 'new' ? rc.to : newLot(F.item, S.lot.mode === 'auto' ? nextLotNo() : rc.newNo.trim(), rc.newExp, no, from.vendor, TODAY);
+      move(F.item, F.loc, from.id, -q, {type:'RECLASS', doc:no}); move(F.item, F.loc, toId, q, {type:'RECLASS', doc:no});
+      S.adjs.push({no, loc:F.loc, date:TODAY, reason:F.reason, lines:2});
+      close(); toast(`${no}: ${qf(q)} moved ${from.no} → ${LOT(toId).no} (no journal entry)`, 'success'); return refresh();
+    }
+    const dec = {}; let inc = 0, decV = 0;
+    F.rows.forEach(r => { const v = (+r.actual || 0) - r.cur; if (v < 0) dec[F.item] = (dec[F.item] || 0) - v; });
+    if (dec[F.item] && dec[F.item] > avail(F.item, F.loc) + 0) {
+      if (!S.perm.override) F.errs.push(`${it.name}: Available quantity is ${qf(avail(F.item, F.loc))}. ${qf(reserved(F.item, F.loc))} units are reserved for sales orders.`);
+      else if (!confirm('This decrease takes stock from sales-order reservations. Approve anyway?')) { S.adjNext--; return; }
+    }
+    F.rows.forEach((r, x) => { if (r.lot === 'new' && +r.actual > 0 && S.lot.mode === 'manual' && !(r.newNo || '').trim()) F.errs.push(`Row ${x + 1}: Lot number is required.`); if (r.lot === 'new' && +r.actual > 0 && S.lot.expiry && it.mand && !r.newExp) F.errs.push(`Row ${x + 1}: Expiry date is required for this item.`); });
+    if (F.errs.length) { S.adjNext--; return drawAdj(); }
+    let n = 0;
+    F.rows.forEach(r => {
+      const v = (+r.actual || 0) - r.cur; if (!v) return;
+      const lot = r.lot === 'new' ? newLot(F.item, S.lot.mode === 'auto' ? nextLotNo() : r.newNo.trim(), r.newExp, no, '', TODAY) : (r.lot || null);
+      move(F.item, F.loc, lot, v, {type:'ADJ', doc:no}); n++;
+      if (v > 0) inc += v * it.cost; else decV += -v * it.cost;
+    });
+    if (!n) { S.adjNext--; return toast('No variance to post', 'warn'); }
+    S.adjs.push({no, loc:F.loc, date:TODAY, reason:F.reason, lines:n});
+    const je = [];
+    if (inc) je.push({acc:invAcc(F.loc), dr:inc}, {acc:'4900 · Inventory gain', cr:inc});
+    if (decV) je.push({acc:'5150 · Inventory write-off (expired / damaged)', dr:decV}, {acc:invAcc(F.loc), cr:decV});
+    postJE(no, 'Stock adjustment — ' + F.reason, je);
+    close(); toast(no + ' posted', 'success'); refresh(); showJE(no);
+  }
+
+  /* ══════════ DASHBOARD — Product Health Check (§9) ══════════ */
+  function healthRows(loc) {
+    const rows = [];
+    S.lots.forEach(l => S.locs.forEach(x => {
+      if ((loc !== 'ALL' && x.id !== loc) || lotQty(l, x.id) <= 0) return;
+      const st = lotState(l); if (st === 'valid') return;
+      rows.push({l, loc:x.id, st});
+    }));
+    return rows.sort((a, b) => (a.l.exp || '').localeCompare(b.l.exp || ''));
+  }
+  function mismatches() {   // lot total ≠ on hand for tracked items (e.g. POS sales outside lots)
+    return S.items.filter(i => i.track).flatMap(i => S.locs.filter(x => (S.plain[i.id + '|' + x.id] || 0) !== 0).map(x => ({i, loc:x.id, diff:S.plain[i.id + '|' + x.id]})));
+  }
+  function renderHealth() {
+    const dash = document.getElementById('panel-dashboard'); if (!dash) return;
+    let c = document.getElementById('slx-health');
+    if (!S.enabled || !S.perm.health || !S.lot.expiry) { if (c) c.remove(); return; }
+    if (!c) { c = document.createElement('div'); c.id = 'slx-health'; c.className = 'card'; const g = dash.querySelector('.stats-grid'); (g || dash.querySelector('.page-header')).after(c); }
+    const rows = healthRows(S.ui.hcLoc), exp = rows.filter(r => r.st === 'expired'), near = rows.filter(r => r.st === 'near'), mm = mismatches();
+    const tr = r => `<tr><td>${esc(IT(r.l.item).name)}</td><td><span class="slx-link" onclick="SLX.trace('${r.l.id}')">${esc(r.l.no)}</span></td><td>${esc(LOC(r.loc).name)}</td><td>${dd(r.l.exp)}</td><td>${expChip(r.l)}</td><td class="n">${qf(lotQty(r.l, r.loc))}</td><td class="n">${n2(lotQty(r.l, r.loc) * IT(r.l.item).cost)}</td>
+      <td>${r.st === 'expired' ? `<button class="btn btn-outline btn-xs" onclick="SLX.adjNew('count','${r.l.item}','${r.loc}')">Write off</button>` : ''}</td></tr>`;
+    c.innerHTML = `<div class="card-header"><h3>🩺 Product Health Check</h3><div style="display:flex;gap:8px;align-items:center">
+        <select class="filter-select" onchange="SLX.ui('hcLoc',this.value)"><option value="ALL">All locations</option>${S.locs.map(l => `<option value="${l.id}"${l.id === S.ui.hcLoc ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
+        <button class="btn btn-outline btn-sm" onclick="SLX.ui('rtab','expiry');navigate('lot-reports')">View all →</button></div></div>
+      <div class="card-body"><div class="slx-kpi"><div><b style="color:var(--amber)">${near.length}</b><span>Near expiry (within the item's alert days)</span></div><div><b style="color:var(--red)">${exp.length}</b><span>Expired with stock on hand</span></div><div><b>${mm.length}</b><span>Lot mismatch (lot total ≠ on hand)</span></div></div>
+      ${rows.length ? `<table class="slx-t"><thead><tr><th>Item</th><th>Lot</th><th>Location</th><th>Expiry date</th><th>Days left</th><th class="n">Qty on hand</th><th class="n">Value</th><th></th></tr></thead><tbody>
+        ${near.length ? `<tr class="grp"><td colspan="8">Near expiry</td></tr>${near.map(tr).join('')}` : ''}${exp.length ? `<tr class="grp"><td colspan="8">Expired</td></tr>${exp.map(tr).join('')}` : ''}</tbody></table>` : '<div class="slx-ok">All lots are healthy.</div>'}
+      ${mm.length ? `<div class="slx-warn" style="margin-top:10px">Lot mismatch: ${mm.map(m => esc(m.i.name) + ' @ ' + esc(LOC(m.loc).name) + ' (' + qf(m.diff) + ' not in a lot)').join('; ')} — fix with a lot-only Stock Adjustment.</div>` : ''}
+      <div class="slx-hint" style="margin-top:8px">🔔 Daily in-app and email notification sent today to users with “View Product Health Check”.</div></div>`;
+  }
+
+  /* ══════════ REPORTS (§10) ══════════ */
+  function renderReports() {
+    const p = document.getElementById('panel-lot-reports'); if (!p) return;
+    const t = S.ui.rtab, tab = (k, l) => `<button class="${t === k ? 'on' : ''}" onclick="SLX.ui('rtab','${k}')">${l}</button>`;
+    const head = `<div class="page-header"><div><div class="breadcrumb"><span onclick="navigate('dashboard')">Home</span> / Reports / <span>Lot &amp; Expiry</span></div><div class="page-title">Lot &amp; Expiry Reports</div><div class="page-subtitle">Expiry Stock · Lot Traceability · Inventory Turnover</div></div>
+      <div class="page-actions"><button class="btn btn-outline btn-sm" onclick="showToast('Exported to Excel (RTL sheet when Arabic)','success')">⬇ Excel</button><button class="btn btn-outline btn-sm" onclick="showToast('PDF exported','success')">⬇ PDF</button></div></div>`;
+    if (!S.enabled) { p.innerHTML = head + offState('Lot & Expiry reporting'); return; }
+    let body = '';
+    if (t === 'expiry') body = reportExpiry(); else if (t === 'trace') body = reportTrace(); else body = reportTurnover();
+    p.innerHTML = head + `<div class="slx-tabs">${tab('expiry', 'Expiry Stock Report')}${tab('trace', 'Lot Traceability Report')}${tab('turn', 'Inventory Turnover Report')}</div>${body}`;
+  }
+  function reportExpiry() {
+    const u = S.ui, cats = [...new Set(S.items.filter(i => i.track).map(i => i.cat))];
+    const rows = [];
+    S.items.filter(i => i.track && (!u.rCat || u.rCat === 'ALL' || i.cat === u.rCat)).forEach(i => {
+      const ls = S.lots.filter(l => l.item === i.id).sort(fefoSort).flatMap(l => S.locs.filter(x => (u.rLoc === 'ALL' || x.id === u.rLoc) && lotQty(l, x.id) > 0).map(x => ({l, x})))
+        .filter(r => u.rStatus === 'ALL' || lotState(r.l) === u.rStatus);
+      if (ls.length) rows.push({i, ls});
+    });
+    const tot = {expired:0, near:0, valid:0};
+    rows.forEach(g => g.ls.forEach(r => tot[lotState(r.l)] += lotQty(r.l, r.x.id) * g.i.cost));
+    return `<div class="card"><div class="filter-bar">
+        <select class="filter-select" onchange="SLX.ui('rLoc',this.value)"><option value="ALL">All locations</option>${S.locs.map(l => `<option value="${l.id}"${l.id === u.rLoc ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
+        <select class="filter-select" onchange="SLX.ui('rCat',this.value)"><option value="ALL">All categories</option>${cats.map(c => `<option${c === u.rCat ? ' selected' : ''}>${esc(c)}</option>`).join('')}</select>
+        <select class="filter-select" onchange="SLX.ui('rStatus',this.value)">${[['ALL', 'All statuses'], ['expired', 'Expired'], ['near', 'Near expiry'], ['valid', 'Valid']].map(([k, l]) => `<option value="${k}"${k === u.rStatus ? ' selected' : ''}>${l}</option>`).join('')}</select></div>
+      <div class="card-body"><div class="slx-kpi"><div><b style="color:var(--red)">SAR ${n2(tot.expired)}</b><span>Expired</span></div><div><b style="color:var(--amber)">SAR ${n2(tot.near)}</b><span>Near expiry</span></div><div><b style="color:var(--green)">SAR ${n2(tot.valid)}</b><span>Valid</span></div></div>
+      <table class="slx-t"><thead><tr><th>Item / Lot</th><th>Location</th><th>Expiry date</th><th>Days left</th><th class="n">Qty on hand</th><th class="n">Reserved (item)</th><th class="n">Value (avg cost)</th></tr></thead><tbody>
+      ${rows.map(g => `<tr class="grp"><td colspan="7">${esc(g.i.sku)} — ${esc(g.i.name)}</td></tr>` + g.ls.map(r => `<tr><td style="padding-left:24px"><span class="slx-link" onclick="SLX.trace('${r.l.id}')">${esc(r.l.no)}</span></td><td>${esc(r.x.name)}</td><td>${dd(r.l.exp)}</td><td>${expChip(r.l)}</td><td class="n">${qf(lotQty(r.l, r.x.id))}</td><td class="n">${qf(reserved(g.i.id, r.x.id))}</td><td class="n">${n2(lotQty(r.l, r.x.id) * g.i.cost)}</td></tr>`).join('')).join('') || '<tr><td colspan="7" class="slx-hint">No lots match the filters.</td></tr>'}
+      </tbody></table></div></div>`;
+  }
+  const docOpen = (d) => /^CIS/.test(d) ? `SLX.cisView('${d}')` : /^VIR/.test(d) ? `SLX.virView('${d}')` : /^INV/.test(d) && INV(d) ? `SLX.invView('${d}')` : /^BILL/.test(d) && BILL(d) && !BILL(d).legacy ? `SLX.billView('${d}')` : /^SO/.test(d) ? `SLX.soView('${d}')` : '';
+  function reportTrace() {
+    const id = S.ui.rLot || (S.lots[0] && S.lots[0].id), l = LOT(id);
+    if (!l) return '<div class="slx-hint">No lots yet.</div>';
+    const moves = S.ledger.filter(m => m.lot === id).sort((a, b) => a.date.localeCompare(b.date));
+    const run = {}; const back = moves.filter(m => m.qty > 0 && ['OPEN', 'VIR', 'BILL', 'ADJ', 'RECLASS'].includes(m.type) && !(m.type === 'TR'));
+    const typeLbl = {OPEN:'Opening', VIR:'Vendor Items Receipt', BILL:'Purchase Invoice', CIS:'Customer Items Shipment', INV:'Sales Invoice', CN:'Credit Note', DN:'Debit Note', TR:'Stock Transfer', ADJ:'Stock Adjustment', RECLASS:'Lot reclass'};
+    const link = d => docOpen(d) ? `<span class="slx-link" onclick="${docOpen(d)}">${esc(d)}</span>` : esc(d);
+    const src = S.virs.find(v => v.lines.some(x => x.lot === id));
+    return `<div class="card"><div class="filter-bar"><label class="form-label" style="margin:0">Lot number *</label>
+        <select class="filter-select" style="min-width:320px" onchange="SLX.ui('rLot',this.value)">${S.lots.slice().sort((a, b) => a.no.localeCompare(b.no)).map(z => `<option value="${z.id}"${z.id === id ? ' selected' : ''}>${esc(z.no)} — ${esc(IT(z.item).name)}</option>`).join('')}</select></div>
+      <div class="card-body">
+        <div class="slx-grid"><div><div class="form-label">Item</div><b>${esc(IT(l.item).name)}</b></div><div><div class="form-label">Expiry</div>${dd(l.exp)} ${expChip(l)}</div><div><div class="form-label">Vendor</div>${esc(l.vendor || '—')}</div><div><div class="form-label">On hand now</div>${S.locs.filter(x => lotQty(l, x.id)).map(x => esc(x.name) + ': <b>' + qf(lotQty(l, x.id)) + '</b>').join(' · ') || '0'}</div></div>
+        <div class="slx-sec">Backward — where it came from</div>
+        <table class="slx-t"><thead><tr><th>Date</th><th>Document</th><th>Type</th><th>Vendor</th><th>Purchase Order</th><th>Location</th><th class="n">Received</th></tr></thead><tbody>
+        ${back.map(m => `<tr><td>${dd(m.date)}</td><td>${link(m.doc)}</td><td>${typeLbl[m.type] || m.type}</td><td>${esc(m.party || l.vendor)}</td><td>${src && src.no === m.doc ? esc(src.srcNo) : '—'}</td><td>${esc(LOC(m.loc).name)}</td><td class="n">${qf(m.qty)}</td></tr>`).join('') || '<tr><td colspan="7" class="slx-hint">—</td></tr>'}</tbody></table>
+        <div class="slx-sec">Forward — where it went (running quantity per location)</div>
+        <table class="slx-t"><thead><tr><th>Date</th><th>Document</th><th>Type</th><th>Customer / counterparty</th><th>Location</th><th class="n">Qty</th><th class="n">Running qty</th></tr></thead><tbody>
+        ${moves.map(m => { run[m.loc] = (run[m.loc] || 0) + m.qty; return back.includes(m) ? '' : `<tr><td>${dd(m.date)}</td><td>${link(m.doc)}</td><td>${typeLbl[m.type] || m.type}</td><td>${esc(m.party || '—')}</td><td>${esc(LOC(m.loc).name)}</td><td class="n" style="color:${m.qty < 0 ? 'var(--red)' : 'var(--green)'}">${m.qty > 0 ? '+' : ''}${qf(m.qty)}</td><td class="n">${qf(run[m.loc])}</td></tr>`; }).join('') || '<tr><td colspan="7" class="slx-hint">No outgoing movements yet.</td></tr>'}</tbody></table>
+      </div></div>`;
+  }
+  function reportTurnover() {
+    const u = S.ui, from = u.tFrom, to = u.tTo, pd = days(from, to) + 1;
+    const qtyAt = (it, lot, date) => S.ledger.filter(m => m.item === it && (lot === undefined || m.lot === lot) && m.date < date).reduce((a, m) => a + m.qty, 0);
+    const sales = m => m.qty < 0 && ['CIS', 'INV'].includes(m.type) && m.date >= from && m.date <= to;
+    const items = S.items.filter(i => !u.tLotOnly || i.track);
+    const rows = items.map(i => {
+      const beg = qtyAt(i.id, undefined, from) * i.cost, end = qtyAt(i.id, undefined, addShelf(to, 1, 'Day')) * i.cost, avg = (beg + end) / 2;
+      const cogs = S.ledger.filter(m => m.item === i.id && sales(m)).reduce((a, m) => a - m.qty, 0) * i.cost;
+      const wo = S.ledger.filter(m => m.item === i.id && m.type === 'ADJ' && m.qty < 0 && m.lot && LOT(m.lot).exp && m.date >= LOT(m.lot).exp && m.date >= from && m.date <= to).reduce((a, m) => a - m.qty, 0) * i.cost;
+      const sold = S.ledger.filter(m => m.item === i.id && sales(m) && m.lot);
+      const before = sold.filter(m => !LOT(m.lot).exp || m.date <= LOT(m.lot).exp).reduce((a, m) => a - m.qty, 0), soldQ = sold.reduce((a, m) => a - m.qty, 0);
+      const ratio = avg > 0 && cogs > 0 ? cogs / avg : 0;
+      return {i, beg, end, avg, cogs, ratio, dio:ratio ? pd / ratio : null, wo, st:i.track && soldQ ? before / soldQ * 100 : null};
+    });
+    const lotRows = i => S.lots.filter(l => l.item === i.id && (!u.rLotF || l.no.toLowerCase().includes(u.rLotF.toLowerCase()))).sort(fefoSort).map(l => {
+      const b = qtyAt(i.id, l.id, from), e = qtyAt(i.id, l.id, addShelf(to, 1, 'Day'));
+      const out = S.ledger.filter(m => m.lot === l.id && sales(m));
+      const q = out.reduce((a, m) => a - m.qty, 0), dw = q ? out.reduce((a, m) => a + (-m.qty) * days(l.created, m.date), 0) / q : null;
+      return `<tr class="sub"><td></td><td style="padding-left:24px"><span class="slx-link" onclick="SLX.trace('${l.id}')">${esc(l.no)}</span></td><td>${dd(l.exp)} ${expChip(l)}</td><td class="n">${qf(b)} qty</td><td class="n">${qf(e)} qty</td><td></td><td class="n">${n2(q * i.cost)}</td><td></td><td class="n">${dw === null ? '—' : Math.round(dw) + ' days'}</td><td></td><td></td></tr>`;
+    }).join('');
+    return `<div class="card"><div class="filter-bar">
+        <input class="filter-input" type="date" value="${from}" onchange="SLX.ui('tFrom',this.value)" style="min-width:140px"> → <input class="filter-input" type="date" value="${to}" onchange="SLX.ui('tTo',this.value)" style="min-width:140px">
+        <input class="filter-input" placeholder="Lot number" value="${esc(u.rLotF || '')}" onchange="SLX.ui('rLotF',this.value)">
+        <label style="display:flex;gap:6px;align-items:center"><input type="checkbox" ${u.tLotOnly ? 'checked' : ''} onchange="SLX.ui('tLotOnly',this.checked)"> Lot-tracked items only</label></div>
+      <div class="card-body no-pad" style="overflow-x:auto"><table class="slx-t"><thead><tr><th></th><th>SKU · Product</th><th>Category</th><th class="n">Beginning Inventory</th><th class="n">Ending Inventory</th><th class="n">Average Inventory</th><th class="n">COGS</th><th class="n">Turnover Ratio</th><th class="n">Days in Inventory</th><th class="n">Expired write-off</th><th class="n">Sell-through before expiry</th></tr></thead><tbody>
+      ${rows.map(r => `<tr><td>${r.i.track ? `<button class="slx-x" onclick="SLX.tOpen('${r.i.id}')">${u.tOpen[r.i.id] ? '▾' : '▸'}</button>` : ''}</td><td><b>${esc(r.i.sku)}</b> ${esc(r.i.name)}</td><td>${esc(r.i.cat)}</td><td class="n">${n2(r.beg)}</td><td class="n">${n2(r.end)}</td><td class="n">${n2(r.avg)}</td><td class="n">${n2(r.cogs)}</td>
+        <td class="n">${r.ratio ? r.ratio.toFixed(2) : '—'}</td><td class="n">${r.dio === null ? '—' : Math.round(r.dio) + ' days'}</td><td class="n">${r.i.track ? n2(r.wo) : '—'}</td><td class="n">${r.st === null ? '—' : r.st.toFixed(0) + '%'}</td></tr>${u.tOpen[r.i.id] ? lotRows(r.i) : ''}`).join('')}
+      </tbody></table></div><div class="slx-hint" style="padding:10px 20px">Items with no COGS in the period show “—”, not “0 days”. Expand a lot-tracked item to see one row per lot.</div></div>`;
+  }
+
+  /* ══════════ shell: panels, nav, refresh ══════════ */
+  const NEW_PANELS = ['sales-orders', 'shipments', 'settings-inventory', 'lot-reports'];
+  const RENDER = {
+    'sales-orders':renderSO, 'shipments':renderCIS, 'vendor-receipts':renderVIR, 'settings-inventory':renderSettings, 'lot-reports':renderReports,
+    'purchase-orders':renderPO, 'bills':renderBills, 'items':renderItems, 'warehouses':renderLocations, 'delivery-orders':renderDO,
+    'credit-notes':renderCN, 'purchase-returns':renderReturns, 'stock-transfers':renderTransfers, 'stock-adjustments':renderAdjustments,
+    'invoices':renderInvCard, 'dashboard':renderHealth
+  };
+  function refresh() {
+    Object.values(RENDER).forEach(fn => { try { fn(); } catch (e) { console.error('[slx]', e); } });
+    document.querySelectorAll('[data-slx-nav]').forEach(n => n.style.display = S.enabled || n.dataset.slxNav === 'always' ? '' : 'none');
+  }
+  function init() {
+    const host = document.getElementById('panel-dashboard').parentNode;
+    NEW_PANELS.forEach(id => { if (!document.getElementById('panel-' + id)) { const d = document.createElement('div'); d.className = 'panel'; d.id = 'panel-' + id; host.appendChild(d); } });
+    ensureOverlays();
+    const prev = window.navigate;
+    window.navigate = function (s) { prev(s); if (RENDER[s]) { try { RENDER[s](); } catch (e) { console.error('[slx]', e); } } };
+    refresh();
+  }
+
+  /* ─── public API for inline handlers ─── */
+  window.SLX = {
+    close, refresh,
+    fv(path, val, mode) { setPath(F, path, val); if (mode === 1) return; if (mode === 2) return drawItemCard(); ({so:drawSO, cis:drawCIS, vir:drawVIR, bill:drawBill, inv:drawInv, cn:drawCN, ret:drawRet, tr:drawTr, adj:drawAdj}[F.kind] || (() => 0))(); },
+    ui(k, v) { S.ui[k] = v; refresh(); },
+    stab(k) { S.ui.stab = k; renderSettings(); },
+    perm(k, v) { S.perm[k] = v; refresh(); },
+    reset() { if (confirm('Reset all prototype data for this module?')) { S = seed(); refresh(); toast('Demo data reset', 'success'); } },
+    toggleFeature, saveSettings,
+    lotSet(k, v) { S.lot[k] = k === 'next' ? Math.max(1, +v || 1) : v; renderSettings(); },
+    numSet(k, f, v) { S.num[k][f] = f === 'next' ? Math.max(1, +v || 1) : v; renderSettings(); },
+    colSet(k, c, v) { S.num[k].cols[c] = v; },
+    editLoc, saveLoc, itemCard, trackLots, saveItem,
+    soNew, soEdit, soSave, soApprove, soFinal:soApprove, soView, soReverse, soCancel,
+    soCust(name) { const c = S.customers.find(x => x.name === name); Object.assign(F, {customer:name, addr:c.addr, cur:c.cur}); drawSO(); },
+    quickCust() { const n = prompt('New customer name'); if (!n) return; S.customers.push({name:n, addr:'', cur:'SAR'}); Object.assign(F, {customer:n, addr:'', cur:'SAR'}); toast('Customer ' + n + ' added', 'success'); drawSO(); },
+    soItem(x, it) { F.lines[x].item = it; F.lines[x].price = IT(it).price; drawSO(); },
+    soAddLine() { F.lines.push({item:'PAR', desc:'', qty:1, price:IT('PAR').price, disc:0, dt:'%', incl:false, del:0, inv:0, rev:0, project:''}); drawSO(); },
+    lineDims(x) { const p = prompt('Project for line ' + (x + 1) + ' (Projects · Cost/Profit Centers dialog)', F.lines[x].project || ''); if (p !== null) { F.lines[x].project = p; toast('Project and cost centers set for line ' + (x + 1), 'success'); } },
+    delLine(x) { F.lines.splice(x, 1); ({so:drawSO, cis:drawCIS, vir:drawVIR, bill:drawBill, inv:drawInv, ret:drawRet}[F.kind])(); },
+    cisNew, cisLoad, cisSave, cisApprove, cisView, cisFefo, doFromCIS, saveDO,
+    cisType(t) { F.srcType = t; F.srcNo = ''; F.lines = []; drawCIS(); },
+    virNew, virLoad, virSave, virApprove, virView, virSplit, virDate, virExp, virPickOnly, convertToBill,
+    virType(t) { F.srcType = t; F.srcNo = ''; F.lines = []; drawVIR(); },
+    virPick(no, on) { S.ui.virSel[no] = on; renderVIR(); },
+    poView, poApprove, billNew, billFromPO, billPO, billVir, billSave, billApprove, billView,
+    billVend(v) { F.vendor = v; if (F.po) return billPO(''); drawBill(); },
+    billAddLine() { F.lines.push({item:'PAR', qty:1, price:10, lotNo:'', exp:''}); drawBill(); },
+    invFromSO, invSO, invNew, invAddLine, invSave, invView,
+    invCust(v) { F.customer = v; if (F.so) return invSO(''); drawInv(); },
+    invDL(v) { F.deliverLater = v; invFefo(); },
+    invLoc(v) { F.loc = v; invFefo(); },
+    invItem(x, it) { F.req[x].item = it; F.req[x].price = IT(it).price; invFefo(); },
+    invQty(x, v) { if (F.so) { F.lines[x].qty = +v || 0; return drawInv(); } F.req[x].qty = +v || 0; invFefo(); },
+    invDel(x) { F.req.splice(x, 1); invFefo(); },
+    cnNew, cnLoad, cnSave, retNew, retSave, trNew, trFefo, trSave,
+    trAdd() { F.req.push({item:'SAN', qty:1}); trFefo(); },
+    trDel(x) { F.req.splice(x, 1); trFefo(); },
+    adjNew, adjLoad, adjSave,
+    adjNewLot() { F.rows.push({lot:'new', cur:0, actual:0, newNo:'', newExp:''}); drawAdj(); },
+    trace(id) { close(); close('slx-m2'); S.ui.rtab = 'trace'; S.ui.rLot = id; navigate('lot-reports'); },
+    tOpen(id) { S.ui.tOpen[id] = !S.ui.tOpen[id]; renderReports(); },
+    state:() => S
+  };
+  window.addEventListener('DOMContentLoaded', () => { try { init(); } catch (e) { console.error('[slx]', e); } });
 })();
 </script>
 
